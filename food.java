@@ -1,4 +1,4 @@
-
+package pet_game;
 public class Food {
 	
 	
