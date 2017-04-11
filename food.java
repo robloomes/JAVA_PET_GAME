@@ -1,5 +1,5 @@
 
-public class food {
+public class Food {
 	
 	
 	String name;
@@ -9,11 +9,11 @@ public class food {
 	int nutrition;
 	
 	
-	food(String name,int price, float weight, int testines, int nutrition){
+	Food(String name,int price, float weight, int tastiness, int nutrition){
 		this.name = name;
 		this.price = price;
 		this.weight = weight;
-		this.tastiness = testines;
+		this.tastiness = tastiness;
 		this.nutrition = nutrition;
 	}
 	
@@ -58,7 +58,7 @@ public class food {
 	}
 	public static void main(String[]args){
 		//unit testing
-		food testTuna = new food("toby", 18, 100, 7, 12 ); //(name, price, weight, nutrition , tastiness )
+		Food testTuna = new Food("toby", 18, 100, 7, 12 ); //(name, price, weight, nutrition , tastiness )
 		System.out.println(testTuna);
 	}
 
