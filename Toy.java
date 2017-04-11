@@ -50,8 +50,8 @@ public class Toy{
 	
 	public static void main(String[]args){
 		//unit testing
-		//Toy testBall = new Toy("Ball", 18, 100, 7); //(name, price, durability, enjoyment)
-		//System.out.println(testBall);
+		Toy testBall = new Toy("Ball", 18, 100, 7); //(name, price, durability, enjoyment)
+		System.out.println(testBall);
 	}
 }
 
