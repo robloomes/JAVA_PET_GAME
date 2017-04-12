@@ -77,7 +77,7 @@ public class Player {
 	
 	public String toString() {
 		String playerName = "Name: " + this.name;
-		String playerBalance = "Balance: " + this.playerBalance;
+		String playerBalance = "Balance: $" + this.playerBalance;
 		String playerPets;
 		if (this.pets.isEmpty()) {
 			playerPets = "Pets: None";
