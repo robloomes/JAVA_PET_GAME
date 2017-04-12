@@ -36,18 +36,19 @@ public class Food {
 	}
 	
 	public void setNutrition(int newNutrition) { //TODO is this method needed?
-	this.nutrition = newNutrition ;
+		this.nutrition = newNutrition ;
 	}
 	
 	public String toString() {
-		 String foodName = "Name: " + this.name;
-		 String foodPrice = "Price: " + this.price;
-		 String foodWeight = "Weight: " + this.weight;
-		 String foodTastiness = "Tastiness: " + this.tastiness;
-		 String foodNutrition = "Nutrition: " + this.nutrition;
+		//Output format
+		String foodName = "Name: " + this.name;
+		String foodPrice = "Price: " + this.price;
+		String foodWeight = "Weight: " + this.weight + " kg";
+		String foodTastiness = "Tastiness: " + this.tastiness;
+		String foodNutrition = "Nutrition: " + this.nutrition;
 		 
-		 String foodStats = foodName + "\n" + foodPrice + "\n" + foodWeight + "\n" + foodNutrition + "\n" + foodTastiness;
-		 return foodStats;
+		String result = String.format("%s %n%s %n%s %n%s %n%s", foodName, foodPrice, foodWeight, foodTastiness, foodNutrition);
+		return result;
 	}
 	
 	public static void main(String[]args){
