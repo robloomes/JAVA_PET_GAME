@@ -15,7 +15,7 @@ public class Player {
 	Player(String name){
 		this.name = name;
 		playerSet.add(name);
-		this.playerBalance = 1000;
+		this.playerBalance = 100;
 		this.pets = new ArrayList<String>();
 		this.toys = new ArrayList<String>();
 		this.food = new ArrayList<String>();
@@ -118,8 +118,8 @@ public class Player {
 		testHarry.addToy(testBall);
 		
 		//adding some food
-		Food testTuna = new Food("Tuna", 18, 100, 7, 12 ); //(name, price, weight, nutrition , tastiness ))
-		Food testCake = new Food("Cake", 2, 45, 0, 5 ); //(name, price, weight, nutrition , tastiness )
+		Food testTuna = new Food("Tuna", 18, "small", 7, 12 ); //(name, price, size, nutrition , tastiness ))
+		Food testCake = new Food("Cake", 2, "large", 0, 5 ); //(name, price, size, nutrition , tastiness )
 		testHarry.addFood(testTuna);
 		testHarry.addFood(testCake);
 		System.out.println("\n" + testHarry);
