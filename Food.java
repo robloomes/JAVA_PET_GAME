@@ -5,15 +5,15 @@ public class Food {
 	//Initializations
 	String name;
 	int price;
-	float weight;
+	String size;
 	int tastiness;
 	int nutrition;
 	
 	//Constructor
-	Food(String name, int price, float weight, int tastiness, int nutrition) {
+	Food(String name, int price, String size, int tastiness, int nutrition) {
 		this.name = name;
 		this.price = price;
-		this.weight = weight;
+		this.size = size;
 		this.tastiness = tastiness;
 		this.nutrition = nutrition;
 	}
@@ -27,11 +27,11 @@ public class Food {
 		return price;
 	}
 	
-	public float getWeight() {
-		return weight;
+	public String getSize() {
+		return size;
 	}
 	
-	public int gettestines() {
+	public int getTastiness() {
 		return tastiness;
 	}
 	
@@ -40,20 +40,19 @@ public class Food {
 	}
 	
 	public String toString() {
-		//Output format
 		String foodName = "Name: " + this.name;
 		String foodPrice = "Price: " + this.price;
-		String foodWeight = "Weight: " + this.weight + " kg";
+		String foodSize = "Size: " + this.size;
 		String foodTastiness = "Tastiness: " + this.tastiness;
 		String foodNutrition = "Nutrition: " + this.nutrition;
 		 
-		String result = String.format("%s %n%s %n%s %n%s %n%s", foodName, foodPrice, foodWeight, foodTastiness, foodNutrition);
+		String result = String.format("%s %n%s %n%s %n%s %n%s", foodName, foodPrice, foodSize, foodTastiness, foodNutrition);
 		return result;
 	}
 	
 	public static void main(String[]args){
 		//unit testing
-		Food testTuna = new Food("Tuna", 18, 100, 7, 12 ); //(name, price, weight, nutrition , tastiness)
+		Food testTuna = new Food("Tuna", 18, "large", 7, 12 ); //(name, price, size, nutrition , tastiness)
 		System.out.println(testTuna);
 	}
 
