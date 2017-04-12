@@ -1,14 +1,12 @@
 package pet_game;
-
 import java.util.*;
 
-public class Player{
+public class Player {
 	
 	//Initializations
 	static Set<String> playerSet = new HashSet<String>();
 	String name;
-	int playerBalance = 1000;
-	List<String> emptyList = new ArrayList<String>();
+	int playerBalance;
 	List<String> pets;
 	List<String> toys;
 	List<String> food;
@@ -16,6 +14,7 @@ public class Player{
 	//Constructor
 	Player(String name){
 		this.name = name;
+		playerSet.add(name);
 		this.playerBalance = 1000;
 		this.pets = new ArrayList<String>();
 		this.toys = new ArrayList<String>();
@@ -23,90 +22,89 @@ public class Player{
 	}
 	
 	//Getters
-	public String getName(){
+	public String getName() {
 		return name;
 	}
 	
-	public List<String> getPets(){
+	public List<String> getPets() {
 		return pets;
 	}
 	
-	public List<String> getToys(){
+	public List<String> getToys() {
 		return toys;
 	}
 	
-	public List<String> getFood(){
+	public List<String> getFood() {
 		return food;
 	}
 	
 	//setters
-	public void addPet(){
+	public void addPet() {
 		//TODO	
 	}
 	
-	public void removePet(){
+	public void removePet() {
 		//TODO
 	}
 	
-	public void addToy(Toy item){
+	public void addToy(Toy item) {
 		this.toys.add(item.name);
 	}
 	
-	public void removeToy(Toy item){
-		List<String> toRemove =  new ArrayList<String>();
-		for(String toy: this.toys){
-			if(toy.equalsIgnoreCase(item.name)){
+	public void removeToy(Toy item) {
+		List<String> toRemove = new ArrayList<String>();
+		for(String toy:this.toys) {
+			if(toy.equalsIgnoreCase(item.name)) {
 				toRemove.add(toy);
 			}
-		 }
+		}
 		this.toys.removeAll(toRemove);
 	}
 	
-	public void addFood(Food item){
+	public void addFood(Food item) {
 		this.food.add(item.name);
 	}
 	
-	public void removeFood(Food item){
+	public void removeFood(Food item) {
 		List<String> toRemove =  new ArrayList<String>();
-		for(String food: this.food){
-			if(food.equalsIgnoreCase(item.name)){
+		for(String food: this.food) {
+			if(food.equalsIgnoreCase(item.name)) {
 				toRemove.add(food);
 			}
 		 }
 		this.food.removeAll(toRemove);
 	}
 	
-	@Override
-	public String toString(){
+	public String toString() {
 		String playerName = "Name: " + this.name;
 		String playerBalance = "Balance: " + this.playerBalance;
-		
 		String playerPets;
-		if (this.pets.isEmpty()){
+		if (this.pets.isEmpty()) {
 			playerPets = "Pets: None";
 		}
-		else{
+		else {
 			playerPets = "Pets: " + Arrays.toString(this.pets.toArray()).replace("[", "").replace("]", "");
 		}
 		
 		String playerToys;
-		if (this.toys.isEmpty()){
+		if (this.toys.isEmpty()) {
 			playerToys = "Toys: None";
 		}
-		else{
+		else {
 			playerToys = "Toys: " + Arrays.toString(this.toys.toArray()).replace("[", "").replace("]", "");
-			
 		}
 		
 		String playerFood;
-		if (this.food.isEmpty()){
+		if (this.food.isEmpty()) {
 			playerFood = "Food: None";
 		}
-		else{
+		
+		else {
 			playerFood = "Food: " + Arrays.toString(this.food.toArray()).replace("[", "").replace("]", "");
 		}
-
-		return playerName + "\n" + playerBalance + "\n" + playerPets + "\n" + playerToys + "\n" + playerFood;
+		
+		String result = String.format("%s %n%s %n%s %n%s %n%s", playerName, playerBalance, playerPets, playerToys, playerFood);
+		return result;
 	}
 	
 	public static void main(String[] args) {
@@ -128,8 +126,8 @@ public class Player{
 		testHarry.removeToy(testBall);
 		testHarry.removeFood(testCake);
 		System.out.println("\n" + testHarry);
-		
-		
+		//player list
+		System.out.println(playerSet);
 	}
 
 }
