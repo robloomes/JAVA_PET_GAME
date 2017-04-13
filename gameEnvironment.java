@@ -26,6 +26,11 @@ public class gameEnvironment {
 	Food roastBeef = new Food("Roast-beef", 50, "large", 75, 75 ); 
 	List<String> foodChoices = new ArrayList<String>();
 	
+	// List<Food> foodChoices 
+	// foodChoices.add(biscuit)
+	
+	// Move food sizes into a dictionary or enum i.e FOOD_SIZES.SMALL will return 'small'
+	
 	//List<String> players = new ArrayList<String>();
 	List<String> pet = new ArrayList<String>();
 	static Map<String, String> players = new HashMap<String, String>();
@@ -55,6 +60,8 @@ public class gameEnvironment {
 		
 		Collections.addAll(toyChoices, "Ball", "Slinky", "Cube", "Plushie", "Action-figure", "Bicycle");
 		Collections.addAll(foodChoices, "Biscuit", "Fish", "Chocolate", "Cake", "Salad", "Roast-beef");
+		
+		// Using the List<Food> You can iterate and populate your store
 		
 		for (int i=1; i < numOfPlayers; i++){
 			System.out.println("Player 1, what is your name?");
