@@ -15,8 +15,8 @@ public class gameEnvironment {
 	private Map<String, String> foodSizes = new HashMap<String, String>();
 	private Map<String, Toy> toyChoices = new HashMap<String, Toy>();
 	private Map<String, Food> foodChoices = new HashMap<String, Food>();
-	private List<String> pets = new ArrayList<String>();
-	private Map<String, String> players = new HashMap<String, String>();
+	private Map<String, Pet> petChoices = new HashMap<String, Pet>();
+	private Map<String, Player> players = new HashMap<String, Player>();
 	
 	//Toys available for purchase from store
 	private Toy ball = new Toy("Ball", 10, 10, 10); //(name, price, durability, enjoyment)
@@ -35,40 +35,17 @@ public class gameEnvironment {
 	private Food roastBeef = new Food("Roast-beef", 50, "large", 75, 75 ); 
 	
 	gameEnvironment(){
-		
-		@SuppressWarnings("resource")
-		Scanner scan = new Scanner(System.in);
-		String strPlayerNum = null;
-		do{
-			if (strPlayerNum != null){
-				System.out.println("Please enter a valid number between 1 and 3");
-			}
-			System.out.println("How many players would like to play the game? (max 3)");
-			strPlayerNum = scan.nextLine();
-		  }
-		while(!strPlayerNum.matches("[1-3]"));
-		System.out.format("You have selected %s player/s%n", strPlayerNum);
-		numOfPlayers = Integer.parseInt(strPlayerNum);
-
-		
-		String strDayNum = null;
-		do{
-			if (strDayNum != null){
-				System.out.println("Please enter a valid number");
-			}
-			System.out.println("How many days will the game run for?");
-			strDayNum = scan.nextLine();
-		  }
-		while(!strDayNum.matches("[1-9]+"));
-		System.out.format("You have selected %s day/s%n", strDayNum);
-		numOfDays = Double.parseDouble(strDayNum);
-	
-			
-		for (int i = 0; i < numOfPlayers; i++){
-			System.out.println(String.format("Player %d, what is your name?", i+1));
-			String name = scan.next();
-			createPlayer(name); //TODO	
+		inputPlayerNum();
+		inputDayNum();
+		createPlayers();
+		for (Map.Entry<String, Player> entry : players.entrySet()){
+			Player val = entry.getValue();
+			inputPetNum(val.name);
+			val.addPet();
 		}
+		
+		
+		printPlayers();
 		
 		toyChoices.put(ball.name, ball);
 		toyChoices.put(slinky.name, slinky);
@@ -88,31 +65,119 @@ public class gameEnvironment {
 		foodSizes.put("large", "large");
 	}
 	
-	public Object createPlayer(String name){
-		Player newPlayer = new Player(name);
-		return newPlayer;
+	public void inputPetNum(String player){
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		String strPlayerNum = null;
+		do{
+			if (strPlayerNum != null){
+				System.out.println("\nPlease enter a valid number between 1 and 3.\n");
+			}
+			System.out.format("How many pets would %s like to own? (max 3)", player);
+			strPlayerNum = scan.nextLine();
+		  }
+		while(!strPlayerNum.matches("[1-3]"));
+		System.out.format("You have selected %s pet/s.%n", strPlayerNum);
+		numOfPlayers = Integer.parseInt(strPlayerNum);
+	}
+	public void inputDayNum(){
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		String strDayNum = null;
+		do{
+			if (strDayNum != null){
+				System.out.println("Please enter a valid number.");
+			}
+			System.out.println("\nHow many days will the game run for?");
+			strDayNum = scan.nextLine();
+		  }
+		while(!strDayNum.matches("[1-9]+"));
+		System.out.format("You have selected %s day/s.%n", strDayNum);
+		numOfDays = Double.parseDouble(strDayNum);
 	}
 	
-	
-	public void helpSection(){
-		//return help page
-		//TODO
+	public void inputPlayerNum(){
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		String strPlayerNum = null;
+		do{
+			if (strPlayerNum != null){
+				System.out.println("\nPlease enter a valid number between 1 and 3.\n");
+			}
+			System.out.println("How many players would like to play the game? (max 3).");
+			strPlayerNum = scan.nextLine();
+		  }
+		while(!strPlayerNum.matches("[1-3]"));
+		System.out.format("You have selected %s player/s.%n", strPlayerNum);
+		numOfPlayers = Integer.parseInt(strPlayerNum);
+	}
+	public void createPlayers(){
+		@SuppressWarnings("resourNone ce")
+		Scanner scan = new Scanner(System.in);
+		for (int i = 0; i < numOfPlayers; i++){
+			System.out.println(String.format("\nPlayer %d, what is your name?", i+1));
+			String name = scan.next();
+			
+			while (players.keySet().contains(name)){
+				System.out.println("That name belongs to another player, please choose another.");
+				System.out.println(String.format("Player %d, what is your name?", i+1));
+				name = scan.next();
+			}
+			Player newPlayer = new Player(name);
+			addPlayer(newPlayer);
+		}
+		
 	}
 	
-
-	public void addToy(String player){
-		//TODO
+	public void printPlayers(){
+		for (Map.Entry<String, Player> entry : players.entrySet()){
+			Player val = entry.getValue();
+			System.out.println( "\n" + val);
+		}
 	}
 	
-	public void addPlayer(String player){
-		players.put(player,"None");
+	public void printFood(){
+		for (Map.Entry<String, Food> entry : foodChoices.entrySet()){
+			Food val = entry.getValue();
+			System.out.println("\n" + val);
+		}
 	}
 	
-	public void addPet(String player ){
-		//TODO
+	public void printToys(){
+		for (Map.Entry<String, Toy> entry : toyChoices.entrySet()){
+			Toy val = entry.getValue();
+			System.out.println("\n" + val);
+		}
 	}
 	
+	public void printPets(){
+		for (Map.Entry<String, Pet > entry : petChoices.entrySet()){
+			Pet val = entry.getValue(); 
+			System.out.println("\n" + val);
+		}
+	}
 	
+	public void addToy(String player, String toyName){ 
+		Toy toy = toyChoices.get(toyName);
+		Player val = players.get(player);
+		val.addToy(toy);
+	}
+	
+	public void addPlayer(Player player){
+		players.put(player.name, player);
+	}
+	
+	public void addPet(String player, String petName){
+		//Pet pet = petChoices.get(petName);
+		//Player val = players.get(player);
+		//val.addPet(pet);
+	}
+	
+	public void addFood(String player, String foodName){ 
+		Food food = foodChoices.get(foodName);
+		Player val = players.get(player);
+		val.addFood(food);
+	}
 	
 	public static void main(String[]args) {
 		/**Properties prop = new Properties();
@@ -130,8 +195,8 @@ public class gameEnvironment {
 		
 		//Unit testing
 		gameEnvironment newGame = new gameEnvironment();
-		newGame.addPlayer("Dennis");
-		newGame.addPlayer("Harry");
+
+		
 		
 		
 		
