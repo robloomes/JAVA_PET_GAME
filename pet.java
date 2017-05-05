@@ -11,6 +11,7 @@ public class pet {
     int hunger;
     int toiletNeed;
     int sleep;
+    int action;
     boolean alive;
     boolean revive;
     boolean sick;
@@ -19,15 +20,16 @@ public class pet {
     
 
  // Constructor
-    public pet(String name , int weight,int moodint ,int staminaint,int health, int hunger, int toiletNeed, int sleep, boolean alive ,boolean revive,boolean sick){
+    public pet(String name , int weight,int moodint ,int staminaint,int health, int hunger, int toiletNeed, int sleep,int action, boolean alive ,boolean revive,boolean sick){
     	this.name = name ;
-        this.weight = weight ;
+        this.weight = 50 ;
         this.age = 0;
-        this.hunger = 100;
-        this.mood = 100;
-        this.stamina = 100;
-        this.sleep = 100;
-        this.toiletNeed  = 100;
+        this.hunger = 50;
+        this.mood = 50;
+        this.stamina = 50;
+        this.sleep = 50;
+        this.toiletNeed  = 20;
+        this.action = 2;
         this.health= (hunger + mood + stamina)/ 3 ;
         this.alive = true;
         this.revive = false;
@@ -74,114 +76,137 @@ public class pet {
     
    // Method
     
-    public void eat(Food item,  String favouriteFood ){
-    	
+    public void feedPet(Food item,  String favouriteFood ){
     	String foodSize = item.size;
     	int foodNutrition = item.nutrition;
     	int foodTastiness = item.tastiness;
     	String foodName = item.name;
-    	
-    	
-    	if (foodSize == "small"){
-    		weight += 25;
-    		toiletNeed += 25;	
-    	}
-    	
-    	else if (foodSize == "large"){
-    		weight += 50;
-    		toiletNeed += 50;
-    	}
-    	
-    	mood +=  foodTastiness;
-    	hunger -= foodNutrition;
-
-    	if (favouriteFood == foodName){
-    		mood += 25;
-    	}		
+    	if(action == 0){
+    		System.out.println("Sorry! you only can take action 2 times. ");
+    		}
+    	else{
+    		if (foodSize == "small"){
+    			weight += 25;
+    			toiletNeed += 25;}
+    		else if (foodSize == "large"){
+    			weight += 50;
+    			toiletNeed += 50;}
+    		mood +=  foodTastiness;
+    		hunger -= foodNutrition;
+    		if (favouriteFood == foodName){
+    			mood += 25;
+    			}
+    		action-= 1;
+    		}		
     }
     
     
     public void toilet(Food item){
-    
     	String foodSize = item.size;
-   
-    	if(toiletNeed< 50){
-    		mood += 25;
-    	}else{
-    		mood -= 25;
+    	if(action == 0){
+    		System.out.println("Sorry! you only can take action 2 times. ");
     	}
-    	if(foodSize == "small"){
-    	toiletNeed -= 10; 
-    	}else{
-    		toiletNeed -= 20;
+    	else{
+    		if(foodSize == "small"|| mood < 20){
+    			toiletNeed -= 10; 
+    		}else{
+    			toiletNeed -= 20;
+    		}weight -= 10;
+    		action-= 1;
     	}
     }
 
-    public void sleep(int mood , int stamina){
-    	
-    if(mood > 50 && stamina > 50 ){
-    	sleep += 25;
-    }if(hunger > 50){
-    	sleep -= 30;
-    	}
+    public void sleeping(){
+    	if(action == 0){
+    		System.out.println("Sorry! you only can take action 2 times. ");
+    		}
+    	else{
+    		if(mood < 50 || stamina < 50 ){
+    			sleep -= 25;
+    		}
+    		action -= 1;
+    		}
     }
  
     
-    public  void revive(boolean alive, boolean revive){
-    	
-    
-    	if(alive == false && revive == false){
-    	revive = true;
-    	alive = true;
-    	System.out.println("Your pet revived!");
-    	System.out.println("");
-    	}
-    	else if (alive == true && revive == false){
-    		
-    	System.out.print("Your pet is alread alive!");
-    	System.out.println("");
-    	}
-    	else if (alive == false && revive == true){
-    		
-    		System.out.print("Sorry, you are only allowed to revive once! ");
-    		System.out.println("");
-    		alive = false;
-    		revive = true;
+    public  void revive(){
+    	if(action == 0){
+    		System.out.println("Sorry! you only can take action 2 times. ");
+    		}
+    	else{
+    		if(alive == false && revive == false){
+    			revive = true;
+		    	alive = true;
+		    	System.out.println("Your pet revived!");
+		    	System.out.println("");
+		    	}
+    		else if (alive == true && revive == false){	
+    			System.out.print("Your pet is alread alive!");
+    			System.out.println("");}
+    		else if (alive == false && revive == true){
+    			System.out.print("Sorry, you are only allowed to revive once! ");
+    			System.out.println("");
+    			alive = false;
+    			revive = true;
+    		}
+    		action -= 1;
     	}
     }
     
     
     public void death(){
-    	if(alive  == false){
-    		alive = false;
+    	if(health < 10){
+  		   Random random = new Random();
+  		   boolean alive = random.nextBoolean();
+  		   if(alive  == false){
+  			   alive = false;
+  			   System.out.println("Your pet died Random");
+  			   }
+  		   }
+    }
+    
+    public void punishment(){
+    	int randomSleep = 0;
+    	Random rand = new Random();
+    	while (Math.abs(sleep) != 3) {
+    	    randomSleep = rand.nextInt(2) > 0 ? 1 : -1; // -1 or 1 with 50% probability
+    	    sleep += randomSleep;
     	}
-    	else{
-    		alive= true;
-    		}
+    	mood -= 10;	
+    }
+    
+   // public void doctor(Player item){
+    	//int balance = item.//
+    		//	if
     	
+    	// cost for treatment
+    	// yes increase mood
+    	// if no decrease mood (still sick until die or paid)
+    	
+    	//}
+    	
+   
+    public void sick(){
+    	if(age > 2){
+ 		   Random randomno = new Random();
+ 		   boolean sick = randomno.nextBoolean();
+ 		   if(sick == true){
+ 			   health -= 50;
+ 			   sleep -= 25;
+ 			   stamina -= 25;
+ 			   System.out.println("Your pet is scik! Do you want to pay for treatment? ");
+ 			   }
+ 		   }
     }
     
     
    public void endDay(){
 	   age += 1;
-	 
-	   
-	   if(health < 50){
-		   Random randomno = new Random();
-		   boolean sick = randomno.nextBoolean();
-		   
-		// check   
-		   System.out.println("Your pet is " + sick);
-		   if(sick == true){
-			   health -= 50;
-			   sleep -= 25;
-			   stamina -= 25;
-			   System.out.println("Your pet is scik"); 
-		   }
+	   weight += weight;
 	   }
 	 
 	  
-   }
+  
    public String toString() {
 	   String petName = "Name: " + this.name;
 	   String petWeight = "Weight: " + this.weight;
@@ -203,69 +228,23 @@ public class pet {
    public static void main(String[]args){
 		//unit testing
 	   
-		pet cat = new pet("lolo",100,50, 100, 5, 50, 50, 5, true, true,true); //(name, price, size, nutrition , tastiness)
-		System.out.println(cat);
-		System.out.println("________________________________________");
-		//cat.sleep(0, 50);
-		//System.out.println(cat);
-		//cat.alive = false;
-		cat.revive(false,true);
-		System.out.println(cat);
-		System.out.println("________________________________________");
+		pet cat = new pet("lolo",100,55, 100, 5, 5, 10,5, 5,true, true,true); 
+		System.out.println("\n"+ cat);
+		cat.alive = true;
+		cat.death();
+		System.out.println("\n" + cat);
 		cat.endDay();
-		System.out.println(cat);
-		System.out.println("________________________________________");
+		System.out.println("\n" + cat);
+		cat.endDay();
+		
+		
 	
 	
-	}
+   }
+}
+
    
     	
 
  
-    
-    
-    /*public void setDecreaeWeight(int toiletNeed) {
-    	this.weight -= toiletNeed;
-    }
-    
-    
-    
-    public void setAge(){
-    	this.age += 1;
-    	
-    }
-    public void setIncreaseMood(int hunger, int sleep){
-    	this.mood += sleep + hunger;
-    }
-    public void setDecreaseMood(int hunger , int toiletNeed){
-    	this.mood -= hunger - toiletNeed;
-    }
-    
-    
-    public void setIncreaseStamina(int increseStamina){
-    	this.stamina += increseStamina;
-    }
-    
-    
-    public void setIDecreaseStamina(int sleep, int toiletNeed , int hunger){
-    	this.stamina -= sleep - hunger - toiletNeed;
-    }
-    
-    
-    public void setIncreaseHunger(int stamina){
-    	this.hunger += stamina;
-    }
-    public void setDecreaseHunger(int decreseHunger){
-    	this.hunger -= decreseHunger;
-    }
-    public void setHealth(int health){
-    	this.health = health;
-    }
-    public void setAlive(boolean alive){
-    	this.alive = alive;
-    }
-    */
-    
- 
 
-}
