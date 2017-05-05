@@ -175,15 +175,9 @@ public class pet {
     	mood -= 10;	
     }
     
-   // public void doctor(Player item){
-    	//int balance = item.//
-    		//	if
-    	
-    	// cost for treatment
-    	// yes increase mood
-    	// if no decrease mood (still sick until die or paid)
-    	
-    	//}
+    public void doctor(Player item){
+    	sick = true;
+    	}
     	
    
     public void sick(){
@@ -236,14 +230,16 @@ public class pet {
 		cat.endDay();
 		System.out.println("\n" + cat);
 		cat.endDay();
-		
-		
-	
-	
+
    }
 }
 
    
+    	
+
+ 
+
+
     	
 
  
