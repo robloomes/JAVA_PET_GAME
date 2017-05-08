@@ -1,5 +1,7 @@
+package pet_game;
 import java.util.Random;
-public class pet {
+
+public class Pet {
 	
 	
 	String name;
@@ -20,7 +22,8 @@ public class pet {
     
 
  // Constructor
-    public pet(String name , int weight,int moodint ,int staminaint,int health, int hunger, int toiletNeed, int sleep,int action, boolean alive ,boolean revive,boolean sick){
+    public Pet(String name ,int weight, int mood, int stamina,int health, int hunger, int toiletNeed, int sleep,int action, boolean alive ,boolean revive,boolean sick){
+    	
     	this.name = name ;
         this.weight = 50 ;
         this.age = 0;
@@ -175,9 +178,15 @@ public class pet {
     	mood -= 10;	
     }
     
-    public void doctor(Player item){
-    	sick = true;
-    	}
+   // public void doctor(Player item){
+    	//int balance = item.//
+    		//	if
+    	
+    	// cost for treatment
+    	// yes increase mood
+    	// if no decrease mood (still sick until die or paid)
+    	
+    	//}
     	
    
     public void sick(){
@@ -222,7 +231,7 @@ public class pet {
    public static void main(String[]args){
 		//unit testing
 	   
-		pet cat = new pet("lolo",100,55, 100, 5, 5, 10,5, 5,true, true,true); 
+		Pet cat = new Pet("lolo",100,55, 100, 5, 5, 10,5, 5,true, true,true); 
 		System.out.println("\n"+ cat);
 		cat.alive = true;
 		cat.death();
@@ -230,16 +239,14 @@ public class pet {
 		cat.endDay();
 		System.out.println("\n" + cat);
 		cat.endDay();
-
+		
+		
+	
+	
    }
 }
 
    
-    	
-
- 
-
-
     	
 
  
