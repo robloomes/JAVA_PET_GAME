@@ -12,6 +12,7 @@ public class gameEnvironment {
 	////Initializations
 	private int numOfPlayers;
 	private double numOfDays;
+	private List<Pet> existingPets;
 	private Map<String, String> foodSizes = new HashMap<String, String>();
 	private Map<String, Toy> toyChoices = new HashMap<String, Toy>();
 	private Map<String, Food> foodChoices = new HashMap<String, Food>();
@@ -34,18 +35,22 @@ public class gameEnvironment {
 	private Food salad = new Food("Salad", 30, "large", 50, 25 ); 
 	private Food roastBeef = new Food("Roast-beef", 50, "large", 75, 75 ); 
 	
+	private Pet pet1 = new Pet("pet1name",100,55, 100, 5, 5, 10,5, 5,true, true,true);
+	private Pet pet2 = new Pet("pet2name",100,55, 100, 5, 5, 10,5, 5,true, true,true);
+	private Pet pet3 = new Pet("pet3name",100,55, 100, 5, 5, 10,5, 5,true, true,true); 
+	private Pet pet4 = new Pet("pet4name",100,55, 100, 5, 5, 10,5, 5,true, true,true); 
+	private Pet pet5 = new Pet("pet5name",100,55, 100, 5, 5, 10,5, 5,true, true,true); 
+	private Pet pet6 = new Pet("pet6name",100,55, 100, 5, 5, 10,5, 5,true, true,true); 
+			 
+	
 	gameEnvironment(){
 		inputPlayerNum();
 		inputDayNum();
 		createPlayers();
-		for (Map.Entry<String, Player> entry : players.entrySet()){
-			Player val = entry.getValue();
-			inputPetNum(val.name);
-			val.addPet();
-		}
+		promptPetDetails();
 		
-		
-		printPlayers();
+
+		//printPlayers();
 		
 		toyChoices.put(ball.name, ball);
 		toyChoices.put(slinky.name, slinky);
@@ -61,48 +66,112 @@ public class gameEnvironment {
 		foodChoices.put(salad.name, salad);
 		foodChoices.put(roastBeef.name, roastBeef);
 		
+		petChoices.put(pet1.name, pet1);
+		petChoices.put(pet2.name, pet2);
+		petChoices.put(pet3.name, pet3);
+		petChoices.put(pet4.name, pet4);
+		petChoices.put(pet5.name, pet5);
+		petChoices.put(pet6.name, pet6);
+		
 		foodSizes.put("small", "small");
 		foodSizes.put("large", "large");
 	}
 	
-	public void inputPetNum(String player){
-		@SuppressWarnings("resource")
+	public void promptPetDetails(){
 		Scanner scan = new Scanner(System.in);
-		String strPlayerNum = null;
-		do{
-			if (strPlayerNum != null){
-				System.out.println("\nPlease enter a valid number between 1 and 3.\n");
+		for (Map.Entry<String, Player> entry : players.entrySet()){
+			Player player = entry.getValue();
+			String strPetNum = null;
+			do{
+				if (strPetNum != null){
+				System.out.println("\nPlease enter a valid number between 1 and 3.%n");
+				}
+				System.out.format("How many pets would %s like to own? (max 3).%n", player.name);
+				strPetNum = scan.nextLine();
 			}
-			System.out.format("How many pets would %s like to own? (max 3)", player);
-			strPlayerNum = scan.nextLine();
-		  }
-		while(!strPlayerNum.matches("[1-3]"));
-		System.out.format("You have selected %s pet/s.%n", strPlayerNum);
-		numOfPlayers = Integer.parseInt(strPlayerNum);
+			while(!strPetNum.matches("[1-3]"));
+			
+			System.out.format("You have selected %s pet/s.\n\n", strPetNum);
+			int intPetNum = Integer.parseInt(strPetNum);
+			promptSpecies(player, intPetNum);
+			}
+		scan.close();
+		}
+	
+	public void promptSpecies(Player player, int petNum){
+		for (int i=1; i<(petNum+1); i++){
+			printSpeciesInfo();
+			System.out.format("%s, please choose a species for Pet no.%d\n\n", player.name, petNum);
+			
+			Scanner scan = new Scanner(System.in);
+			
+			String species = null;
+			String speciesNum = scan.nextLine();
+			//TODO
+			if (speciesNum == "1"){
+				species = pet1.name;
+			} else if (speciesNum == "2"){
+				species = pet2.name;
+			} else if (speciesNum == "3"){
+				species = pet3.name;
+			} else if (speciesNum == "4"){
+				species = pet4.name;
+			} else if (speciesNum == "5"){
+				species = pet5.name;
+			} else if (speciesNum == "6"){
+				species = pet6.name;
+			}
+			
+			System.out.format("%s Enter a name for your new %s\n\n ", player.name, species);
+			String name = scan.nextLine();
+			//TODO
+			createPet(player, species, name);
+			}
+		}
+	
+	
+	
+	public void printSpeciesInfo(){
+		System.out.println("TODO PET-1 description...\n");
+		System.out.println("TODO PET-1 description...\n");
+		System.out.println("TODO PET-2 description...\n");
+		System.out.println("TODO PET-3 description...\n");
+		System.out.println("TODO PET-4 description...\n");
+		System.out.println("TODO PET-5 description...\n");
+		System.out.println("TODO PET-6 description...\n");
+		System.out.println("To choose, enter a number from 1-6...");
 	}
+	
+	 private void promptEnterKey()
+	 { 
+	        System.out.println("Press \"ENTER\" to continue...");
+	        Scanner scanner = new Scanner(System.in);
+	        scanner.nextLine(); 
+	 }
+	
+
 	public void inputDayNum(){
-		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		String strDayNum = null;
 		do{
 			if (strDayNum != null){
-				System.out.println("Please enter a valid number.");
+				System.out.println("Input error. Please enter a valid number.");
 			}
 			System.out.println("\nHow many days will the game run for?");
 			strDayNum = scan.nextLine();
 		  }
 		while(!strDayNum.matches("[1-9]+"));
-		System.out.format("You have selected %s day/s.%n", strDayNum);
+		System.out.format("You have selected %s day/s.\n\n", strDayNum);
 		numOfDays = Double.parseDouble(strDayNum);
+		
 	}
 	
 	public void inputPlayerNum(){
-		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		String strPlayerNum = null;
 		do{
 			if (strPlayerNum != null){
-				System.out.println("\nPlease enter a valid number between 1 and 3.\n");
+				System.out.println("\nInput error. Please enter a valid number between 1 and 3.%n");
 			}
 			System.out.println("How many players would like to play the game? (max 3).");
 			strPlayerNum = scan.nextLine();
@@ -110,16 +179,16 @@ public class gameEnvironment {
 		while(!strPlayerNum.matches("[1-3]"));
 		System.out.format("You have selected %s player/s.%n", strPlayerNum);
 		numOfPlayers = Integer.parseInt(strPlayerNum);
+	
 	}
 	public void createPlayers(){
-		@SuppressWarnings("resourNone ce")
 		Scanner scan = new Scanner(System.in);
 		for (int i = 0; i < numOfPlayers; i++){
-			System.out.println(String.format("\nPlayer %d, what is your name?", i+1));
+			System.out.println(String.format("Player %d, what is your name?", i+1));
 			String name = scan.next();
 			
 			while (players.keySet().contains(name)){
-				System.out.println("That name belongs to another player, please choose another.");
+				System.out.println("Input error. That name belongs to another player, please choose another.");
 				System.out.println(String.format("Player %d, what is your name?", i+1));
 				name = scan.next();
 			}
@@ -167,10 +236,10 @@ public class gameEnvironment {
 		players.put(player.name, player);
 	}
 	
-	public void addPet(String player, String petName){
-		//Pet pet = petChoices.get(petName);
-		//Player val = players.get(player);
-		//val.addPet(pet);
+	public void createPet(Player player, String petName, String species){
+		Pet pet = petChoices.get(species);
+		pet.name = petName;
+		player.addPet(pet);
 	}
 	
 	public void addFood(String player, String foodName){ 
