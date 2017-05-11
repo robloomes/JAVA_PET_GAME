@@ -3,7 +3,6 @@ import java.util.Random;
 
 public class Pet {
 	
-	
 	String name;
     int weight;
     int age;
@@ -13,33 +12,28 @@ public class Pet {
     int hunger;
     int toiletNeed;
     int sleep;
-    int action;
+    int actions;
     boolean alive;
-    boolean revive;
+    boolean reviveAvail;
     boolean sick;
   
-      
-    
-
- // Constructor
-    public Pet(String name ,int weight, int mood, int stamina,int health, int hunger, int toiletNeed, int sleep,int action, boolean alive ,boolean revive,boolean sick){
+    // Constructor
+    public Pet(String name){
     	
     	this.name = name ;
-        this.weight = 50 ;
         this.age = 0;
         this.hunger = 50;
         this.mood = 50;
         this.stamina = 50;
         this.sleep = 50;
-        this.toiletNeed  = 20;
-        this.action = 2;
-        this.health= (hunger + mood + stamina)/ 3 ;
+        this.toiletNeed  = 0;
+        this.actions = 2;
+        this.health = (hunger + mood + stamina) / 3 ;
         this.alive = true;
-        this.revive = false;
+        this.reviveAvail = false;
         this.sick = false;
     }
     
-   
     // getter
     
     public String getName() {
@@ -62,7 +56,7 @@ public class Pet {
     	return toiletNeed;
     }
     public Boolean getRevive(){
-    	return revive;
+    	return reviveAvail;
     }
     public Boolean getAlive(){
     	return alive;	
@@ -75,39 +69,33 @@ public class Pet {
     }
    
     
-   
+    // Method
     
-   // Method
-    
-    public void feedPet(Food item,  String favouriteFood ){
-    	String foodSize = item.size;
-    	int foodNutrition = item.nutrition;
-    	int foodTastiness = item.tastiness;
-    	String foodName = item.name;
-    	if(action == 0){
-    		System.out.println("Sorry! you only can take action 2 times. ");
+    public void feed(Food food, String favouriteFood) {
+    	if(actions == 0){
+    		System.out.println("Sorry! This pet has already taken 2 actions today. ");
     		}
     	else{
-    		if (foodSize == "small"){
+    		if (food.size == "small"){
     			weight += 25;
     			toiletNeed += 25;}
-    		else if (foodSize == "large"){
+    		else if (food.size == "large"){
     			weight += 50;
     			toiletNeed += 50;}
-    		mood +=  foodTastiness;
-    		hunger -= foodNutrition;
-    		if (favouriteFood == foodName){
+    		mood +=  food.tastiness;
+    		hunger -= food.nutrition;
+    		if (favouriteFood == food.name){
     			mood += 25;
     			}
-    		action-= 1;
+    		actions-= 1;
     		}		
     }
     
     
     public void toilet(Food item){
     	String foodSize = item.size;
-    	if(action == 0){
-    		System.out.println("Sorry! you only can take action 2 times. ");
+    	if(actions == 0){
+    		System.out.println("Sorry! This pet has already taken 2 actions today. ");
     	}
     	else{
     		if(foodSize == "small"|| mood < 20){
@@ -115,44 +103,44 @@ public class Pet {
     		}else{
     			toiletNeed -= 20;
     		}weight -= 10;
-    		action-= 1;
+    		actions-= 1;
     	}
     }
 
-    public void sleeping(){
-    	if(action == 0){
-    		System.out.println("Sorry! you only can take action 2 times. ");
+    public void sleep(){
+    	if(actions == 0){
+    		System.out.println("Sorry! This pet has already taken 2 actions today. ");
     		}
     	else{
     		if(mood < 50 || stamina < 50 ){
     			sleep -= 25;
     		}
-    		action -= 1;
+    		actions -= 1;
     		}
     }
  
     
     public  void revive(){
-    	if(action == 0){
-    		System.out.println("Sorry! you only can take action 2 times. ");
+    	if(actions == 0){
+    		System.out.println("Sorry! This pet has already taken 2 actions today. ");
     		}
     	else{
-    		if(alive == false && revive == false){
-    			revive = true;
+    		if(alive == false && reviveAvail == false){
+    			reviveAvail = true;
 		    	alive = true;
-		    	System.out.println("Your pet revived!");
+		    	System.out.println("Your pet has revived!");
 		    	System.out.println("");
 		    	}
-    		else if (alive == true && revive == false){	
-    			System.out.print("Your pet is alread alive!");
+    		else if (alive == true && reviveAvail == false){	
+    			System.out.print("Your pet is already alive!");
     			System.out.println("");}
-    		else if (alive == false && revive == true){
-    			System.out.print("Sorry, you are only allowed to revive once! ");
+    		else if (alive == false && reviveAvail == true){
+    			System.out.print("Sorry, your pet is only allowed to revive once! ");
     			System.out.println("");
     			alive = false;
-    			revive = true;
+    			reviveAvail = true;
     		}
-    		action -= 1;
+    		actions -= 1;
     	}
     }
     
@@ -161,14 +149,14 @@ public class Pet {
     	if(health < 10){
   		   Random random = new Random();
   		   boolean alive = random.nextBoolean();
-  		   if(alive  == false){
+  		   if(alive == false){
   			   alive = false;
   			   System.out.println("Your pet died Random");
   			   }
   		   }
     }
     
-    public void punishment(){
+    public void punish(){
     	int randomSleep = 0;
     	Random rand = new Random();
     	while (Math.abs(sleep) != 3) {
@@ -197,7 +185,7 @@ public class Pet {
  			   health -= 50;
  			   sleep -= 25;
  			   stamina -= 25;
- 			   System.out.println("Your pet is scik! Do you want to pay for treatment? ");
+ 			   System.out.println("Your pet is sick!");
  			   }
  		   }
     }
@@ -221,17 +209,17 @@ public class Pet {
 	   String petToiletNeed = "Toilet Need: " + this.toiletNeed;
 	   String petSleep= "Sleep: " + this.sleep;
 	   String petAlive = "Alive: " + this.alive;
-	   String petRevive = "Revive: " + this.revive;
+	   String petRevive = "Revive: " + this.reviveAvail;
 	   String petSick = "Sick: " + this.sick;
-	   String result = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s ", petName, petWeight, petAge, petMood, petStamina, petHealth, petHunger, petToiletNeed, petSleep,petAlive, petRevive, petSick); 
-	   return result;
+	   String stats1 = String.format("%s %n%s %n%s %n%s %n%s %n%s", petName, petWeight, petAge, petMood, petStamina, petHealth); 
+	   String stats2 = String.format("%n%s %n%s %n%s %n%s %n%s %n%s", petHunger, petToiletNeed, petSleep, petAlive, petRevive, petSick);
+	   return stats1 + stats2;
    }
-   
 
    public static void main(String[]args){
 		//unit testing
 	   
-		Pet cat = new Pet("lolo",100,55, 100, 5, 5, 10,5, 5,true, true,true); 
+		Pet cat = new Pet("lolo"); 
 		System.out.println("\n"+ cat);
 		cat.alive = true;
 		cat.death();
