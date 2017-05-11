@@ -4,21 +4,21 @@ import java.util.*;
 public class Player {
 	
 	//Initializations
+	
 	static Set<String> playerSet = new HashSet<String>();
 	String name;
 	int playerBalance;
-	List<String> pets;
-	List<String> toys;
-	List<String> food;
+	private Map<String, Pet> ownedPets = new HashMap<String, Pet>();
+	private Map<String, Toy> ownedToys = new HashMap<String, Toy>();
+	private Map<String, Food> ownedFood = new HashMap<String, Food>();
+
 	
 	//Constructor
 	Player(String name){
 		this.name = name;
 		playerSet.add(name);
 		this.playerBalance = 100;
-		this.pets = new ArrayList<String>();
-		this.toys = new ArrayList<String>();
-		this.food = new ArrayList<String>();
+
 	}
 	
 	//Getters
@@ -26,84 +26,79 @@ public class Player {
 		return name;
 	}
 	
-	public List<String> getPets() {
-		return pets;
+	public Map<String, Pet> getPets() {
+		return ownedPets;
 	}
 	
-	public List<String> getToys() {
-		return toys;
+	public Map<String, Toy> getToys() {
+		return ownedToys;
 	}
 	
-	public List<String> getFood() {
-		return food;
+	
+	public Map<String, Food> getFood() {
+		return ownedFood;
 	}
+	
 	
 	//setters
-	public void addPet() {
-		//TODO	
+	public void addPet(Pet pet) {
+		ownedPets.put(pet.name, pet);
 	}
 	
-	public void removePet() {
-		//TODO
+	public void removePet(Pet pet) {
+		ownedPets.remove(pet);
 	}
 	
 	public void addToy(Toy item) {
-		this.toys.add(item.name);
+		ownedToys.put(item.name, item);
 	}
 	
 	public void removeToy(Toy item) {
-		List<String> toRemove = new ArrayList<String>();
-		for(String toy:this.toys) {
-			if(toy.equalsIgnoreCase(item.name)) {
-				toRemove.add(toy);
-			}
-		}
-		this.toys.removeAll(toRemove);
+		ownedToys.remove(item.name);
 	}
 	
 	public void addFood(Food item) {
-		this.food.add(item.name);
+		ownedFood.put(item.name, item);
 	}
 	
 	public void removeFood(Food item) {
-		List<String> toRemove =  new ArrayList<String>();
-		for(String food: this.food) {
-			if(food.equalsIgnoreCase(item.name)) {
-				toRemove.add(food);
-			}
-		 }
-		this.food.removeAll(toRemove);
+		ownedFood.remove(item.name);
 	}
-	
+
 	public String toString() {
-		String playerName = "Name: " + this.name;
-		String playerBalance = "Balance: $" + this.playerBalance;
+		String playerName = "Name: " + name;
+		String balanceString = "Balance: $" + playerBalance;
 		String playerPets;
-		if (this.pets.isEmpty()) {
+		String playerToys;
+		String playerFood;
+		
+		if (ownedPets.isEmpty()) {
 			playerPets = "Pets: None";
 		}
 		else {
-			playerPets = "Pets: " + Arrays.toString(this.pets.toArray()).replace("[", "").replace("]", "");
+			List<String> petKeyList = new ArrayList<String>(ownedPets.keySet());
+			playerPets = "Pets: " + Arrays.toString(petKeyList.toArray()).replace("[", "").replace("]", "");
 		}
 		
-		String playerToys;
-		if (this.toys.isEmpty()) {
+		
+		if (ownedToys.isEmpty()) {
 			playerToys = "Toys: None";
 		}
 		else {
-			playerToys = "Toys: " + Arrays.toString(this.toys.toArray()).replace("[", "").replace("]", "");
+			List<String> toyKeyList = new ArrayList<String>(ownedToys.keySet());
+			playerToys = "Toys: " + Arrays.toString(toyKeyList.toArray()).replace("[", "").replace("]", "");
 		}
 		
-		String playerFood;
-		if (this.food.isEmpty()) {
+		if (ownedFood.isEmpty()) {
 			playerFood = "Food: None";
 		}
 		
 		else {
-			playerFood = "Food: " + Arrays.toString(this.food.toArray()).replace("[", "").replace("]", "");
+			List<String> foodKeyList = new ArrayList<String>(ownedFood.keySet());
+			playerFood = "Food: " + Arrays.toString(foodKeyList.toArray()).replace("[", "").replace("]", "");
 		}
 		
-		String result = String.format("%s %n%s %n%s %n%s %n%s", playerName, playerBalance, playerPets, playerToys, playerFood);
+		String result = String.format("%s %n%s %n%s %n%s %n%s", playerName, balanceString, playerPets, playerToys, playerFood);
 		return result;
 	}
 	
