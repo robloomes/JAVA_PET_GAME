@@ -1,0 +1,34 @@
+package pet_game;
+
+public class Species extends Pet {
+	
+	int moodMul;
+	int hungerMul;
+	int staminaMul;
+	String favFood;
+	String favToy;
+	String species;
+	int weight;
+	
+	public Species(String name, 
+					int startMoodMul,
+					int startHungerMul, 
+					int startStaminaMul, 
+					String startFavFood,
+					String startFavToy,
+					String startSpecies,
+					int startWeight) {
+		super(name);
+		moodMul = startMoodMul;
+		hungerMul = startHungerMul;
+		staminaMul = startStaminaMul;
+		favFood = startFavFood;
+		favToy = startFavToy;
+		species = startSpecies;
+		weight = startWeight;
+		}
+
+	
+
+
+}
