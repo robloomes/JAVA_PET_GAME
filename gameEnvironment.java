@@ -35,12 +35,13 @@ public class gameEnvironment {
 	private Food salad = new Food("Salad", 30, "large", 50, 25 ); 
 	private Food roastBeef = new Food("Roast-beef", 50, "large", 75, 75 ); 
 	
-	private Pet pet1 = new Pet("pet1name");
-	private Pet pet2 = new Pet("pet2name");
-	private Pet pet3 = new Pet("pet3name"); 
-	private Pet pet4 = new Pet("pet4name"); 
-	private Pet pet5 = new Pet("pet5name"); 
-	private Pet pet6 = new Pet("pet6name"); 
+	//All species available for creation. Species are differentiated by their attributes.
+	private Pet species1 = new Species("species1name", 1, 1, 1, biscuit.name, ); //name, mood, hunger, stamina, favFood, favToy, species, weight
+	private Pet speices2 = new Species("species2name");
+	private Pet species3 = new Species("species3name"); 
+	private Pet species4 = new Species("species4name"); 
+	private Pet species5 = new Species("species5name"); 
+	private Pet species6 = new Species("species6name"); 
 			 
 	
 	gameEnvironment(){
