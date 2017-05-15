@@ -28,6 +28,43 @@ public class Species extends Pet {
 		weight = startWeight;
 		}
 
+	   public String toString() {
+		   String petName = "Name: " + this.name;
+		   String petWeight = "Weight: " + this.weight;
+		   String petAge = "Age: " + this.age;
+		   String petMood = "Mood: " + this.mood;
+		   String petStamina = "Stamina: " + this.stamina;
+		   String petHealth = "Health: " + this.health;
+		   String petHunger = "Hunger: " + this.hunger;
+		   String petToiletNeed = "Toilet Need: " + this.toiletNeed;
+		   String petSleep= "Sleep: " + this.sleep;
+		   String petAlive = "Alive: " + this.alive;
+		   String petRevive = "Revive: " + this.reviveAvail;
+		   String petSick = "Sick: " + this.sick;
+		   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
+			             petName, petWeight, petAge,
+			             petMood, petStamina, petHealth,
+			             petHunger, petToiletNeed, petSleep,
+			             petAlive, petRevive, petSick); 
+		   return petStats;
+	   }
+
+	   public static void main(String[]args){
+			//unit testing
+		   
+			Species cat = new Species("lolo", 5, 1, 1, "food", "toy", "speciesName", 1); 
+			System.out.println("\n"+ cat);
+			cat.alive = true;
+			cat.death();
+			System.out.println("\n" + cat);
+			cat.endDay();
+			System.out.println("\n" + cat);
+			cat.endDay();
+			
+			
+		
+		
+	   }
 	
 
 
