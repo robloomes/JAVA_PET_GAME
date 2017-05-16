@@ -2,29 +2,33 @@ package pet_game;
 
 public class Species extends Pet {
 	
-	int moodMul;
-	int hungerMul;
-	int staminaMul;
+	private double moodMod;
+	private double hungerMod;
+	private double staminaMod;
+	private double sleepMod;
+	private double roughnessMod;
+	
 	String favFood;
 	String favToy;
-	String species;
+	String speciesName;
 	int weight;
 	
 	public Species(String name, 
-					int startMoodMul,
-					int startHungerMul, 
-					int startStaminaMul, 
+					double startMoodMul,
+					double startHungerMul, 
+					double startStaminaMul, 
 					String startFavFood,
 					String startFavToy,
 					String startSpecies,
-					int startWeight) {
+					int startWeight,
+					double roughnessMod){
 		super(name);
-		moodMul = startMoodMul;
-		hungerMul = startHungerMul;
-		staminaMul = startStaminaMul;
+		moodMod = startMoodMul;
+		hungerMod = startHungerMul;
+		staminaMod = startStaminaMul;
 		favFood = startFavFood;
 		favToy = startFavToy;
-		species = startSpecies;
+		speciesName = startSpecies;
 		weight = startWeight;
 		}
 
@@ -52,7 +56,7 @@ public class Species extends Pet {
 	   public static void main(String[]args){
 			//unit testing
 		   
-			Species cat = new Species("lolo", 5, 1, 1, "food", "toy", "speciesName", 1); 
+			Species cat = new Species("lolo", 5.0, 1.0, 1.0, "food", "toy", "speciesName", 100, 1.0); 
 			System.out.println("\n"+ cat);
 			cat.alive = true;
 			cat.death();
@@ -60,6 +64,7 @@ public class Species extends Pet {
 			cat.endDay();
 			System.out.println("\n" + cat);
 			cat.endDay();
+			System.out.println(cat.speciesName);
 			
 			
 		
