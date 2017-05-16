@@ -16,7 +16,7 @@ public class gameEnvironment {
 	private Map<String, String> foodSizes = new HashMap<String, String>();
 	private Map<String, Toy> toyChoices = new HashMap<String, Toy>();
 	private Map<String, Food> foodChoices = new HashMap<String, Food>();
-	private Map<String, Pet> petChoices = new HashMap<String, Pet>();
+	private Map<String, Pet> speciesChoices = new HashMap<String, Pet>();
 	private Map<String, Player> players = new HashMap<String, Player>();
 	
 	//Toys available for purchase from store
@@ -36,12 +36,13 @@ public class gameEnvironment {
 	private Food roastBeef = new Food("Roast-beef", 50, "large", 75, 75 ); 
 	
 	//All species available for creation. Species are differentiated by their attributes.
-	private Pet species1 = new Species("species1name", 1, 1, 1, biscuit.name, ); //name, mood, hunger, stamina, favFood, favToy, species, weight
-	private Pet speices2 = new Species("species2name");
-	private Pet species3 = new Species("species3name"); 
-	private Pet species4 = new Species("species4name"); 
-	private Pet species5 = new Species("species5name"); 
-	private Pet species6 = new Species("species6name"); 
+	                                   //name, mood, hunger, stamina, favFood, favToy, species, weight, roughness
+	private Species species1 = new Species("species1name", 1.0, 1.0, 1.0, biscuit.name, ball.name, "species1", 100, 1.0); 
+	private Species species2 = new Species("species2name", 1.1, 1.1, 1.1, biscuit.name, ball.name, "species2", 100, 1.1);
+	private Species species3 = new Species("species3name", 1.2, 1.2, 1.2, biscuit.name, ball.name, "species3", 100, 1.2); 
+	private Species species4 = new Species("species4name", 1.3, 1.3, 1.3, biscuit.name, ball.name, "species4", 100, 1.3); 
+	private Species species5 = new Species("species5name", 1.4, 1.4, 1.4, biscuit.name, ball.name, "species5", 100, 1.4); 
+	private Species species6 = new Species("species6name", 1.5, 1.5, 1.5, biscuit.name, ball.name, "species6", 100, 1.5); 
 			 
 	
 	gameEnvironment(){
@@ -60,12 +61,12 @@ public class gameEnvironment {
 		foodChoices.put(salad.name, salad);
 		foodChoices.put(roastBeef.name, roastBeef);
 		
-		petChoices.put(pet1.name, pet1);
-		petChoices.put(pet2.name, pet2);
-		petChoices.put(pet3.name, pet3);
-		petChoices.put(pet4.name, pet4);
-		petChoices.put(pet5.name, pet5);
-		petChoices.put(pet6.name, pet6);
+		speciesChoices.put(species1.name, species1);
+		speciesChoices.put(species2.name, species2);
+		speciesChoices.put(species3.name, species3);
+		speciesChoices.put(species4.name, species4);
+		speciesChoices.put(species5.name, species5);
+		speciesChoices.put(species6.name, species6);
 		
 		foodSizes.put("small", "small");
 		foodSizes.put("large", "large");
@@ -118,20 +119,20 @@ public class gameEnvironment {
 			}
 			while(!speciesNum.matches("[1-6]"));
 			
-			String species = null;
+			Species species = null;
 			int intSpeciesNum = Integer.parseInt(speciesNum);
 			switch (intSpeciesNum) {
-				case 1:  species = pet1.name;
+				case 1:  species = species1;
                      	break;
-				case 2:  species = pet2.name;
+				case 2:  species = species2;
                     	break;
-				case 3:  species = pet3.name;
+				case 3:  species = species3;
                      	break;
-				case 4:  species = pet4.name;
+				case 4:  species = species4;
                      	break;
-				case 5:  species = pet5.name;
+				case 5:  species = species5;
 						break;
-				case 6:  species = pet6.name;
+				case 6:  species = species6;
 						break;
 			}
 			System.out.format("Enter a name for your new %s.\n\n", species);
@@ -139,21 +140,23 @@ public class gameEnvironment {
 			}
 		}
 	
-	public void createPet(Player player, String species){
+	public void createPet(Player player, Species species){
 		Scanner scan = new Scanner(System.in);
 		String petName = scan.nextLine();
-		System.out.format("Enter a name for your new %s.\n\n", species);
+		System.out.format("Enter a name for your new %s.\n\n", species.speciesName);
 		while (existingPetNames.contains(petName)){
 			System.out.println("Input error. That name belongs to another pet, please choose another.");
-			System.out.println(String.format("Enter a name for your new %s.\n\n", species));
+			System.out.println(String.format("Enter a name for your new %s.\n\n", species.speciesName));
 			petName = scan.next();
 		}
 		//TODO create a species not a pet
 		existingPetNames.add(petName);
-		Pet pet = petChoices.get(species);
+		Pet pet = speciesChoices.get(species);
 		pet.name = petName;
 		player.addPet(pet);
 	}
+	
+	
 	
 	public void printSpeciesInfo(){
 		
@@ -243,7 +246,7 @@ public class gameEnvironment {
 	}
 	
 	public void printPets(){
-		for (Map.Entry<String, Pet > entry : petChoices.entrySet()){
+		for (Map.Entry<String, Pet > entry : speciesChoices.entrySet()){
 			Pet val = entry.getValue(); 
 			System.out.println("\n" + val);
 		}
