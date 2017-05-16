@@ -3,28 +3,35 @@ import java.util.Random;
 
 public class Pet {
 	
-	int moodMul;
-	int hungerMul;
-	int staminaMul;
-	String name;
-    int weight;
-    int age;
-    int mood;
-    int stamina;
-    int health;
-    int hunger;
-    int toiletNeed;
-    int sleep;
-    int actions;
-    boolean alive;
-    boolean reviveAvail;
-    boolean sick;
+	private float moodMul ;
+	private float hungerMul;
+	private float staminaMul;
+	private float sleepMod;
+	private float roughness;
+	private String name;
+	private int weight;
+	private int age;
+	private int mood;
+	private int stamina;
+	private int health;
+	private int hunger;
+	private int toiletNeed;
+	private int sleep;
+	private int actions;
+	private boolean alive;
+	private boolean reviveAvail;
+	private boolean sick;
+	private boolean misbehaving; // add
   
     // Constructor
     public Pet(String name){
-    	
+    	this.moodMul = 1;
+    	this.hungerMul =1;
+    	this.staminaMul =1;
+    	this.sleepMod=1;
+    	this.roughness =1;
     	this.name = name ;
-        this.age = 0;
+        this.age = 3;
         this.hunger = 50;
         this.mood = 50;
         this.stamina = 50;
@@ -35,6 +42,7 @@ public class Pet {
         this.alive = true;
         this.reviveAvail = false;
         this.sick = false;
+        this.misbehaving = false;
     }
     
     // getter
@@ -79,15 +87,15 @@ public class Pet {
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
     		}
     	else{
-    		if (food.size == "small"){
+    		if (food.getSize() == "small"){
     			weight += 25;
     			toiletNeed += 25;}
-    		else if (food.size == "large"){
+    		else if (food.getSize() == "large"){
     			weight += 50;
     			toiletNeed += 50;}
-    		mood +=  food.tastiness;
+    		mood +=  food.getTastiness();
     		hunger -= food.nutrition;
-    		if (favouriteFood == food.name){
+    		if (favouriteFood == food.getName()){
     			mood += 25;
     			}
     		actions-= 1;
@@ -149,42 +157,41 @@ public class Pet {
     
     
     public void death(){
-    	if(health < 10){
-  		   Random random = new Random();
-  		   boolean alive = random.nextBoolean();
+    	if(health > 10){
+  		   Random random = new Random();  // 50% chance
+  		   random.nextBoolean();
   		   if(alive == false){
   			   alive = false;
+  			   
   			   System.out.println("Your pet died Random");
   			   }
   		   }
     }
     
     public void punish(){
-    	int randomSleep = 0;
-    	Random rand = new Random();
-    	while (Math.abs(sleep) != 3) {
-    	    randomSleep = rand.nextInt(2) > 0 ? 1 : -1; // -1 or 1 with 50% probability
-    	    sleep += randomSleep;
+    	if(actions == 0){
+    		System.out.println("Sorry! This pet has already taken 2 actions today. ");
+    		}
+    	else{ if(misbehaving == false && age >2){
+    		mood -=10 * moodMul;
     	}
-    	mood -= 10;	
+    	}
     }
     
-   // public void doctor(Player item){
-    	//int balance = item.//
-    		//	if
+
     	
-    	// cost for treatment
-    	// yes increase mood
-    	// if no decrease mood (still sick until die or paid)
+    public void play(Toy toy){
+    	int dura = toy.getDurability();
+    	dura -= roughness;
     	
-    	//}
-	//
-    	
+    	toy.setDurability(dura);
+    	stamina += stamina * staminaMul;
+    }
    
     public void sick(){
     	if(age > 2){
- 		   Random randomno = new Random();
- 		   boolean sick = randomno.nextBoolean();
+ 		   Random randomno = new Random(); // 50% CHANCE
+ 		   randomno.nextBoolean();
  		   if(sick == true){
  			   health -= 50;
  			   sleep -= 25;
@@ -198,6 +205,9 @@ public class Pet {
    public void endDay(){
 	   age += 1;
 	   weight += weight;
+	   sleep -= 25 * sleepMod;
+	   hunger -= hunger* hungerMul;
+	   
 	   }
 	 
 	  
@@ -211,15 +221,16 @@ public class Pet {
 	   String petHealth = "Health: " + this.health;
 	   String petHunger = "Hunger: " + this.hunger;
 	   String petToiletNeed = "Toilet Need: " + this.toiletNeed;
-	   String petSleep= "Sleep: " + this.sleep;
+	   String petSleep= "Rested: " + this.sleep;
 	   String petAlive = "Alive: " + this.alive;
 	   String petRevive = "Revive: " + this.reviveAvail;
 	   String petSick = "Sick: " + this.sick;
-	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
+	   String petPunish = "misbehaving: " + this.misbehaving;//
+	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
 			   			             petName, petWeight, petAge,
 			   			             petMood, petStamina, petHealth,
 			   			             petHunger, petToiletNeed, petSleep,
-			   			             petAlive, petRevive, petSick); 
+			   			             petAlive, petRevive, petSick, petPunish); 
 	   return petStats;
    }
 
@@ -228,8 +239,8 @@ public class Pet {
 	   
 		Pet cat = new Pet("lolo"); 
 		System.out.println("\n"+ cat);
-		cat.alive = true;
-		cat.death();
+		//cat.alive = false;
+		//cat.death();
 		System.out.println("\n" + cat);
 		cat.endDay();
 		System.out.println("\n" + cat);
