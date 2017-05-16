@@ -178,6 +178,7 @@ public class Pet {
     	// if no decrease mood (still sick until die or paid)
     	
     	//}
+	//
     	
    
     public void sick(){
