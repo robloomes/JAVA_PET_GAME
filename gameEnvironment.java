@@ -145,19 +145,14 @@ public class gameEnvironment {
 		Scanner scan = new Scanner(System.in);
 		System.out.format("Enter a name for your new %s.\n", species.getSpecies());
 		String petName = scan.nextLine();
-		
-		
 		while (existingPetNames.contains(petName)){
 			System.out.println("Input error. That name belongs to another pet, please choose another.");
 			System.out.println(String.format("Enter a name for your new %s.\n\n", species.getSpecies()));
 			petName = scan.next();
 		}
-		
 		//TODO create a species not a pet
 		existingPetNames.add(petName);
-		System.out.println(existingPetNames);
-		Species newPet = speciesChoices.get(species);
-		System.out.println();
+		Species newPet = speciesChoices.get(species.getSpecies());
 		newPet.setName(petName);
 		player.addPet(newPet);
 	}
