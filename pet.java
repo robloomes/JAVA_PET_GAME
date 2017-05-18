@@ -1,13 +1,12 @@
-package pet_game;
 import java.util.Random;
 
 public class Pet {
 	
-	private float moodMul ;
-	private float hungerMul;
-	private float staminaMul;
-	private float sleepMod;
-	private float roughness;
+	private double moodMul ;
+	private double hungerMul;
+	private double staminaMul;
+	private double sleepMod;
+	private double roughness;
 	private String name;
 	private int weight;
 	private int age;
@@ -186,6 +185,7 @@ public class Pet {
     	
     	toy.setDurability(dura);
     	stamina += stamina * staminaMul;
+    	
     }
    
     public void sick(){
@@ -239,8 +239,6 @@ public class Pet {
 	   
 		Pet cat = new Pet("lolo"); 
 		System.out.println("\n"+ cat);
-		//cat.alive = false;
-		//cat.death();
 		System.out.println("\n" + cat);
 		cat.endDay();
 		System.out.println("\n" + cat);
@@ -250,10 +248,7 @@ public class Pet {
 	
 	
    }
-}
-
-   
-    	
+}    	
 
  
 
