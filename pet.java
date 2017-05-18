@@ -35,7 +35,7 @@ public class Pet {
         this.mood = 50;
         this.stamina = 50;
         this.sleep = 50;
-        this.toiletNeed  = 0;
+        this.toiletNeed  = 50;
         this.actions = 2;
         this.health = (hunger + mood + stamina) / 3 ;
         this.alive = true;
@@ -45,8 +45,9 @@ public class Pet {
     }
     
     // getter
+
     
-  public String getName() {
+    public String getName() {
     	return name; 
     	}
     
@@ -213,13 +214,28 @@ public class Pet {
  			   }
  		   }
     }
+    public void doctor(){
+    	if(actions == 0){
+    		System.out.println("Sorry! This pet has already taken 2 actions today. ");
+    		}
+    	else if (sick == false){
+    		System.out.println("Your pet is not sick ");
+    	}else{
+    		sick = false;
+    		mood += 10;
+    		
+    	}
+	    	
+    }
     
     
    public void endDay(){
 	   age += 1;
 	   weight += weight;
 	   sleep -= 25 * sleepMod;
-	   hunger -= hunger* hungerMul;
+	   hunger -= 20* hungerMul;
+	   mood -= 10;
+	   
 	   
 	   }
 	 
@@ -256,12 +272,6 @@ public class Pet {
 		cat.endDay();
 		System.out.println("\n" + cat);
 		cat.endDay();
-		
-		
-	
-	
+
    }
-}    	
-
- 
-
+}
