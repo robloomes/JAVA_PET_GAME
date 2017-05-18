@@ -71,16 +71,53 @@ public class gameEnvironment {
 		foodSizes.put("small", "small");
 		foodSizes.put("large", "large");
 		
+		int startChoice = welcome();
+		do{
+			help();
+			startChoice = welcome();
+			}
+		while(startChoice == 2);
 		inputPlayerNum();
 		inputDayNum();
 		createPlayers();
 		promptPetDetails();
 		
-		
 
-		printPlayers();
+	
+	}
+	public void help(){
+		//TODO
+		System.out.println("\n\n\nHELP SECTION TODO\n\n\n");
 	}
 	
+	public int welcome(){
+		System.out.println("Welcome to Generic Pet Game!\n");
+		System.out.println("1. Start the game");
+		System.out.println("2. View the help section");
+		Scanner scan = new Scanner(System.in);
+		String startChoice = null;
+		do{
+			if (startChoice != null){
+			System.out.println("\nYou have entered an invalid number, please enter a number between 1 and 2.\n");
+			}
+			System.out.println("To choose, enter a number from 1-2...");
+			startChoice = scan.nextLine();
+		}
+		while(!startChoice.matches("[1-2]"));
+		int intStartChoice = Integer.parseInt(startChoice);
+		return intStartChoice;
+
+	}
+	
+	public void promptStoreSection(Player player){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Welcome to the Pet Store!");
+		System.out.println("Enter 1 to view the food items for sale");
+		System.out.println("Enter 2 to view the food items for sale\n");
+		
+		System.out.println(player);
+		
+	}
 	public void promptPetDetails(){
 		Scanner scan = new Scanner(System.in);
 		for (Map.Entry<String, Player> entry : players.entrySet()){
@@ -156,8 +193,6 @@ public class gameEnvironment {
 		newPet.setName(petName);
 		player.addPet(newPet);
 	}
-	
-	
 	
 	public void printSpeciesInfo(){
 		
@@ -247,7 +282,7 @@ public class gameEnvironment {
 	}
 	
 	public void printPets(){
-		for (Map.Entry<String, Pet > entry : speciesChoices.entrySet()){
+		for (Map.Entry<String, Species> entry : speciesChoices.entrySet()){
 			Pet val = entry.getValue(); 
 			System.out.println("\n" + val);
 		}
