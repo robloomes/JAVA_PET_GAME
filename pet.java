@@ -46,7 +46,7 @@ public class Pet {
     
     // getter
     
-    public String getName() {
+  public String getName() {
     	return name; 
     	}
     
@@ -65,6 +65,19 @@ public class Pet {
     public int getToiletNeed(){
     	return toiletNeed;
     }
+    public int getSleep(){
+    	return sleep;
+    }
+    public int getAge(){
+    	return age;
+    }
+    
+    public int getHealth(){
+    	return health;
+    }
+    public int getAction(){
+    	return actions;
+    }
     public Boolean getRevive(){
     	return reviveAvail;
     }
@@ -74,9 +87,9 @@ public class Pet {
     public Boolean getSick(){
     	return sick;
     }
-    public int getSleep(){
-    	return sleep;
-    }
+    public Boolean getMisbehaving(){
+ 	   	return misbehaving; 
+     }
    
     
     // Method
