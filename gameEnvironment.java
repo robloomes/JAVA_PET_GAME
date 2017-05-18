@@ -28,7 +28,8 @@ public class gameEnvironment {
 	private Toy bicycle = new Toy("Bicycle", 200, 100, 100);
 	
 	//Food available for purchase from store
-	private Food biscuit = new Food("Biscuit", 5, "small", 5, 30 ); //(name, price, size, nutrition , tastiness)
+	//(name, price, size, nutrition , tastiness)
+	private Food biscuit = new Food("Biscuit", 5, "small", 5, 30 ); 
 	private Food fish = new Food("Fish", 10, "small", 40, 30 ); 
 	private Food chocolate = new Food("Chocolate", 10, "small", 5, 60 ); 
 	private Food cake = new Food("Cake", 20, "large", 10, 75 ); 
@@ -36,16 +37,23 @@ public class gameEnvironment {
 	private Food roastBeef = new Food("Roast-beef", 50, "large", 75, 75 ); 
 	
 	//All species available for creation. Species are differentiated by their attributes.
-	                                   //name, mood, hunger, stamina, favFood, favToy, species, weight, roughness
-	private Species species1 = new Species("species1name", 1.0, 1.0, 1.0, biscuit.getName(), ball.getName(), "species1", 100, 1.0); 
-	private Species species2 = new Species("species2name", 1.1, 1.1, 1.1, biscuit.getName(), ball.getName(), "species2", 100, 1.1);
-	private Species species3 = new Species("species3name", 1.2, 1.2, 1.2, biscuit.getName(), ball.getName(), "species3", 100, 1.2); 
-	private Species species4 = new Species("species4name", 1.3, 1.3, 1.3, biscuit.getName(), ball.getName(), "species4", 100, 1.3); 
-	private Species species5 = new Species("species5name", 1.4, 1.4, 1.4, biscuit.getName(), ball.getName(), "species5", 100, 1.4); 
-	private Species species6 = new Species("species6name", 1.5, 1.5, 1.5, biscuit.getName(), ball.getName(), "species6", 100, 1.5); 
+	//Name, mood, hunger, stamina, favFood, favToy, species, weight, roughness
+	private Species species1 = new Species("species1name", 1.0, 1.0, 1.0, biscuit.getName(),
+			                                          ball.getName(), "species1", 100, 1.0); 
+	private Species species2 = new Species("species2name", 1.1, 1.1, 1.1, biscuit.getName(),
+			                                          ball.getName(), "species2", 100, 1.1);
+	private Species species3 = new Species("species3name", 1.2, 1.2, 1.2, biscuit.getName(),
+			                                          ball.getName(), "species3", 100, 1.2); 
+	private Species species4 = new Species("species4name", 1.3, 1.3, 1.3, biscuit.getName(),
+			                                          ball.getName(), "species4", 100, 1.3); 
+	private Species species5 = new Species("species5name", 1.4, 1.4, 1.4, biscuit.getName(),
+			                                          ball.getName(), "species5", 100, 1.4); 
+	private Species species6 = new Species("species6name", 1.5, 1.5, 1.5, biscuit.getName(),
+			                                          ball.getName(), "species6", 100, 1.5); 
 			 
 	
 	gameEnvironment(){
+		numOfDays = 0;
 
 		toyChoices.put(ball.name, ball);
 		toyChoices.put(slinky.name, slinky);
@@ -82,6 +90,14 @@ public class gameEnvironment {
 		createPlayers();
 		promptPetDetails();
 		
+		numOfDays = 0;
+		for(int i = 0; i < numOfDays; i++){
+			for(i = 0; i < numOfPlayers; i++){
+				
+			}
+		}
+		
+		
 
 	
 	}
@@ -98,7 +114,8 @@ public class gameEnvironment {
 		String startChoice = null;
 		do{
 			if (startChoice != null){
-			System.out.println("\nYou have entered an invalid number, please enter a number between 1 and 2.\n");
+			System.out.println("\nYou have entered an invalid number,"
+					+ "      please enter a number between 1 and 2.\n");
 			}
 			System.out.println("To choose, enter a number from 1-2...");
 			startChoice = scan.nextLine();
@@ -125,7 +142,8 @@ public class gameEnvironment {
 			String strPetNum = null;
 			do{
 				if (strPetNum != null){
-				System.out.println("\nYou have entered an invalid number, please enter a number between 1 and 3.\n");
+				System.out.println("\nYou have entered an invalid number,"
+						    + "please enter a number between 1 and 3.\n");
 				}
 				System.out.format("How many pets would %s like to own? (max 3).%n", player.name);
 				strPetNum = scan.nextLine();
@@ -148,7 +166,8 @@ public class gameEnvironment {
 			String speciesNum = null;
 			do{
 				if (speciesNum != null){
-				System.out.println("\nYou have entered an invalid number, please enter a number between 1 and 6.\n");
+				System.out.println("\nYou have entered an invalid number,"
+						    + "please enter a number between 1 and 6.\n");
 				}
 				System.out.println("To choose, enter a number from 1-6...");
 				System.out.format("%s, please choose a species for Pet no.%d\n", player.name, i);
