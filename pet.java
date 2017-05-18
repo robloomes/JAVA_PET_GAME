@@ -20,7 +20,7 @@ public class Pet {
 	private boolean alive;
 	private boolean reviveAvail;
 	private boolean sick;
-	private boolean misbehaving; // add
+	private boolean misbehaving; 
   
     // Constructor
     public Pet(String name){
@@ -45,18 +45,15 @@ public class Pet {
     }
     
     // getter
-
-    
     public String getName() {
     	return name; 
-    	}
-    
+    }
     public int getWeight() { 
     	return weight; 
-    	}
+    }
     public int getMood(){
     	return mood;
-    	}
+    }
     public int getHunger(){
     	return hunger;
     }
@@ -72,7 +69,6 @@ public class Pet {
     public int getAge(){
     	return age;
     }
-    
     public int getHealth(){
     	return health;
     }
@@ -98,7 +94,7 @@ public class Pet {
     public void feed(Food food, String favouriteFood) {
     	if(actions == 0){
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
-    		}
+    	}
     	else{
     		if (food.getSize() == "small"){
     			weight += 25;
@@ -110,9 +106,9 @@ public class Pet {
     		hunger -= food.nutrition;
     		if (favouriteFood == food.getName()){
     			mood += 25;
-    			}
+    		}
     		actions-= 1;
-    		}		
+    	}		
     }
     
     
@@ -140,14 +136,14 @@ public class Pet {
     			sleep -= 25;
     		}
     		actions -= 1;
-    		}
+    	}
     }
  
     
     public  void revive(){
     	if(actions == 0){
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
-    		}
+    	}
     	else{
     		if(alive == false && reviveAvail == false){
     			reviveAvail = true;
@@ -171,14 +167,14 @@ public class Pet {
     
     public void death(){
     	if(health > 10){
-  		   Random random = new Random();  // 50% chance
+  		   Random random = new Random();  
   		   random.nextBoolean();
   		   if(alive == false){
   			   alive = false;
   			   
   			   System.out.println("Your pet died Random");
-  			   }
   		   }
+    	}
     }
     
     public void punish(){
@@ -204,7 +200,7 @@ public class Pet {
    
     public void sick(){
     	if(age > 2){
- 		   Random randomno = new Random(); // 50% CHANCE
+ 		   Random randomno = new Random(); 
  		   randomno.nextBoolean();
  		   if(sick == true){
  			   health -= 50;
@@ -264,7 +260,7 @@ public class Pet {
    }
 
    public static void main(String[]args){
-		//unit testing
+		// testing
 	   
 		Pet cat = new Pet("lolo"); 
 		System.out.println("\n"+ cat);
