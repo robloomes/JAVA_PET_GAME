@@ -1,3 +1,4 @@
+package pet_game;
 import java.util.Random;
 
 public class Pet {
@@ -20,7 +21,7 @@ public class Pet {
 	private boolean alive;
 	private boolean reviveAvail;
 	private boolean sick;
-	private boolean misbehaving; 
+	private boolean misbehaving; // add
   
     // Constructor
     public Pet(String name){
@@ -35,7 +36,7 @@ public class Pet {
         this.mood = 50;
         this.stamina = 50;
         this.sleep = 50;
-        this.toiletNeed  = 50;
+        this.toiletNeed  = 0;
         this.actions = 2;
         this.health = (hunger + mood + stamina) / 3 ;
         this.alive = true;
@@ -45,15 +46,17 @@ public class Pet {
     }
     
     // getter
+    
     public String getName() {
     	return name; 
-    }
+    	}
+    
     public int getWeight() { 
     	return weight; 
-    }
+    	}
     public int getMood(){
     	return mood;
-    }
+    	}
     public int getHunger(){
     	return hunger;
     }
@@ -62,18 +65,6 @@ public class Pet {
     }
     public int getToiletNeed(){
     	return toiletNeed;
-    }
-    public int getSleep(){
-    	return sleep;
-    }
-    public int getAge(){
-    	return age;
-    }
-    public int getHealth(){
-    	return health;
-    }
-    public int getAction(){
-    	return actions;
     }
     public Boolean getRevive(){
     	return reviveAvail;
@@ -84,9 +75,24 @@ public class Pet {
     public Boolean getSick(){
     	return sick;
     }
-    public Boolean getMisbehaving(){
- 	   	return misbehaving; 
-     }
+    public int getAge(){
+    	return age;
+    }
+    
+    public int getSleep(){
+    	return sleep;
+    }
+    
+    public int getHealth(){
+    	return health;
+    }
+    
+    
+
+    
+    public void setName(String petName){
+    	name = petName;
+    }
    
     
     // Method
@@ -94,7 +100,7 @@ public class Pet {
     public void feed(Food food, String favouriteFood) {
     	if(actions == 0){
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
-    	}
+    		}
     	else{
     		if (food.getSize() == "small"){
     			weight += 25;
@@ -106,9 +112,9 @@ public class Pet {
     		hunger -= food.nutrition;
     		if (favouriteFood == food.getName()){
     			mood += 25;
-    		}
+    			}
     		actions-= 1;
-    	}		
+    		}		
     }
     
     
@@ -136,14 +142,14 @@ public class Pet {
     			sleep -= 25;
     		}
     		actions -= 1;
-    	}
+    		}
     }
  
     
     public  void revive(){
     	if(actions == 0){
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
-    	}
+    		}
     	else{
     		if(alive == false && reviveAvail == false){
     			reviveAvail = true;
@@ -167,14 +173,14 @@ public class Pet {
     
     public void death(){
     	if(health > 10){
-  		   Random random = new Random();  
+  		   Random random = new Random();  // 50% chance
   		   random.nextBoolean();
   		   if(alive == false){
   			   alive = false;
   			   
   			   System.out.println("Your pet died Random");
+  			   }
   		   }
-    	}
     }
     
     public void punish(){
@@ -200,7 +206,7 @@ public class Pet {
    
     public void sick(){
     	if(age > 2){
- 		   Random randomno = new Random(); 
+ 		   Random randomno = new Random(); // 50% CHANCE
  		   randomno.nextBoolean();
  		   if(sick == true){
  			   health -= 50;
@@ -210,28 +216,13 @@ public class Pet {
  			   }
  		   }
     }
-    public void doctor(){
-    	if(actions == 0){
-    		System.out.println("Sorry! This pet has already taken 2 actions today. ");
-    		}
-    	else if (sick == false){
-    		System.out.println("Your pet is not sick ");
-    	}else{
-    		sick = false;
-    		mood += 10;
-    		
-    	}
-	    	
-    }
     
     
    public void endDay(){
 	   age += 1;
 	   weight += weight;
 	   sleep -= 25 * sleepMod;
-	   hunger -= 20* hungerMul;
-	   mood -= 10;
-	   
+	   hunger -= hunger* hungerMul;
 	   
 	   }
 	 
@@ -260,7 +251,7 @@ public class Pet {
    }
 
    public static void main(String[]args){
-		// testing
+		//unit testing
 	   
 		Pet cat = new Pet("lolo"); 
 		System.out.println("\n"+ cat);
@@ -269,5 +260,13 @@ public class Pet {
 		System.out.println("\n" + cat);
 		cat.endDay();
 
+		
+		
+		
+	
+	
    }
-}
+}    	
+
+ 
+
