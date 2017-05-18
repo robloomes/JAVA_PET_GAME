@@ -19,7 +19,7 @@ public class Food {
 	}
 	
 	//Getters
-	public String getname() {
+	public String getName() {
 		return name;
 	}
 	
