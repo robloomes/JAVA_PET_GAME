@@ -33,18 +33,18 @@ public class Species extends Pet {
 		}
 
 	   public String toString() {
-		   String petName = "Name: " + this.name;
+		   String petName = "Name: " + this.getName();
 		   String petWeight = "Weight: " + this.weight;
-		   String petAge = "Age: " + this.age;
-		   String petMood = "Mood: " + this.mood;
-		   String petStamina = "Stamina: " + this.stamina;
-		   String petHealth = "Health: " + this.health;
-		   String petHunger = "Hunger: " + this.hunger;
-		   String petToiletNeed = "Toilet Need: " + this.toiletNeed;
-		   String petSleep= "Sleep: " + this.sleep;
-		   String petAlive = "Alive: " + this.alive;
-		   String petRevive = "Revive: " + this.reviveAvail;
-		   String petSick = "Sick: " + this.sick;
+		   String petAge = "Age: " + this.getAge();
+		   String petMood = "Mood: " + this.getMood();
+		   String petStamina = "Stamina: " + this.getStamina();
+		   String petHealth = "Health: " + this.getHealth();
+		   String petHunger = "Hunger: " + this.getHunger();
+		   String petToiletNeed = "Toilet Need: " + this.getToiletNeed();
+		   String petSleep= "Sleep: " + this.getSleep();
+		   String petAlive = "Alive: " + this.getAlive();
+		   String petRevive = "Revive: " + this.getRevive();
+		   String petSick = "Sick: " + this.getSick();;
 		   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
 			             petName, petWeight, petAge,
 			             petMood, petStamina, petHealth,
@@ -52,13 +52,17 @@ public class Species extends Pet {
 			             petAlive, petRevive, petSick); 
 		   return petStats;
 	   }
+	   
+	   public String getSpecies(){
+		   return speciesName;
+	   }
 
 	   public static void main(String[]args){
 			//unit testing
 		   
 			Species cat = new Species("lolo", 5.0, 1.0, 1.0, "food", "toy", "speciesName", 100, 1.0); 
 			System.out.println("\n"+ cat);
-			cat.alive = true;
+			
 			cat.death();
 			System.out.println("\n" + cat);
 			cat.endDay();
