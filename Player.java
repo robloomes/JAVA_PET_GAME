@@ -8,7 +8,7 @@ public class Player {
 	static Set<String> playerSet = new HashSet<String>();
 	String name;
 	int playerBalance;
-	private Map<String, Pet> ownedPets = new HashMap<String, Pet>();
+	private Map<String, Species> ownedPets = new HashMap<String, Species>();
 	private Map<String, Toy> ownedToys = new HashMap<String, Toy>();
 	private Map<String, Food> ownedFood = new HashMap<String, Food>();
 
@@ -26,7 +26,7 @@ public class Player {
 		return name;
 	}
 	
-	public Map<String, Pet> getPets() {
+	public Map<String, Species> getPets() {
 		return ownedPets;
 	}
 	
@@ -41,8 +41,8 @@ public class Player {
 	
 	
 	//setters
-	public void addPet(Pet pet) {
-		ownedPets.put(pet.name, pet);
+	public void addPet(Species pet) {
+		ownedPets.put(pet.getName(), pet);
 	}
 	
 	public void removePet(Pet pet) {
