@@ -16,7 +16,7 @@ public class gameEnvironment {
 	private Map<String, String> foodSizes = new HashMap<String, String>();
 	private Map<String, Toy> toyChoices = new HashMap<String, Toy>();
 	private Map<String, Food> foodChoices = new HashMap<String, Food>();
-	private Map<String, Pet> speciesChoices = new HashMap<String, Pet>();
+	private Map<String, Species> speciesChoices = new HashMap<String, Species>();
 	private Map<String, Player> players = new HashMap<String, Player>();
 	
 	//Toys available for purchase from store
@@ -37,12 +37,12 @@ public class gameEnvironment {
 	
 	//All species available for creation. Species are differentiated by their attributes.
 	                                   //name, mood, hunger, stamina, favFood, favToy, species, weight, roughness
-	private Species species1 = new Species("species1name", 1.0, 1.0, 1.0, biscuit.name, ball.name, "species1", 100, 1.0); 
-	private Species species2 = new Species("species2name", 1.1, 1.1, 1.1, biscuit.name, ball.name, "species2", 100, 1.1);
-	private Species species3 = new Species("species3name", 1.2, 1.2, 1.2, biscuit.name, ball.name, "species3", 100, 1.2); 
-	private Species species4 = new Species("species4name", 1.3, 1.3, 1.3, biscuit.name, ball.name, "species4", 100, 1.3); 
-	private Species species5 = new Species("species5name", 1.4, 1.4, 1.4, biscuit.name, ball.name, "species5", 100, 1.4); 
-	private Species species6 = new Species("species6name", 1.5, 1.5, 1.5, biscuit.name, ball.name, "species6", 100, 1.5); 
+	private Species species1 = new Species("species1name", 1.0, 1.0, 1.0, biscuit.getName(), ball.getName(), "species1", 100, 1.0); 
+	private Species species2 = new Species("species2name", 1.1, 1.1, 1.1, biscuit.getName(), ball.getName(), "species2", 100, 1.1);
+	private Species species3 = new Species("species3name", 1.2, 1.2, 1.2, biscuit.getName(), ball.getName(), "species3", 100, 1.2); 
+	private Species species4 = new Species("species4name", 1.3, 1.3, 1.3, biscuit.getName(), ball.getName(), "species4", 100, 1.3); 
+	private Species species5 = new Species("species5name", 1.4, 1.4, 1.4, biscuit.getName(), ball.getName(), "species5", 100, 1.4); 
+	private Species species6 = new Species("species6name", 1.5, 1.5, 1.5, biscuit.getName(), ball.getName(), "species6", 100, 1.5); 
 			 
 	
 	gameEnvironment(){
@@ -61,12 +61,12 @@ public class gameEnvironment {
 		foodChoices.put(salad.name, salad);
 		foodChoices.put(roastBeef.name, roastBeef);
 		
-		speciesChoices.put(species1.name, species1);
-		speciesChoices.put(species2.name, species2);
-		speciesChoices.put(species3.name, species3);
-		speciesChoices.put(species4.name, species4);
-		speciesChoices.put(species5.name, species5);
-		speciesChoices.put(species6.name, species6);
+		speciesChoices.put(species1.getSpecies(), species1);
+		speciesChoices.put(species2.getSpecies(), species2);
+		speciesChoices.put(species3.getSpecies(), species3);
+		speciesChoices.put(species4.getSpecies(), species4);
+		speciesChoices.put(species5.getSpecies(), species5);
+		speciesChoices.put(species6.getSpecies(), species6);
 		
 		foodSizes.put("small", "small");
 		foodSizes.put("large", "large");
@@ -135,25 +135,31 @@ public class gameEnvironment {
 				case 6:  species = species6;
 						break;
 			}
-			System.out.format("Enter a name for your new %s.\n\n", species);
+			
+			//System.out.format("Enter a name for your new %s.\n\n", species);
 			createPet(player, species);
 			}
 		}
 	
 	public void createPet(Player player, Species species){
 		Scanner scan = new Scanner(System.in);
+		System.out.format("Enter a name for your new %s.\n", species.getSpecies());
 		String petName = scan.nextLine();
-		System.out.format("Enter a name for your new %s.\n\n", species.speciesName);
+		
+		
 		while (existingPetNames.contains(petName)){
 			System.out.println("Input error. That name belongs to another pet, please choose another.");
-			System.out.println(String.format("Enter a name for your new %s.\n\n", species.speciesName));
+			System.out.println(String.format("Enter a name for your new %s.\n\n", species.getSpecies()));
 			petName = scan.next();
 		}
+		
 		//TODO create a species not a pet
 		existingPetNames.add(petName);
-		Pet pet = speciesChoices.get(species);
-		pet.name = petName;
-		player.addPet(pet);
+		System.out.println(existingPetNames);
+		Species newPet = speciesChoices.get(species);
+		System.out.println();
+		newPet.setName(petName);
+		player.addPet(newPet);
 	}
 	
 	
