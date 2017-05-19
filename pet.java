@@ -87,6 +87,10 @@ public class Pet {
     	return health;
     }
     
+    public int getActions(){
+    	return actions;
+    }
+    
     
 
     
