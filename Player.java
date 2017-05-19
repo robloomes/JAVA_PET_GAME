@@ -39,6 +39,10 @@ public class Player {
 		return ownedFood;
 	}
 	
+	public int getBalance() {
+		return playerBalance;
+	}
+	
 	
 	//setters
 	public void addPet(Species pet) {
