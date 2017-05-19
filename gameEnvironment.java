@@ -108,7 +108,7 @@ public class gameEnvironment {
 		do{
 			if (startChoice != null){
 			System.out.println("\nYou have entered an invalid number,"
-					+ "      please enter a number between 1 and 2.\n");
+					+ " please enter a number between 1 and 2.\n");
 			}
 			System.out.println("To choose, enter a number from 1-2...");
 			startChoice = scan.nextLine();
@@ -138,7 +138,7 @@ public class gameEnvironment {
 				System.out.println("\nYou have entered an invalid number,"
 						    + "please enter a number between 1 and 3.\n");
 				}
-				System.out.format("How many pets would %s like to own? (max 3).%n", player.name);
+				System.out.format("How many pets would %s like to own? (max 3).", player.name);
 				strPetNum = scan.nextLine();
 			}
 			while(!strPetNum.matches("[1-3]"));
@@ -245,7 +245,7 @@ public class gameEnvironment {
 		String strPlayerNum = null;
 		do{
 			if (strPlayerNum != null){
-				System.out.println("\nYou have entered an invalid number, please enter a number between 1 and 3.%n");
+				System.out.println("You have entered an invalid number, please enter a number between 1 and 3.\n");
 			}
 			System.out.println("How many players would like to play the game? (max 3).");
 			strPlayerNum = scan.nextLine();
