@@ -4,12 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.IOException;
 import java.util.*;
-import java.util.Scanner; 
+import java.util.Scanner;
+import java.awt.EventQueue;
+
+
 import java.util.Properties;
 
-public class gameEnvironment {
+public class gameEnvironment{
 	
 	////Initializations
+	private pet_gui GUI = new pet_gui();
+	private String currentPlayer;
 	private int numOfPlayers;
 	private double numOfDays;
 	private List<String> existingPetNames = new ArrayList<String>();
@@ -78,7 +83,7 @@ public class gameEnvironment {
 		
 		foodSizes.put("small", "small");
 		foodSizes.put("large", "large");
-		
+
 		int startChoice = welcome();
 		if(startChoice != 1){
 			do{
@@ -90,10 +95,77 @@ public class gameEnvironment {
 		inputPlayerNum();
 		inputDayNum();
 		createPlayers();
-		promptPetDetails();
+		promptPetCreation();
+		for (Map.Entry<String, Player> entry : players.entrySet()){
+			Player val = entry.getValue();
+			currentPlayer = val.name;
+			mainSelectScreen(val);
+		}
+		GUI.label.setText("gg");
+		
 		
 
+	}
+	public void promptPetDetails(){
+		
 	
+	}
+	
+
+	public void mainSelectScreen(Player player){
+		String input = null;
+		String currentPet = "None";
+		Scanner scan = new Scanner(System.in);
+		do{
+			if (input != null){
+				System.out.println("\nYou have entered an invalid number,"
+					        + "please enter a number between 1 and 8.\n");
+				promptEnterKey();
+			}
+			System.out.format("Current Player: %s\n", currentPlayer);
+			System.out.format("Current balance: $%d\n", player.getBalance());
+			System.out.format("Owned pets (actions remanining):\n");
+			for (Species pet : player.getPets().values()){
+				System.out.format("%s (%d)\n", pet.getName(), pet.getActions());
+			}
+			System.out.format("Current pet selected: %s \n", currentPet);
+			System.out.println("\n1. Select a pet to view and interact with.");
+			System.out.println("2. View status of your pets.");
+			System.out.println("3. Visit the store.");
+			System.out.println("4. Feed pet.");
+			System.out.println("5. Put pet to sleep.");
+			System.out.println("6. Use toy.");
+			System.out.println("7. Use toilet.");
+			System.out.println("\n8. End day (resets actions).");
+			input = scan.nextLine();
+		}
+		while(!input.matches("[1-8]"));
+		int intInput = Integer.parseInt(input);
+		switch (intInput){
+			case 1: 
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8:
+				break;
+				
+		}
+		
+		
+		
+		
+		
+		
 	}
 	public void help(){
 		
@@ -162,7 +234,7 @@ public class gameEnvironment {
 		System.out.println(player);
 		
 	}
-	public void promptPetDetails(){
+	public void promptPetCreation(){
 		Scanner scan = new Scanner(System.in);
 		for (Map.Entry<String, Player> entry : players.entrySet()){
 			Player player = entry.getValue();
@@ -181,7 +253,7 @@ public class gameEnvironment {
 			int intPetNum = Integer.parseInt(strPetNum);
 			promptSpecies(player, intPetNum);
 			}
-		scan.close();
+		
 		}
 	
 	public void promptSpecies(Player player, int petNum){
@@ -255,6 +327,7 @@ public class gameEnvironment {
 	        System.out.println("\nPress \"ENTER\" to continue...");
 	        Scanner scanner = new Scanner(System.in);
 	        scanner.nextLine(); 
+	        
 	        
 	 }
 	
@@ -368,7 +441,22 @@ public class gameEnvironment {
 		*System.out.println(food1);*/
 		
 		//Unit testing
+		
+		
+		
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					pet_gui window = new pet_gui();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+	
 		gameEnvironment newGame = new gameEnvironment();
+		
 
 		
 		
