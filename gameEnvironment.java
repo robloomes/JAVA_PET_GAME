@@ -53,7 +53,6 @@ public class gameEnvironment {
 			 
 	
 	gameEnvironment(){
-		numOfDays = 0;
 
 		toyChoices.put(ball.name, ball);
 		toyChoices.put(slinky.name, slinky);
@@ -80,23 +79,17 @@ public class gameEnvironment {
 		foodSizes.put("large", "large");
 		
 		int startChoice = welcome();
-		do{
-			help();
-			startChoice = welcome();
+		if(startChoice != 1){
+			do{
+				help();
+				startChoice = welcome();
 			}
-		while(startChoice == 2);
+			while(startChoice == 2);
+		}
 		inputPlayerNum();
 		inputDayNum();
 		createPlayers();
 		promptPetDetails();
-		
-		numOfDays = 0;
-		for(int i = 0; i < numOfDays; i++){
-			for(i = 0; i < numOfPlayers; i++){
-				
-			}
-		}
-		
 		
 
 	
