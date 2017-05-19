@@ -68,7 +68,7 @@ public class Species extends Pet {
 			cat.endDay();
 			System.out.println("\n" + cat);
 			cat.endDay();
-			System.out.println(cat.speciesName);
+			
 			
 			
 		
