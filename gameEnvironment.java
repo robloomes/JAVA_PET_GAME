@@ -54,6 +54,7 @@ public class gameEnvironment {
 	
 	gameEnvironment(){
 
+		
 		toyChoices.put(ball.name, ball);
 		toyChoices.put(slinky.name, slinky);
 		toyChoices.put(cube.name, cube);
@@ -95,8 +96,42 @@ public class gameEnvironment {
 	
 	}
 	public void help(){
-		//TODO
-		System.out.println("\n\n\nHELP SECTION TODO\n\n\n");
+		
+		Properties prop = new Properties();
+		InputStream input = null;
+		
+		try {
+
+			input = new FileInputStream("config.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value and print it out
+			System.out.println(prop.getProperty("help1"));
+			promptEnterKey();
+			System.out.println(prop.getProperty("help2"));
+			promptEnterKey();
+			System.out.println(prop.getProperty("help3"));
+			promptEnterKey();
+			System.out.println(prop.getProperty("help4"));
+			promptEnterKey();
+			System.out.println(prop.getProperty("help5"));
+			promptEnterKey();
+			System.out.println(prop.getProperty("help6"));
+			promptEnterKey();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	public int welcome(){
@@ -110,7 +145,6 @@ public class gameEnvironment {
 			System.out.println("\nYou have entered an invalid number,"
 					+ " please enter a number between 1 and 2.\n");
 			}
-			System.out.println("To choose, enter a number from 1-2...");
 			startChoice = scan.nextLine();
 		}
 		while(!startChoice.matches("[1-2]"));
@@ -218,9 +252,10 @@ public class gameEnvironment {
 	
 	 private void promptEnterKey()
 	 { 
-	        System.out.println("Press \"ENTER\" to continue...");
+	        System.out.println("\nPress \"ENTER\" to continue...");
 	        Scanner scanner = new Scanner(System.in);
 	        scanner.nextLine(); 
+	        
 	 }
 	
 
