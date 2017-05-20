@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.util.*;
 import java.util.Scanner;
+
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import java.awt.EventQueue;
 
 
@@ -13,73 +16,74 @@ import java.util.Properties;
 public class gameEnvironment{
 	
 	////Initializations
-	private pet_gui GUI = new pet_gui();
+	Species globalCurrentPet;
 	private String currentPlayer;
 	private int numOfPlayers;
 	private double numOfDays;
 	private List<String> existingPetNames = new ArrayList<String>();
 	private Map<String, String> foodSizes = new HashMap<String, String>();
-	private Map<String, Toy> toyChoices = new HashMap<String, Toy>();
-	private Map<String, Food> foodChoices = new HashMap<String, Food>();
-	private Map<String, Species> speciesChoices = new HashMap<String, Species>();
+	private Map<Integer, Toy> toyChoices = new HashMap<Integer, Toy>();
+	private Map<Integer, Food> foodChoices = new HashMap<Integer, Food>();
+	private Map<Integer, Species> speciesChoices = new HashMap<Integer, Species>();
 	private Map<String, Player> players = new HashMap<String, Player>();
 	
 	//Toys available for purchase from store
-	private Toy ball = new Toy("Ball", 10, 10, 10); //(name, price, durability, enjoyment)
-	private Toy slinky = new Toy("Slinky", 20, 20, 20);
-	private Toy cube = new Toy("Cube", 30, 30, 30);
-	private Toy plushie = new Toy("Plushie", 40, 40, 40 );
-	private Toy actionFigure = new Toy("Action figure", 50, 50, 50);
-	private Toy bicycle = new Toy("Bicycle", 200, 100, 100);
+	//(name, price, durability, enjoyment)
+	private Toy bear = new Toy("Bear", 10, 10, 10); 
+	private Toy boat = new Toy("Boat", 20, 20, 20);
+	private Toy doll = new Toy("Doll", 10, 30, 30);
+	private Toy heli = new Toy("Helicopter", 20, 40, 40 );
+	private Toy kite = new Toy("Kite", 10, 50, 50);
+	private Toy yoyo = new Toy("Yoyo", 5, 20, 100);
 	
 	//Food available for purchase from store
 	//(name, price, size, nutrition , tastiness)
-	private Food biscuit = new Food("Biscuit", 5, "small", 5, 30 ); 
-	private Food fish = new Food("Fish", 10, "small", 40, 30 ); 
-	private Food chocolate = new Food("Chocolate", 10, "small", 5, 60 ); 
-	private Food cake = new Food("Cake", 20, "large", 10, 75 ); 
-	private Food salad = new Food("Salad", 30, "large", 50, 25 ); 
-	private Food roastBeef = new Food("Roast-beef", 50, "large", 75, 75 ); 
+	private Food cookie = new Food("Cookie", 5, foodSizes.get("small"), 5, 20); 
+	private Food fish = new Food("Fish", 10, foodSizes.get("large"), 20, 30); 
+	private Food chocolate = new Food("Chocolate", 5, foodSizes.get("small"), 5, 40); 
+	private Food cake = new Food("Cake", 10, foodSizes.get("large"), 10, 30); 
+	private Food melon = new Food("Melon", 5, foodSizes.get("small"), 15, 20); 
+	private Food pizza = new Food("Pizza", 10, foodSizes.get("large"), 10, 40); 
 	
 	//All species available for creation. Species are differentiated by their attributes.
-	//Name, mood, hunger, stamina, favFood, favToy, species, weight, roughness
-	private Species species1 = new Species("species1name", 1.0, 1.0, 1.0, biscuit.getName(),
-			                                          ball.getName(), "species1", 100, 1.0); 
-	private Species species2 = new Species("species2name", 1.1, 1.1, 1.1, biscuit.getName(),
-			                                          ball.getName(), "species2", 100, 1.1);
-	private Species species3 = new Species("species3name", 1.2, 1.2, 1.2, biscuit.getName(),
-			                                          ball.getName(), "species3", 100, 1.2); 
-	private Species species4 = new Species("species4name", 1.3, 1.3, 1.3, biscuit.getName(),
-			                                          ball.getName(), "species4", 100, 1.3); 
-	private Species species5 = new Species("species5name", 1.4, 1.4, 1.4, biscuit.getName(),
-			                                          ball.getName(), "species5", 100, 1.4); 
-	private Species species6 = new Species("species6name", 1.5, 1.5, 1.5, biscuit.getName(),
-			                                          ball.getName(), "species6", 100, 1.5); 
+	//Name, sleep, mood, hunger, energy, favFood, favToy, species, weight, roughness.
+	private Species species1 = new Species("defaultCloud",1.0, 1.0, 1.0, 1.0, melon.getName(),
+			                                          kite.getName(), "Cloud", 100, 1.0); 
+	private Species species2 = new Species("defaultCrab",1.1, 1.1, 1.1, 1.1, fish.getName(),
+			                                          yoyo.getName(), "Crab", 100, 1.1);
+	private Species species3 = new Species("defaultMonster",1.2, 1.2, 1.2, 1.2, chocolate.getName(),
+			                                          bear.getName(), "Monster", 100, 1.2); 
+	private Species species4 = new Species("defaultPenguin",1.3, 1.3, 1.3, 1.3, pizza.getName(),
+			                                          doll.getName(), "Penquin", 100, 1.3); 
+	private Species species5 = new Species("defaultRobot",1.4, 1.4, 1.4, 1.4, cake.getName(),
+			                                          heli.getName(), "Robot", 100, 1.4); 
+	private Species species6 = new Species("defaultSnake",1.5, 1.5, 1.5, 1.5, cookie.getName(),
+			                                          boat.getName(), "Snake", 100, 1.5); 
 			 
 	
 	gameEnvironment(){
-
+		globalCurrentPet = null;
 		
-		toyChoices.put(ball.name, ball);
-		toyChoices.put(slinky.name, slinky);
-		toyChoices.put(cube.name, cube);
-		toyChoices.put(plushie.name, plushie);
-		toyChoices.put(actionFigure.name, actionFigure );
-		toyChoices.put(bicycle.name, bicycle);
+		toyChoices.put(1, bear);
+		toyChoices.put(2, boat);
+		toyChoices.put(3, doll);
+		toyChoices.put(4, heli);
+		toyChoices.put(5, kite);
+		toyChoices.put(6, yoyo);
 		
-		foodChoices.put(biscuit.name, biscuit);
-		foodChoices.put(fish.name, fish);
-		foodChoices.put(chocolate.name, chocolate);
-		foodChoices.put(cake.name, cake);
-		foodChoices.put(salad.name, salad);
-		foodChoices.put(roastBeef.name, roastBeef);
+		foodChoices.put(1, cookie);
+		foodChoices.put(2, fish);
+		foodChoices.put(3, chocolate);
+		foodChoices.put(4, cake);
+		foodChoices.put(5, melon);
+		foodChoices.put(6, pizza);
 		
-		speciesChoices.put(species1.getSpecies(), species1);
-		speciesChoices.put(species2.getSpecies(), species2);
-		speciesChoices.put(species3.getSpecies(), species3);
-		speciesChoices.put(species4.getSpecies(), species4);
-		speciesChoices.put(species5.getSpecies(), species5);
-		speciesChoices.put(species6.getSpecies(), species6);
+		speciesChoices.put(1, species1);
+		speciesChoices.put(2, species2);
+		speciesChoices.put(3, species3);
+		speciesChoices.put(4, species4);
+		speciesChoices.put(5, species5);
+		speciesChoices.put(6, species6);
 		
 		foodSizes.put("small", "small");
 		foodSizes.put("large", "large");
@@ -101,7 +105,7 @@ public class gameEnvironment{
 			currentPlayer = val.name;
 			mainSelectScreen(val);
 		}
-		GUI.label.setText("gg");
+		
 		
 		
 
@@ -114,7 +118,6 @@ public class gameEnvironment{
 
 	public void mainSelectScreen(Player player){
 		String input = null;
-		String currentPet = "None";
 		Scanner scan = new Scanner(System.in);
 		do{
 			if (input != null){
@@ -128,9 +131,13 @@ public class gameEnvironment{
 			for (Species pet : player.getPets().values()){
 				System.out.format("%s (%d)\n", pet.getName(), pet.getActions());
 			}
-			System.out.format("Current pet selected: %s \n", currentPet);
+			if(globalCurrentPet == null){
+				System.out.println("Current pet selected: NONE (select a pet to interact with it).");
+			}else{
+				System.out.format("Current pet selected: %s \n", globalCurrentPet.getName());
+			}
 			System.out.println("\n1. Select a pet to view and interact with.");
-			System.out.println("2. View status of your pets.");
+			System.out.println("2. View status of current pet.");
 			System.out.println("3. Visit the store.");
 			System.out.println("4. Feed pet.");
 			System.out.println("5. Put pet to sleep.");
@@ -142,31 +149,241 @@ public class gameEnvironment{
 		while(!input.matches("[1-8]"));
 		int intInput = Integer.parseInt(input);
 		switch (intInput){
-			case 1: 
+			case 1: globalCurrentPet = selectPet(player);
+					mainSelectScreen(player);
+					break;
+			case 2: if(globalCurrentPet == null){
+						System.out.println("You need to select a pet first!");// error window in GUI
+						promptEnterKey();
+						mainSelectScreen(player);
+					}else{
+						System.out.println(globalCurrentPet); 
+						promptEnterKey();
+						mainSelectScreen(player);
+					}
+					break;
+			case 3: store(player);
+					promptEnterKey();
+					mainSelectScreen(player);
+					break;
+			case 4: if(globalCurrentPet.getActions() == 0){
+						System.out.println("Sorry! This pet has already taken 2 actions today.");
+					}else{
+						feedPet(player);
+					}
+					promptEnterKey();
+					mainSelectScreen(player);
+					break;
+			case 5: if(globalCurrentPet.getActions() == 0){
+						System.out.println("Sorry! This pet has already taken 2 actions today.");
+					}else{
+						globalCurrentPet.sleep();
+					}
+					promptEnterKey();
+					mainSelectScreen(player);
 				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
-				break;
-			case 5:
-				break;
-			case 6:
-				break;
-			case 7:
+			case 6:	if(globalCurrentPet.getActions() == 0){
+						System.out.println("Sorry! This pet has already taken 2 actions today.");
+					}else{
+					play(player);
+					}
+					promptEnterKey();
+					break;
+			case 7: if(globalCurrentPet.getActions() == 0){
+						System.out.println("Sorry! This pet has already taken 2 actions today.");
+					}else{
+						
+					}
+				
 				break;
 			case 8:
 				break;
 				
 		}
-		
-		
-		
-		
-		
+	}
+	
+	public void store(Player player){
+		System.out.println("Welcome to the store! What will it be today?\n");
+		System.out.println("Food:");
 		
 	}
+	
+	public void play(Player player){
+		Scanner scan = new Scanner(System.in);
+		String toySelect= null;
+		int i = 1;
+		if(player.getToys().isEmpty()){
+			System.out.println("You don't have any toys! Visit the store to buy some.");
+			promptEnterKey();
+		}else{
+		for (Map.Entry<Toy, Integer> entry : player.getToys().entrySet()){
+			Toy toy = entry.getKey();
+			int val = entry.getValue();
+			System.out.format("\n%d. %s x%d", i, toy.getName(), val);
+			i++;
+		}
+		System.out.format("%d. quit.", i);
+		do{
+			if (toySelect != null){
+				System.out.println("\nYou have entered an invalid number\n");
+				promptEnterKey();
+			}
+			System.out.format("Select a toy to give to %s.\n", globalCurrentPet.getName());
+			toySelect = scan.nextLine();
+		} while(!toySelect.matches("[1-" + i + "]"));
+		int inttoySelect = Integer.parseInt(toySelect);
+		
+		switch(inttoySelect){ 
+			case 1:
+				globalCurrentPet.play(toyChoices.get(1));
+				break;
+			case 2:
+				globalCurrentPet.play(toyChoices.get(2));
+				break;
+			case 3:
+				globalCurrentPet.play(toyChoices.get(3));
+				break;
+			case 4:
+				globalCurrentPet.play(toyChoices.get(4));
+				break;
+			case 5:
+				globalCurrentPet.play(toyChoices.get(5));
+				break;
+			case 6:
+				globalCurrentPet.play(toyChoices.get(6));
+				break;
+		}
+		promptEnterKey();
+		}
+	}
+	public void  feedPet(Player player){
+		Scanner scan = new Scanner(System.in);
+		String foodSelect= null;
+		int i = 1;
+		if(player.getFood().isEmpty()){
+			System.out.println("You don't have any food! Visit the store to buy some.");
+			promptEnterKey();
+		}else{
+		for (Map.Entry<Food, Integer> entry : player.getFood().entrySet()){
+			Food food = entry.getKey();
+			int val = entry.getValue();
+			System.out.format("\n%d. %s x%d", i, food.getName(), val);
+			i++;
+		}
+		System.out.format("%d. quit.", i);
+		do{
+			if (foodSelect != null){
+				System.out.println("\nYou have entered an invalid number\n");
+			}
+			System.out.format("Select an item to feed to %s.\n", globalCurrentPet.getName());
+			foodSelect = scan.nextLine();
+		} while(!foodSelect.matches("[1-" + i + "]"));
+		int intFoodSelect = Integer.parseInt(foodSelect);
+		
+		switch(intFoodSelect){ 
+			case 1:
+				globalCurrentPet.feed(foodChoices.get(1));
+				break;
+			case 2:
+				globalCurrentPet.feed(foodChoices.get(2));
+				break;
+			case 3:
+				globalCurrentPet.feed(foodChoices.get(3));
+				break;
+			case 4:
+				globalCurrentPet.feed(foodChoices.get(4));
+				break;
+			case 5:
+				globalCurrentPet.feed(foodChoices.get(5));
+				break;
+			case 6:
+				globalCurrentPet.feed(foodChoices.get(6));
+				break;
+		}
+		}
+	}
+	public Species selectPet(Player player){
+		String inputChoice = null;
+		Scanner scan = new Scanner(System.in);
+		Map<Integer, Species> petChoices = new HashMap<Integer, Species>();
+		int i = 0;
+		
+		for(Species pet: player.getPets().values()){
+			i++;
+			petChoices.put(i, pet);
+			}
+		
+		do{
+			i = 0;
+			if (inputChoice != null){
+				System.out.println("\nYou have entered an invalid number\n");
+				promptEnterKey();
+			}
+			for(Species pet: player.getPets().values()){
+				i++;
+				System.out.format("%d: %s.\n", i, pet.getName());
+				petChoices.put(i, pet);
+				}
+			System.out.println("\nSelect a pet to interact with.");
+			inputChoice = scan.nextLine();
+		}
+		while(!inputChoice.matches("[1-" + i + "]"));
+		
+//		if(petChoices.size() == 2){
+//			do{
+//				i = 0;
+//				if (inputChoice != null){
+//					System.out.println("\nYou have entered an invalid number\n");
+//					promptEnterKey();
+//				}
+//				for(Species pet: player.getPets().values()){
+//					i++;
+//					System.out.format("%d: %s.\n", i, pet.getName());
+//					petChoices.put(i, pet);
+//					}
+//				System.out.println("Select a pet to interact with.");
+//				inputChoice = scan.nextLine();
+//			}
+//			while(!inputChoice.matches("[1-2]"));
+//		}
+//		if(petChoices.size() == 1){
+//			do{
+//				i = 0;
+//				if (inputChoice != null){
+//					System.out.println("\nYou have entered an invalid number\n");
+//					promptEnterKey();
+//				}
+//				for(Species pet: player.getPets().values()){
+//					i++;
+//					System.out.format("%d: %s.\n", i, pet.getName());
+//					petChoices.put(i, pet);
+//					}
+//				System.out.println("Select a pet to interact with.");
+//				inputChoice = scan.nextLine();
+//			}
+//			while(!inputChoice.matches("[1-1]"));
+//		System.out.println(inputChoice.matches("[1-1]"));
+//		}
+		
+		int intInputChoice = Integer.parseInt(inputChoice);
+		switch (intInputChoice){
+			case 1: 
+				return petChoices.get(1);
+			case 2:
+				return petChoices.get(2);
+			case 3:
+				return petChoices.get(3);
+		}
+		System.out.println("ERROR, CODE SHOULD NEVER BE REACHED");
+		return species1;
+		}
+	
+		
+		
+		
+		
+		
+	
 	public void help(){
 		
 		Properties prop = new Properties();
@@ -253,7 +470,6 @@ public class gameEnvironment{
 			int intPetNum = Integer.parseInt(strPetNum);
 			promptSpecies(player, intPetNum);
 			}
-		
 		}
 	
 	public void promptSpecies(Player player, int petNum){
@@ -274,20 +490,20 @@ public class gameEnvironment{
 			}
 			while(!speciesNum.matches("[1-6]"));
 			
-			Species species = null;
+			int species = 0;
 			int intSpeciesNum = Integer.parseInt(speciesNum);
 			switch (intSpeciesNum) {
-				case 1:  species = species1;
+				case 1:  species = 1;
                      	break;
-				case 2:  species = species2;
+				case 2:  species = 2;
                     	break;
-				case 3:  species = species3;
+				case 3:  species = 3;
                      	break;
-				case 4:  species = species4;
+				case 4:  species = 4;
                      	break;
-				case 5:  species = species5;
+				case 5:  species = 5;
 						break;
-				case 6:  species = species6;
+				case 6:  species = 6;
 						break;
 			}
 			
@@ -296,19 +512,17 @@ public class gameEnvironment{
 			}
 		}
 	
-	public void createPet(Player player, Species species){
+	public void createPet(Player player, int species){
 		Scanner scan = new Scanner(System.in);
-		System.out.format("Enter a name for your new %s.\n", species.getSpecies());
+		System.out.format("Enter a name for your new %s.\n", speciesChoices.get(species).getSpecies());
 		String petName = scan.nextLine();
 		while (existingPetNames.contains(petName)){
-			System.out.println("Input error. That name belongs to another pet, please choose another.");
-			System.out.println(String.format("Enter a name for your new %s.\n\n", species.getSpecies()));
+			System.out.println("Input error. That name belongs to another pet, please choose another.\n");
+			System.out.println(String.format("Enter a name for your new %s.", speciesChoices.get(species).getSpecies()));
 			petName = scan.next();
 		}
-		//TODO create a species not a pet
 		existingPetNames.add(petName);
-		Species newPet = speciesChoices.get(species.getSpecies());
-		newPet.setName(petName);
+		Species newPet = new Species (petName, speciesChoices.get(species));
 		player.addPet(newPet);
 	}
 	
@@ -388,21 +602,21 @@ public class gameEnvironment{
 	}
 	
 	public void printFood(){
-		for (Map.Entry<String, Food> entry : foodChoices.entrySet()){
+		for (Map.Entry<Integer, Food> entry : foodChoices.entrySet()){
 			Food val = entry.getValue();
 			System.out.println("\n" + val);
 		}
 	}
 	
 	public void printToys(){
-		for (Map.Entry<String, Toy> entry : toyChoices.entrySet()){
+		for (Map.Entry<Integer, Toy> entry : toyChoices.entrySet()){
 			Toy val = entry.getValue();
 			System.out.println("\n" + val);
 		}
 	}
 	
 	public void printPets(){
-		for (Map.Entry<String, Species> entry : speciesChoices.entrySet()){
+		for (Map.Entry<Integer, Species> entry : speciesChoices.entrySet()){
 			Pet val = entry.getValue(); 
 			System.out.println("\n" + val);
 		}
