@@ -2,79 +2,81 @@ package pet_game;
 
 public class Species extends Pet {
 	
-	private double moodMod;
-	private double hungerMod;
-	private double staminaMod;
-	private double sleepMod;
-	private double roughnessMod;
-	
-	String favFood;
-	String favToy;
-	String speciesName;
-	int weight;
-	
-	public Species(String name, 
-					double startMoodMul,
-					double startHungerMul, 
-					double startStaminaMul, 
-					String startFavFood,
-					String startFavToy,
-					String startSpecies,
-					int startWeight,
-					double roughnessMod){
+		public Species(String name, 
+					   double startSleepMod,
+				  	   double startMoodMod,
+					   double startHungerMod, 
+					   double startEnergyMod, 
+					   String startFavFood,
+					   String startFavToy,
+					   String startSpecies,
+					   int startWeight,
+					   double startRoughness){
 		super(name);
-		moodMod = startMoodMul;
-		hungerMod = startHungerMul;
-		staminaMod = startStaminaMul;
+		sleepMod = startSleepMod;
+		moodMod = startMoodMod;
+		hungerMod = startHungerMod;
+		energyMod = startEnergyMod;
 		favFood = startFavFood;
 		favToy = startFavToy;
 		speciesName = startSpecies;
 		weight = startWeight;
+		roughness = startRoughness;
 		}
-
-	   public String toString() {
-		   String petName = "Name: " + this.getName();
-		   String petWeight = "Weight: " + this.weight;
-		   String petAge = "Age: " + this.getAge();
-		   String petMood = "Mood: " + this.getMood();
-		   String petStamina = "Stamina: " + this.getStamina();
-		   String petHealth = "Health: " + this.getHealth();
-		   String petHunger = "Hunger: " + this.getHunger();
-		   String petToiletNeed = "Toilet Need: " + this.getToiletNeed();
-		   String petSleep= "Sleep: " + this.getSleep();
-		   String petAlive = "Alive: " + this.getAlive();
-		   String petRevive = "Revive: " + this.getRevive();
-		   String petSick = "Sick: " + this.getSick();;
-		   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
-			             petName, petWeight, petAge,
-			             petMood, petStamina, petHealth,
-			             petHunger, petToiletNeed, petSleep,
-			             petAlive, petRevive, petSick); 
-		   return petStats;
-	   }
+	
+    //Constructor for cloning the class, not just the reference
+	public Species(String name, Species species){
+		super(species, name);
+		sleepMod = species.sleepMod;
+		moodMod = species.moodMod;
+		hungerMod = species.hungerMod;
+		energyMod = species.energyMod;
+		favFood = species.favFood;
+		favToy = species.favToy;
+		speciesName = species.speciesName;
+		weight = species.weight;
+		roughness = species.roughness;
+		}
+	
+   public String toString() {
+	   String petName = "Name: " + this.getName();
+	   String petSpecies = "Species: " + this.getSpecies();
+	   String petWeight = "Weight: " + this.weight;
+	   String petAge = "Age: " + this.getAge();
+	   String petMood = "Mood: " + this.getMood();
+	   String petEnergy = "Energy: " + this.getEnergy();
+	   String petHealth = "Health: " + this.getHealth();
+	   String petHunger = "Hunger: " + this.getHunger();
+	   String petToiletNeed = "Toilet Need: " + this.getToiletNeed();
+	   String petSleep= "Sleep: " + this.getSleep();
+	   String petAlive = "Alive: " + this.getAlive();
+	   String petRevive = "Revive: " + this.getRevive();
+	   String petSick = "Sick: " + this.getSick();
+	   String mod1 = "mood: " + this.getMood();
+	   String mod2 = "stam: " + this.getMood();
 	   
-	   public String getSpecies(){
-		   return speciesName;
-	   }
+	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
+		             petName, petSpecies, petWeight, petAge,
+		             petMood, petEnergy, petHealth,
+		             petHunger, petToiletNeed, petSleep,
+		             petAlive, petRevive, petSick); 
+	   return petStats;
+   }
+	   
+
 
 	   public static void main(String[]args){
 			//unit testing
 		   
-			Species cat = new Species("lolo", 5.0, 1.0, 1.0, "food", "toy", "speciesName", 100, 1.0); 
+			Species cat = new Species("lolo", 1.0, 5.0, 1.0, 1.0, "food", "toy", "cloud", 100, 1.0); 
 			System.out.println("\n"+ cat);
-			
-			cat.death();
-			System.out.println("\n" + cat);
+			Species cat2 = new Species("catclone", cat);
+			System.out.println("\n"+ cat);
+			System.out.println("\n"+ cat2);
 			cat.endDay();
 			System.out.println("\n" + cat);
-			cat.endDay();
+			System.out.println("\n"+ cat2);
 			
-			
-			
-		
-		
+			System.out.println(cat.getMoodMod());
 	   }
-	
-
-
-}
+	}
