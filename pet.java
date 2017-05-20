@@ -3,44 +3,70 @@ import java.util.Random;
 
 public class Pet {
 	
-	private double moodMul ;
-	private double hungerMul;
-	private double staminaMul;
-	private double sleepMod;
-	private double roughness;
-	private String name;
-	private int weight;
-	private int age;
-	private int mood;
-	private int stamina;
-	private int health;
-	private int hunger;
-	private int toiletNeed;
-	private int sleep;
-	private int actions;
-	private boolean alive;
-	private boolean reviveAvail;
-	private boolean sick;
-	private boolean misbehaving; // add
+	protected double moodMod ;
+	protected double hungerMod;
+	protected double energyMod;
+	protected double sleepMod;
+	protected double roughness;
+	protected String name;
+	protected String favFood;
+	protected String speciesName;
+	protected String favToy;
+	protected int weight;
+	protected int age;
+	protected int mood;
+	protected int energy;
+	protected int health;
+	protected int hunger;
+	protected int toiletNeed;
+	protected int sleep;
+	protected int actions;
+	protected boolean alive;
+	protected boolean reviveAvail;
+	protected boolean sick;
+	protected boolean misbehaving; 
+	
+
   
     // Constructor
     public Pet(String name){
-    	this.moodMul = 1;
-    	this.hungerMul =1;
-    	this.staminaMul =1;
+    	this.moodMod = 1;
+    	this.hungerMod =1;
+    	this.energyMod =1;
     	this.sleepMod=1;
     	this.roughness =1;
     	this.name = name ;
-        this.age = 3;
+        this.age = 0;
         this.hunger = 50;
         this.mood = 50;
-        this.stamina = 50;
+        this.energy = 50;
         this.sleep = 50;
         this.toiletNeed  = 0;
         this.actions = 2;
-        this.health = (hunger + mood + stamina) / 3 ;
+        this.health = (hunger + mood + energy) / 3 ;
         this.alive = true;
         this.reviveAvail = false;
+        this.sick = false;
+        this.misbehaving = false;
+    }
+    
+    //Constructor for cloning the class, not just the reference
+    public Pet(Pet pet, String newName){
+    	this.name = newName;
+    	this.moodMod = pet.moodMod;
+    	this.hungerMod = pet.hungerMod;
+    	this.energyMod = pet.energyMod;
+    	this.sleepMod= pet.sleepMod;
+        this.age = pet.age;
+        this.hunger = pet.hunger;
+        this.mood = pet.mood;
+        this.energy = pet.energy;
+        this.sleep = pet.sleep;
+        this.toiletNeed  = pet.toiletNeed;
+        this.actions = pet.actions;
+        this.health = (pet.hunger + pet.mood + pet.energy) / 3 ;
+        this.alive = pet.alive;
+        this.reviveAvail = pet.reviveAvail;
         this.sick = false;
         this.misbehaving = false;
     }
@@ -60,8 +86,8 @@ public class Pet {
     public int getHunger(){
     	return hunger;
     }
-    public int getStamina(){
-    	return stamina;
+    public int getEnergy(){
+    	return energy;
     }
     public int getToiletNeed(){
     	return toiletNeed;
@@ -91,7 +117,13 @@ public class Pet {
     	return actions;
     }
     
+    public double getMoodMod(){
+    	return moodMod;
+    }
     
+    public String getSpecies(){
+    	return speciesName;
+    }
 
     
     public void setName(String petName){
@@ -101,7 +133,7 @@ public class Pet {
     
     // Method
     
-    public void feed(Food food, String favouriteFood) {
+    public void feed(Food food) {
     	if(actions == 0){
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
     		}
@@ -114,7 +146,7 @@ public class Pet {
     			toiletNeed += 50;}
     		mood +=  food.getTastiness();
     		hunger -= food.nutrition;
-    		if (favouriteFood == food.getName()){
+    		if (favFood == food.getName()){
     			mood += 25;
     			}
     		actions-= 1;
@@ -135,21 +167,22 @@ public class Pet {
     		}weight -= 10;
     		actions-= 1;
     	}
+    	System.out.format("%s feels relieved!\n", name);
     }
 
     public void sleep(){
     	if(actions == 0){
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
     		}
-    	else{
-    		if(mood < 50 || stamina < 50 ){
-    			sleep -= 25;
+    	else if(mood < 50 || energy < 50 ){
+    		sleep -= 25;
     		}
-    		actions -= 1;
-    		}
-    }
- 
-    
+       	else{
+    		sleep -= 20;
+    		}	
+    	actions -= 1;
+    	System.out.format("%s feels refreshed!\n", name);
+		}
     public  void revive(){
     	if(actions == 0){
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
@@ -192,7 +225,7 @@ public class Pet {
     		System.out.println("Sorry! This pet has already taken 2 actions today. ");
     		}
     	else{ if(misbehaving == false && age >2){
-    		mood -=10 * moodMul;
+    		mood -=10 * moodMod;
     	}
     	}
     }
@@ -204,7 +237,7 @@ public class Pet {
     	dura -= roughness;
     	
     	toy.setDurability(dura);
-    	stamina += stamina * staminaMul;
+    	energy += energy * energyMod;
     	
     }
    
@@ -215,7 +248,7 @@ public class Pet {
  		   if(sick == true){
  			   health -= 50;
  			   sleep -= 25;
- 			   stamina -= 25;
+ 			   energy -= 25;
  			   System.out.println("Your pet is sick!");
  			   }
  		   }
@@ -226,7 +259,7 @@ public class Pet {
 	   age += 1;
 	   weight += weight;
 	   sleep -= 25 * sleepMod;
-	   hunger -= hunger* hungerMul;
+	   hunger -= hunger* hungerMod;
 	   
 	   }
 	 
@@ -237,7 +270,7 @@ public class Pet {
 	   String petWeight = "Weight: " + this.weight;
 	   String petAge = "Age: " + this.age;
 	   String petMood = "Mood: " + this.mood;
-	   String petStamina = "Stamina: " + this.stamina;
+	   String petEnergy = "Energy: " + this.energy;
 	   String petHealth = "Health: " + this.health;
 	   String petHunger = "Hunger: " + this.hunger;
 	   String petToiletNeed = "Toilet Need: " + this.toiletNeed;
@@ -248,7 +281,7 @@ public class Pet {
 	   String petPunish = "misbehaving: " + this.misbehaving;//
 	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
 			   			             petName, petWeight, petAge,
-			   			             petMood, petStamina, petHealth,
+			   			             petMood, petEnergy, petHealth,
 			   			             petHunger, petToiletNeed, petSleep,
 			   			             petAlive, petRevive, petSick, petPunish); 
 	   return petStats;
@@ -258,11 +291,16 @@ public class Pet {
 		//unit testing
 	   
 		Pet cat = new Pet("lolo"); 
+		Pet cat2 = new Pet(cat, "catclone");
+		
 		System.out.println("\n"+ cat);
-		System.out.println("\n" + cat);
-		cat.endDay();
-		System.out.println("\n" + cat);
-		cat.endDay();
+		System.out.println("\n"+ cat2);
+		
+		System.out.println("\n"+ cat2);
+		Food testTuna = new Food("Tuna", 18, "large", 7, 12 ); //(name, price, size, nutrition , tastiness)
+		cat2.feed(testTuna);
+		System.out.println("\n"+ cat2);
+		
 
 		
 		
