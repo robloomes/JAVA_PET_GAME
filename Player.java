@@ -9,8 +9,8 @@ public class Player {
 	String name;
 	int playerBalance;
 	private Map<String, Species> ownedPets = new HashMap<String, Species>();
-	private Map<String, Toy> ownedToys = new HashMap<String, Toy>();
-	private Map<String, Food> ownedFood = new HashMap<String, Food>();
+	private Map<Toy, Integer> ownedToys = new HashMap<Toy, Integer>();
+	private Map<Food, Integer> ownedFood = new HashMap<Food, Integer>();
 
 	
 	//Constructor
@@ -30,12 +30,12 @@ public class Player {
 		return ownedPets;
 	}
 	
-	public Map<String, Toy> getToys() {
+	public Map<Toy, Integer> getToys() {
 		return ownedToys;
 	}
 	
 	
-	public Map<String, Food> getFood() {
+	public Map<Food, Integer> getFood() {
 		return ownedFood;
 	}
 	
@@ -51,22 +51,25 @@ public class Player {
 	
 	public void removePet(Pet pet) {
 		ownedPets.remove(pet);
+		ownedPets.remove(pet, 0);
 	}
 	
-	public void addToy(Toy item) {
-		ownedToys.put(item.name, item);
+	public void addToy(Toy toy) {
+		ownedToys.merge(toy, 1, Integer::sum);
 	}
 	
-	public void removeToy(Toy item) {
-		ownedToys.remove(item.name);
+	public void removeToy(Toy toy) {
+		ownedToys.merge(toy, -1, Integer::sum);
+		ownedToys.remove(toy, 0);
 	}
 	
-	public void addFood(Food item) {
-		ownedFood.put(item.name, item);
+	public void addFood(Food food) {
+		ownedFood.merge(food, 1, Integer::sum);
 	}
 	
-	public void removeFood(Food item) {
-		ownedFood.remove(item.name);
+	public void removeFood(Food food) {
+		ownedFood.merge(food, -1, Integer::sum);
+		ownedFood.remove(food, 0);
 	}
 
 	public String toString() {
@@ -89,7 +92,13 @@ public class Player {
 			playerToys = "Toys: None";
 		}
 		else {
-			List<String> toyKeyList = new ArrayList<String>(ownedToys.keySet());
+			List<String> toyKeyList = new ArrayList<String>();
+			for(Map.Entry<Toy, Integer> entry : ownedToys.entrySet()){
+				Toy toy = entry.getKey();
+				int val = entry.getValue();
+				String toyFormat = String.format("%s: %d", toy.getName(), val);
+				toyKeyList.add(toyFormat);
+		}
 			playerToys = "Toys: " + Arrays.toString(toyKeyList.toArray()).replace("[", "").replace("]", "");
 		}
 		
@@ -98,7 +107,14 @@ public class Player {
 		}
 		
 		else {
-			List<String> foodKeyList = new ArrayList<String>(ownedFood.keySet());
+			List<String> foodKeyList = new ArrayList<String>();
+			for(Map.Entry<Food, Integer> entry : ownedFood.entrySet()){
+				Food food = entry.getKey();
+				int val = entry.getValue();
+				String foodFormat = String.format("%s: %d", food.getName(), val);
+				foodKeyList.add(foodFormat);
+				
+		}
 			playerFood = "Food: " + Arrays.toString(foodKeyList.toArray()).replace("[", "").replace("]", "");
 		}
 		
@@ -115,18 +131,30 @@ public class Player {
 		Toy testDoll = new Toy("Doll", 155, 7, 65); //(name, price, durability, enjoyment)
 		testHarry.addToy(testDoll);
 		testHarry.addToy(testBall);
-		
+		testHarry.addToy(testBall);
+		testHarry.addToy(testBall);
+		System.out.println("\n" + testHarry);
 		//adding some food
 		Food testTuna = new Food("Tuna", 18, "small", 7, 12 ); //(name, price, size, nutrition , tastiness ))
 		Food testCake = new Food("Cake", 2, "large", 0, 5 ); //(name, price, size, nutrition , tastiness )
 		testHarry.addFood(testTuna);
 		testHarry.addFood(testCake);
+		testHarry.addFood(testTuna);
+		testHarry.addFood(testTuna);
+		testHarry.addFood(testTuna);
+		testHarry.addFood(testTuna);
+		testHarry.addFood(testTuna);
 		System.out.println("\n" + testHarry);
+		testHarry.removeToy(testBall);
+		
+		testHarry.removeToy(testBall);
 		testHarry.removeToy(testBall);
 		testHarry.removeFood(testCake);
 		System.out.println("\n" + testHarry);
 		//player list
 		System.out.println(playerSet);
+		
+		
 	}
 
 }
