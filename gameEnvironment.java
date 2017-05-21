@@ -29,12 +29,12 @@ public class gameEnvironment{
 	
 	//Toys available for purchase from store
 	//(name, price, durability, enjoyment)
-	private Toy bear = new Toy("Bear", 10, 10, 10); 
-	private Toy boat = new Toy("Boat", 20, 20, 20);
-	private Toy doll = new Toy("Doll", 10, 30, 30);
-	private Toy heli = new Toy("Helicopter", 20, 40, 40 );
+	private Toy bear = new Toy("Bear", 5, 10, 10); 
+	private Toy boat = new Toy("Boat", 15, 70, 50);
+	private Toy doll = new Toy("Doll", 5, 50, 10);
+	private Toy heli = new Toy("Helicopter", 20, 100, 50);
 	private Toy kite = new Toy("Kite", 10, 50, 50);
-	private Toy yoyo = new Toy("Yoyo", 5, 20, 100);
+	private Toy yoyo = new Toy("Yoyo", 5, 10, 20);
 	
 	//Food available for purchase from store
 	//(name, price, size, nutrition , tastiness)
@@ -47,18 +47,18 @@ public class gameEnvironment{
 	
 	//All species available for creation. Species are differentiated by their attributes.
 	//Name, sleep, mood, hunger, energy, favFood, favToy, species, weight, roughness.
-	private Species species1 = new Species("defaultCloud",1.0, 1.0, 1.0, 1.0, melon.getName(),
-			                                          kite.getName(), "Cloud", 100, 1.0); 
-	private Species species2 = new Species("defaultCrab",1.1, 1.1, 1.1, 1.1, fish.getName(),
-			                                          yoyo.getName(), "Crab", 100, 1.1);
-	private Species species3 = new Species("defaultMonster",1.2, 1.2, 1.2, 1.2, chocolate.getName(),
-			                                          bear.getName(), "Monster", 100, 1.2); 
-	private Species species4 = new Species("defaultPenguin",1.3, 1.3, 1.3, 1.3, pizza.getName(),
-			                                          doll.getName(), "Penquin", 100, 1.3); 
-	private Species species5 = new Species("defaultRobot",1.4, 1.4, 1.4, 1.4, cake.getName(),
-			                                          heli.getName(), "Robot", 100, 1.4); 
-	private Species species6 = new Species("defaultSnake",1.5, 1.5, 1.5, 1.5, cookie.getName(),
-			                                          boat.getName(), "Snake", 100, 1.5); 
+	private Species species1 = new Species("defaultCloud",1.0, 1.0, 0.5, 0.5, melon.getName(),
+			                                          kite.getName(), "Cloud", 2, 0.5); 
+	private Species species2 = new Species("defaultCrab",1.1, 1.0, 1.0, 1.1, fish.getName(),
+			                                          yoyo.getName(), "Crab", 4, 1.0);
+	private Species species3 = new Species("defaultMonster", 1.0, 1.0, 1.5, 1.2, chocolate.getName(),
+			                                          bear.getName(), "Monster", 100, 1.5); 
+	private Species species4 = new Species("defaultPenguin", 1.0, 1.0, 1.0, 1.0, pizza.getName(),
+			                                          doll.getName(), "Penquin", 8, 1.0); 
+	private Species species5 = new Species("defaultRobot", 1.0, 1.0, 0.5, 0.5, cake.getName(),
+			                                          heli.getName(), "Robot", 400, 1.5); 
+	private Species species6 = new Species("defaultSnake", 1.0, 1.0, 1.5, 1.5, cookie.getName(),
+			                                          boat.getName(), "Snake", 7, 1.0); 
 			 
 	
 	gameEnvironment(){
