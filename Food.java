@@ -35,6 +35,9 @@ public class Food {
 		return tastiness;
 	}
 	
+	public int getNutrition(){
+		return nutrition;
+	}
 	public void setNutrition(int newNutrition) { //TODO is this method needed?
 		this.nutrition = newNutrition ;
 	}
