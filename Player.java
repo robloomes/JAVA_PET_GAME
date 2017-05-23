@@ -45,6 +45,9 @@ public class Player {
 	
 	
 	//setters
+	public void setBalance(int newBalance){
+		this.playerBalance = newBalance; 
+	}
 	public void addPet(Species pet) {
 		ownedPets.put(pet.getName(), pet);
 	}
@@ -73,7 +76,7 @@ public class Player {
 	}
 
 	public String toString() {
-		String playerName = "Name: " + name;
+		String playerName = "Player name: " + name;
 		String balanceString = "Balance: $" + playerBalance;
 		String playerPets;
 		String playerToys;
@@ -96,10 +99,10 @@ public class Player {
 			for(Map.Entry<Toy, Integer> entry : ownedToys.entrySet()){
 				Toy toy = entry.getKey();
 				int val = entry.getValue();
-				String toyFormat = String.format("%s: %d", toy.getName(), val);
+				String toyFormat = String.format("%s (%d)", toy.getName(),toy.getDurability() );
 				toyKeyList.add(toyFormat);
 		}
-			playerToys = "Toys: " + Arrays.toString(toyKeyList.toArray()).replace("[", "").replace("]", "");
+			playerToys = "Toys (durability): " + Arrays.toString(toyKeyList.toArray()).replace("[", "").replace("]", "");
 		}
 		
 		if (ownedFood.isEmpty()) {
@@ -111,7 +114,7 @@ public class Player {
 			for(Map.Entry<Food, Integer> entry : ownedFood.entrySet()){
 				Food food = entry.getKey();
 				int val = entry.getValue();
-				String foodFormat = String.format("%s: %d", food.getName(), val);
+				String foodFormat = String.format("%s x%d", food.getName(), val);
 				foodKeyList.add(foodFormat);
 				
 		}
