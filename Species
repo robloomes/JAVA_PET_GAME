@@ -13,7 +13,6 @@ public class Species extends Pet {
 					   int startWeight,
 					   double startRoughness){
 		super(name);
-		sleepMod = startSleepMod;
 		moodMod = startMoodMod;
 		hungerMod = startHungerMod;
 		energyMod = startEnergyMod;
@@ -27,7 +26,6 @@ public class Species extends Pet {
     //Constructor for cloning the class, not just the reference
 	public Species(String name, Species species){
 		super(species, name);
-		sleepMod = species.sleepMod;
 		moodMod = species.moodMod;
 		hungerMod = species.hungerMod;
 		energyMod = species.energyMod;
@@ -48,15 +46,14 @@ public class Species extends Pet {
 	   String petHealth = "Health: " + this.getHealth();
 	   String petHunger = "Hunger: " + this.getHunger();
 	   String petToiletNeed = "Toilet Need: " + this.getToiletNeed();
-	   String petSleep= "Sleep: " + this.getSleep();
 	   String petAlive = "Alive: " + this.getAlive();
 	   String petRevive = "Revive: " + this.getRevive();
 	   String petSick = "Sick: " + this.getSick();
 
-	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
+	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
 		             petName, petSpecies, petWeight, petAge,
 		             petMood, petEnergy, petHealth,
-		             petHunger, petToiletNeed, petSleep,
+		             petHunger, petToiletNeed,
 		             petAlive, petRevive, petSick); 
 	   return petStats;
    }
