@@ -924,11 +924,11 @@ public class gameEnvironment extends gameObjects{
 	
 	public static void main(String[]args) {
 		gameEnvironment newGame = new gameEnvironment();
-		newGame.gameStart();
-		newGame.inputPlayerNum();
-		newGame.inputDayNum();
-		newGame.createPlayers();
-		newGame.promptPetCreation();
-		newGame.mainScreenHelper();
+//		newGame.gameStart();
+//		newGame.inputPlayerNum();
+//		newGame.inputDayNum();
+//		newGame.createPlayers();
+//		newGame.promptPetCreation();
+//		newGame.mainScreenHelper();
 	}
 }
