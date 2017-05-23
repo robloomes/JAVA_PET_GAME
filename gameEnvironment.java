@@ -6,7 +6,7 @@ import java.util.*;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
-public class gameEnvironment extends gameObjects{
+public class gameEnvironment implements gameObjects{
 	
 	////Initializations
 	private Species globalCurrentPet;
@@ -924,11 +924,11 @@ public class gameEnvironment extends gameObjects{
 	
 	public static void main(String[]args) {
 		gameEnvironment newGame = new gameEnvironment();
-//		newGame.gameStart();
-//		newGame.inputPlayerNum();
-//		newGame.inputDayNum();
-//		newGame.createPlayers();
-//		newGame.promptPetCreation();
-//		newGame.mainScreenHelper();
+		newGame.gameStart();
+		newGame.inputPlayerNum();
+		newGame.inputDayNum();
+		newGame.createPlayers();
+		newGame.promptPetCreation();
+		newGame.mainScreenHelper();
 	}
 }
