@@ -180,6 +180,7 @@ public class Pet {
     	actions -= 1;
     	System.out.format("%s feels refreshed!\n", name);
 		minCheck();
+		maxCheck();
 		}
     
     public  void revive(){
