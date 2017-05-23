@@ -261,7 +261,6 @@ public class Pet {
   			   System.out.println("Your pet died from a random illness!");
   			   System.out.println("If the pet has not died before, he can be revived from the doctor!");
   			   deadStats();
-  			   System.out.println(health);
   			   }
   		   }
     }
@@ -368,7 +367,7 @@ public class Pet {
 	   String petRevive = "Revive Available: " + this.reviveAvail;
 	   String petSick = "Is sick: " + this.sick;
 	   String petMisbehave = "Is misbehaving: " + this.misbehaving;
-	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
+	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
 			   			             petName, petWeight, petAge,
 			   			             petMood, petEnergy, petHealth,
 			   			             petHunger, petToiletNeed,
@@ -392,7 +391,7 @@ public class Pet {
 		cat.endDay();
 		cat.endDay();
 		cat.endDay();
-		System.out.println(cat.getHealth());
+		
    }
 }    	
 
