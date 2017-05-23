@@ -1,5 +1,4 @@
 package pet_game;
-
 public class Toy {
 	
 	//Initializations
@@ -14,6 +13,14 @@ public class Toy {
 		this.price = price;
 		this.durability = durability;
 		this.enjoyment = enjoyment;
+	}	
+	
+	//Constructor for clone class
+	Toy(Toy toy) {
+		this.name = toy.getName();
+		this.price = toy.getPrice();
+		this.durability = toy.getDurability();
+		this.enjoyment = toy.getEnjoyment();
 	}	
 	
 	//Getters
@@ -53,6 +60,8 @@ public class Toy {
 		//Unit testing
 		Toy testBall = new Toy("Ball", 18, 100, 7); //(name, price, durability, enjoyment)
 		System.out.println(testBall);
+
+	   
 	}
 	
 }
