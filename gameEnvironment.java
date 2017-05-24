@@ -90,7 +90,7 @@ public class gameEnvironment extends gameObjects{
 		}
 	}
 	/**
-	 * 
+	 * mainScreenHelper is Method that print out the results at the end of the day or in case of dead pets.
 	 */
 	public void mainScreenHelper(){
 		Map<Player, Integer> playerScores = new HashMap<Player, Integer>();
@@ -113,7 +113,7 @@ public class gameEnvironment extends gameObjects{
 	}
 	
 	/**
-	 * 
+	 * mainScreenText is Method that gets new prop and run expectation.
 	 */
 	public void mainScreenText()
 	{
@@ -140,8 +140,9 @@ public class gameEnvironment extends gameObjects{
 		}
 	}
 	/**
-	 * 
-	 * @param player
+	 * mainSelectScreen is Method that print out the scores, balance, num of pet and num of players .
+	 * The different cases and unexpected values.  
+	 * @param player used to indicates the player.
 	 */
 	public void mainSelectScreen(Player player){
 		String input = null;
