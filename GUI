@@ -1,7 +1,9 @@
 package pet_game;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,9 +13,20 @@ import java.util.Scanner;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class GUI extends gameObjects{
-
+public class GUI implements gameObjects, GUI_interface{
+	int textCounter = 1;
 	private JFrame frame;
 	////Initializations
 	private Species globalCurrentPet;
@@ -26,11 +39,18 @@ public class GUI extends gameObjects{
 	private Map<Integer, Food> foodChoices = new HashMap<Integer, Food>();
 	private Map<Integer, Species> speciesChoices = new HashMap<Integer, Species>();
 	private Map<String, Player> players = new HashMap<String, Player>();
-
+	
+	JLabel lblWelcome = new JLabel("<html>Welcome to Pets <br>- the virtual pet game!");
+	JButton btnStart = new JButton("Start");
+	JButton btnHelp = new JButton("Help");
+	private final JPanel startPanel = new JPanel();
+	private final JPanel helpPanel = new JPanel();
+	private JLabel lblHelp = new JLabel("");
+	private final JLabel lblContinue = new JLabel("Click to continue...\r\n");
+	private final JLabel lblHelpcounter = new JLabel("");
+	private final JPanel clickPanel = new JPanel();
 	public GUI() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		globalCurrentPet = null;
 		
 		toyChoices.put(1, bear);
@@ -54,39 +74,77 @@ public class GUI extends gameObjects{
 		speciesChoices.put(5, robot);
 		speciesChoices.put(6, snake);
 	}
-	public void help(){
-		Properties prop = new Properties();
-		InputStream input = null;
-		try {
-			input = new FileInputStream("config.properties");
-			// load a properties file
-			prop.load(input);
-			// get the property value and print it out
-			System.out.println(prop.getProperty("help1"));
-			promptEnterKey();
-			System.out.println(prop.getProperty("help2"));
-			promptEnterKey();
-			System.out.println(prop.getProperty("help3"));
-			promptEnterKey();
-			System.out.println(prop.getProperty("help4"));
-			promptEnterKey();
-			System.out.println(prop.getProperty("help5"));
-			promptEnterKey();
-			System.out.println(prop.getProperty("help6"));
-			promptEnterKey();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+	
+	public void guiConstructor(){
+		
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1215, 744);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 
+		helpPanel.setVisible(false);
+		helpPanel.setBackground(Color.RED);
+		helpPanel.setBounds(0, 0, 1199, 705);
+		
+		frame.getContentPane().add(helpPanel);
+		helpPanel.setLayout(null);
+
+
+				lblHelp.setVerticalTextPosition(SwingConstants.TOP);
+				lblHelp.setVerticalAlignment(SwingConstants.TOP);
+		
+		
+	
+		
+				lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 22));
+				lblHelp.setHorizontalTextPosition(SwingConstants.LEFT);
+				lblHelp.setHorizontalAlignment(SwingConstants.LEFT);
+				lblHelp.setOpaque(true);
+				lblHelp.setBounds(132, 417, 935, 200);
+				helpPanel.add(lblHelp);
+				
+				JLabel lblWelcome2 = new JLabel("<html>Welcome to Pets <br>- the virtual pet game!");
+				lblWelcome2.setOpaque(true);
+				lblWelcome2.setHorizontalTextPosition(SwingConstants.CENTER);
+				lblWelcome2.setHorizontalAlignment(SwingConstants.CENTER);
+				lblWelcome2.setFont(new Font("Tahoma", Font.BOLD, 82));
+				lblWelcome2.setBounds(251, 72, 698, 300);
+				helpPanel.add(lblWelcome2);
+				lblContinue.setFont(new Font("Tahoma", Font.PLAIN, 22));
+				lblContinue.setOpaque(true);
+				lblContinue.setBounds(132, 617, 180, 47);
+				
+				helpPanel.add(lblContinue);
+				lblHelpcounter.setFont(new Font("Tahoma", Font.PLAIN, 22));
+				lblHelpcounter.setOpaque(true);
+				lblHelpcounter.setBounds(309, 617, 758, 47);
+				
+				helpPanel.add(lblHelpcounter);
+
+				clickPanel.setOpaque(false);
+				clickPanel.setBounds(0, 11, 1199, 694);
+				
+				helpPanel.add(clickPanel);
+				startPanel.setBackground(Color.BLUE);
+				startPanel.setForeground(Color.RED);
+				startPanel.setBounds(0, 0, 1199, 705);
+				
+				frame.getContentPane().add(startPanel);
+				startPanel.setLayout(null);
+				
+						btnHelp.setBounds(322, 385, 116, 48);
+						startPanel.add(btnHelp);
+						
+								btnStart.setBounds(760, 385, 116, 48);
+								startPanel.add(btnStart);
+								lblWelcome.setOpaque(true);
+								lblWelcome.setBackground(Color.WHITE);
+								lblWelcome.setBounds(251, 72, 698, 300);
+								startPanel.add(lblWelcome);
+								lblWelcome.setFont(new Font("Tahoma", Font.BOLD, 82));
+								lblWelcome.setHorizontalTextPosition(SwingConstants.CENTER);
+								lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);		
+	}					
 	public void mainScreenHelper(){
 		Map<Player, Integer> playerScores = new HashMap<Player, Integer>();
 		
@@ -307,29 +365,55 @@ public class GUI extends gameObjects{
 	}
 
 	public void gameStart(){
-		int intStartChoice;
-		System.out.println("Welcome to Generic Pet Game!\n");
-		System.out.println("1. Start the game");
-		System.out.println("2. View the help section");
-		@SuppressWarnings("resource")
-		Scanner scan = new Scanner(System.in);
-		String startChoice = null;
-		
-		do{
-			if (startChoice != null){
-			System.out.println("\nYou have entered an invalid number,"
-					+ " please enter a number between 1 and 2.\n");
+		startPanel.setVisible(true);
+		helpPanel.setVisible(false);
+		btnHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textCounter = 1;
+				startPanel.setVisible(false);
+				helpPanel.setVisible(true);
+				clickPanel.setVisible(true);
+				lblHelp.setText("");
+
 			}
-			startChoice = scan.nextLine();
-		}
-		while(!startChoice.matches("[1-2]"));
+		});
 		
-		intStartChoice = Integer.parseInt(startChoice);
-		if(intStartChoice == 2){
-			help();
-			gameStart();
+		clickPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				if(textCounter == 1){
+					lblHelp.setText(help1);
+				}
+				if(textCounter == 2){
+					lblHelp.setText(help2);
+				}
+				if(textCounter == 3){
+					lblHelp.setText(help3);
+				}
+				if(textCounter == 4){
+					lblHelp.setText(help4);
+				}
+				if(textCounter == 5){
+					lblHelp.setText(help5);
+				}
+				if(textCounter == 6){
+					startPanel.setVisible(true);
+					helpPanel.setVisible(false);
+					textCounter = 1;
+				}
+				textCounter++;
 			}
-		}
+		});
+		
+		
+		
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputPlayerNum();
+			}
+		});
+	}
 	
 	public void inputPlayerNum(){
 	@SuppressWarnings("resource")
@@ -931,10 +1015,12 @@ public class GUI extends gameObjects{
 		val.addFood(food);
 	}
 	public static void main(String[] args) {
+
 		GUI newGame = new GUI();
+
+		newGame.guiConstructor();
 		newGame.frame.setVisible(true);
-		
-//		newGame.gameStart();
+		newGame.gameStart();
 //		newGame.inputPlayerNum();
 //		newGame.inputDayNum();
 //		newGame.createPlayers();
