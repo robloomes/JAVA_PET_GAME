@@ -384,7 +384,7 @@ public class Pet {
     }
     
     /**
-     * 
+     * death is Method that makes the pet die randomly if the health less than 100.
      */
     public void death(){
     	if(health < 10){
@@ -399,7 +399,7 @@ public class Pet {
     }
     
     /**
-     * punish is calss that punish the pet if he/ she misbehave.
+     * punish is method that punish the pet if he/ she misbehave.
      */
     public void punish(){
     	if(actions == 0){
