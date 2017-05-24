@@ -5,10 +5,20 @@ import java.io.IOException;
 import java.util.*;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
-
-public class gameEnvironment implements gameObjects{
-	
-	////Initializations
+/**
+ * gameEnvironment.java - a class used for building the game.
+ * <p>
+ * gameEnvironment created are mainly used in association with classes @see Pet, @see Food, @see Species and @see Player . 
+ * 
+ * @author Robert Loomes
+ * @author Mna Chalabi
+ * @since Winter 2017
+ * @version 1.0
+ */
+public class gameEnvironment extends gameObjects{
+	/**
+	 * Initialize the variables of the class
+	 */
 	private Species globalCurrentPet;
 	private String currentPlayer;
 	private int numOfPlayers;
@@ -44,7 +54,9 @@ public class gameEnvironment implements gameObjects{
 		speciesChoices.put(5, robot);
 		speciesChoices.put(6, snake);
 	}
-	
+	/**
+	 * help is Mthod that print out the steps of how to play the game.
+	 */
 	public void help(){
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -77,7 +89,9 @@ public class gameEnvironment implements gameObjects{
 			}
 		}
 	}
-
+	/**
+	 * 
+	 */
 	public void mainScreenHelper(){
 		Map<Player, Integer> playerScores = new HashMap<Player, Integer>();
 		
@@ -98,6 +112,9 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void mainScreenText()
 	{
 		Properties prop = new Properties();
@@ -122,7 +139,10 @@ public class gameEnvironment implements gameObjects{
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * @param player
+	 */
 	public void mainSelectScreen(Player player){
 		String input = null;
 		@SuppressWarnings("resource")
@@ -267,11 +287,16 @@ public class gameEnvironment implements gameObjects{
 				
 		}
 	}
-	
+	/**
+	 * punish is Method that punish the pet when she/he misbehave.
+	 */
 	public void punish(){
 		globalCurrentPet.punish();
 	}
 	
+	/**
+	 * doctor is Method that treatment the pet when she/he gets sick.
+	 */
 	public void doctor(){
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -291,12 +316,15 @@ public class gameEnvironment implements gameObjects{
 		int intDoctorSelect = Integer.parseInt(doctorSelect);
 		
 		switch(intDoctorSelect){ 
-			case 1: globalCurrentPet.heal();
+			case 1: globalCurrentPet.health();
 				break;
 			case 2: globalCurrentPet.revive();
 		}
 	}
-
+	
+	/**
+	 * gameStart is Method that allow the player to start the game.
+	 */
 	public void gameStart(){
 		int intStartChoice;
 		System.out.println("Welcome to Generic Pet Game!\n");
@@ -322,6 +350,10 @@ public class gameEnvironment implements gameObjects{
 			}
 		}
 	
+	/**
+	 * inputPlayerNum is Method that takes number of player.
+	 * check if it is Integer.
+	 */
 	public void inputPlayerNum(){
 	@SuppressWarnings("resource")
 	Scanner scan = new Scanner(System.in);
@@ -340,6 +372,10 @@ public class gameEnvironment implements gameObjects{
 	numOfPlayers = Integer.parseInt(strPlayerNum);
 	}
 	
+	/**
+	 * inputDayNum is Method that takes number of day.
+	 * check if it is Integer.
+	 */
 	public void inputDayNum(){
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -359,6 +395,9 @@ public class gameEnvironment implements gameObjects{
 		
 	}
 	
+	/**
+	 * createPlayers is Method that creates new player.
+	 */
 	public void createPlayers(){
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -377,6 +416,10 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 	
+	/**
+	 * promptPetCreation is Method that allow the player to select a number of pets.
+	 *  * check if it is Integer.
+	 */
 	public void promptPetCreation(){
 	@SuppressWarnings("resource")
 	Scanner scan = new Scanner(System.in);
@@ -400,6 +443,10 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 	
+	/**
+	 * store is Method that allow the player to select a number of food.
+	 * check if it is Integer.
+	 */
 	public void store(Player player){
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -557,6 +604,9 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 
+	/**
+	 * storeHelper is Method tells the player how to buy foods or toys from store. 
+	 */
 	public void storeHelper()
 	{
 		Properties prop = new Properties();
@@ -579,7 +629,10 @@ public class gameEnvironment implements gameObjects{
 			}
 		}
 	}
-
+	/**
+	 * score is Method that calculate the score for the player.
+	 * @return the score 
+	 */
 	public int score(Player player){
 	int score = 0;
 	
@@ -590,6 +643,9 @@ public class gameEnvironment implements gameObjects{
 	return score;
 	}
 
+	/**
+	 * endDay is Method that tells the player the final score and values.
+	 */
 	public void endDay(Player player){
 		for(Map.Entry<String, Species> entry : player.getPets().entrySet()){
 			Species pet = entry.getValue();
@@ -597,14 +653,24 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 	
+	/**
+	 * toilet is Method that tells the player the final value of the toilet.
+	 */
 	public void toilet(){
 		globalCurrentPet.toilet();
 	}
 	
+	/**
+	 * sleep is Method that tells the player the final value of the sleep.
+	 */
 	public void sleep(){
 		globalCurrentPet.sleep();
 	}
 	
+	/**
+	 * play is Method that tells the player/s the errors and unecpected results.
+	 * @param player
+	 */
 	public void play(Player player){
 		Map<Integer, Toy> currentToys = new HashMap<Integer, Toy>();
 		@SuppressWarnings("resource")
@@ -684,7 +750,10 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 	
-	
+	/**
+	 * feedPet is Method that tells the player/s the errors or unecpeted results.
+	 * @param player for each player.
+	 */
 	public void  feedPet(Player player){
 		Map<Integer, Food> currentFood = new HashMap<Integer, Food>();
 		@SuppressWarnings("resource")
@@ -743,6 +812,11 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 	
+	/**
+	 * Species selectPet is Method that allows the player to chose specific Species.
+	 * @param player for specific player. 
+	 * @return the choseen Species.
+	 */
 	public Species selectPet(Player player){
 		String inputChoice = null;
 		@SuppressWarnings("resource")
@@ -783,7 +857,10 @@ public class gameEnvironment implements gameObjects{
 		
 		return crab;
 		}
-	
+	/**
+	 * promptStoreSection is Method that print out the instructure for sale.
+	 * @param player used to indicate the specific player.
+	 */
 	public void promptStoreSection(Player player){
 		System.out.println("Welcome to the Pet Store!");
 		System.out.println("Enter 1 to view the food items for sale");
@@ -791,6 +868,11 @@ public class gameEnvironment implements gameObjects{
 		System.out.println(player);
 	}
 	
+	/**
+	 * promptSpecies is Methos that allow the player to chose number of pet between 1-6.
+	 * @param player used to indicate the player.
+	 * @param petNum used to check number of pets.
+	 */
 	public void promptSpecies(Player player, int petNum){
 		for (int i=1; i<(petNum+1); i++){
 			@SuppressWarnings("resource")
@@ -827,7 +909,11 @@ public class gameEnvironment implements gameObjects{
 			createPet(player, species);
 			}
 		}
-	
+	/**
+	 * createPet is Method that creates new pets.
+	 * @param player used to indicate the player.
+	 * @param species used to choes from.
+	 */
 	public void createPet(Player player, int species){
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -842,7 +928,9 @@ public class gameEnvironment implements gameObjects{
 		Species newPet = new Species (petName, speciesChoices.get(species));
 		player.addPet(newPet);
 	}
-	
+	/**
+	 * printSpeciesInfo is Method to print out the Species information.
+	 */
 	public void printSpeciesInfo(){
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -870,21 +958,27 @@ public class gameEnvironment implements gameObjects{
 			}
 		}
 		}
-	
+	/**
+	 * promptEnterKey Method that asks the player to press ENTER to continue.
+	 */
 	 private void promptEnterKey(){
 		 System.out.println("\nPress \"ENTER\" to continue...");
         @SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
         scanner.nextLine(); 
 	 }
-	
+	/**
+	 * printPlayers is Method that print list of players.
+	 */
 	 public void printPlayers(){
 		for (Map.Entry<String, Player> entry : players.entrySet()){
 			Player val = entry.getValue();
 			System.out.println( "\n" + val);
 		}
 	}
-	
+	/**
+	 * printFood is Method that print list of Foods for each player.
+	 */
 	public void printFood(){
 		for (Map.Entry<Integer, Food> entry : foodChoices.entrySet()){
 			Food val = entry.getValue();
@@ -892,6 +986,9 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 	
+	/**
+	 * printToys is Method that print list of Toys for each player
+	 */
 	public void printToys(){
 		for (Map.Entry<Integer, Toy> entry : toyChoices.entrySet()){
 			Toy val = entry.getValue();
@@ -899,23 +996,39 @@ public class gameEnvironment implements gameObjects{
 		}
 	}
 	
+	/**
+	 * printPets is Method that print list of Pets for each player.
+	 */
 	public void printPets(){
 		for (Map.Entry<Integer, Species> entry : speciesChoices.entrySet()){
 			Pet val = entry.getValue(); 
 			System.out.println("\n" + val);
 		}
 	}
+	/**
+	 * addToy is Method that adds toy to the list of the player.
+	 * @param player  to specific player.
+	 * @param toyName gives name to the toy.
+	 */
 	
 	public void addToy(String player, String toyName){ 
 		Toy toy = toyChoices.get(toyName);
 		Player val = players.get(player);
 		val.addToy(toy);
 	}
-	
+	/**
+	 * addPlayer is Method that add players.
+	 * @param player Using Player class
+	 */
 	public void addPlayer(Player player){
 		players.put(player.name, player);
 	}
 	
+	/**
+	 * addFood is Method that adds food to the specific player.
+	 * @param player
+	 * @param foodName
+	 */
 	public void addFood(String player, String foodName){ 
 		Food food = foodChoices.get(foodName);
 		Player val = players.get(player);
