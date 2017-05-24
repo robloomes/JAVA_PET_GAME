@@ -1,8 +1,23 @@
 package pet_game;
+/**
+ * gameObjects.java - a class used for building Food and Pet objects.
+ * <p>
+ * This contains methods for changing Food and Pet attributes.
+ * gameObjects  created are mainly used in association with class @see gameEnvironment. 
+ * 
+ * @author Robert Loomes
+ * @author Mna Chalabi
+ * @since Winter 2017
+ * @version 1.0
+ */
 
 public class gameObjects {
-	//Toys available for purchase from store
-	//(name, price, durability, enjoyment)
+	
+	/**
+	 * Toys available for purchase from store.
+	 * Sets name for each toy.
+	 * Sets values for price, durability and enjoyment for each toy.
+	 */
 	public Toy bear = new Toy("Bear", 5, 10, 20); 
 	public Toy boat = new Toy("Boat", 15, 70, 50);
 	public Toy doll = new Toy("Doll", 5, 50, 10);
@@ -10,8 +25,11 @@ public class gameObjects {
 	public Toy kite = new Toy("Kite", 10, 50, 50);
 	public Toy yoyo = new Toy("Yoyo", 5, 10, 20);
 	
-	//Food available for purchase from store
-	//(name, price, size, nutrition , tastiness)
+	/**
+	 * Food available for purchase from store.
+	 * Sets name for each object.
+	 * Sets values for price, size, nutrition and tastines for each food.
+	 */
 	public Food cookie = new Food("Cookie", 5, "small", 25, 20); 
 	public Food fish = new Food("Fish", 10, "large", 80, 30); 
 	public Food chocolate = new Food("Chocolate", 5, "small", 5, 40); 
@@ -19,8 +37,12 @@ public class gameObjects {
 	public Food melon = new Food("Melon", 5, "small", 50, 20); 
 	public Food pizza = new Food("Pizza", 10, "large", 30, 40); 
 	
-	//All species available for creation. Species are differentiated by their attributes.
-	//Name, sleep, mood, hunger, energy, favFood, favToy, species, weight, roughness.
+	/**
+	 * All species available for creation. 
+	 * Species are differentiated by their attributes
+	 * Sets different values for each species.
+	 * Name, sleep, mood, hunger, energy, favFood, favToy, species, weight, roughness.
+	 */
 	public Species cloud = new Species("defaultCloud",1.0, 1.5, 0.5, 0.5, melon.getName(),
 			                                          kite.getName(), "Cloud", 2, 5); 
 	public Species crab = new Species("defaultCrab",1.1, 1.0, 1.0, 1.1, fish.getName(),
