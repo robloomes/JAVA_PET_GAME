@@ -38,6 +38,7 @@ import java.awt.TextArea;
 import java.awt.ComponentOrientation;
 
 public class GUI implements gameObjects{
+
 	int textCounter = 1;
 	private JFrame frame;
 	////Initializations
@@ -47,10 +48,10 @@ public class GUI implements gameObjects{
 	private double gameDays;
 	private double playerDaysTaken;
 	private List<String> existingPetNames = new ArrayList<String>();
-	private Map<Integer, Toy> toyChoices = new HashMap<Integer, Toy>();
-	private Map<Integer, Food> foodChoices = new HashMap<Integer, Food>();
-	private Map<Integer, Species> speciesChoices = new HashMap<Integer, Species>();
-	private Map<Integer, Player> players = new HashMap<Integer, Player>();
+//	private Map<Integer, Toy> toyChoices = new HashMap<Integer, Toy>();
+//	private Map<Integer, Food> foodChoices = new HashMap<Integer, Food>();
+//	private Map<Integer, Species> speciesChoices = new HashMap<Integer, Species>();
+//	private Map<Integer, Player> players = new HashMap<Integer, Player>();
 	
 	JLabel lblWelcome = new JLabel("<html>Welcome to Pets <br>- the virtual pet game!");
 	JButton btnStart = new JButton("Start");
@@ -64,7 +65,7 @@ public class GUI implements gameObjects{
 	JPanel inputPanel = new JPanel();
 	private final JLabel lblPlayerNum = new JLabel("How many players would like to play the game?");
 	
-	ButtonGroup radioGroup = new ButtonGroup();
+	ButtonGroup  radioGroup = new ButtonGroup();
 	JRadioButton rdbtn1player = new JRadioButton("1 Player");
 	JRadioButton rdbtn3players = new JRadioButton("3 Players");
 	JRadioButton rdbtn2players = new JRadioButton("2 Players");
@@ -73,14 +74,20 @@ public class GUI implements gameObjects{
 	private final JButton btnPlayerContinue2 = new JButton("Continue\n");
 	JSpinner spinnerDayNum = new JSpinner();
 	private final JPanel creationPanel = new JPanel();
-	private final JLabel lblWelcome3 = new JLabel("<html>Welcome to Pets <br>- the virtual pet game!");
 	private final JLabel lblNamePrompt = new JLabel("");
 	private final JTextField textFieldCreation = new JTextField();
 	private final JButton btnCreationContinue = new JButton("Continue\n");
 	private final JPanel panelPet = new JPanel();
 	private final JLabel lblpetdetails = new JLabel("");
 	private final JSpinner spinnerPetNum = new JSpinner();
-	
+	JButton btnPetCounter = new JButton("Continue\n");
+    JRadioButton rdbtnPet1 = new JRadioButton("Pet1");
+    JRadioButton rdbtnPet2 = new JRadioButton("Pet2");
+    JRadioButton rdbtnPet3 = new JRadioButton("Pet3");
+    JRadioButton rdbtnPet4 = new JRadioButton("Pet4");
+    JRadioButton rdbtnPet5 = new JRadioButton("Pet5");
+    JRadioButton rdbtnPet6 = new JRadioButton("Pet6");
+    
 	public GUI() {
 
 		globalCurrentPet = null;
@@ -109,224 +116,258 @@ public class GUI implements gameObjects{
 	
 	public void guiConstructor(){
 		
-		frame = new JFrame();
-		frame.setPreferredSize(new Dimension(500, 500));
-		frame.setBounds(100, 100, 1215, 744);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-								textFieldCreation.setBounds(251, 458, 698, 67);
-								textFieldCreation.setColumns(10);
-								creationPanel.setVisible(false);
-								creationPanel.setBounds(0, 0, 1213, 718);
-								
-								frame.getContentPane().add(creationPanel);
-								creationPanel.setLayout(null);
-								spinnerPetNum.setVisible(false);
-								spinnerPetNum.setBounds(568, 464, 75, 61);
-								
-								creationPanel.add(spinnerPetNum);
-								lblWelcome3.setBounds(251, 72, 698, 300);
-								lblWelcome3.setOpaque(true);
-								lblWelcome3.setHorizontalTextPosition(SwingConstants.CENTER);
-								lblWelcome3.setHorizontalAlignment(SwingConstants.CENTER);
-								lblWelcome3.setFont(new Font("Dialog", Font.BOLD, 65));
-								lblWelcome3.setBackground(Color.WHITE);
-								
-								creationPanel.add(lblWelcome3);
-								lblNamePrompt.setBounds(251, 537, 698, 83);
-								
-								creationPanel.add(lblNamePrompt);
-								
-								creationPanel.add(textFieldCreation);
-								
-										btnCreationContinue.setVerticalAlignment(SwingConstants.BOTTOM);
-										btnCreationContinue.setBounds(510, 622, 193, 61);
-										
-										creationPanel.add(btnCreationContinue);
-										
-										btnPlayerContinue.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												if(rdbtn1player.isSelected()==true){
-													rdbtn1player.setSelected(false);
-													inputDayNum();
-													return;
-													}
-												if(rdbtn2players.isSelected()==true){
-													rdbtn2players.setSelected(false);
-													inputDayNum();
-													return;
-												}
-												if(rdbtn3players.isSelected()==true){
-													rdbtn3players.setSelected(false);
-													inputDayNum();
-													return;
-												}
-											}
-										});
-										
-										rdbtn1player.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												numOfPlayers = 1;
-											}
-										});
-										
-										rdbtn2players.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												numOfPlayers = 2;
-											}
-										});
-										
-										rdbtn3players.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												numOfPlayers = 3;
-											}
-										});
-										inputPanel.setBackground(Color.YELLOW);
-										inputPanel.setVisible(false);
-										
 
-										inputPanel.setBounds(0, 0, 1213, 718);
-										frame.getContentPane().add(inputPanel);
-										inputPanel.setLayout(null);
-										rdbtn3players.setVerticalTextPosition(SwingConstants.BOTTOM);
-										rdbtn3players.setHorizontalTextPosition(SwingConstants.CENTER);
-										rdbtn3players.setHorizontalAlignment(SwingConstants.CENTER);
-										rdbtn3players.setOpaque(false);
-										
+		    frame = new JFrame();
+		    frame.setPreferredSize(new Dimension(500, 500));
+		    frame.setBounds(100, 100, 1215, 744);
+		    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    frame.getContentPane().setLayout(null);
+		    textFieldCreation.setBounds(251, 458, 698, 67);
+		    textFieldCreation.setColumns(10);
+		    creationPanel.setVisible(false);
+		    creationPanel.setBounds(0, 0, 1213, 718);
 
-										rdbtn3players.setBounds(620, 459, 232, 67);
-										inputPanel.add(rdbtn3players);
-										rdbtn1player.setVerticalTextPosition(SwingConstants.BOTTOM);
-										rdbtn1player.setHorizontalTextPosition(SwingConstants.CENTER);
-										rdbtn1player.setHorizontalAlignment(SwingConstants.CENTER);
-										
-												rdbtn1player.setOpaque(false);
-												rdbtn1player.setSize(new Dimension(20, 20));
-												rdbtn1player.setBounds(363, 459, 232, 67);
-												inputPanel.add(rdbtn1player);
-												rdbtn2players.setVerticalTextPosition(SwingConstants.BOTTOM);
-												rdbtn2players.setHorizontalTextPosition(SwingConstants.CENTER);
-												rdbtn2players.setHorizontalAlignment(SwingConstants.CENTER);
-												rdbtn2players.setOpaque(false);
-												rdbtn2players.setSize(new Dimension(20, 20));
-												rdbtn2players.setBounds(490, 459, 232, 67);
-												inputPanel.add(rdbtn2players);
-												
-												radioGroup.add(rdbtn1player);
-												radioGroup.add(rdbtn2players);
-												radioGroup.add(rdbtn3players);
-												
-												JLabel lblwelcomeToPets = new JLabel("<html>Welcome to Pets <br>- the virtual pet  game!");
-												lblwelcomeToPets.setOpaque(true);
-												lblwelcomeToPets.setHorizontalTextPosition(SwingConstants.CENTER);
-												lblwelcomeToPets.setHorizontalAlignment(SwingConstants.CENTER);
-												lblwelcomeToPets.setFont(new Font("Dialog", Font.BOLD, 65));
-												lblwelcomeToPets.setBackground(Color.WHITE);
-												lblwelcomeToPets.setBounds(251, 72, 698, 300);
-												inputPanel.add(lblwelcomeToPets);
-												
-	
+		    frame.getContentPane().add(creationPanel);
+		    creationPanel.setLayout(null);
+		    spinnerPetNum.setVisible(false);
+		    spinnerPetNum.setBounds(568, 464, 75, 61);
 
-												inputPanel.add(rdbtn2players);
-												lblPlayerNum.setFont(new Font("Dialog", Font.BOLD, 22));
-												lblPlayerNum.setHorizontalTextPosition(SwingConstants.CENTER);
-												lblPlayerNum.setHorizontalAlignment(SwingConstants.CENTER);
-												lblPlayerNum.setBounds(251, 534, 702, 108);
-												
-												inputPanel.add(lblPlayerNum);
-												
-														
-														
-												
-														btnPlayerContinue.setVerticalAlignment(SwingConstants.BOTTOM);
-														btnPlayerContinue.setBounds(510, 622, 193, 61);
-														inputPanel.add(btnPlayerContinue);
-														
-																btnPlayerContinue2.setVerticalAlignment(SwingConstants.BOTTOM);
-																btnPlayerContinue2.setBounds(510, 622, 193, 61);
-																
-																inputPanel.add(btnPlayerContinue2);
-																
-																
-																spinnerDayNum.setVisible(false);
-																spinnerDayNum.setModel(new SpinnerNumberModel(1.0, 1.0, 19.0, 1.0));
-																spinnerDayNum.setBounds(584, 470, 57, 46);
-																inputPanel.add(spinnerDayNum);
-																startPanel.setBackground(Color.BLUE);
-																startPanel.setForeground(Color.RED);
-																startPanel.setBounds(0, 0, 1213, 718);
-																
-																frame.getContentPane().add(startPanel);
-																startPanel.setLayout(null);
-																
-																btnHelp.setBounds(322, 385, 116, 48);
-																startPanel.add(btnHelp);
-																
-																btnStart.setBounds(760, 385, 116, 48);
-																startPanel.add(btnStart);
-																lblWelcome.setOpaque(true);
-																lblWelcome.setBackground(Color.WHITE);
-																lblWelcome.setBounds(251, 72, 698, 300);
-																startPanel.add(lblWelcome);
-																lblWelcome.setFont(new Font("Dialog", Font.BOLD, 65));
-																lblWelcome.setHorizontalTextPosition(SwingConstants.CENTER);
-																lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);		
-																
-																helpPanel.setVisible(false);
-																helpPanel.setBackground(Color.RED);
-																helpPanel.setBounds(0, 0, 1199, 705);
-																
-																frame.getContentPane().add(helpPanel);
-																helpPanel.setLayout(null);
-																
-																
-																lblHelp.setVerticalTextPosition(SwingConstants.TOP);
-																lblHelp.setVerticalAlignment(SwingConstants.TOP);
-																
-																
-	
-																
-																lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 22));
-																lblHelp.setHorizontalTextPosition(SwingConstants.LEFT);
-																lblHelp.setHorizontalAlignment(SwingConstants.LEFT);
-																lblHelp.setOpaque(true);
-																lblHelp.setBounds(132, 417, 935, 200);
-																helpPanel.add(lblHelp);
-																
-																JLabel lblWelcome2 = new JLabel("<html>Welcome to Pets <br>- the virtual pet game!");
-																lblWelcome2.setOpaque(true);
-																lblWelcome2.setHorizontalTextPosition(SwingConstants.CENTER);
-																lblWelcome2.setHorizontalAlignment(SwingConstants.CENTER);
-																lblWelcome2.setFont(new Font("Dialog", Font.BOLD, 65));
-																lblWelcome2.setBounds(251, 72, 698, 300);
-																helpPanel.add(lblWelcome2);
-																lblContinue.setFont(new Font("Tahoma", Font.PLAIN, 22));
-																lblContinue.setOpaque(true);
-																lblContinue.setBounds(132, 617, 215, 47);
-																
-																helpPanel.add(lblContinue);
-																lblHelpcounter.setFont(new Font("Tahoma", Font.PLAIN, 22));
-																lblHelpcounter.setOpaque(true);
-																lblHelpcounter.setBounds(309, 617, 758, 47);
-																
-																helpPanel.add(lblHelpcounter);
-																
-																clickPanel.setOpaque(false);
-																clickPanel.setBounds(0, 11, 1199, 694);
-																
-																helpPanel.add(clickPanel);
-																panelPet.setBackground(Color.DARK_GRAY);
-																panelPet.setVisible(false);
-																panelPet.setBounds(0, 0, 1213, 718);
-																
-																frame.getContentPane().add(panelPet);
-																panelPet.setLayout(null);
-																lblpetdetails.setBackground(Color.LIGHT_GRAY);
-																lblpetdetails.setOpaque(true);
-																lblpetdetails.setBounds(12, 12, 607, 358);
-																
-																panelPet.add(lblpetdetails);
-	}	
+		    creationPanel.add(spinnerPetNum);
+		    lblNamePrompt.setBounds(251, 537, 698, 83);
+
+		    creationPanel.add(lblNamePrompt);
+
+		    creationPanel.add(textFieldCreation);
+
+		    btnCreationContinue.setVerticalAlignment(SwingConstants.BOTTOM);
+		    btnCreationContinue.setBounds(510, 622, 193, 61);
+
+		    creationPanel.add(btnCreationContinue);
+
+
+
+		    btnPetCounter.setVisible(false);
+		    btnPetCounter.setVerticalAlignment(SwingConstants.BOTTOM);
+		    btnPetCounter.setBounds(510, 622, 193, 61);
+		    creationPanel.add(btnPetCounter);
+
+		    JLabel lblNewLabel = new JLabel("Put pets + description here");
+		    lblNewLabel.setBounds(334, 73, 289, 137);
+		    creationPanel.add(lblNewLabel);
+		    rdbtnPet1.setVisible(false);
+		    
+
+		    rdbtnPet1.setBounds(313, 224, 149, 23);
+		    creationPanel.add(rdbtnPet1);
+		    rdbtnPet2.setVisible(false);
+		    
+
+		    rdbtnPet2.setBounds(313, 255, 149, 23);
+		    creationPanel.add(rdbtnPet2);
+		    rdbtnPet3.setVisible(false);
+		    
+
+		    rdbtnPet3.setBounds(316, 298, 149, 23);
+		    creationPanel.add(rdbtnPet3);
+		    rdbtnPet4.setVisible(false);
+		    
+
+		    rdbtnPet4.setBounds(313, 338, 149, 23);
+		    creationPanel.add(rdbtnPet4);
+		    rdbtnPet5.setVisible(false);
+		    
+
+		    rdbtnPet5.setBounds(316, 383, 149, 23);
+		    creationPanel.add(rdbtnPet5);
+		    rdbtnPet6.setVisible(false);
+		    
+
+		    rdbtnPet6.setBounds(313, 410, 149, 23);
+		    creationPanel.add(rdbtnPet6);
+
+		    btnPlayerContinue.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            if (rdbtn1player.isSelected() == true) {
+		                rdbtn1player.setSelected(false);
+		                inputDayNum();
+		                return;
+		            }
+		            if (rdbtn2players.isSelected() == true) {
+		                rdbtn2players.setSelected(false);
+		                inputDayNum();
+		                return;
+		            }
+		            if (rdbtn3players.isSelected() == true) {
+		                rdbtn3players.setSelected(false);
+		                inputDayNum();
+		                return;
+		            }
+		        }
+		    });
+
+		    rdbtn1player.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            numOfPlayers = 1;
+		        }
+		    });
+
+		    rdbtn2players.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            numOfPlayers = 2;
+		        }
+		    });
+
+		    rdbtn3players.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		            numOfPlayers = 3;
+		        }
+		    });
+		    inputPanel.setBackground(Color.YELLOW);
+		    inputPanel.setVisible(false);
+
+
+		    inputPanel.setBounds(0, 0, 1213, 718);
+		    frame.getContentPane().add(inputPanel);
+		    inputPanel.setLayout(null);
+		    rdbtn3players.setVerticalTextPosition(SwingConstants.BOTTOM);
+		    rdbtn3players.setHorizontalTextPosition(SwingConstants.CENTER);
+		    rdbtn3players.setHorizontalAlignment(SwingConstants.CENTER);
+		    rdbtn3players.setOpaque(false);
+
+
+		    rdbtn3players.setBounds(620, 459, 232, 67);
+		    inputPanel.add(rdbtn3players);
+		    rdbtn1player.setVerticalTextPosition(SwingConstants.BOTTOM);
+		    rdbtn1player.setHorizontalTextPosition(SwingConstants.CENTER);
+		    rdbtn1player.setHorizontalAlignment(SwingConstants.CENTER);
+
+		    rdbtn1player.setOpaque(false);
+		    rdbtn1player.setSize(new Dimension(20, 20));
+		    rdbtn1player.setBounds(363, 459, 232, 67);
+		    inputPanel.add(rdbtn1player);
+		    rdbtn2players.setVerticalTextPosition(SwingConstants.BOTTOM);
+		    rdbtn2players.setHorizontalTextPosition(SwingConstants.CENTER);
+		    rdbtn2players.setHorizontalAlignment(SwingConstants.CENTER);
+		    rdbtn2players.setOpaque(false);
+		    rdbtn2players.setSize(new Dimension(20, 20));
+		    rdbtn2players.setBounds(490, 459, 232, 67);
+		    inputPanel.add(rdbtn2players);
+
+		    radioGroup.add(rdbtn1player);
+		    radioGroup.add(rdbtn2players);
+		    radioGroup.add(rdbtn3players);
+
+		    JLabel lblwelcomeToPets = new JLabel("<html>Welcome to Pets <br>- the virtual pet  game!");
+		    lblwelcomeToPets.setOpaque(true);
+		    lblwelcomeToPets.setHorizontalTextPosition(SwingConstants.CENTER);
+		    lblwelcomeToPets.setHorizontalAlignment(SwingConstants.CENTER);
+		    lblwelcomeToPets.setFont(new Font("Dialog", Font.BOLD, 65));
+		    lblwelcomeToPets.setBackground(Color.WHITE);
+		    lblwelcomeToPets.setBounds(251, 72, 698, 300);
+		    inputPanel.add(lblwelcomeToPets);
+
+
+
+		    inputPanel.add(rdbtn2players);
+		    lblPlayerNum.setFont(new Font("Dialog", Font.BOLD, 22));
+		    lblPlayerNum.setHorizontalTextPosition(SwingConstants.CENTER);
+		    lblPlayerNum.setHorizontalAlignment(SwingConstants.CENTER);
+		    lblPlayerNum.setBounds(251, 534, 702, 108);
+
+		    inputPanel.add(lblPlayerNum);
+
+
+
+
+		    btnPlayerContinue.setVerticalAlignment(SwingConstants.BOTTOM);
+		    btnPlayerContinue.setBounds(510, 622, 193, 61);
+		    inputPanel.add(btnPlayerContinue);
+
+		    btnPlayerContinue2.setVerticalAlignment(SwingConstants.BOTTOM);
+		    btnPlayerContinue2.setBounds(510, 622, 193, 61);
+
+		    inputPanel.add(btnPlayerContinue2);
+
+
+		    spinnerDayNum.setVisible(false);
+		    spinnerDayNum.setModel(new SpinnerNumberModel(1.0, 1.0, 19.0, 1.0));
+		    spinnerDayNum.setBounds(584, 470, 57, 46);
+		    inputPanel.add(spinnerDayNum);
+		    startPanel.setBackground(Color.BLUE);
+		    startPanel.setForeground(Color.RED);
+		    startPanel.setBounds(0, 0, 1213, 718);
+
+		    frame.getContentPane().add(startPanel);
+		    startPanel.setLayout(null);
+
+		    btnHelp.setBounds(322, 385, 116, 48);
+		    startPanel.add(btnHelp);
+
+		    btnStart.setBounds(760, 385, 116, 48);
+		    startPanel.add(btnStart);
+		    lblWelcome.setOpaque(true);
+		    lblWelcome.setBackground(Color.WHITE);
+		    lblWelcome.setBounds(251, 72, 698, 300);
+		    startPanel.add(lblWelcome);
+		    lblWelcome.setFont(new Font("Dialog", Font.BOLD, 65));
+		    lblWelcome.setHorizontalTextPosition(SwingConstants.CENTER);
+		    lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+
+		    helpPanel.setVisible(false);
+		    helpPanel.setBackground(Color.RED);
+		    helpPanel.setBounds(0, 0, 1199, 705);
+
+		    frame.getContentPane().add(helpPanel);
+		    helpPanel.setLayout(null);
+
+
+		    lblHelp.setVerticalTextPosition(SwingConstants.TOP);
+		    lblHelp.setVerticalAlignment(SwingConstants.TOP);
+
+
+
+
+		    lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		    lblHelp.setHorizontalTextPosition(SwingConstants.LEFT);
+		    lblHelp.setHorizontalAlignment(SwingConstants.LEFT);
+		    lblHelp.setOpaque(true);
+		    lblHelp.setBounds(132, 417, 935, 200);
+		    helpPanel.add(lblHelp);
+
+		    JLabel lblWelcome2 = new JLabel("<html>Welcome to Pets <br>- the virtual pet game!");
+		    lblWelcome2.setOpaque(true);
+		    lblWelcome2.setHorizontalTextPosition(SwingConstants.CENTER);
+		    lblWelcome2.setHorizontalAlignment(SwingConstants.CENTER);
+		    lblWelcome2.setFont(new Font("Dialog", Font.BOLD, 65));
+		    lblWelcome2.setBounds(251, 72, 698, 300);
+		    helpPanel.add(lblWelcome2);
+		    lblContinue.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		    lblContinue.setOpaque(true);
+		    lblContinue.setBounds(132, 617, 215, 47);
+
+		    helpPanel.add(lblContinue);
+		    lblHelpcounter.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		    lblHelpcounter.setOpaque(true);
+		    lblHelpcounter.setBounds(309, 617, 758, 47);
+
+		    helpPanel.add(lblHelpcounter);
+
+		    clickPanel.setOpaque(false);
+		    clickPanel.setBounds(0, 11, 1199, 694);
+
+		    helpPanel.add(clickPanel);
+		    panelPet.setBackground(Color.DARK_GRAY);
+		    panelPet.setVisible(false);
+		    panelPet.setBounds(0, 0, 1213, 718);
+
+		    frame.getContentPane().add(panelPet);
+		    panelPet.setLayout(null);
+		    lblpetdetails.setBackground(Color.LIGHT_GRAY);
+		    lblpetdetails.setOpaque(true);
+		    lblpetdetails.setBounds(12, 12, 607, 358);
+
+		    panelPet.add(lblpetdetails);
+		}
 	
 	public void mainScreenHelper(){
 		Map<Player, Integer> playerScores = new HashMap<Player, Integer>();
@@ -663,8 +704,12 @@ public class GUI implements gameObjects{
 					JOptionPane.showMessageDialog(frame, "That name belongs to another player, please choose another.");
 					
 					
-				}else if (textCounter >= numOfPlayers){
+				} else if (textCounter >= numOfPlayers){
+					Player newPlayerFinal = new Player(textFieldCreation.getText());
+					addPlayer(newPlayerFinal,textCounter);
+					textFieldCreation.setText("");
 					promptPetCreation();
+					
 				} else if(textCounter==1){
 					Player newPlayer = new Player(textFieldCreation.getText());
 					addPlayer(newPlayer,1);
@@ -681,13 +726,13 @@ public class GUI implements gameObjects{
 					Player newPlayer3 = new Player(textFieldCreation.getText());
 					addPlayer(newPlayer3,3);
 					textFieldCreation.setText("");
-					lblNamePrompt.setText(String.format("Player %d, what is your name?", 3)); ;
+					lblNamePrompt.setText(String.format("Player %d, what is your name?", 4)); ;
 					textCounter++;	
 				} else if(textCounter==4){
-					//promptPetCreation();
-					textFieldCreation.setVisible(false);
-					spinnerPetNum.setVisible(true);
-					lblNamePrompt.setText(String.format("Player %d, what is your name?", 3)); ;
+					Player newPlayer4 = new Player(textFieldCreation.getText());
+					addPlayer(newPlayer4,4);
+					textFieldCreation.setText("");
+					promptPetCreation();
 					textCounter = 1;
 					}
 			
@@ -696,26 +741,54 @@ public class GUI implements gameObjects{
 	}
 	
 	public void promptPetCreation(){
-		spinnerPetNum.setVisible(true);
-	int playerCounter = 1;
-	
-	for (Map.Entry<Integer, Player> entry : players.entrySet()){
-		Player player = entry.getValue();
-		String strPetNum = null;
-		do{
-			if (strPetNum != null){
-			System.out.println("\nYou have entered an invalid number,"
-					    + "please enter a number between 1 and 3.\n");
-			}
-			System.out.format("How many pets would %s like to own? (max 3).", player.name);
-			strPetNum = scan.nextLine();
-		}
-		while(!strPetNum.matches("[1-3]"));
+//		List<Species> playerPets = new ArrayList<Species>();
+//		btnPetCounter.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				if (textCounter > numOfPlayers){
+//					
+//				}else if(textCounter==1){
+//					
+//				}else if(textCounter==2){
+//					
+//				}else if(textCounter==3){
+//					
+//				}else if(textCounter==4){
+//					
+//				}
+//			}
+//		});
+		rdbtnPet1.setVisible(true);
+		rdbtnPet2.setVisible(true);
+		rdbtnPet3.setVisible(true);
+		rdbtnPet4.setVisible(true);
+		rdbtnPet5.setVisible(true);
+		rdbtnPet6.setVisible(true);
+//		textFieldCreation.setVisible(false);
+//		btnCreationContinue.setVisible(false);
+//		btnPetCounter.setVisible(true);
+//		int textCounter = 1;
+//		spinnerPetNum.setVisible(true);
+//		lblNamePrompt.setText(String.format("%s, please choose up to 3 pets to own", players.get(textCounter).getName())); 
 		
-		System.out.format("You have selected %s pet/s.\n\n", strPetNum);
-		int intPetNum = Integer.parseInt(strPetNum);
-		promptSpecies(player, intPetNum);
-		}
+
+//	for (Map.Entry<Integer, Player> entry : players.entrySet()){
+//		Player player = entry.getValue();
+//		String strPetNum = null;
+//		do{
+//			if (strPetNum != null){
+//			System.out.println("\nYou have entered an invalid number,"
+//					    + "please enter a number between 1 and 3.\n");
+//			}
+//			System.out.format("How many pets would %s like to own? (max 3).", player.name);
+//			strPetNum = scan.nextLine();
+//		}
+//		while(!strPetNum.matches("[1-3]"));
+//		
+//		System.out.format("You have selected %s pet/s.\n\n", strPetNum);
+//		int intPetNum = Integer.parseInt(strPetNum);
+//		promptSpecies(player, intPetNum);
+//		}
 	}
 	
 	public void store(Player player){
