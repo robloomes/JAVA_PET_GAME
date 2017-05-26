@@ -635,6 +635,7 @@ public class GUI implements gameObjects {
 				if (globalCurrentPet.getActions() == 0) {
 					System.out.println("Sorry! This pet has already taken 2 actions today.");
 				} else {
+					System.out.format("%s is upset, but is now under control", globalCurrentPet);
 					punish();
 				}
 				promptEnterKey();
@@ -698,6 +699,7 @@ public class GUI implements gameObjects {
 		switch (intDoctorSelect) {
 		case 1:
 			globalCurrentPet.heal();
+//			return String.format("%s is feeling much better already!", name);
 			break;
 		case 2:
 			globalCurrentPet.revive();
@@ -1157,18 +1159,29 @@ public class GUI implements gameObjects {
 		for (Map.Entry<String, Species> entry : player.getPets().entrySet()) {
 			Species pet = entry.getValue();
 			pet.endDay();
+			//  			   return ("Your pet died from a random illness!");
+			 //  return("If the pet has not died before, he can be revived from the doctor!");
+			
+//			   "%s is sick! This causes your pet to waste 1 action per day.", this.name +
+//			   "Your pet can be treated at the doctor's (this will use an action).");
+			
+//			  return String.format("%s is misbehaving! This causes your pet to lose 1 action per day.", this.name +
+//					  " Your pet can be punished (this will use an action).");
 		}
 	}
 
 	public void toilet() {
 		globalCurrentPet.toilet();
+//		return String.format("%s feels relieved.", globalCurrentPet.getName());
 	}
 
 	public void sleep() {
+//		return String.format("%s feels refreshed!\n", name);
 		globalCurrentPet.sleep();
 	}
 
 	public void play(Player player) {
+//		return String.format("%s is feeling happier!\n", name);
 		Map<Integer, Toy> currentToys = new HashMap<Integer, Toy>();
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -1248,6 +1261,7 @@ public class GUI implements gameObjects {
 	}
 
 	public void feedPet(Player player) {
+//		System.out.format("*chomp..chomp..chomp* %s enjoyed the %s!\n", globalCurrentPet.getName(), currentFood.get(1).getName());
 		Map<Integer, Food> currentFood = new HashMap<Integer, Food>();
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -1278,10 +1292,12 @@ public class GUI implements gameObjects {
 
 			switch (intFoodSelect) {
 			case 1:
+				System.out.format("*chomp..chomp..chomp* %s enjoyed the %s!\n", globalCurrentPet.getName(), currentFood.get(1).getName());
 				globalCurrentPet.feed(currentFood.get(1));
 				player.removeFood(currentFood.get(1));
 				break;
 			case 2:
+				System.out.format("*chomp..chomp..chomp* %s enjoyed the %s!\n", globalCurrentPet.getName(), currentFood.get(1).getName());
 				globalCurrentPet.feed(currentFood.get(2));
 				player.removeFood(currentFood.get(2));
 				break;
@@ -1303,6 +1319,9 @@ public class GUI implements gameObjects {
 				break;
 			}
 		}
+	}
+	public void feed(Player player, Food food){
+
 	}
 
 	public Species selectPet(Player player) {
