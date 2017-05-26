@@ -82,12 +82,12 @@ public class GUI implements gameObjects {
 	private JTextField txtPetName5;
 	private JTextField txtPetName6;
 	private final JLabel lblSelectUpTo = new JLabel("Select up to 3.");
-	JCheckBox chckbxPet1 = new JCheckBox("Select Pet 1");
-	JCheckBox chckbxPet2 = new JCheckBox("Select Pet 2");
-	JCheckBox chckbxPet3 = new JCheckBox("Select Pet 3");
-	JCheckBox chckbxPet4 = new JCheckBox("Select Pet 4");
-	JCheckBox chckbxPet5 = new JCheckBox("Select Pet 5");
-	JCheckBox chckbxPet6 = new JCheckBox("Select Pet 6");
+	JCheckBox chckbxPet1 = new JCheckBox("Select Cloud");
+	JCheckBox chckbxPet2 = new JCheckBox("Select Crab");
+	JCheckBox chckbxPet3 = new JCheckBox("Select Monster");
+	JCheckBox chckbxPet4 = new JCheckBox("Select Penquin");
+	JCheckBox chckbxPet5 = new JCheckBox("Select Robot");
+	JCheckBox chckbxPet6 = new JCheckBox("Select Snake");
 	JLabel lblNewLabel = new JLabel("Put pets + description here");
 	JLabel lblWelcome2 = new JLabel("<html>Welcome to Pets <br>the virtual pet game!");
 	JLabel lblNewLabel_2 = new JLabel("New label");
@@ -146,37 +146,43 @@ public class GUI implements gameObjects {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		creationPanel.setLayout(null);
-		lblNewLabel.setBounds(489, 83, 187, 140);
-		lblBeng.setBounds(61, 310, 182, 155);
+		lblNewLabel.setBounds(450, 74, 192, 192);
+		lblSelectUpTo.setForeground(Color.WHITE);
+		lblSelectUpTo.setFont(new Font("Dialog", Font.BOLD, 25));
+		lblSelectUpTo.setBounds(474, 26, 246, 37);
+		
+				creationPanel.add(lblSelectUpTo);
+		lblBeng.setBounds(98, 310, 192, 192);
 
 		lblBeng.setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
 		creationPanel.add(lblBeng);
-		lblNewLabel_4.setBounds(489, 310, 193, 155);
+		lblNewLabel_4.setBounds(450, 310, 192, 192);
 
 		lblNewLabel_4.setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
 		creationPanel.add(lblNewLabel_4);
-		lblNewLabel_2.setBounds(884, 83, 182, 140);
+		lblNewLabel_2.setBounds(801, 74, 192, 192);
 
 		lblNewLabel_2.setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
 		creationPanel.add(lblNewLabel_2);
-		lblNewLabel_1.setBounds(61, 83, 182, 140);
+		lblNewLabel_1.setBounds(98, 74, 192, 192);
 		lblNewLabel_1.setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
 		creationPanel.add(lblNewLabel_1);
-		lblNewLabel_5.setBounds(873, 310, 193, 155);
+		lblNewLabel_5.setBounds(801, 310, 192, 192);
 
 		lblNewLabel_5.setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
 		creationPanel.add(lblNewLabel_5);
 		lblNewLabel.setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
 		creationPanel.add(lblNewLabel);
 		creationPanel.add(lblNewLabel);
-		textFieldCreation.setBounds(276, 541, 698, 67);
+		textFieldCreation.setBounds(274, 513, 698, 67);
 		textFieldCreation.setColumns(10);
 		creationPanel.setBackground(Color.GRAY);
 		creationPanel.setVisible(false);
 		creationPanel.setBounds(0, 0, 1213, 718);
 
 		frame.getContentPane().add(creationPanel);
-		lblNamePrompt.setBounds(276, 525, 698, 83);
+		lblNamePrompt.setForeground(Color.WHITE);
+		lblNamePrompt.setBounds(274, 579, 698, 83);
 
 		creationPanel.add(lblNamePrompt);
 
@@ -193,80 +199,74 @@ public class GUI implements gameObjects {
 		creationPanel.add(btnPetCounter);
 
 		txtPetName1 = new JTextField();
-		txtPetName1.setBounds(76, 262, 130, 31);
+		txtPetName1.setBounds(294, 235, 130, 31);
 		txtPetName1.setText("Enter a name...");
 		creationPanel.add(txtPetName1);
 		txtPetName1.setColumns(10);
 
 		txtPetName2 = new JTextField();
-		txtPetName2.setBounds(525, 262, 130, 31);
+		txtPetName2.setBounds(652, 235, 130, 31);
 		txtPetName2.setText("Enter a name...");
 		txtPetName2.setColumns(10);
 		creationPanel.add(txtPetName2);
 
 		txtPetName3 = new JTextField();
-		txtPetName3.setBounds(910, 262, 130, 31);
+		txtPetName3.setBounds(1003, 235, 130, 31);
 		txtPetName3.setText("Enter a name...");
 		txtPetName3.setColumns(10);
 		creationPanel.add(txtPetName3);
 
 		txtPetName4 = new JTextField();
-		txtPetName4.setBounds(76, 504, 130, 31);
+		txtPetName4.setBounds(294, 469, 130, 31);
 		txtPetName4.setText("Enter a name");
 		txtPetName4.setColumns(10);
 		creationPanel.add(txtPetName4);
 
 		txtPetName5 = new JTextField();
-		txtPetName5.setBounds(525, 498, 130, 31);
+		txtPetName5.setBounds(647, 471, 130, 31);
 		txtPetName5.setText("Enter a name...");
 		txtPetName5.setColumns(10);
 		creationPanel.add(txtPetName5);
 
 		txtPetName6 = new JTextField();
-		txtPetName6.setBounds(925, 504, 130, 31);
+		txtPetName6.setBounds(1003, 471, 130, 31);
 		txtPetName6.setText("Enter a name...");
 		txtPetName6.setColumns(10);
 		creationPanel.add(txtPetName6);
-		chckbxPet1.setBounds(76, 231, 129, 23);
+		chckbxPet1.setBounds(296, 205, 129, 23);
 		creationPanel.add(chckbxPet1);
-		chckbxPet2.setBounds(525, 231, 129, 23);
+		chckbxPet2.setBounds(652, 205, 129, 23);
 		creationPanel.add(chckbxPet2);
-		chckbxPet3.setBounds(911, 231, 129, 23);
+		chckbxPet3.setBounds(1004, 205, 129, 23);
 		creationPanel.add(chckbxPet3);
-		chckbxPet4.setBounds(77, 473, 129, 23);
+		chckbxPet4.setBounds(296, 439, 129, 23);
 		creationPanel.add(chckbxPet4);
-		chckbxPet5.setBounds(526, 473, 129, 23);
+		chckbxPet5.setBounds(648, 441, 129, 23);
 		creationPanel.add(chckbxPet5);
-		chckbxPet6.setBounds(925, 473, 129, 23);
+		chckbxPet6.setBounds(1004, 441, 129, 23);
 		creationPanel.add(chckbxPet6);
-		lblSelectUpTo.setForeground(Color.WHITE);
-		lblSelectUpTo.setFont(new Font("Dialog", Font.BOLD, 25));
-		lblSelectUpTo.setBounds(474, 26, 246, 37);
-		lblSelectUpTo.setVisible(false);
-
-		creationPanel.add(lblSelectUpTo);
 		lblNewLabel_6.setForeground(Color.WHITE);
-		lblNewLabel_6.setBounds(255, 68, 130, 155);
+		lblNewLabel_6.setBounds(294, 18, 130, 155);
 
 		creationPanel.add(lblNewLabel_6);
 		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setBounds(255, 325, 135, 127);
+		lblNewLabel_3.setBounds(294, 268, 135, 127);
 
 		creationPanel.add(lblNewLabel_3);
 		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setBounds(688, 98, 122, 125);
+		lblNewLabel_7.setBounds(652, 26, 122, 125);
 
 		creationPanel.add(lblNewLabel_7);
 		lblNewLabel_8.setForeground(Color.WHITE);
-		lblNewLabel_8.setBounds(694, 326, 151, 140);
+		lblNewLabel_8.setBounds(652, 268, 151, 140);
 
 		creationPanel.add(lblNewLabel_8);
 		lblNewLabel_9.setForeground(Color.WHITE);
-		lblNewLabel_9.setBounds(1078, 98, 111, 125);
+		lblNewLabel_9.setBounds(1003, 47, 111, 125);
 
 		creationPanel.add(lblNewLabel_9);
 		lblNewLabel_10.setForeground(Color.WHITE);
-		lblNewLabel_10.setBounds(1082, 317, 119, 148);
+		lblNewLabel_10.setBounds(1006, 271, 119, 148);
 
 		creationPanel.add(lblNewLabel_10);
 		lblNewLabel_11.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
@@ -910,6 +910,7 @@ public class GUI implements gameObjects {
 				}
 			}
 		});
+		lblSelectUpTo.setVisible(true);
 		txtPetName1.setVisible(true);
 		txtPetName2.setVisible(true);
 		txtPetName3.setVisible(true);
@@ -929,7 +930,6 @@ public class GUI implements gameObjects {
 		lblNewLabel.setVisible(true);
 		lblNewLabel.setVisible(true);
 		lblNewLabel.setVisible(true);
-		lblPetCreationScreen.setVisible(true);
 		chckbxPet1.setVisible(true);
 		chckbxPet2.setVisible(true);
 		chckbxPet3.setVisible(true);
