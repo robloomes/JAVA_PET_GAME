@@ -1,19 +1,20 @@
 package pet_game;
 import java.util.Random;
 /**
- * Pet.java - a class used for building Pet objects.
+ * Pet - a class used for building Pet objects.
  * <p>
- * This contains methods for returning and changing  Pet attributes
- * Pet objects created are mainly used in association with class @see gameEnvironment. 
- * 
+ * This contains methods for returning and configuring Pet attributes.
+ * <br>
+ * Food objects created are mainly used in association with classes {@link pet_game.Player} and {@link pet_game.gameEnvironment}.
+ * This is the superclass of class {@link pet_game.Species}.
  * @author Robert Loomes
  * @author Mna Chalabi
  * @since Winter 2017
  * @version 1.0
- */	
+ */
 public class Pet {
 	/**
-	 * Initialize the variables of the class
+	 * Initialize the variables of the Pet class.
 	 */
 	protected double moodMod ;
 	protected double hungerMod;
@@ -35,32 +36,12 @@ public class Pet {
 	protected boolean reviveAvail;
 	protected boolean sick;
 	protected boolean misbehaving; 
-	/**
-	 * Constructor method for Pet class.
-	 * @param moodMod A variable of type double.
-	 * @param hungerMod A variable of type double.
-	 * @param energyMod A variable of type double.
-	 * @param roughness A variable of type double
-	 * @param name A variable of type string.
-	 * @param favFood A variable of type string.
-	 * @param speciesName A variable of type string.
-	 * @param favToy A variable of type string.
-	 * @param weight A variable of type integer.
-	 * @param age A variable of type integer.
-	 * @param mood A variable of type integer.
-	 * @param energy A variable of type integer.
-	 * @param health A variable of type integer.
-	 * @param hunger A variable of type integer.
-	 * @param toiletNeed A variable of type integer.
-	 * @param actions A variable of type integer.
-	 * @param alive A variable of type boolean.
-	 * @param reviveAvail A variable of type boolean.
-	 * @param sick A variable of type boolean.
-	 * @param misbehaving A variable of type boolean.
-	 * @return Nothing.
-	 */
 	
-
+	/**
+	 * Default constructor method for class Pet.
+	 * @param name the name of the Pet.
+	 * Produces base variables for the initial variables.
+	 */
     public Pet(String name){
     	this.moodMod = 1;
     	this.hungerMod =1;
@@ -80,7 +61,14 @@ public class Pet {
         this.misbehaving = false;
     }
     
-    //Constructor for cloning the class, not just the reference
+    /**
+     * Clone constructor method for class Pet.
+     * This is used to create an unique clone of the standard Pets
+     * created in the {@link pet_game.gameObjects}, this allows the 
+     * unique copies of the "same" object.
+     * @param pet the Pet being cloned.
+     * @param newName a new name that overwrites the name of the Pet being cloned.
+     */
     public Pet(Pet pet, String newName){
     	this.name = newName;
     	this.moodMod = pet.moodMod;
@@ -99,134 +87,126 @@ public class Pet {
         this.misbehaving = false;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the String name variable.
+	 * @return This returns the name of Pet object.
 	 */
     public String getName() {
     	return name; 
-    }
+	}
     
-    /**
-   	 * Getter method
-   	 * @return This returns the String speciesName variable.
-   	 */
-       public String getSpecies(){
-       	return speciesName;
-     }
-    
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the integer weight variable.
+	 * @return This returns the weight of the Pet object.
 	 */
     public int getWeight() { 
     	return weight; 
-    }
+	}
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the integer mood variable.
+	 * @return This returns the mood of the Pet object.
 	 */
     public int getMood(){
     	return mood;
-    }
+	}
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the integer hunger variable.
+	 * @return This returns the hunger of the Pet object.
 	 */
     public int getHunger(){
     	return hunger;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the integer energy variable.
+	 * @return This returns the energy of the Pet object.
 	 */
     public int getEnergy(){
     	return energy;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the integer toiletNeed variable.
+	 * @return This returns the toilet need of the Pet object.
 	 */
     public int getToiletNeed(){
     	return toiletNeed;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the Boolean reviveAvail variable.
+	 * @return Returns true if Pet revive is available; or false if not.
+	 * 
 	 */
     public Boolean getRevive(){
     	return reviveAvail;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the reviveAvail alive variable.
+	 * @return Returns true if Pet is alive; false if Pet is dead.
+	 * 
 	 */
     public Boolean getAlive(){
     	return alive;	
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the Boolean sick variable.
+	 * @return Returns true if Pet is sick; false if Pet is sick.
+	 * 
 	 */
     public Boolean getSick(){
     	return sick;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the integer age variable.
+	 * @return This returns the age of the Pet object.
 	 */
     public int getAge(){
     	return age;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the integer health variable.
+	 * @return This returns the health of the Pet object.
 	 */
-    
-    
     public int getHealth(){
     	return health;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the integer actions variable.
+	 * @return This returns the actions of the Pet object.
 	 */
     public int getActions(){
     	return actions;
     }
     
-    /**
+	/**
 	 * Getter method
-	 * @return This returns the double moodMod variable.
+	 * @return This returns the mood modifier of the Pet object.
 	 */
     public double getMoodMod(){
     	return moodMod;
     }
     
     /**
-	 * Sets the String petName variable to a new string.
-	 * @param petName this is the new variable for string petName.
+	 * Getter method
+	 * @return This returns the type of species of the Pet object.
+	 * Is only relevant when evoked by the subclass {@link pet_game.Species}.
 	 */
-    
-       
-    public void setName(String petName){
-    	name = petName;
+    public String getSpecies(){
+    	return speciesName;
     }
    
     /**
-     * Setting values for some variable
+     * Setter method.
+     * Used for reverting the Pet back to base stats after {@link #revive()} is called.
      */
-    
     public void baseStats(){
         this.hunger = 50;
         this.mood = 50;
@@ -239,109 +219,115 @@ public class Pet {
         this.misbehaving = false;
     }
     
+    
     /**
-     * feed is Method that allow the pet to eat.
-     * @param food is class has been used to indicate the size of food.
+     * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
+     * Calculates the Pet variable changes based on the size of 
+     * {@link Food} object parameter given.
+     * @param food the {@link Food} object given, is consumed from the {@link pet_game.gameEnvironment}.
+     * after use.
+     * @return Returns a formatted String for use in the {@link pet_game.gameEnvironment}.
      */
     public void feed(Food food) {
-    	if(actions == 0){
-    		System.out.println("Sorry! This pet is out of actions today.");
-    		}
-    	else{
-    		if (food.getSize() == "small"){
-    			weight += 25;
-    			toiletNeed += 25;}
-    		else if (food.getSize() == "large"){
-    			weight += 50;
-    			toiletNeed += 50;}
-    		energy += food.getNutrition();
-    		mood +=  food.getTastiness();
-    		hunger -= food.nutrition;
-    		if (favFood == food.getName()){
-    			mood += 25;
-    			}
-       		actions-= 1;
-    		maxCheck();
-    		minCheck();
-    		System.out.format("*chomp..chomp..chomp* %s enjoyed the food!\n", name);
-    	}		
-	}
-    
-
-    
-    public void toilet(){
-    	if(actions == 0){
-    		System.out.println("Sorry! This pet is out of actions today.");
-    	}
-    	else{
-    		toiletNeed -= 50; 
-
-    		weight -= 20;
-    		actions -= 1;
-    		minCheck();
-    	}	
+    	if (food.getSize() == "small"){
+			weight += 25;
+			toiletNeed += 25;
+		}else {
+			weight += 50;
+			toiletNeed += 50;
+		}
+		energy += food.getNutrition();
+		mood +=  food.getTastiness();
+		hunger -= food.getNutrition();
+		if (favFood == food.getName()){
+			mood += 25;
+		}
+   		actions-= 1;
+		maxCheck();
+		minCheck();
+		
     }
-
+    
     /**
-     * Method that allow the Pets to sleep. 
+     * The toilet method can be invoked from the {@link pet_game.gameEnvironment}.
+     * Calculates the Pet variable changes.
+     * @return Returns a formatted String for use in the {@link pet_game.gameEnvironment}.
+     */
+    public void toilet(){
+    	toiletNeed -= 50; 
+		weight -= 20;
+		actions -= 1;
+		minCheck();
+		
+    }
+    
+    /**
+     * The toilet method can be invoked from the {@link pet_game.gameEnvironment}.
+     * Calculates the Pet variable changes.
+     * @return Returns a formatted String for use in the {@link pet_game.gameEnvironment}.
      */
     public void sleep(){
-    	if(actions == 0){
-    		System.out.println("Sorry! This pet is out of actions today.");
-    		}
-    	else if(mood < 50 || energy < 50 ){
-    		energy += 40;
-    		}
+    	if(mood < 50 || energy < 50 ){
+    		energy += 50;
+		}
        	else{
-    		energy += 30;
-    		}	
+    		energy += 40;
+		}	
     	actions -= 1;
-    	System.out.format("%s feels refreshed!\n", name);
 		minCheck();
 		maxCheck();
-		}
+		
+    	}
+    
     
     /**
-     * Method that allow the pets to revive after death. 
+     * The revive method can be invoked from the {@link pet_game.gameEnvironment}.
+     * Calculates the Pet variable changes if needed.
+     * @return Returns a formatted String for use in the {@link pet_game.gameEnvironment}, 
+     * based on whether the Pet is alive/dead and has revive available or not.
      */
-    public  void revive(){
+    public String revive(){
     	if(alive == false && reviveAvail == true){
 			reviveAvail = false;
 	    	baseStats();
-	    	System.out.println("Your pet has revived!");
+	    	return String.format("Your pet has revived!");
     	}else if (alive == true){	
-    		System.out.print("Your pet is already alive!");
-    	}else if (alive == false && reviveAvail == false){
-	    	System.out.print("Sorry, your pet is only allowed to revive once! ");
-		}
-	}
-    
-    /**
-     * maxCheck is method that set the values to 100 if it reach more than 100. 
-     */
-    public void maxCheck(){
-    	if(mood > 0){
-    		mood = 100;
-    	}
-    	if(energy > 0){
-    		mood = 100;
-    	}
-    	if(health > 0){
-    		mood = 100;
-    	}
-    	if(hunger > 0){
-    		mood = 100;
-    	}
-    	if(toiletNeed > 0){
-    		mood = 100;
-    	}
-    	if(toiletNeed > 0){
-    		toiletNeed = 100;
+    		return String.format("Your pet is already alive!");
+    	}else{
+    		return String.format("Sorry, your pet is only allowed to revive once! ");
     	}
     }
     
     /**
-     * minCheck is method that set the values to 0 if it goes to negative. 
+     * For internal use in the {@link Pet) class.
+     * Checks if any Pet variable has gone above the max limit of 100.
+     * If it has, it brings it back to the max limit.
+     * @return Nothing.
+     */
+    public void maxCheck(){
+    	if(mood > 100){
+    		mood = 100;
+    	}
+    	if(energy > 100){
+    		energy = 100;
+    	}
+    	if(health > 100){
+    		health = 100;
+    	}
+    	if(hunger > 100){
+    		hunger = 100;
+    	}
+    	if(toiletNeed > 100){
+    		toiletNeed = 100;
+    	}
+ 
+    }
+    
+    /**
+     * For internal use in the {@link Pet) class.
+     * Checks if any Pet variable has gone below the minimum limit of 100.
+     * If it has, it brings it back to the minimum limit.
+     * @return Nothing.
      */
     public void minCheck(){
     	if(weight < 0){
@@ -351,25 +337,24 @@ public class Pet {
     		mood = 0;
     	}
     	if(energy < 0){
-    		mood = 0;
+    		energy = 0;
     	}
     	if(health < 0){
-    		mood = 0;
+    		health = 0;
     	}
     	if(hunger < 0){
-    		mood = 0;
+    		hunger = 0;
     	}
-    	if(toiletNeed < 0){
-    		mood = 0;
-    	}
-
     	if(toiletNeed < 0){
     		toiletNeed = 0;
     	}
     }
     
     /**
-     * deadStats is method that put all the variable to 0 while the pet died.
+     * For internal use in the {@link Pet) class.
+     * Invoked when a pet has died. @see {@link Pet#death()}
+     * Zero's out all variables.
+     * @return Nothing.
      */
     public void  deadStats(){
         this.hunger = 0;
@@ -384,36 +369,46 @@ public class Pet {
     }
     
     /**
-     * death is Method that makes the pet die randomly if the health less than 100.
+     * For internal use in the {@link Pet) class.
+     * Invoked when a pet has died. @see {@link Pet#death()}
+     * Zero's out all variables.
+     * @return Nothing.
      */
     public void death(){
     	if(health < 10){
-  		   Random random = new Random();  
+  		   Random random = new Random();  // 50% chance
   		   if(!random.nextBoolean()){
   			   alive = false;
-  			   System.out.println("Your pet died from a random illness!");
-  			   System.out.println("If the pet has not died before, he can be revived from the doctor!");
   			   deadStats();
+
+  			  
   			   }
   		   }
     }
     
     /**
-     * punish is method that punish the pet if he/ she misbehave.
+     * The punish method can be invoked from the {@link pet_game.gameEnvironment}.
+     * Calculates the Pet variable changes if needed.
+     * Changes the misbehaving variable to false.
      */
     public void punish(){
-    	if(actions == 0){
-    		System.out.println("Sorry! This pet is out of actions today.");
-    		} else {
-    			misbehaving = false;
-    			System.out.format("%s is upset, but is now under control", name);
-    			mood -= 10;
-    			minCheck();
-    		}
+    	misbehaving = false;
+
+		mood -= 10;
+		minCheck();
+			
 	}
     
+    
     /**
-     * @param toy this is a variable used from Toy.java.
+     * The toy method can be invoked from the {@link pet_game.gameEnvironment}.
+     * Calculates the Pet variable changes based on the 
+     * energy modifier variable of the Pet,
+     * and the enjoyment variable of the
+     * {@link pet_game.Toy} object parameter given.
+     * @param toy the {@link Toy} object given, has it's durability variable 
+     * changed for evoking the {@link pet_game.Toy#setDurability(int)} method.
+     * @return Returns a formatted String for use in the {@link pet_game.gameEnvironment}.
      */
     public void play(Toy toy){
     	int dura = toy.getDurability();
@@ -422,60 +417,56 @@ public class Pet {
     	energy -= energy * energyMod;
     	mood += (toy.getEnjoyment() * moodMod);
     	maxCheck();
-    	System.out.println();
-    	System.out.format("%s is feeling happier!\n", name);
     	actions -= 1;
+    	
+    	
 	 }
     
+    
     /**
-     * heath method that check the health of the pet.
+     * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
+     * Increases the Pet variables when evoked, and changes sick boolean to false.
+     * Evokes {@link Pet#maxCheck()}
+     * @return Returns a formatted String for use in the {@link pet_game.gameEnvironment}.
      */
-    public void health(){
+    public void heal(){
     	sick = false;
     	health += 25;
     	energy += 25;
     	maxCheck();
-    	System.out.format("%s is feeling much better already!", name);
+    	
     }
     
-    /**
-     * sick is method that makes the pet sick randomly if he/she older than 1 day with 50 % chance.
-     */
+    
     public void sick(){
     	if(age > 1){
- 		   Random randomno = new Random(); 
+ 		   Random randomno = new Random(); // 50% CHANCE
  		   if(randomno.nextBoolean() == true){
  			   sick = true;
  			   health -= 25;
  			   energy -= 25;
  			   minCheck();
- 			   System.out.format("%s is sick! This causes your pet to waste 1 action per day.", this.name);
- 			   System.out.println(" Your pet can be treated at the doctor's (this will use an action).");
+
 		   }
 	   }
     }
     
-    /**
-     * misbehaving is method that makes the pet misbehave randomly if he/she older than 1 day with 50 % chance.
-     */
     public void misbehaving(){
     	if(misbehaving == false){
 			if(age > 0){
-			   Random randomno = new Random(); 
+			   Random randomno = new Random(); // 50% CHANCE
 			   if(randomno.nextBoolean()){
 				   misbehaving = true;
 				   health -= 10;
 				   energy -= 10;
-				   System.out.format("%s is misbehaving! This causes your pet to lose 1 action per day.", this.name);
-				   System.out.println(" Your pet can be punished (this will use an action).");
 				   minCheck();
-			   }
-			}
+
+				   
+  			   }
+  		   }
     	}
     }
-    /**
-     * endDay is method that increase the value of age and action and decreases energy.
-     */
+    
     public void endDay(){
     	if(alive==true){
     		age += 1;
@@ -503,12 +494,7 @@ public class Pet {
     	}
 
     }
-    
-    /**
-	 * Overides the default toString method.
-	 * Produces a formatted String of all Pet variables.
-	 * @return Formatted String.
-	 */ 
+	 
     public String toString() {
 	   String petName = "Name: " + this.name;
 	   String petWeight = "Weight: " + this.weight;
