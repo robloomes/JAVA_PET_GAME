@@ -4,7 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
-
+/**
+ * Methods implementing random events are not tested.
+ * @author Robert
+ *
+ */
 public class PetTest {
 
 	@Test
@@ -132,48 +136,59 @@ public class PetTest {
 	}
 
 	@Test
-	public void testDeadStats() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDeath() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testPunish() {
-		fail("Not yet implemented");
+		Pet test = new Pet("lo");
+		boolean oldMisbehaving = test.misbehaving;
+		int oldMood = test.mood;
+		test.punish();
+		assertEquals(false, oldMisbehaving);
+		assertEquals(oldMood - 10, test.mood);
+		
 	}
 
 	@Test
 	public void testPlay() {
-		fail("Not yet implemented");
+		Pet testPet = new Pet("lo");
+		Toy testToy = new Toy("Bear", 5, 10, 20);  //(name, price, durability, enjoyment)
+		int oldEnergy = testPet.energy;
+		int oldDura = testToy.durability;
+		int oldMood = testPet.mood;
+		testPet.play(testToy);
+		assertEquals(oldMood + testToy.enjoyment, testPet.mood);
+		assertEquals(oldDura - 1,testToy.durability);
+		assertEquals(oldMood + 20, testPet.mood);
+		
 	}
 
 	@Test
 	public void testHeal() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSick() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMisbehaving() {
-		fail("Not yet implemented");
+		Pet test = new Pet("lo");
+		int oldEnergy = test.energy;
+		test.sick = true;
+		test.heal();
+		assertEquals(oldEnergy + 25, test.energy);
+		assertEquals(false, test.sick);
 	}
 
 	@Test
 	public void testEndDay() {
-		fail("Not yet implemented");
+		Pet test = new Pet("lo");
+		test.age = 1;
+		test.weight = 10;
+		test.energyMod = 2;
+		test.sick = true;
+		int oldAge = test.age;
+		int oldWeight = test.weight;
+		int oldEnergy = test.energy;
+		test.misbehaving = true;
+		test.sick = true;
+		test.endDay();
+		assertEquals(oldAge + 1, test.age);
+		assertEquals(oldWeight + 5, test.weight);
+		assertEquals(oldEnergy + 50, test.energy);
 	}
-
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
-	}
-
+			
 }
+		
+
+
