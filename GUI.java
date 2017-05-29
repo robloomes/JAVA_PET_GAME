@@ -125,10 +125,13 @@ public class GUI implements gameObjects {
 	private final JButton btnEndDay = new JButton("End day");
 	private final JLabel lblCurrentSelectedPet = new JLabel("Select a pet to interact with it!");
 	private final JLabel lblPetAttributes = new JLabel("Pet Attributes");
-	private final JLabel lblNewLabel_13 = new JLabel("Current Pet: NONE");
-	private final JLabel lblNewLabel_14 = new JLabel("Action outputs");
+	private final JLabel lblCurrentPet = new JLabel("Current Pet: NONE");
+	private final JLabel lblEventOutputs = new JLabel("Action outputs");
 	private final JLabel lblCurrentPlayer = new JLabel("Current player:");
-	private final JLabel lblDayNum = new JLabel("Day num");
+	private final JLabel lblDayNum = new JLabel("1");
+	private final JPanel panelStore = new JPanel();
+	private final JLabel lblDay = new JLabel("Day");
+	private final JLabel lblDayTotals = new JLabel("/ --");
 
 	public GUI() {
 
@@ -169,6 +172,16 @@ public class GUI implements gameObjects {
 
 		frame.getContentPane().add(panelMainScreen);
 		panelMainScreen.setLayout(null);
+		lblDayTotals.setFont(new Font("Dialog", Font.BOLD, 19));
+		lblDayTotals.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDayTotals.setForeground(Color.WHITE);
+		lblDayTotals.setBounds(910, 227, 81, 28);
+		
+		panelMainScreen.add(lblDayTotals);
+		lblDay.setForeground(Color.WHITE);
+		lblDay.setBounds(827, 76, 81, 23);
+		
+		panelMainScreen.add(lblDay);
 		panelButtons.setBackground(Color.DARK_GRAY);
 		panelButtons.setForeground(Color.WHITE);
 		panelButtons.setBounds(12, 11, 593, 695);
@@ -285,51 +298,33 @@ public class GUI implements gameObjects {
 		lblPetAttributes.setBounds(615, 272, 192, 434);
 
 		panelMainScreen.add(lblPetAttributes);
-		lblNewLabel_13.setForeground(Color.WHITE);
-		lblNewLabel_13.setBackground(Color.DARK_GRAY);
-		lblNewLabel_13.setOpaque(true);
-		lblNewLabel_13.setBounds(615, 11, 192, 48);
+		lblCurrentPet.setForeground(Color.WHITE);
+		lblCurrentPet.setBackground(Color.DARK_GRAY);
+		lblCurrentPet.setOpaque(true);
+		lblCurrentPet.setBounds(615, 11, 192, 48);
 
-		panelMainScreen.add(lblNewLabel_13);
-		lblNewLabel_14.setBackground(Color.DARK_GRAY);
-		lblNewLabel_14.setForeground(Color.WHITE);
-		lblNewLabel_14.setOpaque(true);
-		lblNewLabel_14.setBounds(817, 272, 384, 434);
+		panelMainScreen.add(lblCurrentPet);
+		lblEventOutputs.setBackground(Color.DARK_GRAY);
+		lblEventOutputs.setForeground(Color.WHITE);
+		lblEventOutputs.setOpaque(true);
+		lblEventOutputs.setBounds(817, 272, 384, 434);
 
-		panelMainScreen.add(lblNewLabel_14);
+		panelMainScreen.add(lblEventOutputs);
 		lblCurrentPlayer.setBackground(Color.DARK_GRAY);
 		lblCurrentPlayer.setForeground(Color.WHITE);
 		lblCurrentPlayer.setOpaque(true);
 		lblCurrentPlayer.setBounds(817, 11, 384, 48);
 
 		panelMainScreen.add(lblCurrentPlayer);
+		lblDayNum.setFont(new Font("Dialog", Font.BOLD, 47));
+		lblDayNum.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblDayNum.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDayNum.setBackground(Color.DARK_GRAY);
 		lblDayNum.setForeground(Color.WHITE);
 		lblDayNum.setOpaque(true);
 		lblDayNum.setBounds(817, 71, 182, 192);
 
 		panelMainScreen.add(lblDayNum);
-		
-		JPanel panelStore = new JPanel();
-		panelStore.setBackground(Color.GRAY);
-		panelStore.setForeground(Color.WHITE);
-		panelStore.setBounds(0, 0, 1210, 717);
-		panelMainScreen.add(panelStore);
-		panelStore.setLayout(null);
-		
-		JLabel lblNewLabel_15 = new JLabel("New label");
-		lblNewLabel_15.setOpaque(true);
-		lblNewLabel_15.setBounds(1007, 72, 191, 191);
-		panelStore.add(lblNewLabel_15);
-		btnEndDay.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnEndDay.setBackground(Color.GREEN);
-			}
-
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnEndDay.setBackground(UIManager.getColor("control"));
-			}
-		});
 		panelCreation.setLayout(null);
 		lblNewLabel.setBounds(450, 74, 192, 192);
 		lblSelectUpTo.setForeground(Color.WHITE);
@@ -640,6 +635,22 @@ public class GUI implements gameObjects {
 		lblBackgroundstart.setBounds(-30, -231, 1365, 981);
 
 		panelStart.add(lblBackgroundstart);
+		panelStore.setVisible(false);
+		panelStore.setLayout(null);
+		panelStore.setForeground(Color.WHITE);
+		panelStore.setBackground(Color.PINK);
+		panelStore.setBounds(0, 0, 1210, 717);
+		
+				frame.getContentPane().add(panelStore);
+		btnEndDay.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnEndDay.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnEndDay.setBackground(UIManager.getColor("control"));
+			}
+		});
 	}
 
 	public void mainScreenHelper() {
@@ -665,29 +676,30 @@ public class GUI implements gameObjects {
 	}
 
 	public void mainScreenText() {
+		
 		panelCreation.setVisible(false);
 		panelMainScreen.setVisible(true);
-		Properties prop = new Properties();
-		InputStream input = null;
+//		Properties prop = new Properties();
+//		InputStream input = null;
 
-		try {
-
-			input = new FileInputStream("config.properties");
-			// load a properties file
-			prop.load(input);
-			// get the property value and print it out
-			System.out.println((prop.getProperty("main")));
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+//		try {
+//
+//			input = new FileInputStream("config.properties");
+//			// load a properties file
+//			prop.load(input);
+//			// get the property value and print it out
+//			System.out.println((prop.getProperty("main")));
+//		} catch (IOException ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			if (input != null) {
+//				try {
+//					input.close();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}
 	}
 
 	public void mainSelectScreen(Player player) {
