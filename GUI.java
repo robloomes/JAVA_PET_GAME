@@ -31,7 +31,6 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 public class GUI implements gameObjects {
 
@@ -115,15 +114,15 @@ public class GUI implements gameObjects {
 	private final JLabel lblNewLabel_12 = new JLabel("New label");
 	private final JPanel panelMainScreen = new JPanel();
 	private final JPanel panelButtons = new JPanel();
-	private final JButton btnPetSelect = new JButton("New button");
-	private final JButton button = new JButton("New button");
-	private final JButton button_1 = new JButton("New button");
-	private final JButton button_2 = new JButton("New button");
-	private final JButton button_3 = new JButton("New button");
-	private final JButton button_4 = new JButton("New button");
-	private final JButton button_5 = new JButton("New button");
-	private final JButton button_6 = new JButton("New button");
-	private final JButton button_8 = new JButton("New button");
+	private final JButton btnPetSelect = new JButton("View status of current pet");
+	private final JButton btnVisitTheStore = new JButton("Visit the store");
+	private final JButton btnFeedPet = new JButton("Feed pet");
+	private final JButton btnPutPetTo = new JButton("Put pet to sleep");
+	private final JButton btnUseToy = new JButton("Use toy");
+	private final JButton btnUseToilet = new JButton("Use toilet");
+	private final JButton btnPunishPet = new JButton("Punish pet");
+	private final JButton btnVisitDoctor = new JButton("Visit doctor");
+	private final JButton btnEndDay = new JButton("End day");
 	private final JLabel lblCurrentSelectedPet = new JLabel("Select a pet to interact with it!");
 	private final JLabel lblPetAttributes = new JLabel("Pet Attributes");
 	private final JLabel lblNewLabel_13 = new JLabel("Current Pet: NONE");
@@ -166,159 +165,170 @@ public class GUI implements gameObjects {
 		frame.getContentPane().setLayout(null);
 		panelMainScreen.setVisible(false);
 		panelMainScreen.setBackground(Color.GRAY);
-		panelMainScreen.setBounds(0, 0, 1199, 705);
+		panelMainScreen.setBounds(0, 0, 1213, 718);
 
 		frame.getContentPane().add(panelMainScreen);
 		panelMainScreen.setLayout(null);
 		panelButtons.setBackground(Color.DARK_GRAY);
 		panelButtons.setForeground(Color.WHITE);
-		panelButtons.setBounds(0, 0, 605, 705);
+		panelButtons.setBounds(12, 11, 593, 695);
 
 		panelMainScreen.add(panelButtons);
 		panelButtons.setLayout(null);
 		btnPetSelect.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	btnPetSelect.setBackground(Color.GREEN);
-		    }
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnPetSelect.setBackground(Color.GREEN);
+			}
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	btnPetSelect.setBackground(UIManager.getColor("control"));
-		    }
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnPetSelect.setBackground(UIManager.getColor("control"));
+			}
 		});
-		btnPetSelect.setBounds(10, 11, 585, 57);
+		btnPetSelect.setBounds(10, 10, 571, 57);
 
 		panelButtons.add(btnPetSelect);
-		button.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	button.setBackground(Color.GREEN);
-		    }
+		btnVisitTheStore.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnVisitTheStore.setBackground(Color.GREEN);
+			}
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	button.setBackground(UIManager.getColor("control"));
-		    }
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnVisitTheStore.setBackground(UIManager.getColor("control"));
+			}
 		});
-		button.setBounds(10, 79, 585, 57);
+		btnVisitTheStore.setBounds(10, 79, 571, 57);
 
-		panelButtons.add(button);
-		button_1.setBounds(10, 147, 585, 57);
-		button_1.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	button_1.setBackground(Color.GREEN);
-		    }
+		panelButtons.add(btnVisitTheStore);
+		btnFeedPet.setBounds(10, 147, 571, 57);
+		btnFeedPet.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnFeedPet.setBackground(Color.GREEN);
+			}
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	button_1.setBackground(UIManager.getColor("control"));
-		    }
-		});
-
-		panelButtons.add(button_1);
-		button_2.setBounds(10, 215, 585, 57);
-		button_2.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	button_2.setBackground(Color.GREEN);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	button_2.setBackground(UIManager.getColor("control"));
-		    }
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnFeedPet.setBackground(UIManager.getColor("control"));
+			}
 		});
 
-		panelButtons.add(button_2);
-		button_3.setBounds(10, 283, 585, 57);
+		panelButtons.add(btnFeedPet);
+		btnPutPetTo.setBounds(10, 215, 571, 57);
+		btnPutPetTo.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnPutPetTo.setBackground(Color.GREEN);
+			}
 
-		panelButtons.add(button_3);
-		button_3.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	button_3.setBackground(Color.GREEN);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	button_3.setBackground(UIManager.getColor("control"));
-		    }
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnPutPetTo.setBackground(UIManager.getColor("control"));
+			}
 		});
-		button_4.setBounds(10, 351, 585, 57);
-		
-		
-		panelButtons.add(button_4);
-		button_4.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	button_4.setBackground(Color.GREEN);
-		    }
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	button_4.setBackground(UIManager.getColor("control"));
-		    }
+		panelButtons.add(btnPutPetTo);
+		btnUseToy.setBounds(10, 283, 571, 57);
+
+		panelButtons.add(btnUseToy);
+		btnUseToy.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnUseToy.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnUseToy.setBackground(UIManager.getColor("control"));
+			}
 		});
-		button_5.setBounds(10, 419, 585, 57);
-		
-		panelButtons.add(button_5);
-		button_5.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	button_5.setBackground(Color.GREEN);
-		    }
+		btnUseToilet.setBounds(10, 351, 571, 57);
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	button_5.setBackground(UIManager.getColor("control"));
-		    }
+		panelButtons.add(btnUseToilet);
+		btnUseToilet.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnUseToilet.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnUseToilet.setBackground(UIManager.getColor("control"));
+			}
 		});
-		button_6.setBounds(10, 487, 585, 57);
+		btnPunishPet.setBounds(10, 419, 571, 57);
 
-		panelButtons.add(button_6);
-		button_6.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	button_6.setBackground(Color.GREEN);
-		    }
+		panelButtons.add(btnPunishPet);
+		btnPunishPet.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnPunishPet.setBackground(Color.GREEN);
+			}
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	button_6.setBackground(UIManager.getColor("control"));
-		    }
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnPunishPet.setBackground(UIManager.getColor("control"));
+			}
 		});
-		button_8.setBounds(10, 637, 585, 57);
+		btnVisitDoctor.setBounds(10, 487, 571, 57);
 
-		panelButtons.add(button_8);
+		panelButtons.add(btnVisitDoctor);
+		btnVisitDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnVisitDoctor.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnVisitDoctor.setBackground(UIManager.getColor("control"));
+			}
+		});
+		btnEndDay.setBounds(10, 626, 571, 57);
+
+		panelButtons.add(btnEndDay);
 		lblCurrentSelectedPet.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCurrentSelectedPet.setOpaque(true);
 		lblCurrentSelectedPet.setBounds(615, 69, 192, 192);
-		
+
 		panelMainScreen.add(lblCurrentSelectedPet);
 		lblPetAttributes.setOpaque(true);
 		lblPetAttributes.setBackground(Color.DARK_GRAY);
 		lblPetAttributes.setForeground(Color.WHITE);
-		lblPetAttributes.setBounds(615, 272, 192, 422);
-		
+		lblPetAttributes.setBounds(615, 272, 192, 434);
+
 		panelMainScreen.add(lblPetAttributes);
 		lblNewLabel_13.setForeground(Color.WHITE);
 		lblNewLabel_13.setBackground(Color.DARK_GRAY);
 		lblNewLabel_13.setOpaque(true);
 		lblNewLabel_13.setBounds(615, 11, 192, 48);
-		
+
 		panelMainScreen.add(lblNewLabel_13);
 		lblNewLabel_14.setBackground(Color.DARK_GRAY);
 		lblNewLabel_14.setForeground(Color.WHITE);
 		lblNewLabel_14.setOpaque(true);
-		lblNewLabel_14.setBounds(817, 272, 372, 422);
-		
+		lblNewLabel_14.setBounds(817, 272, 384, 434);
+
 		panelMainScreen.add(lblNewLabel_14);
 		lblCurrentPlayer.setBackground(Color.DARK_GRAY);
 		lblCurrentPlayer.setForeground(Color.WHITE);
 		lblCurrentPlayer.setOpaque(true);
-		lblCurrentPlayer.setBounds(817, 11, 372, 48);
-		
+		lblCurrentPlayer.setBounds(817, 11, 384, 48);
+
 		panelMainScreen.add(lblCurrentPlayer);
 		lblDayNum.setBackground(Color.DARK_GRAY);
 		lblDayNum.setForeground(Color.WHITE);
 		lblDayNum.setOpaque(true);
-		lblDayNum.setBounds(817, 71, 192, 192);
-		
-		panelMainScreen.add(lblDayNum);
-		button_8.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	button_8.setBackground(Color.GREEN);
-		    }
+		lblDayNum.setBounds(817, 71, 182, 192);
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	button_8.setBackground(UIManager.getColor("control"));
-		    }
+		panelMainScreen.add(lblDayNum);
+		
+		JPanel panelStore = new JPanel();
+		panelStore.setBackground(Color.GRAY);
+		panelStore.setForeground(Color.WHITE);
+		panelStore.setBounds(0, 0, 1210, 717);
+		panelMainScreen.add(panelStore);
+		panelStore.setLayout(null);
+		
+		JLabel lblNewLabel_15 = new JLabel("New label");
+		lblNewLabel_15.setOpaque(true);
+		lblNewLabel_15.setBounds(1007, 72, 191, 191);
+		panelStore.add(lblNewLabel_15);
+		btnEndDay.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnEndDay.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnEndDay.setBackground(UIManager.getColor("control"));
+			}
 		});
 		panelCreation.setLayout(null);
 		lblNewLabel.setBounds(450, 74, 192, 192);
