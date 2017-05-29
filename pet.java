@@ -107,6 +107,10 @@ public class Pet {
     	return weight; 
 	}
     
+	
+		public boolean getMisbehaving() {
+		return this.misbehaving;
+	}
 	/**
 	 * Getter method
 	 * @return This returns the mood of the Pet object.
