@@ -85,8 +85,12 @@ public class Pet {
         this.reviveAvail = pet.reviveAvail;
         this.sick = false;
         this.misbehaving = false;
-    }
+	}
     
+    public boolean getMisbehaving() {
+	return misbehaving;
+	}
+	
 	/**
 	 * Getter method
 	 * @return This returns the name of Pet object.
@@ -207,6 +211,15 @@ public class Pet {
      * Setter method.
      * Used for reverting the Pet back to base stats after {@link #revive()} is called.
      */
+
+    public int getActions() {
+	return actions;
+    }
+	
+	public void setRevive(boolean bool) {
+	this.reviveAvail = bool;
+	}
+	
     public void baseStats(){
         this.hunger = 50;
         this.mood = 50;
@@ -286,17 +299,12 @@ public class Pet {
      * @return Returns a formatted String for use in the {@link pet_game.gameEnvironment}, 
      * based on whether the Pet is alive/dead and has revive available or not.
      */
-    public String revive(){
-    	if(alive == false && reviveAvail == true){
+	public void revive() {
+		if (alive == false && reviveAvail == true) {
 			reviveAvail = false;
-	    	baseStats();
-	    	return String.format("Your pet has revived!");
-    	}else if (alive == true){	
-    		return String.format("Your pet is already alive!");
-    	}else{
-    		return String.format("Sorry, your pet is only allowed to revive once! ");
-    	}
-    }
+			baseStats();
+		} 
+	}
     
     /**
      * For internal use in the {@link Pet) class.
@@ -393,7 +401,7 @@ public class Pet {
      */
     public void punish(){
     	misbehaving = false;
-
+		actions -= 1;
 		mood -= 10;
 		minCheck();
 			
@@ -434,7 +442,7 @@ public class Pet {
     	health += 25;
     	energy += 25;
     	maxCheck();
-    	
+    	actions -= 1;
     }
     
     
