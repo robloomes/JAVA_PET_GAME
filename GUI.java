@@ -31,6 +31,8 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class GUI implements gameObjects {
 
@@ -89,28 +91,28 @@ public class GUI implements gameObjects {
 	JCheckBox chckbxPet4 = new JCheckBox("Select Penquin");
 	JCheckBox chckbxPet5 = new JCheckBox("Select Robot");
 	JCheckBox chckbxPet6 = new JCheckBox("Select Snake");
-	JLabel lblNewLabel = new JLabel("Put pets + description here");
+	JLabel lblCrab = new JLabel("Put pets + description here");
 	JLabel lblWelcome2 = new JLabel("<html>Welcome to Pets <br>the virtual pet game!");
-	JLabel lblNewLabel_2 = new JLabel("New label");
+	JLabel lblMonster = new JLabel("New label");
 	JLabel lblBeng = new JLabel("New label");
-	JLabel lblNewLabel_4 = new JLabel("New label");
-	JLabel lblNewLabel_5 = new JLabel("New label");
+	JLabel lblRobot = new JLabel("New label");
+	JLabel lblSnake = new JLabel("New label");
 	JLabel lblNewLabel6 = new JLabel("");
-	JLabel lblNewLabel_1 = new JLabel("New label");
+	JLabel lblCloud = new JLabel("New label");
 	private final JLabel lblBackgroundIcon = new JLabel("New label");
 	private final JLabel lblBackgroundstart = new JLabel("New label");
-	private final JLabel lblNewLabel_6 = new JLabel(
+	private final JLabel lblCloudDescribe = new JLabel(
 			"<html>Cloud: seems to care only <br> about itself,but can bring great joy to others.\n");
-	private final JLabel lblNewLabel_3 = new JLabel(
+	private final JLabel lblPengDescribe = new JLabel(
 			"<html>Penguin: not much to be <br>said about this black and white companion.");
-	private final JLabel lblNewLabel_7 = new JLabel("<html>Crab: loyal but simple.<br> Obsessed with toys.");
-	private final JLabel lblNewLabel_8 = new JLabel(
+	private final JLabel lblCrabDescribe = new JLabel("<html>Crab: loyal but simple.<br> Obsessed with toys.");
+	private final JLabel lblRobotDescribe = new JLabel(
 			"<html>Robot: has great personality for<br> a machine. Spends most of his time recharging his batteries.");
-	private final JLabel lblNewLabel_9 = new JLabel(
+	private final JLabel lblMonsterDescribe = new JLabel(
 			"<html>Monster: while scary looking, <br>has a gentle heart beneath the rugged fur.");
-	private final JLabel lblNewLabel_10 = new JLabel(
+	private final JLabel lblSnakeDescribe = new JLabel(
 			"<html>Snake: is as slippery as he<br> is untrustworthy. Keep a close eye on this one.\\n");
-	private final JLabel lblNewLabel_11 = new JLabel("New label");
+	private final JLabel lblBackgroundImage = new JLabel("New label");
 	private final JLabel lblNewLabel_12 = new JLabel("New label");
 	private final JPanel panelMainScreen = new JPanel();
 	private final JPanel panelButtons = new JPanel();
@@ -132,6 +134,38 @@ public class GUI implements gameObjects {
 	private final JPanel panelStore = new JPanel();
 	private final JLabel lblDay = new JLabel("Day");
 	private final JLabel lblDayTotals = new JLabel("/ --");
+	private final JLabel lblNewLabel_14 = new JLabel("  Food");
+	private final JLabel lblNewLabel_15 = new JLabel("  Toys");
+	private final JButton btnCake = new JButton("");
+	private final JButton btnMelon = new JButton("");
+	private final JButton btnHelicopter = new JButton("");
+	private final JButton btnDoll = new JButton("");
+	private final JButton btnBear = new JButton("");
+	private final JButton btnBoat = new JButton("");
+	private final JButton btnYoyo = new JButton("");
+	private final JButton btnKite = new JButton("");
+	private final JLabel lblPlayerContents = new JLabel("            Player contents");
+	private final JLabel lblChocolate = new JLabel(
+			"<html>Name: Chocolate\nPrice: 5<br>\nSize: small\nTastiness: 10\nNutrition: 40");
+	private final JLabel lblCookies = new JLabel(
+			"<html>Name: Cookies\nPrice: 5<br>\nSize: small\nTastiness:  5\nNutrition: 20");
+	private final JLabel lblFish = new JLabel(
+			"<html>Name: Fish<br>\nPrice: 10<br>\nSize: large\nTastiness: 20\nNutrition: 30");
+	private final JLabel lblPizza = new JLabel(
+			"<html>Name: Pizza\nPrice: 10<br>\nSize: large\nTastiness: 10\nNutrition: 40");
+	private final JLabel lblCake = new JLabel(
+			"<html>Name: Cake\nPrice: 10<br>\nSize: large\nTastiness: 10\nNutrition: 30");
+	private final JLabel lblMelon = new JLabel(
+			"<html>Name: Melon\nPrice: 5<br>\nSize: small\nTastiness: 15\nNutrition: 29");
+	private final JLabel lblHelicopter = new JLabel(
+			"<html>Name: Helicopter\nPrice: 20<br>\nDurability: 100\nEnjoyment: 50");
+	private final JLabel lblBoat = new JLabel("<html>Name: Boat\nPrice: 15<br>\nDurability: 70\nEnjoyment: 50");
+	private final JLabel lblYoyo = new JLabel("<html>Name: Yoyo<br>\nPrice: 5<br>\nDurability: 10\nEnjoyment: 20");
+	private final JLabel lblBear = new JLabel("<html>Name: Bear<br>\nPrice: 5<br>\nDurability: 10\nEnjoyment: 10");
+	private final JLabel lblDoll = new JLabel("<html>Name: Doll<br>\nPrice: 5<br>\nDurability: 50\nEnjoyment: 10");
+	private final JLabel lblKite = new JLabel("<html>Name: Kite<br>\nPrice: 10<br>\nDurability: 50\nEnjoyment: 50");
+	private final JLabel lblNewLabel_13 = new JLabel("24 Hour Pet Store");
+	private final JLabel lblPetStoreImage = new JLabel("");
 
 	public GUI() {
 
@@ -166,6 +200,452 @@ public class GUI implements gameObjects {
 		frame.setBounds(100, 100, 1215, 744);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		panelCreation.setLayout(null);
+		lblCrab.setBounds(450, 74, 192, 192);
+		lblSelectUpTo.setForeground(Color.WHITE);
+		lblSelectUpTo.setFont(new Font("Dialog", Font.BOLD, 25));
+		lblSelectUpTo.setBounds(474, 26, 246, 37);
+
+		panelCreation.add(lblSelectUpTo);
+		lblBeng.setBounds(98, 310, 192, 192);
+
+		lblBeng.setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
+		panelCreation.add(lblBeng);
+		lblRobot.setBounds(450, 310, 192, 192);
+
+		lblRobot.setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
+		panelCreation.add(lblRobot);
+		lblMonster.setBounds(801, 74, 192, 192);
+
+		lblMonster.setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
+		panelCreation.add(lblMonster);
+		lblCloud.setBounds(98, 74, 192, 192);
+		lblCloud.setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
+		panelCreation.add(lblCloud);
+		lblSnake.setBounds(801, 310, 192, 192);
+
+		lblSnake.setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
+		panelCreation.add(lblSnake);
+		lblCrab.setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
+		panelCreation.add(lblCrab);
+		panelCreation.add(lblCrab);
+		textFieldCreation.setBounds(274, 513, 698, 67);
+		textFieldCreation.setColumns(10);
+		panelCreation.setBackground(Color.GRAY);
+		panelCreation.setVisible(false);
+		panelCreation.setBounds(0, 0, 1213, 718);
+
+		frame.getContentPane().add(panelCreation);
+		lblNamePrompt.setForeground(Color.WHITE);
+		lblNamePrompt.setBounds(274, 560, 698, 83);
+
+		panelCreation.add(lblNamePrompt);
+
+		panelCreation.add(textFieldCreation);
+		btnCreationContinue.setBounds(510, 622, 193, 61);
+
+		btnCreationContinue.setVerticalAlignment(SwingConstants.BOTTOM);
+
+		panelCreation.add(btnCreationContinue);
+		btnPetCounter.setBounds(510, 622, 193, 61);
+
+		btnPetCounter.setVisible(false);
+		btnPetCounter.setVerticalAlignment(SwingConstants.BOTTOM);
+		panelCreation.add(btnPetCounter);
+
+		txtPetName1 = new JTextField();
+		txtPetName1.setBounds(294, 235, 130, 31);
+		txtPetName1.setText("Enter a name...");
+		panelCreation.add(txtPetName1);
+		txtPetName1.setColumns(10);
+
+		txtPetName2 = new JTextField();
+		txtPetName2.setBounds(652, 235, 130, 31);
+		txtPetName2.setText("Enter a name...");
+		txtPetName2.setColumns(10);
+		panelCreation.add(txtPetName2);
+
+		txtPetName3 = new JTextField();
+		txtPetName3.setBounds(1003, 235, 130, 31);
+		txtPetName3.setText("Enter a name...");
+		txtPetName3.setColumns(10);
+		panelCreation.add(txtPetName3);
+
+		txtPetName4 = new JTextField();
+		txtPetName4.setBounds(294, 469, 130, 31);
+		txtPetName4.setText("Enter a name...");
+		txtPetName4.setColumns(10);
+		panelCreation.add(txtPetName4);
+
+		txtPetName5 = new JTextField();
+		txtPetName5.setBounds(647, 471, 130, 31);
+		txtPetName5.setText("Enter a name...");
+		txtPetName5.setColumns(10);
+		panelCreation.add(txtPetName5);
+
+		txtPetName6 = new JTextField();
+		txtPetName6.setBounds(1003, 471, 130, 31);
+		txtPetName6.setText("Enter a name...");
+		txtPetName6.setColumns(10);
+		panelCreation.add(txtPetName6);
+		chckbxPet1.setBounds(296, 205, 129, 23);
+		panelCreation.add(chckbxPet1);
+		chckbxPet2.setBounds(652, 205, 129, 23);
+		panelCreation.add(chckbxPet2);
+		chckbxPet3.setBounds(1004, 205, 129, 23);
+		panelCreation.add(chckbxPet3);
+		chckbxPet4.setBounds(296, 439, 129, 23);
+		panelCreation.add(chckbxPet4);
+		chckbxPet5.setBounds(648, 441, 129, 23);
+		panelCreation.add(chckbxPet5);
+		chckbxPet6.setBounds(1004, 441, 129, 23);
+		panelCreation.add(chckbxPet6);
+		lblCloudDescribe.setForeground(Color.WHITE);
+		lblCloudDescribe.setBounds(302, 42, 130, 155);
+
+		panelCreation.add(lblCloudDescribe);
+		lblPengDescribe.setForeground(Color.WHITE);
+		lblPengDescribe.setBounds(302, 292, 135, 127);
+
+		panelCreation.add(lblPengDescribe);
+		lblCrabDescribe.setForeground(Color.WHITE);
+		lblCrabDescribe.setBounds(654, 50, 122, 125);
+
+		panelCreation.add(lblCrabDescribe);
+		lblRobotDescribe.setForeground(Color.WHITE);
+		lblRobotDescribe.setBounds(654, 293, 151, 140);
+
+		panelCreation.add(lblRobotDescribe);
+		lblMonsterDescribe.setForeground(Color.WHITE);
+		lblMonsterDescribe.setBounds(1005, 57, 111, 125);
+
+		panelCreation.add(lblMonsterDescribe);
+		lblSnakeDescribe.setForeground(Color.WHITE);
+		lblSnakeDescribe.setBounds(1005, 296, 119, 148);
+
+		panelCreation.add(lblSnakeDescribe);
+		lblBackgroundImage.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
+		lblBackgroundImage.setBounds(-58, -127, 1384, 869);
+
+		panelCreation.add(lblBackgroundImage);
+		panelPet.setBackground(Color.DARK_GRAY);
+		panelPet.setVisible(false);
+		panelPet.setBounds(0, 0, 1213, 718);
+
+		frame.getContentPane().add(panelPet);
+		panelPet.setLayout(null);
+		lblpetdetails.setBackground(Color.LIGHT_GRAY);
+		lblpetdetails.setOpaque(true);
+		lblpetdetails.setBounds(12, 12, 607, 358);
+
+		panelPet.add(lblpetdetails);
+
+		btnPlayerContinue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rdbtn1player.isSelected() == true) {
+					rdbtn1player.setSelected(false);
+					inputDayNum();
+					return;
+				}
+				if (rdbtn2players.isSelected() == true) {
+					rdbtn2players.setSelected(false);
+					inputDayNum();
+					return;
+				}
+				if (rdbtn3players.isSelected() == true) {
+					rdbtn3players.setSelected(false);
+					inputDayNum();
+					return;
+				}
+			}
+		});
+		rdbtn1player.setSelected(true);
+
+		rdbtn1player.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numOfPlayers = 1;
+			}
+		});
+
+		rdbtn2players.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numOfPlayers = 2;
+			}
+		});
+
+		rdbtn3players.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numOfPlayers = 3;
+			}
+		});
+		panelInput.setBackground(Color.WHITE);
+		panelInput.setVisible(false);
+
+		panelInput.setBounds(0, 0, 1213, 718);
+		frame.getContentPane().add(panelInput);
+		panelInput.setLayout(null);
+		rdbtn3players.setVerticalTextPosition(SwingConstants.BOTTOM);
+		rdbtn3players.setHorizontalTextPosition(SwingConstants.CENTER);
+		rdbtn3players.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtn3players.setOpaque(false);
+
+		rdbtn3players.setBounds(629, 427, 232, 67);
+		panelInput.add(rdbtn3players);
+		rdbtn1player.setVerticalTextPosition(SwingConstants.BOTTOM);
+		rdbtn1player.setHorizontalTextPosition(SwingConstants.CENTER);
+		rdbtn1player.setHorizontalAlignment(SwingConstants.CENTER);
+
+		rdbtn1player.setOpaque(false);
+		rdbtn1player.setSize(new Dimension(20, 20));
+		rdbtn1player.setBounds(243, 427, 232, 67);
+		panelInput.add(rdbtn1player);
+		rdbtn2players.setVerticalTextPosition(SwingConstants.BOTTOM);
+		rdbtn2players.setHorizontalTextPosition(SwingConstants.CENTER);
+		rdbtn2players.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtn2players.setOpaque(false);
+		rdbtn2players.setSize(new Dimension(20, 20));
+		rdbtn2players.setBounds(429, 427, 232, 67);
+		panelInput.add(rdbtn2players);
+
+		radioGroupPlayers.add(rdbtn1player);
+		radioGroupPlayers.add(rdbtn2players);
+		radioGroupPlayers.add(rdbtn3players);
+		JLabel lblwelcomeToPets = new JLabel("<html>Welcome to Pets <br>the virtual pet  game!");
+		lblwelcomeToPets.setForeground(Color.WHITE);
+		lblwelcomeToPets.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblwelcomeToPets.setHorizontalAlignment(SwingConstants.CENTER);
+		lblwelcomeToPets.setFont(new Font("Dialog", Font.BOLD, 65));
+		lblwelcomeToPets.setBackground(Color.WHITE);
+		lblwelcomeToPets.setBounds(210, 99, 879, 217);
+		panelInput.add(lblwelcomeToPets);
+
+		panelInput.add(rdbtn2players);
+		lblPlayerNum.setForeground(Color.WHITE);
+		lblPlayerNum.setFont(new Font("Dialog", Font.BOLD, 22));
+		lblPlayerNum.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblPlayerNum.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlayerNum.setBounds(253, 488, 702, 108);
+
+		panelInput.add(lblPlayerNum);
+
+		btnPlayerContinue.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnPlayerContinue.setBounds(510, 605, 193, 78);
+		panelInput.add(btnPlayerContinue);
+
+		btnPlayerContinue2.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnPlayerContinue2.setBounds(510, 622, 193, 61);
+
+		panelInput.add(btnPlayerContinue2);
+
+		spinnerDayNum.setVisible(false);
+		spinnerDayNum.setModel(new SpinnerNumberModel(1.0, 1.0, 19.0, 1.0));
+		spinnerDayNum.setBounds(584, 470, 57, 46);
+		panelInput.add(spinnerDayNum);
+		lblBackgroundIcon.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
+		lblBackgroundIcon.setBounds(-19, -304, 1243, 1048);
+
+		panelInput.add(lblBackgroundIcon);
+
+		panelHelp.setVisible(false);
+		panelHelp.setBackground(Color.RED);
+		panelHelp.setBounds(0, 0, 1199, 705);
+
+		frame.getContentPane().add(panelHelp);
+		panelHelp.setLayout(null);
+
+		lblHelp.setVerticalTextPosition(SwingConstants.TOP);
+		lblHelp.setVerticalAlignment(SwingConstants.TOP);
+
+		lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblHelp.setHorizontalTextPosition(SwingConstants.LEFT);
+		lblHelp.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHelp.setOpaque(true);
+		lblHelp.setBounds(132, 417, 935, 200);
+		panelHelp.add(lblHelp);
+		lblWelcome2.setForeground(Color.WHITE);
+		lblWelcome2.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblWelcome2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcome2.setFont(new Font("Dialog", Font.BOLD, 65));
+		lblWelcome2.setBounds(245, 72, 704, 290);
+		panelHelp.add(lblWelcome2);
+		lblContinue.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblContinue.setOpaque(true);
+		lblContinue.setBounds(132, 617, 215, 47);
+
+		panelHelp.add(lblContinue);
+		lblHelpcounter.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblHelpcounter.setOpaque(true);
+		lblHelpcounter.setBounds(309, 617, 758, 47);
+
+		panelHelp.add(lblHelpcounter);
+
+		clickPanel.setOpaque(false);
+		clickPanel.setBounds(-140, 178, 1131, 598);
+
+		panelHelp.add(clickPanel);
+		lblNewLabel_12.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
+		lblNewLabel_12.setBounds(-31, -49, 1273, 850);
+
+		panelHelp.add(lblNewLabel_12);
+		panelStore.setVisible(false);
+		panelStore.setForeground(Color.WHITE);
+		panelStore.setBackground(Color.WHITE);
+		panelStore.setBounds(0, 0, 1210, 717);
+
+		frame.getContentPane().add(panelStore);
+		panelStore.setLayout(null);
+		lblNewLabel_14.setForeground(new Color(255, 215, 0));
+		lblNewLabel_14.setFont(new Font("Dialog", Font.BOLD, 25));
+		lblNewLabel_14.setBounds(175, 81, 165, 47);
+
+		panelStore.add(lblNewLabel_14);
+		lblNewLabel_15.setForeground(new Color(255, 215, 0));
+		lblNewLabel_15.setFont(new Font("Dialog", Font.BOLD, 25));
+		lblNewLabel_15.setBounds(807, 81, 114, 47);
+
+		panelStore.add(lblNewLabel_15);
+
+		JButton btnChocolate = new JButton("");
+		btnChocolate.setIcon(new ImageIcon(GUI.class.getResource("/photo/Choclate.jpg")));
+		btnChocolate.setBounds(37, 129, 117, 112);
+		panelStore.add(btnChocolate);
+
+		JButton btnCookies = new JButton("");
+		btnCookies.setIcon(new ImageIcon(GUI.class.getResource("/photo/Cookies.jpg")));
+		btnCookies.setBounds(175, 129, 117, 112);
+		panelStore.add(btnCookies);
+
+		JButton btnFish = new JButton("");
+		btnFish.setIcon(new ImageIcon(GUI.class.getResource("/photo/Fish.jpg")));
+		btnFish.setBounds(319, 129, 125, 112);
+		panelStore.add(btnFish);
+
+		JButton btnPizza = new JButton("");
+		btnPizza.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pizza.jpg")));
+		btnPizza.setBounds(40, 322, 114, 123);
+		panelStore.add(btnPizza);
+		btnCake.setIcon(new ImageIcon(GUI.class.getResource("/photo/cake.jpg")));
+		btnCake.setBounds(175, 322, 114, 123);
+
+		panelStore.add(btnCake);
+		btnMelon.setIcon(new ImageIcon(GUI.class.getResource("/photo/water_m.jpg")));
+		btnMelon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMelon.setBounds(319, 325, 125, 120);
+
+		panelStore.add(btnMelon);
+		btnHelicopter.setFont(new Font("Dialog", Font.PLAIN, 5));
+		btnHelicopter.setIcon(new ImageIcon(GUI.class.getResource("/photo/plan.jpg")));
+		btnHelicopter.setBounds(668, 129, 117, 112);
+
+		panelStore.add(btnHelicopter);
+		btnDoll.setIcon(new ImageIcon(GUI.class.getResource("/photo/Doll_Toy.jpg")));
+		btnDoll.setBounds(817, 321, 105, 124);
+
+		panelStore.add(btnDoll);
+		btnBear.setFont(new Font("Dialog", Font.BOLD, 5));
+		btnBear.setIcon(new ImageIcon(GUI.class.getResource("/photo/Bear_Toy.jpg")));
+		btnBear.setBounds(668, 322, 105, 123);
+
+		panelStore.add(btnBear);
+		btnBoat.setIcon(new ImageIcon(GUI.class.getResource("/photo/Boat_Toy.jpg")));
+		btnBoat.setBounds(817, 129, 132, 112);
+
+		panelStore.add(btnBoat);
+		btnYoyo.setIcon(new ImageIcon(GUI.class.getResource("/photo/yoy.jpg")));
+		btnYoyo.setBounds(971, 129, 129, 112);
+
+		panelStore.add(btnYoyo);
+		btnKite.setIcon(new ImageIcon(GUI.class.getResource("/photo/KITE_TOY.png")));
+		btnKite.setBounds(983, 322, 117, 132);
+
+		panelStore.add(btnKite);
+		lblPlayerContents.setForeground(Color.BLACK);
+		lblPlayerContents.setBackground(Color.CYAN);
+		lblPlayerContents.setBounds(37, 537, 424, 146);
+
+		panelStore.add(lblPlayerContents);
+		lblChocolate.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblChocolate.setBounds(37, 242, 117, 80);
+
+		panelStore.add(lblChocolate);
+		lblCookies.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblCookies.setBounds(175, 248, 117, 69);
+
+		panelStore.add(lblCookies);
+		lblFish.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblFish.setBounds(319, 246, 125, 71);
+
+		panelStore.add(lblFish);
+		lblPizza.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblPizza.setBounds(37, 450, 117, 75);
+
+		panelStore.add(lblPizza);
+		lblCake.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblCake.setBounds(185, 450, 107, 75);
+
+		panelStore.add(lblCake);
+		lblMelon.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblMelon.setBounds(319, 450, 125, 75);
+
+		panelStore.add(lblMelon);
+		lblHelicopter.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblHelicopter.setBounds(678, 236, 114, 79);
+
+		panelStore.add(lblHelicopter);
+		lblBoat.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblBoat.setBounds(826, 241, 105, 68);
+
+		panelStore.add(lblBoat);
+		lblYoyo.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblYoyo.setBounds(981, 243, 119, 64);
+
+		panelStore.add(lblYoyo);
+		lblBear.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblBear.setBounds(668, 446, 117, 68);
+
+		panelStore.add(lblBear);
+		lblDoll.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblDoll.setBounds(827, 446, 114, 68);
+
+		panelStore.add(lblDoll);
+		lblKite.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblKite.setBounds(993, 451, 114, 63);
+
+		panelStore.add(lblKite);
+		lblNewLabel_13.setFont(new Font("Dialog", Font.BOLD, 40));
+		lblNewLabel_13.setBounds(371, 0, 414, 89);
+
+		panelStore.add(lblNewLabel_13);
+		lblPetStoreImage.setIcon(new ImageIcon(GUI.class.getResource("/photo/PetStoreDog.jpg")));
+		lblPetStoreImage.setBounds(443, 537, 258, 182);
+
+		panelStore.add(lblPetStoreImage);
+		panelStart.setBackground(Color.BLUE);
+		panelStart.setForeground(Color.RED);
+		panelStart.setBounds(0, 0, 1213, 718);
+
+		frame.getContentPane().add(panelStart);
+		panelStart.setLayout(null);
+
+		btnHelp.setBounds(550, 542, 179, 48);
+		panelStart.add(btnHelp);
+
+		btnStart.setBounds(550, 439, 179, 48);
+		panelStart.add(btnStart);
+		lblWelcome.setForeground(Color.WHITE);
+		lblWelcome.setBackground(new Color(255, 255, 255));
+		lblWelcome.setBounds(298, 99, 817, 225);
+		panelStart.add(lblWelcome);
+		lblWelcome.setFont(new Font("Dialog", Font.BOLD, 65));
+		lblWelcome.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBackgroundstart.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
+		lblBackgroundstart.setBounds(-30, -231, 1365, 981);
+
+		panelStart.add(lblBackgroundstart);
 		panelMainScreen.setVisible(false);
 		panelMainScreen.setBackground(Color.GRAY);
 		panelMainScreen.setBounds(0, 0, 1213, 718);
@@ -176,11 +656,11 @@ public class GUI implements gameObjects {
 		lblDayTotals.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDayTotals.setForeground(Color.WHITE);
 		lblDayTotals.setBounds(910, 227, 81, 28);
-		
+
 		panelMainScreen.add(lblDayTotals);
 		lblDay.setForeground(Color.WHITE);
 		lblDay.setBounds(827, 76, 81, 23);
-		
+
 		panelMainScreen.add(lblDay);
 		panelButtons.setBackground(Color.DARK_GRAY);
 		panelButtons.setForeground(Color.WHITE);
@@ -325,323 +805,6 @@ public class GUI implements gameObjects {
 		lblDayNum.setBounds(817, 71, 182, 192);
 
 		panelMainScreen.add(lblDayNum);
-		panelCreation.setLayout(null);
-		lblNewLabel.setBounds(450, 74, 192, 192);
-		lblSelectUpTo.setForeground(Color.WHITE);
-		lblSelectUpTo.setFont(new Font("Dialog", Font.BOLD, 25));
-		lblSelectUpTo.setBounds(474, 26, 246, 37);
-
-		panelCreation.add(lblSelectUpTo);
-		lblBeng.setBounds(98, 310, 192, 192);
-
-		lblBeng.setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
-		panelCreation.add(lblBeng);
-		lblNewLabel_4.setBounds(450, 310, 192, 192);
-
-		lblNewLabel_4.setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
-		panelCreation.add(lblNewLabel_4);
-		lblNewLabel_2.setBounds(801, 74, 192, 192);
-
-		lblNewLabel_2.setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
-		panelCreation.add(lblNewLabel_2);
-		lblNewLabel_1.setBounds(98, 74, 192, 192);
-		lblNewLabel_1.setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
-		panelCreation.add(lblNewLabel_1);
-		lblNewLabel_5.setBounds(801, 310, 192, 192);
-
-		lblNewLabel_5.setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
-		panelCreation.add(lblNewLabel_5);
-		lblNewLabel.setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
-		panelCreation.add(lblNewLabel);
-		panelCreation.add(lblNewLabel);
-		textFieldCreation.setBounds(274, 513, 698, 67);
-		textFieldCreation.setColumns(10);
-		panelCreation.setBackground(Color.GRAY);
-		panelCreation.setVisible(false);
-		panelCreation.setBounds(0, 0, 1213, 718);
-
-		frame.getContentPane().add(panelCreation);
-		lblNamePrompt.setForeground(Color.WHITE);
-		lblNamePrompt.setBounds(274, 560, 698, 83);
-
-		panelCreation.add(lblNamePrompt);
-
-		panelCreation.add(textFieldCreation);
-		btnCreationContinue.setBounds(510, 622, 193, 61);
-
-		btnCreationContinue.setVerticalAlignment(SwingConstants.BOTTOM);
-
-		panelCreation.add(btnCreationContinue);
-		btnPetCounter.setBounds(510, 622, 193, 61);
-
-		btnPetCounter.setVisible(false);
-		btnPetCounter.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelCreation.add(btnPetCounter);
-
-		txtPetName1 = new JTextField();
-		txtPetName1.setBounds(294, 235, 130, 31);
-		txtPetName1.setText("Enter a name...");
-		panelCreation.add(txtPetName1);
-		txtPetName1.setColumns(10);
-
-		txtPetName2 = new JTextField();
-		txtPetName2.setBounds(652, 235, 130, 31);
-		txtPetName2.setText("Enter a name...");
-		txtPetName2.setColumns(10);
-		panelCreation.add(txtPetName2);
-
-		txtPetName3 = new JTextField();
-		txtPetName3.setBounds(1003, 235, 130, 31);
-		txtPetName3.setText("Enter a name...");
-		txtPetName3.setColumns(10);
-		panelCreation.add(txtPetName3);
-
-		txtPetName4 = new JTextField();
-		txtPetName4.setBounds(294, 469, 130, 31);
-		txtPetName4.setText("Enter a name...");
-		txtPetName4.setColumns(10);
-		panelCreation.add(txtPetName4);
-
-		txtPetName5 = new JTextField();
-		txtPetName5.setBounds(647, 471, 130, 31);
-		txtPetName5.setText("Enter a name...");
-		txtPetName5.setColumns(10);
-		panelCreation.add(txtPetName5);
-
-		txtPetName6 = new JTextField();
-		txtPetName6.setBounds(1003, 471, 130, 31);
-		txtPetName6.setText("Enter a name...");
-		txtPetName6.setColumns(10);
-		panelCreation.add(txtPetName6);
-		chckbxPet1.setBounds(296, 205, 129, 23);
-		panelCreation.add(chckbxPet1);
-		chckbxPet2.setBounds(652, 205, 129, 23);
-		panelCreation.add(chckbxPet2);
-		chckbxPet3.setBounds(1004, 205, 129, 23);
-		panelCreation.add(chckbxPet3);
-		chckbxPet4.setBounds(296, 439, 129, 23);
-		panelCreation.add(chckbxPet4);
-		chckbxPet5.setBounds(648, 441, 129, 23);
-		panelCreation.add(chckbxPet5);
-		chckbxPet6.setBounds(1004, 441, 129, 23);
-		panelCreation.add(chckbxPet6);
-		lblNewLabel_6.setForeground(Color.WHITE);
-		lblNewLabel_6.setBounds(294, 18, 130, 155);
-
-		panelCreation.add(lblNewLabel_6);
-		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setBounds(294, 268, 135, 127);
-
-		panelCreation.add(lblNewLabel_3);
-		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setBounds(652, 26, 122, 125);
-
-		panelCreation.add(lblNewLabel_7);
-		lblNewLabel_8.setForeground(Color.WHITE);
-		lblNewLabel_8.setBounds(652, 268, 151, 140);
-
-		panelCreation.add(lblNewLabel_8);
-		lblNewLabel_9.setForeground(Color.WHITE);
-		lblNewLabel_9.setBounds(1003, 47, 111, 125);
-
-		panelCreation.add(lblNewLabel_9);
-		lblNewLabel_10.setForeground(Color.WHITE);
-		lblNewLabel_10.setBounds(1006, 271, 119, 148);
-
-		panelCreation.add(lblNewLabel_10);
-		lblNewLabel_11.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
-		lblNewLabel_11.setBounds(-58, -127, 1384, 869);
-
-		panelCreation.add(lblNewLabel_11);
-
-		panelHelp.setVisible(false);
-		panelHelp.setBackground(Color.RED);
-		panelHelp.setBounds(0, 0, 1199, 705);
-
-		frame.getContentPane().add(panelHelp);
-		panelHelp.setLayout(null);
-
-		lblHelp.setVerticalTextPosition(SwingConstants.TOP);
-		lblHelp.setVerticalAlignment(SwingConstants.TOP);
-
-		lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblHelp.setHorizontalTextPosition(SwingConstants.LEFT);
-		lblHelp.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHelp.setOpaque(true);
-		lblHelp.setBounds(132, 417, 935, 200);
-		panelHelp.add(lblHelp);
-		lblWelcome2.setForeground(Color.WHITE);
-		lblWelcome2.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblWelcome2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWelcome2.setFont(new Font("Dialog", Font.BOLD, 65));
-		lblWelcome2.setBounds(245, 72, 704, 290);
-		panelHelp.add(lblWelcome2);
-		lblContinue.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblContinue.setOpaque(true);
-		lblContinue.setBounds(132, 617, 215, 47);
-
-		panelHelp.add(lblContinue);
-		lblHelpcounter.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblHelpcounter.setOpaque(true);
-		lblHelpcounter.setBounds(309, 617, 758, 47);
-
-		panelHelp.add(lblHelpcounter);
-
-		clickPanel.setOpaque(false);
-		clickPanel.setBounds(-140, 178, 1131, 598);
-
-		panelHelp.add(clickPanel);
-		lblNewLabel_12.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
-		lblNewLabel_12.setBounds(-31, -49, 1273, 850);
-
-		panelHelp.add(lblNewLabel_12);
-		panelPet.setBackground(Color.DARK_GRAY);
-		panelPet.setVisible(false);
-		panelPet.setBounds(0, 0, 1213, 718);
-
-		frame.getContentPane().add(panelPet);
-		panelPet.setLayout(null);
-		lblpetdetails.setBackground(Color.LIGHT_GRAY);
-		lblpetdetails.setOpaque(true);
-		lblpetdetails.setBounds(12, 12, 607, 358);
-
-		panelPet.add(lblpetdetails);
-
-		btnPlayerContinue.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (rdbtn1player.isSelected() == true) {
-					rdbtn1player.setSelected(false);
-					inputDayNum();
-					return;
-				}
-				if (rdbtn2players.isSelected() == true) {
-					rdbtn2players.setSelected(false);
-					inputDayNum();
-					return;
-				}
-				if (rdbtn3players.isSelected() == true) {
-					rdbtn3players.setSelected(false);
-					inputDayNum();
-					return;
-				}
-			}
-		});
-		rdbtn1player.setSelected(true);
-
-		rdbtn1player.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				numOfPlayers = 1;
-			}
-		});
-
-		rdbtn2players.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				numOfPlayers = 2;
-			}
-		});
-
-		rdbtn3players.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				numOfPlayers = 3;
-			}
-		});
-		panelInput.setBackground(Color.WHITE);
-		panelInput.setVisible(false);
-
-		panelInput.setBounds(0, 0, 1213, 718);
-		frame.getContentPane().add(panelInput);
-		panelInput.setLayout(null);
-		rdbtn3players.setVerticalTextPosition(SwingConstants.BOTTOM);
-		rdbtn3players.setHorizontalTextPosition(SwingConstants.CENTER);
-		rdbtn3players.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtn3players.setOpaque(false);
-
-		rdbtn3players.setBounds(629, 427, 232, 67);
-		panelInput.add(rdbtn3players);
-		rdbtn1player.setVerticalTextPosition(SwingConstants.BOTTOM);
-		rdbtn1player.setHorizontalTextPosition(SwingConstants.CENTER);
-		rdbtn1player.setHorizontalAlignment(SwingConstants.CENTER);
-
-		rdbtn1player.setOpaque(false);
-		rdbtn1player.setSize(new Dimension(20, 20));
-		rdbtn1player.setBounds(243, 427, 232, 67);
-		panelInput.add(rdbtn1player);
-		rdbtn2players.setVerticalTextPosition(SwingConstants.BOTTOM);
-		rdbtn2players.setHorizontalTextPosition(SwingConstants.CENTER);
-		rdbtn2players.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtn2players.setOpaque(false);
-		rdbtn2players.setSize(new Dimension(20, 20));
-		rdbtn2players.setBounds(429, 427, 232, 67);
-		panelInput.add(rdbtn2players);
-
-		radioGroupPlayers.add(rdbtn1player);
-		radioGroupPlayers.add(rdbtn2players);
-		radioGroupPlayers.add(rdbtn3players);
-		JLabel lblwelcomeToPets = new JLabel("<html>Welcome to Pets <br>the virtual pet  game!");
-		lblwelcomeToPets.setForeground(Color.WHITE);
-		lblwelcomeToPets.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblwelcomeToPets.setHorizontalAlignment(SwingConstants.CENTER);
-		lblwelcomeToPets.setFont(new Font("Dialog", Font.BOLD, 65));
-		lblwelcomeToPets.setBackground(Color.WHITE);
-		lblwelcomeToPets.setBounds(210, 99, 879, 217);
-		panelInput.add(lblwelcomeToPets);
-
-		panelInput.add(rdbtn2players);
-		lblPlayerNum.setForeground(Color.WHITE);
-		lblPlayerNum.setFont(new Font("Dialog", Font.BOLD, 22));
-		lblPlayerNum.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblPlayerNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayerNum.setBounds(253, 488, 702, 108);
-
-		panelInput.add(lblPlayerNum);
-
-		btnPlayerContinue.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnPlayerContinue.setBounds(510, 605, 193, 78);
-		panelInput.add(btnPlayerContinue);
-
-		btnPlayerContinue2.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnPlayerContinue2.setBounds(510, 622, 193, 61);
-
-		panelInput.add(btnPlayerContinue2);
-
-		spinnerDayNum.setVisible(false);
-		spinnerDayNum.setModel(new SpinnerNumberModel(1.0, 1.0, 19.0, 1.0));
-		spinnerDayNum.setBounds(584, 470, 57, 46);
-		panelInput.add(spinnerDayNum);
-		lblBackgroundIcon.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
-		lblBackgroundIcon.setBounds(-19, -304, 1243, 1048);
-
-		panelInput.add(lblBackgroundIcon);
-		panelStart.setBackground(Color.BLUE);
-		panelStart.setForeground(Color.RED);
-		panelStart.setBounds(0, 0, 1213, 718);
-
-		frame.getContentPane().add(panelStart);
-		panelStart.setLayout(null);
-
-		btnHelp.setBounds(550, 542, 179, 48);
-		panelStart.add(btnHelp);
-
-		btnStart.setBounds(550, 439, 179, 48);
-		panelStart.add(btnStart);
-		lblWelcome.setForeground(Color.WHITE);
-		lblWelcome.setBackground(new Color(255, 255, 255));
-		lblWelcome.setBounds(298, 99, 817, 225);
-		panelStart.add(lblWelcome);
-		lblWelcome.setFont(new Font("Dialog", Font.BOLD, 65));
-		lblWelcome.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBackgroundstart.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
-		lblBackgroundstart.setBounds(-30, -231, 1365, 981);
-
-		panelStart.add(lblBackgroundstart);
-		panelStore.setVisible(false);
-		panelStore.setLayout(null);
-		panelStore.setForeground(Color.WHITE);
-		panelStore.setBackground(Color.PINK);
-		panelStore.setBounds(0, 0, 1210, 717);
-		
-				frame.getContentPane().add(panelStore);
 		btnEndDay.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				btnEndDay.setBackground(Color.GREEN);
@@ -676,30 +839,30 @@ public class GUI implements gameObjects {
 	}
 
 	public void mainScreenText() {
-		
+
 		panelCreation.setVisible(false);
 		panelMainScreen.setVisible(true);
-//		Properties prop = new Properties();
-//		InputStream input = null;
+		// Properties prop = new Properties();
+		// InputStream input = null;
 
-//		try {
-//
-//			input = new FileInputStream("config.properties");
-//			// load a properties file
-//			prop.load(input);
-//			// get the property value and print it out
-//			System.out.println((prop.getProperty("main")));
-//		} catch (IOException ex) {
-//			ex.printStackTrace();
-//		} finally {
-//			if (input != null) {
-//				try {
-//					input.close();
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
+		// try {
+		//
+		// input = new FileInputStream("config.properties");
+		// // load a properties file
+		// prop.load(input);
+		// // get the property value and print it out
+		// System.out.println((prop.getProperty("main")));
+		// } catch (IOException ex) {
+		// ex.printStackTrace();
+		// } finally {
+		// if (input != null) {
+		// try {
+		// input.close();
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// }
+		// }
 	}
 
 	public void mainSelectScreen(Player player) {
@@ -1189,17 +1352,17 @@ public class GUI implements gameObjects {
 		txtPetName6.setVisible(true);
 		btnPetCounter.setVisible(true);
 		btnCreationContinue.setVisible(false);
-		lblNewLabel.setVisible(true);
-		lblNewLabel_1.setVisible(true);
-		lblNewLabel_2.setVisible(true);
+		lblCrab.setVisible(true);
+		lblCloud.setVisible(true);
+		lblMonster.setVisible(true);
 		lblBeng.setVisible(true);
-		lblNewLabel_4.setVisible(true);
-		lblNewLabel_5.setVisible(true);
+		lblRobot.setVisible(true);
+		lblSnake.setVisible(true);
 		lblNewLabel6.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
+		lblCrab.setVisible(true);
+		lblCrab.setVisible(true);
+		lblCrab.setVisible(true);
+		lblCrab.setVisible(true);
 		chckbxPet1.setVisible(true);
 		chckbxPet2.setVisible(true);
 		chckbxPet3.setVisible(true);
