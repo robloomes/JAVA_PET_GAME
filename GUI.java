@@ -32,7 +32,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-public class GUI implements gameObjects {
+public class GUIfinal implements gameObjects {
 
 	private final JLabel lblNewLabel_14 = new JLabel("  Food");
 	private final JLabel lblNewLabel_15 = new JLabel("  Toys");
@@ -44,7 +44,7 @@ public class GUI implements gameObjects {
 	private final JButton btnBoat = new JButton("");
 	private final JButton btnYoyo = new JButton("");
 	private final JButton btnKite = new JButton("");
-	private final JLabel lblPlayerContents = new JLabel("Player contents");
+	private JLabel lblPlayerContents = new JLabel("Player contents");
 	private final JLabel lblChocolate = new JLabel(
 			"<html>Name: Chocolate\nPrice: 5<br>\nSize: small\nTastiness: 10\nNutrition: 40");
 	private final JLabel lblCookies = new JLabel(
@@ -68,8 +68,7 @@ public class GUI implements gameObjects {
 	private final JLabel lblPetStoreImage = new JLabel("");
 
 	int textCounter = 1;
-	JFrame frame;
-	//// Initializations
+	private JFrame frame;
 	private Species globalCurrentPet;
 	private Player globalCurrentPlayer;
 	private int numOfPlayers;
@@ -77,11 +76,6 @@ public class GUI implements gameObjects {
 	private double playerDaysTaken;
 	private int globalCurrentDay;
 	private List<String> existingPetNames = new ArrayList<String>();
-	// private Map<Integer, Toy> toyChoices = new HashMap<Integer, Toy>();
-	// private Map<Integer, Food> foodChoices = new HashMap<Integer, Food>();
-	// private Map<Integer, Species> speciesChoices = new HashMap<Integer,
-	// Species>();
-	// private Map<Integer, Player> players = new HashMap<Integer, Player>();
 
 	private JLabel lblWelcome = new JLabel("<html>Welcome to Pets <br> the virtual pet game!");
 	private JButton btnStart = new JButton("Start");
@@ -196,8 +190,8 @@ public class GUI implements gameObjects {
 	private final JLabel lblFood4 = new JLabel("New label");
 	private final JLabel lblFood5 = new JLabel("New label");
 	private final JLabel lblFood6 = new JLabel("New label");
-	Map<Integer, Food> currentFood = new HashMap<Integer, Food>();
-	Map<Integer, Toy> currentToys = new HashMap<Integer, Toy>();
+	private Map<Integer, Food> currentFood = new HashMap<Integer, Food>();
+	private Map<Integer, Toy> currentToys = new HashMap<Integer, Toy>();
 	private final JPanel panelPlay = new JPanel();
 	private final JButton btnToy1 = new JButton("");
 	private final JButton btnToy2 = new JButton("");
@@ -215,7 +209,7 @@ public class GUI implements gameObjects {
 	private final JLabel lblToy6 = new JLabel("");
 	private final JLabel lblPlayerStats = new JLabel("<html>");
 
-	public GUI() {
+	public GUIfinal() {
 		panelStore.setVisible(false);
 		panelStore.add(lblNewLabel_14);
 		lblNewLabel_15.setForeground(new Color(255, 215, 0));
@@ -223,19 +217,15 @@ public class GUI implements gameObjects {
 		lblNewLabel_15.setBounds(807, 81, 114, 47);
 		panelStore.add(lblNewLabel_15);
 
-		btnCake.setIcon(new ImageIcon(GUI.class.getResource("/photo/cake.jpg")));
+		btnCake.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/cake.jpg")));
 		btnCake.setBounds(175, 322, 114, 123);
 
 		panelStore.add(btnCake);
 		btnMelon.setIcon(new ImageIcon(GUI.class.getResource("/photo/water_m.jpg")));
-		btnMelon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnMelon.setBounds(319, 325, 125, 120);
 
 		panelStore.add(btnMelon);
-		btnHelicopter.setIcon(new ImageIcon(GUI.class.getResource("/photo/HELI_TOY.png")));
+		btnHelicopter.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/HELI_TOY.jpg")));
 
 		btnHelicopter.setFont(new Font("Dialog", Font.PLAIN, 5));
 		btnHelicopter.setBounds(668, 129, 117, 112);
@@ -328,6 +318,7 @@ public class GUI implements gameObjects {
 		lblKite.setBounds(993, 451, 114, 63);
 
 		panelStore.add(lblKite);
+		lblNewLabel_13.setForeground(Color.WHITE);
 		lblNewLabel_13.setFont(new Font("Dialog", Font.BOLD, 40));
 		lblNewLabel_13.setBounds(371, 0, 414, 89);
 
@@ -372,27 +363,7 @@ public class GUI implements gameObjects {
 		frame.setBounds(100, 100, 1215, 744);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		panelPlay.setVisible(false);
 
-		btnPlayerContinue.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (rdbtn1player.isSelected() == true) {
-					rdbtn1player.setSelected(false);
-					inputDayNum();
-					return;
-				}
-				if (rdbtn2players.isSelected() == true) {
-					rdbtn2players.setSelected(false);
-					inputDayNum();
-					return;
-				}
-				if (rdbtn3players.isSelected() == true) {
-					rdbtn3players.setSelected(false);
-					inputDayNum();
-					return;
-				}
-			}
-		});
 		rdbtn1player.setSelected(true);
 
 		rdbtn1player.addActionListener(new ActionListener() {
@@ -414,246 +385,169 @@ public class GUI implements gameObjects {
 		});
 		panelInput.setBackground(Color.WHITE);
 		panelInput.setVisible(false);
-		panelMainScreen.setVisible(false);
-		panelMainScreen.setBackground(Color.GRAY);
-		panelMainScreen.setBounds(0, 0, 1213, 718);
+		panelPlay.setVisible(false);
+		panelPlay.setBackground(Color.DARK_GRAY);
+		panelPlay.setBounds(0, 0, 605, 706);
 
-		frame.getContentPane().add(panelMainScreen);
-		panelMainScreen.setLayout(null);
-		panelButtons.add(btnFeedPet);
-		panelButtons.setBackground(Color.DARK_GRAY);
-		panelButtons.setForeground(Color.WHITE);
-		panelButtons.setBounds(12, 11, 593, 695);
+		frame.getContentPane().add(panelPlay);
+		panelPlay.setLayout(null);
+		btnToy1.setVisible(false);
+		btnToy1.setBounds(40, 155, 115, 115);
 
-		panelMainScreen.add(panelButtons);
-		panelButtons.setLayout(null);
+		panelPlay.add(btnToy1);
+		btnToy2.setVisible(false);
+		btnToy2.setBounds(245, 155, 115, 115);
 
-		btnPetSelect.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnPetSelect.setBackground(Color.GREEN);
-			}
+		panelPlay.add(btnToy2);
+		btnToy3.setVisible(false);
+		btnToy3.setBounds(446, 155, 115, 115);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnPetSelect.setBackground(UIManager.getColor("control"));
-			}
-		});
-		btnPetSelect.setBounds(10, 10, 571, 57);
+		panelPlay.add(btnToy3);
+		btnToy4.setVisible(false);
+		btnToy4.setBounds(40, 386, 115, 115);
 
-		panelButtons.add(btnPetSelect);
+		panelPlay.add(btnToy4);
+		btnToy5.setVisible(false);
+		btnToy5.setBounds(245, 386, 115, 115);
 
-		btnVisitTheStore.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnVisitTheStore.setBackground(Color.GREEN);
-			}
+		panelPlay.add(btnToy5);
+		btnToy6.setVisible(false);
+		btnToy6.setBounds(446, 386, 115, 115);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnVisitTheStore.setBackground(UIManager.getColor("control"));
-			}
-		});
-		btnVisitTheStore.setBounds(10, 79, 571, 57);
+		panelPlay.add(btnToy6);
+		btnPlayBack.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btnPlayBack.setBounds(407, 629, 188, 66);
 
-		panelButtons.add(btnVisitTheStore);
+		panelPlay.add(btnPlayBack);
+		lblPlay.setForeground(Color.WHITE);
+		lblPlay.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlay.setBackground(Color.GRAY);
+		lblPlay.setFont(new Font("Dialog", Font.PLAIN, 25));
+		lblPlay.setOpaque(true);
+		lblPlay.setBounds(36, 29, 525, 115);
 
-		btnFeedPet.setBounds(10, 147, 571, 57);
-		btnFeedPet.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnFeedPet.setBackground(Color.GREEN);
-			}
+		panelPlay.add(lblPlay);
+		lblToy1.setVisible(false);
+		lblToy1.setOpaque(true);
+		lblToy1.setBounds(40, 281, 115, 34);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnFeedPet.setBackground(UIManager.getColor("control"));
-			}
-		});
+		panelPlay.add(lblToy1);
+		lblToy2.setVisible(false);
+		lblToy2.setOpaque(true);
+		lblToy2.setBounds(245, 281, 115, 34);
 
-		btnSleep.setBounds(10, 215, 571, 57);
-		btnSleep.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnSleep.setBackground(Color.GREEN);
-			}
+		panelPlay.add(lblToy2);
+		lblToy3.setVisible(false);
+		lblToy3.setOpaque(true);
+		lblToy3.setBounds(446, 281, 115, 34);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnSleep.setBackground(UIManager.getColor("control"));
-			}
-		});
+		panelPlay.add(lblToy3);
+		lblToy4.setVisible(false);
+		lblToy4.setOpaque(true);
+		lblToy4.setBounds(40, 513, 115, 34);
 
-		panelButtons.add(btnSleep);
-		btnUseToy.setBounds(10, 283, 571, 57);
+		panelPlay.add(lblToy4);
+		lblToy5.setVisible(false);
+		lblToy5.setOpaque(true);
+		lblToy5.setBounds(245, 513, 115, 34);
 
-		panelButtons.add(btnUseToy);
-		btnUseToy.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnUseToy.setBackground(Color.GREEN);
-			}
+		panelPlay.add(lblToy5);
+		lblToy6.setVisible(false);
+		lblToy6.setOpaque(true);
+		lblToy6.setBounds(446, 512, 115, 34);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnUseToy.setBackground(UIManager.getColor("control"));
-			}
-		});
+		panelPlay.add(lblToy6);
+		panelFeed.setBounds(0, 0, 605, 706);
+		frame.getContentPane().add(panelFeed);
 
-		btnUseToilet.setBounds(10, 351, 571, 57);
+		panelFeed.setVisible(false);
+		panelFeed.setBackground(Color.DARK_GRAY);
+		panelFeed.setLayout(null);
+		btnFood1.setVisible(false);
 
-		panelButtons.add(btnUseToilet);
-		btnUseToilet.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnUseToilet.setBackground(Color.GREEN);
-			}
+		btnFood1.setBounds(40, 155, 115, 115);
+		panelFeed.add(btnFood1);
+		btnFood2.setVisible(false);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnUseToilet.setBackground(UIManager.getColor("control"));
-			}
-		});
+		btnFood2.setBounds(245, 155, 115, 115);
+		panelFeed.add(btnFood2);
+		btnFood3.setVisible(false);
 
-		btnPunishPet.setBounds(10, 419, 571, 57);
+		btnFood3.setBounds(446, 155, 115, 115);
+		panelFeed.add(btnFood3);
+		btnFood4.setVisible(false);
 
-		panelButtons.add(btnPunishPet);
-		btnPunishPet.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnPunishPet.setBackground(Color.GREEN);
-			}
+		btnFood4.setBounds(40, 386, 115, 115);
+		panelFeed.add(btnFood4);
+		btnFood5.setVisible(false);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnPunishPet.setBackground(UIManager.getColor("control"));
-			}
-		});
+		btnFood5.setBounds(245, 386, 115, 115);
+		panelFeed.add(btnFood5);
+		btnFood6.setVisible(false);
 
-		btnVisitDoctor.setBounds(10, 487, 571, 57);
+		btnFood6.setBounds(446, 386, 115, 115);
+		panelFeed.add(btnFood6);
 
-		panelButtons.add(btnVisitDoctor);
-		btnVisitDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnVisitDoctor.setBackground(Color.GREEN);
-			}
+		JLabel lblFeed = new JLabel("Choose an item to feed to your pet.");
+		lblFeed.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lblFeed.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFeed.setForeground(Color.WHITE);
+		lblFeed.setOpaque(true);
+		lblFeed.setBackground(new Color(128, 128, 128));
+		lblFeed.setBounds(36, 29, 525, 115);
+		panelFeed.add(lblFeed);
+		btnFeedBack.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnFeedBack.setBounds(407, 629, 188, 66);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnVisitDoctor.setBackground(UIManager.getColor("control"));
-			}
-		});
-		btnEndDay.setBounds(10, 626, 571, 57);
+		panelFeed.add(btnFeedBack);
+		lblFood1.setVisible(false);
+		lblFood1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood1.setBackground(Color.GRAY);
+		lblFood1.setForeground(Color.WHITE);
+		lblFood1.setOpaque(true);
+		lblFood1.setBounds(40, 281, 115, 34);
 
-		panelButtons.add(btnEndDay);
+		panelFeed.add(lblFood1);
+		lblFood2.setVisible(false);
+		lblFood2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood2.setBackground(Color.GRAY);
+		lblFood2.setForeground(Color.WHITE);
+		lblFood2.setOpaque(true);
+		lblFood2.setBounds(245, 281, 115, 34);
 
-		btnRevive.setBounds(10, 556, 571, 57);
+		panelFeed.add(lblFood2);
+		lblFood3.setVisible(false);
+		lblFood3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood3.setBackground(Color.GRAY);
+		lblFood3.setForeground(Color.WHITE);
+		lblFood3.setOpaque(true);
+		lblFood3.setBounds(446, 281, 115, 34);
 
-		panelButtons.add(btnRevive);
+		panelFeed.add(lblFood3);
+		lblFood4.setVisible(false);
+		lblFood4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood4.setBackground(Color.GRAY);
+		lblFood4.setForeground(Color.WHITE);
+		lblFood4.setOpaque(true);
+		lblFood4.setBounds(40, 512, 115, 34);
 
-		btnPetSelect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelButtons.setVisible(false);
-				panelPets.setVisible(true);
-				selectPet();
-			}
-		});
-		btnEndDay.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnEndDay.setBackground(Color.GREEN);
-			}
+		panelFeed.add(lblFood4);
+		lblFood5.setVisible(false);
+		lblFood5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood5.setBackground(Color.GRAY);
+		lblFood5.setForeground(Color.WHITE);
+		lblFood5.setOpaque(true);
+		lblFood5.setBounds(245, 512, 115, 34);
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnEndDay.setBackground(UIManager.getColor("control"));
-			}
-		});
-		lblDayTotals.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblDayTotals.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDayTotals.setForeground(Color.WHITE);
-		lblDayTotals.setBounds(910, 227, 81, 28);
+		panelFeed.add(lblFood5);
+		lblFood6.setVisible(false);
+		lblFood6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood6.setBackground(Color.GRAY);
+		lblFood6.setForeground(Color.WHITE);
+		lblFood6.setOpaque(true);
+		lblFood6.setBounds(446, 512, 115, 34);
 
-		panelMainScreen.add(lblDayTotals);
-		lblDay.setForeground(Color.WHITE);
-		lblDay.setBounds(827, 76, 81, 23);
-		panelMainScreen.add(lblDay);
-		lblCurrentSelectedPet.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCurrentSelectedPet.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblCurrentSelectedPet.setOpaque(true);
-		lblCurrentSelectedPet.setBounds(615, 69, 192, 192);
-
-		panelMainScreen.add(lblCurrentSelectedPet);
-		lblPetAttributes.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblPetAttributes.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPetAttributes.setHorizontalTextPosition(SwingConstants.LEFT);
-		lblPetAttributes.setOpaque(true);
-		lblPetAttributes.setBackground(Color.DARK_GRAY);
-		lblPetAttributes.setForeground(Color.WHITE);
-		lblPetAttributes.setBounds(615, 267, 192, 316);
-
-		panelMainScreen.add(lblPetAttributes);
-		lblCurrentPet.setForeground(Color.WHITE);
-		lblCurrentPet.setBackground(Color.DARK_GRAY);
-		lblCurrentPet.setOpaque(true);
-		lblCurrentPet.setBounds(615, 11, 192, 48);
-
-		panelMainScreen.add(lblCurrentPet);
-		lblEventOutputs.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblEventOutputs.setBackground(Color.DARK_GRAY);
-		lblEventOutputs.setForeground(Color.WHITE);
-		lblEventOutputs.setOpaque(true);
-		lblEventOutputs.setBounds(615, 594, 384, 112);
-
-		panelMainScreen.add(lblEventOutputs);
-		lblCurrentPlayer.setBackground(Color.DARK_GRAY);
-		lblCurrentPlayer.setForeground(Color.WHITE);
-		lblCurrentPlayer.setOpaque(true);
-		lblCurrentPlayer.setBounds(817, 11, 384, 48);
-
-		panelMainScreen.add(lblCurrentPlayer);
-		lblCurrentDay.setFont(new Font("Dialog", Font.BOLD, 47));
-		lblCurrentDay.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblCurrentDay.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCurrentDay.setBackground(Color.DARK_GRAY);
-		lblCurrentDay.setForeground(Color.WHITE);
-		lblCurrentDay.setOpaque(true);
-		lblCurrentDay.setBounds(817, 71, 182, 192);
-
-		panelMainScreen.add(lblCurrentDay);
-		panelPets.setVisible(false);
-		panelPets.setBounds(0, 0, 593, 706);
-		panelMainScreen.add(panelPets);
-		panelPets.setBackground(Color.DARK_GRAY);
-		panelPets.setLayout(null);
-		btnSelectPet1.setHorizontalTextPosition(SwingConstants.CENTER);
-
-		btnSelectPet1.setBackground(Color.GRAY);
-		btnSelectPet1.setBounds(87, 64, 192, 192);
-		panelPets.add(btnSelectPet1);
-		lblSelectAPet.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblSelectAPet.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectAPet.setBackground(Color.GRAY);
-		lblSelectAPet.setForeground(Color.WHITE);
-		lblSelectAPet.setOpaque(true);
-		lblSelectAPet.setBounds(162, 12, 277, 40);
-
-		panelPets.add(lblSelectAPet);
-		btnSelectPet2.setHorizontalTextPosition(SwingConstants.CENTER);
-
-		btnSelectPet2.setBackground(Color.GRAY);
-		btnSelectPet2.setBounds(346, 64, 192, 192);
-		panelPets.add(btnSelectPet2);
-		btnSelectPet3.setHorizontalTextPosition(SwingConstants.CENTER);
-
-		btnSelectPet3.setBackground(Color.GRAY);
-		btnSelectPet3.setBounds(220, 356, 192, 192);
-		panelPets.add(btnSelectPet3);
-		lblPetName1.setOpaque(true);
-		lblPetName1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		lblPetName1.setBounds(87, 259, 119, 33);
-
-		panelPets.add(lblPetName1);
-		lblPetName2.setOpaque(true);
-		lblPetName2.setBounds(346, 259, 119, 33);
-
-		panelPets.add(lblPetName2);
-		lblPetName3.setOpaque(true);
-		lblPetName3.setBounds(220, 550, 119, 33);
-
-		panelPets.add(lblPetName3);
-		lblPlayerStats.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblPlayerStats.setOpaque(true);
-		lblPlayerStats.setHorizontalTextPosition(SwingConstants.LEFT);
-		lblPlayerStats.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPlayerStats.setForeground(Color.WHITE);
-		lblPlayerStats.setBackground(Color.DARK_GRAY);
-		lblPlayerStats.setBounds(817, 267, 182, 316);
-
-		panelMainScreen.add(lblPlayerStats);
+		panelFeed.add(lblFood6);
 
 		btnChocolate.setIcon(new ImageIcon(GUI.class.getResource("/photo/Choclate.jpg")));
 		btnChocolate.setBounds(37, 129, 115, 115);
@@ -815,168 +709,6 @@ public class GUI implements gameObjects {
 		lblNewLabel_12.setBounds(-31, -49, 1273, 850);
 
 		panelHelp.add(lblNewLabel_12);
-		panelPlay.setBackground(Color.DARK_GRAY);
-		panelPlay.setBounds(0, 0, 605, 706);
-
-		frame.getContentPane().add(panelPlay);
-		panelPlay.setLayout(null);
-		btnToy1.setVisible(false);
-		btnToy1.setBounds(40, 155, 115, 115);
-
-		panelPlay.add(btnToy1);
-		btnToy2.setVisible(false);
-		btnToy2.setBounds(245, 155, 115, 115);
-
-		panelPlay.add(btnToy2);
-		btnToy3.setVisible(false);
-		btnToy3.setBounds(446, 155, 115, 115);
-
-		panelPlay.add(btnToy3);
-		btnToy4.setVisible(false);
-		btnToy4.setBounds(40, 386, 115, 115);
-
-		panelPlay.add(btnToy4);
-		btnToy5.setVisible(false);
-		btnToy5.setBounds(245, 386, 115, 115);
-
-		panelPlay.add(btnToy5);
-		btnToy6.setVisible(false);
-		btnToy6.setBounds(446, 386, 115, 115);
-
-		panelPlay.add(btnToy6);
-		btnPlayBack.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		btnPlayBack.setBounds(407, 629, 188, 66);
-
-		panelPlay.add(btnPlayBack);
-		lblPlay.setForeground(Color.WHITE);
-		lblPlay.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlay.setBackground(Color.GRAY);
-		lblPlay.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblPlay.setOpaque(true);
-		lblPlay.setBounds(36, 29, 525, 115);
-
-		panelPlay.add(lblPlay);
-		lblToy1.setVisible(false);
-		lblToy1.setOpaque(true);
-		lblToy1.setBounds(40, 281, 115, 34);
-
-		panelPlay.add(lblToy1);
-		lblToy2.setVisible(false);
-		lblToy2.setOpaque(true);
-		lblToy2.setBounds(245, 281, 115, 34);
-
-		panelPlay.add(lblToy2);
-		lblToy3.setVisible(false);
-		lblToy3.setOpaque(true);
-		lblToy3.setBounds(446, 281, 115, 34);
-
-		panelPlay.add(lblToy3);
-		lblToy4.setVisible(false);
-		lblToy4.setOpaque(true);
-		lblToy4.setBounds(40, 513, 115, 34);
-
-		panelPlay.add(lblToy4);
-		lblToy5.setVisible(false);
-		lblToy5.setOpaque(true);
-		lblToy5.setBounds(245, 513, 115, 34);
-
-		panelPlay.add(lblToy5);
-		lblToy6.setVisible(false);
-		lblToy6.setOpaque(true);
-		lblToy6.setBounds(446, 512, 115, 34);
-
-		panelPlay.add(lblToy6);
-		panelFeed.setBounds(0, 0, 605, 706);
-		frame.getContentPane().add(panelFeed);
-
-		panelFeed.setVisible(false);
-		panelFeed.setBackground(Color.DARK_GRAY);
-		panelFeed.setLayout(null);
-		btnFood1.setVisible(false);
-
-		btnFood1.setBounds(40, 155, 115, 115);
-		panelFeed.add(btnFood1);
-		btnFood2.setVisible(false);
-
-		btnFood2.setBounds(245, 155, 115, 115);
-		panelFeed.add(btnFood2);
-		btnFood3.setVisible(false);
-
-		btnFood3.setBounds(446, 155, 115, 115);
-		panelFeed.add(btnFood3);
-		btnFood4.setVisible(false);
-
-		btnFood4.setBounds(40, 386, 115, 115);
-		panelFeed.add(btnFood4);
-		btnFood5.setVisible(false);
-
-		btnFood5.setBounds(245, 386, 115, 115);
-		panelFeed.add(btnFood5);
-		btnFood6.setVisible(false);
-
-		btnFood6.setBounds(446, 386, 115, 115);
-		panelFeed.add(btnFood6);
-
-		JLabel lblFeed = new JLabel("Choose an item to feed to your pet.");
-		lblFeed.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblFeed.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFeed.setForeground(Color.WHITE);
-		lblFeed.setOpaque(true);
-		lblFeed.setBackground(new Color(128, 128, 128));
-		lblFeed.setBounds(36, 29, 525, 115);
-		panelFeed.add(lblFeed);
-		btnFeedBack.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnFeedBack.setBounds(407, 629, 188, 66);
-
-		panelFeed.add(btnFeedBack);
-		lblFood1.setVisible(false);
-		lblFood1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood1.setBackground(Color.GRAY);
-		lblFood1.setForeground(Color.WHITE);
-		lblFood1.setOpaque(true);
-		lblFood1.setBounds(40, 281, 115, 34);
-
-		panelFeed.add(lblFood1);
-		lblFood2.setVisible(false);
-		lblFood2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood2.setBackground(Color.GRAY);
-		lblFood2.setForeground(Color.WHITE);
-		lblFood2.setOpaque(true);
-		lblFood2.setBounds(245, 281, 115, 34);
-
-		panelFeed.add(lblFood2);
-		lblFood3.setVisible(false);
-		lblFood3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood3.setBackground(Color.GRAY);
-		lblFood3.setForeground(Color.WHITE);
-		lblFood3.setOpaque(true);
-		lblFood3.setBounds(446, 281, 115, 34);
-
-		panelFeed.add(lblFood3);
-		lblFood4.setVisible(false);
-		lblFood4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood4.setBackground(Color.GRAY);
-		lblFood4.setForeground(Color.WHITE);
-		lblFood4.setOpaque(true);
-		lblFood4.setBounds(40, 512, 115, 34);
-
-		panelFeed.add(lblFood4);
-		lblFood5.setVisible(false);
-		lblFood5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood5.setBackground(Color.GRAY);
-		lblFood5.setForeground(Color.WHITE);
-		lblFood5.setOpaque(true);
-		lblFood5.setBounds(245, 512, 115, 34);
-
-		panelFeed.add(lblFood5);
-		lblFood6.setVisible(false);
-		lblFood6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood6.setBackground(Color.GRAY);
-		lblFood6.setForeground(Color.WHITE);
-		lblFood6.setOpaque(true);
-		lblFood6.setBounds(446, 512, 115, 34);
-
-		panelFeed.add(lblFood6);
 		panelPet.setBackground(Color.DARK_GRAY);
 		panelPet.setVisible(false);
 		panelPet.setBounds(0, 0, 1213, 718);
@@ -1116,853 +848,229 @@ public class GUI implements gameObjects {
 		lblNewLabel_11.setBounds(-58, -127, 1384, 869);
 
 		panelCreation.add(lblNewLabel_11);
+		panelMainScreen.setVisible(false);
+		panelMainScreen.setBackground(Color.GRAY);
+		panelMainScreen.setBounds(0, 0, 1213, 718);
 
+		frame.getContentPane().add(panelMainScreen);
+		panelMainScreen.setLayout(null);
+		lblDayTotals.setFont(new Font("Dialog", Font.BOLD, 19));
+		lblDayTotals.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDayTotals.setForeground(Color.WHITE);
+		lblDayTotals.setBounds(910, 227, 81, 28);
+
+		panelMainScreen.add(lblDayTotals);
+		lblDay.setForeground(Color.WHITE);
+		lblDay.setBounds(827, 76, 81, 23);
+		panelMainScreen.add(lblDay);
+		lblCurrentSelectedPet.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCurrentSelectedPet.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblCurrentSelectedPet.setOpaque(true);
+		lblCurrentSelectedPet.setBounds(615, 69, 192, 192);
+
+		panelMainScreen.add(lblCurrentSelectedPet);
+		lblPetAttributes.setVerticalAlignment(SwingConstants.TOP);
+		lblPetAttributes.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblPetAttributes.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPetAttributes.setHorizontalTextPosition(SwingConstants.LEFT);
+		lblPetAttributes.setOpaque(true);
+		lblPetAttributes.setBackground(Color.DARK_GRAY);
+		lblPetAttributes.setForeground(Color.WHITE);
+		lblPetAttributes.setBounds(615, 267, 192, 316);
+
+		panelMainScreen.add(lblPetAttributes);
+		lblCurrentPet.setForeground(Color.WHITE);
+		lblCurrentPet.setBackground(Color.DARK_GRAY);
+		lblCurrentPet.setOpaque(true);
+		lblCurrentPet.setBounds(615, 11, 192, 48);
+
+		panelMainScreen.add(lblCurrentPet);
+		lblEventOutputs.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblEventOutputs.setBackground(Color.DARK_GRAY);
+		lblEventOutputs.setForeground(Color.WHITE);
+		lblEventOutputs.setOpaque(true);
+		lblEventOutputs.setBounds(615, 594, 586, 112);
+
+		panelMainScreen.add(lblEventOutputs);
+		lblCurrentPlayer.setBackground(Color.DARK_GRAY);
+		lblCurrentPlayer.setForeground(Color.WHITE);
+		lblCurrentPlayer.setOpaque(true);
+		lblCurrentPlayer.setBounds(817, 11, 384, 48);
+
+		panelMainScreen.add(lblCurrentPlayer);
+		lblCurrentDay.setFont(new Font("Dialog", Font.BOLD, 47));
+		lblCurrentDay.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblCurrentDay.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCurrentDay.setBackground(Color.DARK_GRAY);
+		lblCurrentDay.setForeground(Color.WHITE);
+		lblCurrentDay.setOpaque(true);
+		lblCurrentDay.setBounds(817, 71, 182, 192);
+
+		panelMainScreen.add(lblCurrentDay);
+		panelPets.setVisible(false);
+		panelPets.setBounds(0, 0, 593, 706);
+		panelMainScreen.add(panelPets);
+		panelPets.setBackground(Color.DARK_GRAY);
+		panelPets.setLayout(null);
+		btnSelectPet1.setHorizontalTextPosition(SwingConstants.CENTER);
+
+		btnSelectPet1.setBackground(Color.GRAY);
+		btnSelectPet1.setBounds(87, 64, 192, 192);
+		panelPets.add(btnSelectPet1);
+		lblSelectAPet.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblSelectAPet.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectAPet.setBackground(Color.GRAY);
+		lblSelectAPet.setForeground(Color.WHITE);
+		lblSelectAPet.setOpaque(true);
+		lblSelectAPet.setBounds(162, 12, 277, 40);
+
+		panelPets.add(lblSelectAPet);
+		btnSelectPet2.setHorizontalTextPosition(SwingConstants.CENTER);
+
+		btnSelectPet2.setBackground(Color.GRAY);
+		btnSelectPet2.setBounds(346, 64, 192, 192);
+		panelPets.add(btnSelectPet2);
+		btnSelectPet3.setHorizontalTextPosition(SwingConstants.CENTER);
+
+		btnSelectPet3.setBackground(Color.GRAY);
+		btnSelectPet3.setBounds(220, 356, 192, 192);
+		panelPets.add(btnSelectPet3);
+		lblPetName1.setOpaque(true);
+		lblPetName1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		lblPetName1.setBounds(87, 259, 119, 33);
+
+		panelPets.add(lblPetName1);
+		lblPetName2.setOpaque(true);
+		lblPetName2.setBounds(346, 259, 119, 33);
+
+		panelPets.add(lblPetName2);
+		lblPetName3.setOpaque(true);
+		lblPetName3.setBounds(220, 550, 119, 33);
+
+		panelPets.add(lblPetName3);
+		lblPlayerStats.setVerticalAlignment(SwingConstants.TOP);
+		lblPlayerStats.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblPlayerStats.setOpaque(true);
+		lblPlayerStats.setHorizontalTextPosition(SwingConstants.LEFT);
+		lblPlayerStats.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPlayerStats.setForeground(Color.WHITE);
+		lblPlayerStats.setBackground(Color.DARK_GRAY);
+		lblPlayerStats.setBounds(817, 267, 182, 316);
+
+		panelMainScreen.add(lblPlayerStats);
+		panelButtons.add(btnFeedPet);
+		panelButtons.setBackground(Color.DARK_GRAY);
+		panelButtons.setForeground(Color.WHITE);
+		panelButtons.setBounds(12, 11, 593, 695);
+
+		panelMainScreen.add(panelButtons);
+		panelButtons.setLayout(null);
+
+		btnPetSelect.setBounds(10, 10, 571, 57);
+		panelButtons.add(btnPetSelect);
+		btnVisitTheStore.setBounds(10, 79, 571, 57);
+		panelButtons.add(btnVisitTheStore);
+		btnFeedPet.setBounds(10, 147, 571, 57);
+		btnSleep.setBounds(10, 215, 571, 57);
+		panelButtons.add(btnSleep);
+		btnUseToy.setBounds(10, 283, 571, 57);
+		panelButtons.add(btnUseToy);
+		btnUseToilet.setBounds(10, 351, 571, 57);
+		btnPunishPet.setBounds(10, 419, 571, 57);
+		btnVisitDoctor.setBounds(10, 487, 571, 57);
+		panelButtons.add(btnVisitDoctor);
+		btnEndDay.setBounds(10, 626, 571, 57);
+		panelButtons.add(btnEndDay);
+		panelButtons.add(btnPunishPet);
+		btnRevive.setBounds(10, 556, 571, 57);
+		panelButtons.add(btnUseToilet);
+		panelButtons.add(btnRevive);
 	}
 
-	public void guiMainButtons() {
-		btnSleep.addActionListener(new ActionListener() {
+	public void feedButtons() {
+		btnFood1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (globalCurrentPet == null) {
-					lblEventOutputs.setText("You need to select a pet first!");
-				} else {
-					if (globalCurrentPet.getActions() == 0) {
-
-						lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
-					} else {
-						sleep();
-						lblPetAttributes.setText(globalCurrentPet.toString());
-						lblPlayerStats.setText(globalCurrentPlayer.toString());
-					}
-				}
-			}
-		});
-
-		btnUseToilet.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (globalCurrentPet == null) {
-					lblEventOutputs.setText("You need to select a pet first!");
-					;
-				} else {
-					if (globalCurrentPet.getActions() == 0) {
-						lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
-					} else {
-						toilet();
-						lblPetAttributes.setText(globalCurrentPet.toString());
-						lblPlayerStats.setText(globalCurrentPlayer.toString());
-					}
-				}
-			}
-		});
-
-		btnPunishPet.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (globalCurrentPet == null) {
-					lblEventOutputs.setText("You need to select a pet first!");
-				} else {
-					punish();
+				if (btnFood1.getIcon() != null) {
+					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+							globalCurrentPet.getName(), currentFood.get(0).getName()));
+					globalCurrentPet.feed(currentFood.get(0));
+					globalCurrentPlayer.removeFood(currentFood.get(0));
 					lblPetAttributes.setText(globalCurrentPet.toString());
 					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					feedBack();
 				}
 			}
 		});
 
-		btnRevive.addActionListener(new ActionListener() {
+		btnFood2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				revive();
+				if (btnFood2.getIcon() != null) {
+					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+							globalCurrentPet.getName(), currentFood.get(1).getName()));
+					globalCurrentPet.feed(currentFood.get(1));
+					globalCurrentPlayer.removeFood(currentFood.get(1));
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					feedBack();
+				}
 			}
 		});
 
-		btnVisitDoctor.addActionListener(new ActionListener() {
+		btnFood3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				doctor();
+				if (btnFood3.getIcon() != null) {
+					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+							globalCurrentPet.getName(), currentFood.get(2).getName()));
+					globalCurrentPet.feed(currentFood.get(2));
+					globalCurrentPlayer.removeFood(currentFood.get(2));
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					feedBack();
+				}
 			}
 		});
 
-		btnVisitTheStore.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				panelMainScreen.setVisible(false);
-				panelStore.setVisible(true);
-				lblPlayerContents.setText(globalCurrentPlayer.toString());
-			}
-		});
-
-		btnFeedPet.addActionListener(new ActionListener() {
+		btnFood4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (globalCurrentPet == null) {
-					lblEventOutputs.setText("You need to select a pet first!");
-				} else if (globalCurrentPlayer.getFood().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "You don't have any food! Visit the store to buy some.",
-							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
-				} else if (globalCurrentPet.getActions() == 0) {
-					lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
-				} else {
-					feedPet();
+				if (btnFood4.getIcon() != null) {
+					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+							globalCurrentPet.getName(), currentFood.get(3).getName()));
+					globalCurrentPet.feed(currentFood.get(3));
+					globalCurrentPlayer.removeFood(currentFood.get(3));
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					feedBack();
 				}
 			}
 		});
 
-		btnUseToy.addActionListener(new ActionListener() {
+		btnFood5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (globalCurrentPet == null) {
-					lblEventOutputs.setText("You need to select a pet first!");
-				} else if (globalCurrentPlayer.getToys().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "You don't have any toys! Visit the store to buy some.",
-							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
-				} else if (globalCurrentPet.getActions() == 0) {
-					lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
-				} else {
-					play();
+				if (btnFood5.getIcon() != null) {
+					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+							globalCurrentPet.getName(), currentFood.get(4).getName()));
+					globalCurrentPet.feed(currentFood.get(4));
+					globalCurrentPlayer.removeFood(currentFood.get(4));
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					feedBack();
 				}
 			}
 		});
 
-		btnFeedBack.addActionListener(new ActionListener() {
+		btnFood6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				feedBack();
-			}
-		});
-
-		btnPlayBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				playBack();
-			}
-		});
-
-	}
-
-	public void feedBack() {
-		panelMainScreen.setVisible(true);
-		panelFeed.setVisible(false);
-		panelButtons.setVisible(true);
-
-		btnFood1.setVisible(false);
-		btnFood2.setVisible(false);
-		btnFood3.setVisible(false);
-		btnFood4.setVisible(false);
-		btnFood5.setVisible(false);
-		btnFood6.setVisible(false);
-
-		lblFood1.setVisible(false);
-		lblFood2.setVisible(false);
-		lblFood3.setVisible(false);
-		lblFood4.setVisible(false);
-		lblFood5.setVisible(false);
-		lblFood6.setVisible(false);
-	}
-
-	public void playBack() {
-		lblPlayerStats.setText(globalCurrentPlayer.toString());
-		panelMainScreen.setVisible(true);
-		panelPlay.setVisible(false);
-		panelButtons.setVisible(true);
-
-		btnToy1.setVisible(false);
-		btnToy2.setVisible(false);
-		btnToy3.setVisible(false);
-		btnToy4.setVisible(false);
-		btnToy5.setVisible(false);
-		btnToy6.setVisible(false);
-
-		lblToy1.setVisible(false);
-		lblToy2.setVisible(false);
-		lblToy3.setVisible(false);
-		lblToy4.setVisible(false);
-		lblToy5.setVisible(false);
-		lblToy6.setVisible(false);
-	}
-
-	public void mainScreenHelper() {
-		Map<Player, Integer> playerScores = new HashMap<Player, Integer>();
-
-		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
-			Player val = entry.getValue();
-			globalCurrentPlayer = val;
-			playerDaysTaken = 0;
-			mainSelectScreen();
-			System.out.format("Days for %s ended, you scored a total of %d points overall, well done!", val.getName(),
-					score(val));
-			playerScores.put(val, score(val));
-			promptEnterKey();
-		}
-		System.out.println("Game Over...");
-		System.out.println("Total scores for game:");
-
-		for (Player key : playerScores.keySet()) {
-			System.out.format("%s: %d\n", key.getName(), playerScores.get(key));
-		}
-	}
-
-	public void mainScreenText() {
-
-		// Properties prop = new Properties();
-		// InputStream input = null;
-
-		// try {
-		//
-		// input = new FileInputStream("config.properties");
-		// // load a properties file
-		// prop.load(input);
-		// // get the property value and print it out
-		// System.out.println((prop.getProperty("main")));
-		// } catch (IOException ex) {
-		// ex.printStackTrace();
-		// } finally {
-		// if (input != null) {
-		// try {
-		// input.close();
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// }
-		// }
-	}
-
-	public void selectPet() {
-		panelPets.setVisible(true);
-		panelButtons.setVisible(false);
-		Species button1 = null;
-		Species button2 = null;
-		Species button3 = null;
-
-		Species[] species = { button1, button2, button3 };
-		JButton[] jButtons = { btnSelectPet1, btnSelectPet2, btnSelectPet3 };
-		JLabel[] jLabels = { lblPetName1, lblPetName2, lblPetName3 };
-		int i = 0;
-		for (Map.Entry<String, Species> entry : globalCurrentPlayer.getPets().entrySet()) {
-			jButtons[i].setVisible(true);
-			species[i] = entry.getValue();
-			if (entry.getValue().getSpecies() == penguin.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
-				jLabels[i].setText(entry.getValue().getName());
-			} else if (entry.getValue().getSpecies() == crab.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
-				jLabels[i].setText(entry.getValue().getName());
-			} else if (entry.getValue().getSpecies() == robot.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
-				jLabels[i].setText(entry.getValue().getName());
-			} else if (entry.getValue().getSpecies() == snake.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
-				jLabels[i].setText(entry.getValue().getName());
-			} else if (entry.getValue().getSpecies() == cloud.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
-				jLabels[i].setText(entry.getValue().getName());
-			} else if (entry.getValue().getSpecies() == monster.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
-				jLabels[i].setText(entry.getValue().getName());
-			}
-			i++;
-		}
-		btnSelectPet1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnSelectPet1.getIcon() != null) {
-					globalCurrentPet = species[0];
-					currentSelectedPet();
-					panelButtons.setVisible(true);
-					panelPets.setVisible(false);
-					mainSelectScreen();
+				if (btnFood6.getIcon() != null) {
+					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+							globalCurrentPet.getName(), currentFood.get(5).getName()));
+					globalCurrentPet.feed(currentFood.get(5));
+					globalCurrentPlayer.removeFood(currentFood.get(5));
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					feedBack();
 				}
 			}
 		});
-		btnSelectPet2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnSelectPet2.getIcon() != null) {
-					globalCurrentPet = species[1];
-					currentSelectedPet();
-					panelButtons.setVisible(true);
-					panelPets.setVisible(false);
-					mainSelectScreen();
-				}
-			}
-		});
-		btnSelectPet3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnSelectPet3.getIcon() != null) {
-					globalCurrentPet = species[2];
-					currentSelectedPet();
-					panelButtons.setVisible(true);
-					panelPets.setVisible(false);
-					mainSelectScreen();
-				}
-			}
-		});
-
-	}
-
-	public void currentSelectedPet() {
-		lblCurrentPet.setText(globalCurrentPet.getName());
-		lblPetAttributes.setText(globalCurrentPet.toString());
-		lblPlayerStats.setText(globalCurrentPlayer.toString());
-		if (globalCurrentPet.getSpecies() == penguin.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
-		} else if (globalCurrentPet.getSpecies() == crab.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
-
-		} else if (globalCurrentPet.getSpecies() == robot.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
-
-		} else if (globalCurrentPet.getSpecies() == snake.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
-
-		} else if (globalCurrentPet.getSpecies() == cloud.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
-
-		} else if (globalCurrentPet.getSpecies() == monster.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
-
-		}
-
-	}
-
-	public void mainSelectScreen() {
-
-		panelCreation.setVisible(false);
-		panelMainScreen.setVisible(true);
-		lblCurrentPlayer.setText(globalCurrentPlayer.getName());
-		lblCurrentDay.setText(String.format("%d", globalCurrentDay));
-		lblDayTotals.setText(String.format("/%1$,.0f", gameDays));
-
-		// String input = null;
-		// @SuppressWarnings("resource")
-		// Scanner scan = new Scanner(System.in);
-		//
-		// do {
-		// if (input != null) {
-		// System.out
-		// .println("\nYou have entered an invalid number," + "please enter a
-		// number between 1 and 8.\n");
-		// promptEnterKey();
-		// }
-		// System.out.format("Current Player: %s\n", globalCurrentPlayer);
-		// System.out.format("Days remaining: %1$.0f\n", (gameDays -
-		// playerDaysTaken));
-		// System.out.format("Current balance: $%d\n",
-		// globalCurrentPlayer.getBalance());
-		// System.out.format("Owned pets (actions remanining):\n");
-		// for (Species pet : globalCurrentPlayer.getPets().values()) {
-		// System.out.format("%s (%d)\n", pet.getName(), pet.getActions());
-		// }
-		// if (globalCurrentPet == null) {
-		// System.out.println("Current pet selected: NONE (select a pet to
-		// interact with it).");
-		// } else {
-		// System.out.format("Current pet selected: %s \n\n",
-		// globalCurrentPet.getName());
-		// }
-		// mainScreenText();
-		// input = scan.nextLine();
-		// }
-		//
-		// while (!input.matches("[1-9]" + "[0]*"));
-		// int intInput = Integer.parseInt(input);
-		//
-		// switch (intInput) {
-		// case 1:
-		// globalCurrentPet = selectPet(globalCurrentPlayer);
-		// mainSelectScreen();
-		// break;
-		// case 2:
-		// if (globalCurrentPet == null) {
-		// System.out.println("You need to select a pet first!");
-		// promptEnterKey();
-		// mainSelectScreen();
-		// } else {
-		// System.out.println(globalCurrentPet);
-		// promptEnterKey();
-		// mainSelectScreen();
-		// }
-		// break;
-		// case 3:
-		// store(globalCurrentPlayer);
-		// mainSelectScreen();
-		// break;
-		// case 4:
-		// if (globalCurrentPet == null) {
-		// System.out.println("You need to select a pet first!");
-		// promptEnterKey();
-		// mainSelectScreen();
-		// } else {
-		// if (globalCurrentPet.getActions() == 0) {
-		// System.out.println("Sorry! This pet has already taken 2 actions
-		// today.");
-		// promptEnterKey();
-		// } else {
-		// feedPet(globalCurrentPlayer);
-		// }
-		// promptEnterKey();
-		// mainSelectScreen();
-		// break;
-		// }
-		// case 5:
-		//
-		// break;
-		// case 6:
-		// if (globalCurrentPet == null) {
-		// System.out.println("You need to select a pet first!");// error
-		// // window
-		// // in
-		// // GUI
-		// promptEnterKey();
-		// mainSelectScreen();
-		// } else {
-		// if (globalCurrentPet.getActions() == 0) {
-		// System.out.println("Sorry! This pet has already taken 2 actions
-		// today.");
-		// promptEnterKey();
-		// } else {
-		// play(globalCurrentPlayer);
-		// }
-		// promptEnterKey();
-		// mainSelectScreen();
-		// }
-		// break;
-		// case 7:
-		// if (globalCurrentPet == null) {
-		// System.out.println("You need to select a pet first!");// error
-		// // window
-		// // in
-		// // GUI
-		// promptEnterKey();
-		// mainSelectScreen();
-		// } else {
-		// if (globalCurrentPet.getActions() == 0) {
-		// System.out.println("Sorry! This pet has already taken 2 actions
-		// today.");
-		// } else {
-		// toilet();
-		// }
-		// promptEnterKey();
-		// mainSelectScreen();
-		// }
-		// break;
-		// case 8:
-		// if (globalCurrentPet == null) {
-		// System.out.println("You need to select a pet first!");// error
-		// // window
-		// // in
-		// // GUI
-		// promptEnterKey();
-		// mainSelectScreen();
-		// } else {
-		// if (globalCurrentPet.getActions() == 0) {
-		// System.out.println("Sorry! This pet has already taken 2 actions
-		// today.");
-		// } else {
-		// System.out.format("%s is upset, but is now under control",
-		// globalCurrentPet);
-		// punish();
-		// }
-		// promptEnterKey();
-		// mainSelectScreen();
-		// }
-		// break;
-		// case 9:
-		// if (globalCurrentPet == null) {
-		// System.out.println("You need to select a pet first!");// error
-		// // window
-		// // in
-		// // GUI
-		// promptEnterKey();
-		// mainSelectScreen();
-		// } else {
-		// if (globalCurrentPet.getActions() == 0) {
-		// System.out.println("Sorry! This pet has already taken 2 actions
-		// today.");
-		// } else {
-		// doctor();
-		// }
-		// promptEnterKey();
-		// mainSelectScreen();
-		// }
-		// break;
-		// case 10:
-		// endDay(globalCurrentPlayer);
-		// playerDaysTaken++;
-		// System.out.println(playerDaysTaken);
-		// System.out.println(gameDays);
-		// promptEnterKey();
-		// if (playerDaysTaken < gameDays) {
-		// mainSelectScreen();
-		// break;
-		// }
-		//
-		// }
-	}
-
-	public void punish() {
-		if (globalCurrentPet.getMisbehaving() == true) {
-			lblEventOutputs.setText(String.format("%s is upset, but can focus better (can have 2 actions again)",
-					globalCurrentPet.getName()));
-			globalCurrentPet.punish();
-		} else {
-			lblEventOutputs.setText(String.format("%s isn't misbehaving!", globalCurrentPet.getName()));
-
-		}
-
-	}
-
-	public void revive() {
-		if (globalCurrentPet == null) {
-			lblEventOutputs.setText("You need to select a pet first!");
-		} else if (globalCurrentPet.getAlive() == false && globalCurrentPet.getRevive() == true) {
-			globalCurrentPet.setRevive(false);
-			lblEventOutputs.setText("Your pet has revived!");
-		} else if (globalCurrentPet.getAlive() == true) {
-			lblEventOutputs.setText("Your pet is already alive!");
-		} else {
-			lblEventOutputs.setText("Sorry, your pet is only allowed to revive once! ");
-		}
-	}
-
-	public void doctor() {
-
-		if (globalCurrentPet == null) {
-			lblEventOutputs.setText("You need to select a pet first!");
-		} else {
-			if (globalCurrentPet.getActions() == 0) {
-				lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
-			} else if (globalCurrentPet.getSick() == true) {
-				globalCurrentPet.heal();
-				lblEventOutputs.setText(String.format("%s isn't sick anymore!", globalCurrentPet.getName()));
-				lblPetAttributes.setText(globalCurrentPet.toString());
-				lblPlayerStats.setText(globalCurrentPlayer.toString());
-			} else {
-				globalCurrentPet.heal();
-				lblPetAttributes.setText(globalCurrentPet.toString());
-				lblPlayerStats.setText(globalCurrentPlayer.toString());
-				lblEventOutputs.setText(String.format("%s is feeling healthier!", globalCurrentPet.getName()));
-			}
-		}
-	}
-
-	public void gameStart() {
-		panelStart.setVisible(true);
-		panelHelp.setVisible(false);
-		btnHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				textCounter = 1;
-				panelStart.setVisible(false);
-				panelHelp.setVisible(true);
-				clickPanel.setVisible(true);
-				lblHelp.setText("");
-
-			}
-		});
-
-		clickPanel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				if (textCounter == 1) {
-					lblHelp.setText(help1);
-				}
-				if (textCounter == 2) {
-					lblHelp.setText(help2);
-				}
-				if (textCounter == 3) {
-					lblHelp.setText(help3);
-				}
-				if (textCounter == 4) {
-					lblHelp.setText(help4);
-				}
-				if (textCounter == 5) {
-					lblHelp.setText(help5);
-				}
-				if (textCounter == 6) {
-					panelStart.setVisible(true);
-					panelHelp.setVisible(false);
-					textCounter = 1;
-				}
-				textCounter++;
-			}
-		});
-
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				inputPlayerNum();
-			}
-		});
-	}
-
-	public void inputPlayerNum() {
-		panelInput.setVisible(true);
-		panelStart.setVisible(false);
-		panelHelp.setVisible(false);
-
-		// @SuppressWarnings("resource")
-		// Scanner scan = new Scanner(System.in);
-		// String strPlayerNum = null;
-		//
-		// do{
-		// if (strPlayerNum != null){
-		// System.out.println("You have entered an invalid number, please enter
-		// a number between 1 and 3.\n");
-		// }
-		// System.out.println("How many players would like to play the game?
-		// (max 3).");
-		// strPlayerNum = scan.nextLine();
-		// }
-		// while(!strPlayerNum.matches("[1-3]"));
-		//
-		// System.out.format("You have selected %s player/s.%n", strPlayerNum);
-		// numOfPlayers = Integer.parseInt(strPlayerNum);
-	}
-
-	public void inputDayNum() {
-		gameDays = 0;
-
-		spinnerDayNum.setVisible(true);
-		lblPlayerNum.setText("How many days will the game run for?");
-		rdbtn1player.setVisible(false);
-		rdbtn2players.setVisible(false);
-		rdbtn3players.setVisible(false);
-		btnPlayerContinue.setVisible(false);
-		btnPlayerContinue2.setVisible(true);
-
-		btnPlayerContinue2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gameDays = (Double) spinnerDayNum.getValue();
-				createPlayers();
-			}
-		});
-	}
-
-	public void createPlayers() {
-		textCounter = 1;
-		panelInput.setVisible(false);
-		panelCreation.setVisible(true);
-		String currentPlayer;
-		lblNamePrompt.setText(
-				String.format("Player %d, enter your name here and select up to 3 pets above before clicking continue.",
-						textCounter));
-		//
-		// Player newPlayer = new Player(name);
-		// addPlayer(newPlayer);
-
-		btnCreationContinue.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textFieldCreation.grabFocus();
-				if (textFieldCreation.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "You need to enter a name for your player!",
-							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
-				} else if (boxCounter() > 3 || boxCounter() == 0) {
-					JOptionPane.showMessageDialog(null, "You need to select 1-3 Pets for you to own!",
-							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
-				} else if (petNameChecker() == false) {
-					JOptionPane.showMessageDialog(null, "One or more of your selected pets does not have a name yet!",
-							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
-				} else if (existingNameChecker(textFieldCreation.getText()) == true) {
-					JOptionPane.showMessageDialog(frame, "That name belongs to another player, please choose another.");
-
-				} else if (textCounter >= numOfPlayers) {
-					Player newPlayerFinal = new Player(textFieldCreation.getText());
-					addPlayer(newPlayerFinal, textCounter);
-					textFieldCreation.setText("");
-					createPets(newPlayerFinal);
-					clearBoxes();
-					globalCurrentPlayer = players.get(1);
-					globalCurrentDay = 1;
-					mainSelectScreen();
-
-				} else if (textCounter == 1) {
-					Player newPlayer1 = new Player(textFieldCreation.getText());
-					addPlayer(newPlayer1, 1);
-					createPets(newPlayer1);
-					textFieldCreation.setText("");
-					lblNamePrompt.setText(String.format(
-							"Player %d, enter your name here and select up to 3 pets above before clicking continue.",
-							2));
-					textCounter++;
-					clearBoxes();
-
-				} else if (textCounter == 2) {
-					Player newPlayer2 = new Player(textFieldCreation.getText());
-					addPlayer(newPlayer2, 2);
-					createPets(newPlayer2);
-					textFieldCreation.setText("");
-					lblNamePrompt.setText(String.format(
-							"Player %d, enter your name here and select up to 3 pets above before clicking continue.",
-							3));
-					textCounter++;
-					clearBoxes();
-				} else if (textCounter == 3) {
-					Player newPlayer3 = new Player(textFieldCreation.getText());
-					addPlayer(newPlayer3, 3);
-					createPets(newPlayer3);
-					textFieldCreation.setText("");
-					lblNamePrompt.setText(String.format(
-							"Player %d, enter your name here and select up to 3 pets above before clicking continue.",
-							4));
-					textCounter++;
-					clearBoxes();
-				} else if (textCounter == 4) {
-					Player newPlayer4 = new Player(textFieldCreation.getText());
-					addPlayer(newPlayer4, 4);
-					createPets(newPlayer4);
-					textFieldCreation.setText("");
-					// promptPetCreation();
-					textCounter = 1;
-					clearBoxes();
-				}
-
-			}
-		});
-	}
-
-	public void clearBoxes() {
-		txtPetName1.setText("Enter a name...");
-		txtPetName2.setText("Enter a name...");
-		txtPetName3.setText("Enter a name...");
-		txtPetName4.setText("Enter a name...");
-		txtPetName5.setText("Enter a name...");
-		txtPetName6.setText("Enter a name...");
-		chckbxPet1.setSelected(false);
-		chckbxPet2.setSelected(false);
-		chckbxPet3.setSelected(false);
-		chckbxPet4.setSelected(false);
-		chckbxPet5.setSelected(false);
-		chckbxPet6.setSelected(false);
-	}
-
-	public boolean existingNameChecker(String name) {
-		return (players.keySet().contains(textFieldCreation.getText()));
-
-	}
-
-	public int boxCounter() {
-		int counter = 0;
-		if (chckbxPet1.isSelected()) {
-			counter++;
-		}
-		if (chckbxPet2.isSelected()) {
-			counter++;
-		}
-		if (chckbxPet3.isSelected()) {
-			counter++;
-		}
-		if (chckbxPet4.isSelected()) {
-			counter++;
-		}
-		if (chckbxPet5.isSelected()) {
-			counter++;
-		}
-		if (chckbxPet6.isSelected()) {
-			counter++;
-		}
-		return counter;
-	}
-
-	public void playerNameChecker() {
-		if (textFieldCreation.equals("")) {
-
-		}
-	}
-
-	public boolean petNameChecker() {
-		if ((chckbxPet1.isSelected()) && (txtPetName1.getText().equals("Enter a name..."))) {
-			return false;
-		} else if ((chckbxPet2.isSelected()) && (txtPetName2.getText().equals("Enter a name..."))) {
-			return false;
-		} else if ((chckbxPet3.isSelected()) && (txtPetName3.getText().equals("Enter a name..."))) {
-			return false;
-		} else if ((chckbxPet4.isSelected()) && (txtPetName4.getText().equals("Enter a name..."))) {
-			return false;
-		} else if ((chckbxPet5.isSelected()) && (txtPetName5.getText().equals("Enter a name..."))) {
-			return false;
-		} else if ((chckbxPet6.isSelected()) && (txtPetName6.getText().equals("Enter a name..."))) {
-			return false;
-		} else {
-			return true;
-		}
-
-	}
-
-	public void promptPetCreation() {
-		textCounter = 1;
-		textFieldCreation.setEditable(false);
-		lblNamePrompt
-				.setText(String.format("%s, please select up to 3 Pets to own.", players.get(textCounter).getName()));
-		List<Player> playerPets = new ArrayList<Player>();
-		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
-
-		}
-		btnPetCounter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (textCounter > numOfPlayers) {
-					System.out.println("next thing");
-
-				} else if (boxCounter() > 3 || boxCounter() == 0) {
-					JOptionPane.showMessageDialog(null, "You need to select 1-3 Pets for you to own!",
-							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
-				} else if (textCounter == 1) {
-					createPets(players.get(textCounter));
-					textCounter++;
-
-				} else if (textCounter == 2) {
-					createPets(players.get(textCounter));
-					textCounter++;
-
-				} else if (textCounter == 3) {
-					createPets(players.get(textCounter));
-					textCounter++;
-
-				} else if (textCounter == 4) {
-
-				}
-			}
-		});
-		lblSelectUpTo.setVisible(true);
-		txtPetName1.setVisible(true);
-		txtPetName2.setVisible(true);
-		txtPetName3.setVisible(true);
-		txtPetName4.setVisible(true);
-		txtPetName5.setVisible(true);
-		txtPetName6.setVisible(true);
-		btnPetCounter.setVisible(true);
-		btnCreationContinue.setVisible(false);
-		lblNewLabel.setVisible(true);
-		lblNewLabel_1.setVisible(true);
-		lblNewLabel_2.setVisible(true);
-		lblBeng.setVisible(true);
-		lblNewLabel_4.setVisible(true);
-		lblNewLabel_5.setVisible(true);
-		lblNewLabel6.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
-		chckbxPet1.setVisible(true);
-		chckbxPet2.setVisible(true);
-		chckbxPet3.setVisible(true);
-		chckbxPet4.setVisible(true);
-		chckbxPet5.setVisible(true);
-		chckbxPet6.setVisible(true);
-		// textFieldCreation.setVisible(false);
-		// btnCreationContinue.setVisible(false);
-		// btnPetCounter.setVisible(true);
-		// int textCounter = 1;
-		// spinnerPetNum.setVisible(true);
-		// lblNamePrompt.setText(String.format("%s, please choose up to 3 pets
-		// to own", players.get(textCounter).getName()));
-
-		// for (Map.Entry<Integer, Player> entry : players.entrySet()){
-		// Player player = entry.getValue();
-		// String strPetNum = null;
-		// do{
-		// if (strPetNum != null){
-		// System.out.println("\nYou have entered an invalid number,"
-		// + "please enter a number between 1 and 3.\n");
-		// }
-		// System.out.format("How many pets would %s like to own? (max 3).",
-		// player.name);
-		// strPetNum = scan.nextLine();
-		// }
-		// while(!strPetNum.matches("[1-3]"));
-		//
-		// System.out.format("You have selected %s pet/s.\n\n", strPetNum);
-		// int intPetNum = Integer.parseInt(strPetNum);
-		// promptSpecies(player, intPetNum);
-		// }
 	}
 
 	public void storeButtons() {
@@ -2150,6 +1258,842 @@ public class GUI implements gameObjects {
 
 	}
 
+	public void playButtons() {
+		btnToy1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnToy1.getIcon() != null) {
+					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+					globalCurrentPet.play(currentToys.get(0));
+					if (currentToys.get(0).getDurability() <= 0) {
+						globalCurrentPlayer.removeToy(currentToys.get(0));
+						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(0).getName()));
+					}
+
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					playBack();
+				}
+			}
+		});
+
+		btnToy2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnToy2.getIcon() != null) {
+					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+					globalCurrentPet.play(currentToys.get(1));
+					if (currentToys.get(1).getDurability() <= 0) {
+						globalCurrentPlayer.removeToy(currentToys.get(1));
+						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(1).getName()));
+					}
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					playBack();
+				}
+			}
+		});
+
+		btnToy3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnToy3.getIcon() != null) {
+					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+					globalCurrentPet.play(currentToys.get(2));
+					if (currentToys.get(2).getDurability() <= 0) {
+						globalCurrentPlayer.removeToy(currentToys.get(2));
+						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(2).getName()));
+					}
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					playBack();
+				}
+			}
+		});
+
+		btnToy4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnToy4.getIcon() != null) {
+					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+					globalCurrentPet.play(currentToys.get(3));
+					if (currentToys.get(3).getDurability() <= 0) {
+						globalCurrentPlayer.removeToy(currentToys.get(3));
+						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(3).getName()));
+					}
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					playBack();
+				}
+			}
+		});
+
+		btnToy5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnToy5.getIcon() != null) {
+					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+					globalCurrentPet.play(currentToys.get(4));
+					if (currentToys.get(4).getDurability() <= 0) {
+						globalCurrentPlayer.removeToy(currentToys.get(4));
+						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(4).getName()));
+					}
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					playBack();
+				}
+			}
+		});
+
+		btnToy6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnToy6.getIcon() != null) {
+					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+					globalCurrentPet.play(currentToys.get(5));
+					globalCurrentPlayer.removeToy(currentToys.get(5));
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+					playBack();
+				}
+			}
+		});
+	}
+
+	public void mainScreenButtonColours() {
+		btnEndDay.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnEndDay.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnEndDay.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnVisitDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnVisitDoctor.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnVisitDoctor.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnPunishPet.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnPunishPet.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnPunishPet.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnUseToilet.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnUseToilet.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnUseToilet.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnUseToy.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnUseToy.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnUseToy.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnSleep.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnSleep.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnSleep.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnFeedPet.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnFeedPet.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnFeedPet.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnVisitTheStore.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnVisitTheStore.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnVisitTheStore.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnPetSelect.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnPetSelect.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnPetSelect.setBackground(UIManager.getColor("control"));
+			}
+		});
+
+		btnRevive.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnRevive.setBackground(Color.GREEN);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnRevive.setBackground(UIManager.getColor("control"));
+			}
+		});
+	}
+
+	public void guiMainButtons() {
+
+		btnSleep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (globalCurrentPet == null) {
+					lblEventOutputs.setText("You need to select a pet first!");
+				} else {
+					if (globalCurrentPet.getActions() == 0) {
+
+						lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
+					} else {
+						sleep();
+						lblPetAttributes.setText(globalCurrentPet.toString());
+						lblPlayerStats.setText(globalCurrentPlayer.toString());
+					}
+				}
+			}
+		});
+
+		btnUseToilet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (globalCurrentPet == null) {
+					lblEventOutputs.setText("You need to select a pet first!");
+					;
+				} else {
+					if (globalCurrentPet.getActions() == 0) {
+						lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
+					} else {
+						toilet();
+						lblPetAttributes.setText(globalCurrentPet.toString());
+						lblPlayerStats.setText(globalCurrentPlayer.toString());
+					}
+				}
+			}
+		});
+
+		btnPunishPet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (globalCurrentPet == null) {
+					lblEventOutputs.setText("You need to select a pet first!");
+				} else {
+					punish();
+					lblPetAttributes.setText(globalCurrentPet.toString());
+					lblPlayerStats.setText(globalCurrentPlayer.toString());
+				}
+			}
+		});
+
+		btnRevive.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				revive();
+			}
+		});
+
+		btnVisitDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				doctor();
+			}
+		});
+
+		btnVisitTheStore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelMainScreen.setVisible(false);
+				panelStore.setVisible(true);
+				lblPlayerContents.setText(globalCurrentPlayer.toString());
+			}
+		});
+
+		btnFeedPet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (globalCurrentPet == null) {
+					lblEventOutputs.setText("You need to select a pet first!");
+				} else if (globalCurrentPlayer.getFood().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "You don't have any food! Visit the store to buy some.",
+							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+				} else if (globalCurrentPet.getActions() == 0) {
+					lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
+				} else {
+					feedPet();
+				}
+			}
+		});
+
+		btnUseToy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (globalCurrentPet == null) {
+					lblEventOutputs.setText("You need to select a pet first!");
+				} else if (globalCurrentPlayer.getToys().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "You don't have any toys! Visit the store to buy some.",
+							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+				} else if (globalCurrentPet.getActions() == 0) {
+					lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
+				} else {
+					play();
+				}
+			}
+		});
+
+		btnFeedBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				feedBack();
+			}
+		});
+
+		btnPlayBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				playBack();
+			}
+		});
+
+		btnPlayerContinue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rdbtn1player.isSelected() == true) {
+					rdbtn1player.setSelected(false);
+					inputDayNum();
+					return;
+				}
+				if (rdbtn2players.isSelected() == true) {
+					rdbtn2players.setSelected(false);
+					inputDayNum();
+					return;
+				}
+				if (rdbtn3players.isSelected() == true) {
+					rdbtn3players.setSelected(false);
+					inputDayNum();
+					return;
+				}
+			}
+		});
+
+		btnPetSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelButtons.setVisible(false);
+				panelPets.setVisible(true);
+				selectPet();
+			}
+		});
+	}
+
+	public void feedBack() {
+		panelMainScreen.setVisible(true);
+		panelFeed.setVisible(false);
+		panelButtons.setVisible(true);
+
+		btnFood1.setVisible(false);
+		btnFood2.setVisible(false);
+		btnFood3.setVisible(false);
+		btnFood4.setVisible(false);
+		btnFood5.setVisible(false);
+		btnFood6.setVisible(false);
+
+		lblFood1.setVisible(false);
+		lblFood2.setVisible(false);
+		lblFood3.setVisible(false);
+		lblFood4.setVisible(false);
+		lblFood5.setVisible(false);
+		lblFood6.setVisible(false);
+	}
+
+	public void playBack() {
+		lblPlayerStats.setText(globalCurrentPlayer.toString());
+		panelMainScreen.setVisible(true);
+		panelPlay.setVisible(false);
+		panelButtons.setVisible(true);
+
+		btnToy1.setVisible(false);
+		btnToy2.setVisible(false);
+		btnToy3.setVisible(false);
+		btnToy4.setVisible(false);
+		btnToy5.setVisible(false);
+		btnToy6.setVisible(false);
+
+		lblToy1.setVisible(false);
+		lblToy2.setVisible(false);
+		lblToy3.setVisible(false);
+		lblToy4.setVisible(false);
+		lblToy5.setVisible(false);
+		lblToy6.setVisible(false);
+	}
+
+	public void mainScreenHelper() {
+		Map<Player, Integer> playerScores = new HashMap<Player, Integer>();
+
+		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
+			Player val = entry.getValue();
+			globalCurrentPlayer = val;
+			playerDaysTaken = 0;
+			mainSelectScreen();
+			System.out.format("Days for %s ended, you scored a total of %d points overall, well done!", val.getName(),
+					score(val));
+			playerScores.put(val, score(val));
+			promptEnterKey();
+		}
+		System.out.println("Game Over...");
+		System.out.println("Total scores for game:");
+
+		for (Player key : playerScores.keySet()) {
+			System.out.format("%s: %d\n", key.getName(), playerScores.get(key));
+		}
+	}
+
+	public void selectPet() {
+		panelPets.setVisible(true);
+		panelButtons.setVisible(false);
+		Species button1 = null;
+		Species button2 = null;
+		Species button3 = null;
+
+		Species[] species = { button1, button2, button3 };
+		JButton[] jButtons = { btnSelectPet1, btnSelectPet2, btnSelectPet3 };
+		JLabel[] jLabels = { lblPetName1, lblPetName2, lblPetName3 };
+		int i = 0;
+		for (Map.Entry<String, Species> entry : globalCurrentPlayer.getPets().entrySet()) {
+			jButtons[i].setVisible(true);
+			species[i] = entry.getValue();
+			if (entry.getValue().getSpecies() == penguin.getSpecies()) {
+				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
+				jLabels[i].setText(entry.getValue().getName());
+			} else if (entry.getValue().getSpecies() == crab.getSpecies()) {
+				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
+				jLabels[i].setText(entry.getValue().getName());
+			} else if (entry.getValue().getSpecies() == robot.getSpecies()) {
+				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
+				jLabels[i].setText(entry.getValue().getName());
+			} else if (entry.getValue().getSpecies() == snake.getSpecies()) {
+				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
+				jLabels[i].setText(entry.getValue().getName());
+			} else if (entry.getValue().getSpecies() == cloud.getSpecies()) {
+				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
+				jLabels[i].setText(entry.getValue().getName());
+			} else if (entry.getValue().getSpecies() == monster.getSpecies()) {
+				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
+				jLabels[i].setText(entry.getValue().getName());
+			}
+			i++;
+		}
+		btnSelectPet1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnSelectPet1.getIcon() != null) {
+					globalCurrentPet = species[0];
+					currentSelectedPet();
+					panelButtons.setVisible(true);
+					panelPets.setVisible(false);
+					mainSelectScreen();
+				}
+			}
+		});
+		btnSelectPet2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnSelectPet2.getIcon() != null) {
+					globalCurrentPet = species[1];
+					currentSelectedPet();
+					panelButtons.setVisible(true);
+					panelPets.setVisible(false);
+					mainSelectScreen();
+				}
+			}
+		});
+		btnSelectPet3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnSelectPet3.getIcon() != null) {
+					globalCurrentPet = species[2];
+					currentSelectedPet();
+					panelButtons.setVisible(true);
+					panelPets.setVisible(false);
+					mainSelectScreen();
+				}
+			}
+		});
+
+	}
+
+	public void currentSelectedPet() {
+		lblCurrentPet.setText(globalCurrentPet.getName());
+		lblPetAttributes.setText(globalCurrentPet.toString());
+		lblPlayerStats.setText(globalCurrentPlayer.toString());
+		if (globalCurrentPet.getSpecies() == penguin.getSpecies()) {
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
+		} else if (globalCurrentPet.getSpecies() == crab.getSpecies()) {
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
+
+		} else if (globalCurrentPet.getSpecies() == robot.getSpecies()) {
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
+
+		} else if (globalCurrentPet.getSpecies() == snake.getSpecies()) {
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
+
+		} else if (globalCurrentPet.getSpecies() == cloud.getSpecies()) {
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
+
+		} else if (globalCurrentPet.getSpecies() == monster.getSpecies()) {
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
+
+		}
+
+	}
+
+	public void mainSelectScreen() {
+
+		panelCreation.setVisible(false);
+		panelMainScreen.setVisible(true);
+		lblCurrentPlayer.setText(globalCurrentPlayer.getName());
+		lblCurrentDay.setText(String.format("%d", globalCurrentDay));
+		lblDayTotals.setText(String.format("/%1$,.0f", gameDays));
+	}
+
+	public void punish() {
+		if (globalCurrentPet.getMisbehaving() == true) {
+			lblEventOutputs.setText(String.format("%s is upset, but can focus better (can have 2 actions again)",
+					globalCurrentPet.getName()));
+			globalCurrentPet.punish();
+		} else {
+			lblEventOutputs.setText(String.format("%s isn't misbehaving!", globalCurrentPet.getName()));
+
+		}
+
+	}
+
+	public void revive() {
+		if (globalCurrentPet == null) {
+			lblEventOutputs.setText("You need to select a pet first!");
+		} else if (globalCurrentPet.getAlive() == false && globalCurrentPet.getRevive() == true) {
+			globalCurrentPet.setRevive(false);
+			lblEventOutputs.setText("Your pet has revived!");
+		} else if (globalCurrentPet.getAlive() == true) {
+			lblEventOutputs.setText("Your pet is already alive!");
+		} else {
+			lblEventOutputs.setText("Sorry, your pet is only allowed to revive once! ");
+		}
+	}
+
+	public void doctor() {
+
+		if (globalCurrentPet == null) {
+			lblEventOutputs.setText("You need to select a pet first!");
+		} else {
+			if (globalCurrentPet.getActions() == 0) {
+				lblEventOutputs.setText("Sorry! This pet has already taken 2 actions today.");
+			} else if (globalCurrentPet.getSick() == true) {
+				globalCurrentPet.heal();
+				lblEventOutputs.setText(String.format("%s isn't sick anymore!", globalCurrentPet.getName()));
+				lblPetAttributes.setText(globalCurrentPet.toString());
+				lblPlayerStats.setText(globalCurrentPlayer.toString());
+			} else {
+				globalCurrentPet.heal();
+				lblPetAttributes.setText(globalCurrentPet.toString());
+				lblPlayerStats.setText(globalCurrentPlayer.toString());
+				lblEventOutputs.setText(String.format("%s is feeling healthier!", globalCurrentPet.getName()));
+			}
+		}
+	}
+
+	public void gameStart() {
+		panelStart.setVisible(true);
+		panelHelp.setVisible(false);
+		btnHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textCounter = 1;
+				panelStart.setVisible(false);
+				panelHelp.setVisible(true);
+				clickPanel.setVisible(true);
+				lblHelp.setText("");
+
+			}
+		});
+
+		clickPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				if (textCounter == 1) {
+					lblHelp.setText(help1);
+				}
+				if (textCounter == 2) {
+					lblHelp.setText(help2);
+				}
+				if (textCounter == 3) {
+					lblHelp.setText(help3);
+				}
+				if (textCounter == 4) {
+					lblHelp.setText(help4);
+				}
+				if (textCounter == 5) {
+					lblHelp.setText(help5);
+				}
+				if (textCounter == 6) {
+					panelStart.setVisible(true);
+					panelHelp.setVisible(false);
+					textCounter = 1;
+				}
+				textCounter++;
+			}
+		});
+
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputPlayerNum();
+			}
+		});
+	}
+
+	public void inputPlayerNum() {
+		panelInput.setVisible(true);
+		panelStart.setVisible(false);
+		panelHelp.setVisible(false);
+	}
+
+	public void inputDayNum() {
+		gameDays = 0;
+
+		spinnerDayNum.setVisible(true);
+		lblPlayerNum.setText("How many days will the game run for?");
+		rdbtn1player.setVisible(false);
+		rdbtn2players.setVisible(false);
+		rdbtn3players.setVisible(false);
+		btnPlayerContinue.setVisible(false);
+		btnPlayerContinue2.setVisible(true);
+
+		btnPlayerContinue2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameDays = (Double) spinnerDayNum.getValue();
+				createPlayers();
+			}
+		});
+	}
+
+	public void createPlayers() {
+		textCounter = 1;
+		panelInput.setVisible(false);
+		panelCreation.setVisible(true);
+		String currentPlayer;
+		lblNamePrompt.setText(
+				String.format("Player %d, enter your name here and select up to 3 pets above before clicking continue.",
+						textCounter));
+
+		btnCreationContinue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldCreation.grabFocus();
+				if (textFieldCreation.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "You need to enter a name for your player!",
+							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+				} else if (boxCounter() > 3 || boxCounter() == 0) {
+					JOptionPane.showMessageDialog(null, "You need to select 1-3 Pets for you to own!",
+							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+				} else if (petNameChecker() == false) {
+					JOptionPane.showMessageDialog(null, "One or more of your selected pets does not have a name yet!",
+							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+				} else if (existingNameChecker(textFieldCreation.getText()) == true) {
+					JOptionPane.showMessageDialog(frame, "That name belongs to another player, please choose another.");
+
+				} else if (textCounter >= numOfPlayers) {
+					Player newPlayerFinal = new Player(textFieldCreation.getText());
+					addPlayer(newPlayerFinal, textCounter);
+					textFieldCreation.setText("");
+					createPets(newPlayerFinal);
+					clearBoxes();
+					globalCurrentPlayer = players.get(1);
+					globalCurrentDay = 1;
+					mainSelectScreen();
+
+				} else if (textCounter == 1) {
+					Player newPlayer1 = new Player(textFieldCreation.getText());
+					addPlayer(newPlayer1, 1);
+					createPets(newPlayer1);
+					textFieldCreation.setText("");
+					lblNamePrompt.setText(String.format(
+							"Player %d, enter your name here and select up to 3 pets above before clicking continue.",
+							2));
+					textCounter++;
+					clearBoxes();
+
+				} else if (textCounter == 2) {
+					Player newPlayer2 = new Player(textFieldCreation.getText());
+					addPlayer(newPlayer2, 2);
+					createPets(newPlayer2);
+					textFieldCreation.setText("");
+					lblNamePrompt.setText(String.format(
+							"Player %d, enter your name here and select up to 3 pets above before clicking continue.",
+							3));
+					textCounter++;
+					clearBoxes();
+				} else if (textCounter == 3) {
+					Player newPlayer3 = new Player(textFieldCreation.getText());
+					addPlayer(newPlayer3, 3);
+					createPets(newPlayer3);
+					textFieldCreation.setText("");
+					lblNamePrompt.setText(String.format(
+							"Player %d, enter your name here and select up to 3 pets above before clicking continue.",
+							4));
+					textCounter++;
+					clearBoxes();
+				} else if (textCounter == 4) {
+					Player newPlayer4 = new Player(textFieldCreation.getText());
+					addPlayer(newPlayer4, 4);
+					createPets(newPlayer4);
+					textFieldCreation.setText("");
+					// promptPetCreation();
+					textCounter = 1;
+					clearBoxes();
+				}
+
+			}
+		});
+	}
+
+	public void clearBoxes() {
+		txtPetName1.setText("Enter a name...");
+		txtPetName2.setText("Enter a name...");
+		txtPetName3.setText("Enter a name...");
+		txtPetName4.setText("Enter a name...");
+		txtPetName5.setText("Enter a name...");
+		txtPetName6.setText("Enter a name...");
+		chckbxPet1.setSelected(false);
+		chckbxPet2.setSelected(false);
+		chckbxPet3.setSelected(false);
+		chckbxPet4.setSelected(false);
+		chckbxPet5.setSelected(false);
+		chckbxPet6.setSelected(false);
+	}
+
+	public boolean existingNameChecker(String name) {
+		return (players.keySet().contains(textFieldCreation.getText()));
+
+	}
+
+	public int boxCounter() {
+		int counter = 0;
+		if (chckbxPet1.isSelected()) {
+			counter++;
+		}
+		if (chckbxPet2.isSelected()) {
+			counter++;
+		}
+		if (chckbxPet3.isSelected()) {
+			counter++;
+		}
+		if (chckbxPet4.isSelected()) {
+			counter++;
+		}
+		if (chckbxPet5.isSelected()) {
+			counter++;
+		}
+		if (chckbxPet6.isSelected()) {
+			counter++;
+		}
+		return counter;
+	}
+
+	public void playerNameChecker() {
+		if (textFieldCreation.equals("")) {
+
+		}
+	}
+
+	public boolean petNameChecker() {
+		if ((chckbxPet1.isSelected()) && (txtPetName1.getText().equals("Enter a name..."))) {
+			return false;
+		} else if ((chckbxPet2.isSelected()) && (txtPetName2.getText().equals("Enter a name..."))) {
+			return false;
+		} else if ((chckbxPet3.isSelected()) && (txtPetName3.getText().equals("Enter a name..."))) {
+			return false;
+		} else if ((chckbxPet4.isSelected()) && (txtPetName4.getText().equals("Enter a name..."))) {
+			return false;
+		} else if ((chckbxPet5.isSelected()) && (txtPetName5.getText().equals("Enter a name..."))) {
+			return false;
+		} else if ((chckbxPet6.isSelected()) && (txtPetName6.getText().equals("Enter a name..."))) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
+	public void promptPetCreation() {
+		textCounter = 1;
+		textFieldCreation.setEditable(false);
+		lblNamePrompt
+				.setText(String.format("%s, please select up to 3 Pets to own.", players.get(textCounter).getName()));
+
+		btnPetCounter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (textCounter > numOfPlayers) {
+					System.out.println("next thing");
+
+				} else if (boxCounter() > 3 || boxCounter() == 0) {
+					JOptionPane.showMessageDialog(null, "You need to select 1-3 Pets for you to own!",
+							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+				} else if (textCounter == 1) {
+					createPets(players.get(textCounter));
+					textCounter++;
+
+				} else if (textCounter == 2) {
+					createPets(players.get(textCounter));
+					textCounter++;
+
+				} else if (textCounter == 3) {
+					createPets(players.get(textCounter));
+					textCounter++;
+
+				} else if (textCounter == 4) {
+
+				}
+			}
+		});
+		lblSelectUpTo.setVisible(true);
+		txtPetName1.setVisible(true);
+		txtPetName2.setVisible(true);
+		txtPetName3.setVisible(true);
+		txtPetName4.setVisible(true);
+		txtPetName5.setVisible(true);
+		txtPetName6.setVisible(true);
+		btnPetCounter.setVisible(true);
+		btnCreationContinue.setVisible(false);
+		lblNewLabel.setVisible(true);
+		lblNewLabel_1.setVisible(true);
+		lblNewLabel_2.setVisible(true);
+		lblBeng.setVisible(true);
+		lblNewLabel_4.setVisible(true);
+		lblNewLabel_5.setVisible(true);
+		lblNewLabel6.setVisible(true);
+		lblNewLabel.setVisible(true);
+		lblNewLabel.setVisible(true);
+		lblNewLabel.setVisible(true);
+		lblNewLabel.setVisible(true);
+		chckbxPet1.setVisible(true);
+		chckbxPet2.setVisible(true);
+		chckbxPet3.setVisible(true);
+		chckbxPet4.setVisible(true);
+		chckbxPet5.setVisible(true);
+		chckbxPet6.setVisible(true);
+	}
+
 	public boolean toyChecker(Toy toy) {
 		boolean toyOwned = false;
 		for (Map.Entry<Toy, Integer> entry : globalCurrentPlayer.getToys().entrySet()) {
@@ -2236,114 +2180,13 @@ public class GUI implements gameObjects {
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == heli.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/HELI_TOY.png")));
+				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/HELI_TOY.jpg")));
 				jLabels[i].setText(String.format("Durability: %d", entry.getKey().getDurability()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			}
 			i++;
 		}
-	}
-
-	public void playButtons() {
-		btnToy1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnToy1.getIcon() != null) {
-					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-					globalCurrentPet.play(currentToys.get(0));
-					if (currentToys.get(0).getDurability() < 0) {
-						globalCurrentPlayer.removeToy(currentToys.get(0));
-						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(0).getName()));
-					}
-
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					playBack();
-				}
-			}
-		});
-
-		btnToy2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnToy2.getIcon() != null) {
-					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-					globalCurrentPet.play(currentToys.get(1));
-					if (currentToys.get(1).getDurability() < 0) {
-						globalCurrentPlayer.removeToy(currentToys.get(1));
-						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(1).getName()));
-					}
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					playBack();
-				}
-			}
-		});
-
-		btnToy3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnToy3.getIcon() != null) {
-					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-					globalCurrentPet.play(currentToys.get(2));
-					if (currentToys.get(2).getDurability() < 0) {
-						globalCurrentPlayer.removeToy(currentToys.get(2));
-						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(2).getName()));
-					}
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					playBack();
-				}
-			}
-		});
-
-		btnToy4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnToy4.getIcon() != null) {
-					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-					globalCurrentPet.play(currentToys.get(3));
-					if (currentToys.get(3).getDurability() < 0) {
-						globalCurrentPlayer.removeToy(currentToys.get(3));
-						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(3).getName()));
-					}
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					playBack();
-				}
-			}
-		});
-
-		btnToy5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnToy5.getIcon() != null) {
-					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-					globalCurrentPet.play(currentToys.get(4));
-					if (currentToys.get(4).getDurability() < 0) {
-						globalCurrentPlayer.removeToy(currentToys.get(4));
-						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(4).getName()));
-					}
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					playBack();
-				}
-			}
-		});
-
-		btnToy6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnToy6.getIcon() != null) {
-					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
-					globalCurrentPet.play(currentToys.get(5));
-					globalCurrentPlayer.removeToy(currentToys.get(5));
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					playBack();
-				}
-			}
-		});
 	}
 
 	public void feedPet() {
@@ -2382,99 +2225,13 @@ public class GUI implements gameObjects {
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == pizza.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/pizza.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/Pizza.jpg")));
 				jLabels[i].setText(String.format("x%d", entry.getValue()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			}
 			i++;
 		}
-	}
-
-	public void feedButtons() {
-		btnFood1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnFood1.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
-							globalCurrentPet.getName(), currentFood.get(0).getName()));
-					globalCurrentPet.feed(currentFood.get(0));
-					globalCurrentPlayer.removeFood(currentFood.get(0));
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					feedBack();
-				}
-			}
-		});
-
-		btnFood2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnFood2.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
-							globalCurrentPet.getName(), currentFood.get(1).getName()));
-					globalCurrentPet.feed(currentFood.get(1));
-					globalCurrentPlayer.removeFood(currentFood.get(1));
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					feedBack();
-				}
-			}
-		});
-
-		btnFood3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnFood3.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
-							globalCurrentPet.getName(), currentFood.get(2).getName()));
-					globalCurrentPet.feed(currentFood.get(2));
-					globalCurrentPlayer.removeFood(currentFood.get(2));
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					feedBack();
-				}
-			}
-		});
-
-		btnFood4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnFood4.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
-							globalCurrentPet.getName(), currentFood.get(3).getName()));
-					globalCurrentPet.feed(currentFood.get(3));
-					globalCurrentPlayer.removeFood(currentFood.get(3));
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					feedBack();
-				}
-			}
-		});
-
-		btnFood5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnFood5.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
-							globalCurrentPet.getName(), currentFood.get(4).getName()));
-					globalCurrentPet.feed(currentFood.get(4));
-					globalCurrentPlayer.removeFood(currentFood.get(4));
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					feedBack();
-				}
-			}
-		});
-
-		btnFood6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnFood6.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
-							globalCurrentPet.getName(), currentFood.get(5).getName()));
-					globalCurrentPet.feed(currentFood.get(5));
-					globalCurrentPlayer.removeFood(currentFood.get(5));
-					lblPetAttributes.setText(globalCurrentPet.toString());
-					lblPlayerStats.setText(globalCurrentPlayer.toString());
-					feedBack();
-				}
-			}
-		});
 	}
 
 	public Species selectPet(Player player) {
@@ -2524,50 +2281,6 @@ public class GUI implements gameObjects {
 		System.out.println(player);
 	}
 
-	// public void promptSpecies(Player player, int petNum) {
-	// for (int i = 1; i < (petNum + 1); i++) {
-	// @SuppressWarnings("resource")
-	// Scanner scan = new Scanner(System.in);
-	// printSpeciesInfo();
-	// String speciesNum = null;
-	// do {
-	// if (speciesNum != null) {
-	// System.out.println(
-	// "\nYou have entered an invalid number," + "please enter a number between
-	// 1 and 6.\n");
-	// }
-	// System.out.println("To choose, enter a number from 1-6...");
-	// System.out.format("%s, please choose a species for Pet no.%d\n",
-	// player.name, i);
-	// speciesNum = scan.nextLine();
-	// } while (!speciesNum.matches("[1-6]"));
-	//
-	// int species = 0;
-	// int intSpeciesNum = Integer.parseInt(speciesNum);
-	// switch (intSpeciesNum) {
-	// case 1:
-	// species = 1;
-	// break;
-	// case 2:
-	// species = 2;
-	// break;
-	// case 3:
-	// species = 3;
-	// break;
-	// case 4:
-	// species = 4;
-	// break;
-	// case 5:
-	// species = 5;
-	// break;
-	// case 6:
-	// species = 6;
-	// break;
-	// }
-	// // createPet(player, species);
-	// }
-	// }
-
 	public void createPets(Player player) {
 
 		if (chckbxPet1.isSelected()) {
@@ -2600,10 +2313,6 @@ public class GUI implements gameObjects {
 			Species newPet = new Species(txtPetName6.getText(), speciesChoices.get(6));
 			player.addPet(newPet);
 		}
-	}
-
-	public void publicPetHelper(Player player) {
-
 	}
 
 	public void printSpeciesInfo() {
@@ -2687,9 +2396,10 @@ public class GUI implements gameObjects {
 
 	public static void main(String[] args) {
 
-		GUI newGame = new GUI();
+		GUIfinal newGame = new GUIfinal();
 		newGame.guiConstructor();
 		newGame.guiMainButtons();
+		newGame.mainScreenButtonColours();
 		newGame.feedButtons();
 		newGame.playButtons();
 		newGame.storeButtons();
