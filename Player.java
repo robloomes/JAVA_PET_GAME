@@ -176,7 +176,8 @@ public class Player {
 			playerFood = "Food: " + Arrays.toString(foodKeyList.toArray()).replace("[", "").replace("]", "");
 		}
 		
-		String result = String.format("%s %n%s %n%s %n%s %n%s", playerName, balanceString, playerPets, playerToys, playerFood);
+		String result = String.format("<html>%s<br>%s<br>%s<br>%s<br>%s",
+					      playerName, balanceString, playerPets, playerToys, playerFood);
 		return result;
 	}
 	
