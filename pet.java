@@ -108,9 +108,7 @@ public class Pet {
 	}
     
 	
-		public boolean getMisbehaving() {
-		return this.misbehaving;
-	}
+
 	/**
 	 * Getter method
 	 * @return This returns the mood of the Pet object.
@@ -190,9 +188,7 @@ public class Pet {
 	 * Getter method
 	 * @return This returns the actions of the Pet object.
 	 */
-    public int getActions(){
-    	return actions;
-    }
+
     
 	/**
 	 * Getter method
@@ -428,6 +424,7 @@ public class Pet {
     	toy.setDurability(dura);
     	energy -= energy * energyMod;
     	mood += (toy.getEnjoyment() * moodMod);
+    	minCheck();
     	maxCheck();
     	actions -= 1;
     	
