@@ -11,29 +11,21 @@ package pet_game;
  * @version 1.0
  */
 public class Species extends Pet {
-		/**
-		 * Constructor method for Food class.
-		 * @param name A variable of type String.
-		 * @param startSleepMod A variable of type double.
-		 * @param startHungerMod A variable of type double.
-		 * @param startEnergyMod A variable of type double.
-		 * @param startFavFood A variable of type String
-		 * @param startFavToy A variable of type String.
-		 * @param startSpecies A variable of type String.
-		 * @param startWeight A variable of type Integer.
-		 * @param startRoughness A variable of type double.
-		 * @return Nothing.
-		 */
-		public Species(String name, 
-					   double startSleepMod,
-				  	   double startMoodMod,
-					   double startHungerMod, 
-					   double startEnergyMod, 
-					   String startFavFood,
-					   String startFavToy,
-					   String startSpecies,
-					   int startWeight,
-					   double startRoughness){
+	/**
+	 * Constructor method for Food class.
+	 * @param name A variable of type String.
+	 * @param startSleepMod A variable of type double.
+	 * @param startHungerMod A variable of type double.
+	 * @param startEnergyMod A variable of type double.
+	 * @param startFavFood A variable of type String
+	 * @param startFavToy A variable of type String.
+	 * @param startSpecies A variable of type String.
+	 * @param startWeight A variable of type Integer.
+	 * @param startRoughness A variable of type double.
+	 * @return Nothing.
+	 */
+	public Species(String name, double startSleepMod, double startMoodMod, double startHungerMod, double startEnergyMod,
+			String startFavFood, String startFavToy, String startSpecies, int startWeight, double startRoughness) {
 		super(name);
 		moodMod = startMoodMod;
 		hungerMod = startHungerMod;
@@ -43,14 +35,14 @@ public class Species extends Pet {
 		speciesName = startSpecies;
 		weight = startWeight;
 		roughness = startRoughness;
-		}
+	}
+
 	/**
 	 * Constructor for cloning the class, not just the reference.
 	 * @param name  
 	 * @param species 
 	 */
-    //
-	public Species(String name, Species species){
+	public Species(String name, Species species) {
 		super(species, name);
 		moodMod = species.moodMod;
 		hungerMod = species.hungerMod;
@@ -60,48 +52,33 @@ public class Species extends Pet {
 		speciesName = species.speciesName;
 		weight = species.weight;
 		roughness = species.roughness;
-		}
+	}
 	
 	/**
 	 * Overides the default toString method.
 	 * Produces a formatted String of all Species variables.
 	 * @return Formatted String.
 	 */
-   public String toString() {
-	   String petName = "Name: " + this.getName();
-	   String petSpecies = "Species: " + this.getSpecies();
-	   String petWeight = "Weight: " + this.weight;
-	   String petAge = "Age: " + this.getAge();
-	   String petMood = "Mood: " + this.getMood();
-	   String petEnergy = "Energy: " + this.getEnergy();
-	   String petHealth = "Health: " + this.getHealth();
-	   String petHunger = "Hunger: " + this.getHunger();
-	   String petToiletNeed = "Toilet Need: " + this.getToiletNeed();
-	   String petAlive = "Alive: " + this.getAlive();
-	   String petRevive = "Revive: " + this.getRevive();
-	   String petSick = "Sick: " + this.getSick();
-	   String petActions = "Actions: " + this.getActions();
-	   String petMisbehave = "Misbehaving: " + this.misbehaving;
-
-	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
-		             petName, petSpecies, petWeight, petAge,
-		             petMood, petEnergy, petHealth,
-		             petHunger, petToiletNeed,
-		             petAlive, petRevive, petSick,
-			     petActions, petMisbehave); 
-	   return petStats;
-   }
-	   
-   public static void main(String[]args){
-			//unit testing
-		    Species cat = new Species("lolo", 1.0, 5.0, 1.0, 1.0, "food", "toy", "cloud", 100, 1.0); 
-			System.out.println("\n"+ cat);
-			Species cat2 = new Species("catclone", cat);
-			System.out.println("\n"+ cat);
-			System.out.println("\n"+ cat2);
-			cat.endDay();
-			System.out.println("\n" + cat);
-			System.out.println("\n"+ cat2);
-			System.out.println(cat.getMoodMod());
-	   }
+	public String toString() {
+		String petName = "Name: " + this.getName();
+		String petSpecies = "Species: " + this.getSpecies();
+		String petWeight = "Weight: " + this.weight;
+		String petAge = "Age: " + this.getAge();
+		String petMood = "Mood: " + this.getMood();
+		String petEnergy = "Energy: " + this.getEnergy();
+		String petHealth = "Health: " + this.getHealth();
+		String petHunger = "Hunger: " + this.getHunger();
+		String petToiletNeed = "Toilet Need: " + this.getToiletNeed();
+		String petAlive = "Alive: " + this.getAlive();
+		String petRevive = "Revive Available: " + this.getRevive();
+		String petSick = "Sick: " + this.getSick();
+		String petActions = "Actions:" + this.getActions();
+		String petMisbehave = "Misbehaving: " + this.misbehaving;
+		String favouriteFood = "Favourite food:" + this.favFood; 
+		String petStats = String.format(
+				"<html>%s<br>%s<br>%s<br>%s<br>%s<br>%s<br>%s<br>%s<br>%s<br>%s<br>%s<br>%s<br>%s%s<br>%s<br>", 
+				petName, petSpecies, petWeight, petAge, petMood, petEnergy, petHealth, petHunger, petToiletNeed, 
+				petAlive, petRevive, petSick, petActions, petMisbehave);
+		return petStats;
 	}
+}
