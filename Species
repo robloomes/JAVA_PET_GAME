@@ -4,8 +4,8 @@ package pet_game;
  * Species.java - a class used for building different Species.
  * <p>
  * This contains methods for returning and changing Species attributes. Species
- * objects created are mainly used in association with classes @see Pet and @see
- * gameEnvironment.
+ * objects created are mainly used in association with classes @see {@link Pet}
+ * and {@link pet_game.GUIfinal}.
  * 
  * @author Robert Loomes
  * @author Mna Chalabi
@@ -16,25 +16,28 @@ public class Species extends Pet {
 	/**
 	 * Constructor method for Food class.
 	 * 
-	 * @param name
+	 * @param name-
 	 *            A variable of type String.
-	 * @param startSleepMod
+	 * @param startSleepMod-
 	 *            A variable of type double.
-	 * @param startHungerMod
+	 * @param startHungerMod-
 	 *            A variable of type double.
-	 * @param startEnergyMod
+	 * @param startEnergyMod-
 	 *            A variable of type double.
-	 * @param startFavFood
+	 * @param startFavFood-
 	 *            A variable of type String
-	 * @param startFavToy
+	 * @param startFavToy-
 	 *            A variable of type String.
-	 * @param startSpecies
+	 * @param startSpecies-
 	 *            A variable of type String.
-	 * @param startWeight
+	 * @param startWeight-
 	 *            A variable of type Integer.
-	 * @param startRoughness
+	 * @param startRoughness-
 	 *            A variable of type double.
-	 * @return Nothing.
+	 * @param startMoodMod-
+	 *            A variable of type Integer.
+	 * @param startWeight-
+	 *            A variable of type Integer.
 	 */
 	public Species(String name, double startSleepMod, double startMoodMod, double startHungerMod, double startEnergyMod,
 			String startFavFood, String startFavToy, String startSpecies, int startWeight, double startRoughness) {
@@ -52,8 +55,10 @@ public class Species extends Pet {
 	/**
 	 * Constructor for cloning the class, not just the reference.
 	 * 
-	 * @param name
-	 * @param species
+	 * @param name-
+	 *            the name of the Species given by the Player. A String.
+	 * @param species-
+	 *            the Type of Species. A String.
 	 */
 	public Species(String name, Species species) {
 		super(species, name);
@@ -68,7 +73,7 @@ public class Species extends Pet {
 	}
 
 	/**
-	 * Overides the default toString method. Produces a formatted String of all
+	 * Overrides the default toString method. Produces a formatted String of all
 	 * Species variables.
 	 * 
 	 * @return Formatted String.
