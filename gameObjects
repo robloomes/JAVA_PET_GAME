@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * gameObjects - a class used for building Food and Pet objects.
+ * gameObjects - a class used for building Food, Toy, Species and Pet objects.
  * <p>
- * This contains methods for changing Food and Pet attributes. gameObjects
- * created are mainly used in association with class @see gameEnvironment.
+
+ * Objects created are mainly used in association with class @see gameEnvironment.
  * 
  * @author Robert Loomes
  * @author Mna Chalabi
