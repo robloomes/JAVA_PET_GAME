@@ -152,7 +152,6 @@ public class PetTest {
 		Pet testPet = new Pet("lo");
 		Toy testToy = new Toy("Bear", 5, 10, 20); // (name, price, durability,
 													// enjoyment)
-		int oldEnergy = testPet.energy;
 		int oldDura = testToy.durability;
 		int oldMood = testPet.mood;
 		testPet.play(testToy);
