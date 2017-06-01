@@ -8,16 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Scanner;
-import java.util.jar.Attributes.Name;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -1040,87 +1034,94 @@ public class GUIfinal implements gameObjects {
 
 		panelMainScreen.add(lblCurrentDay);
 	}
-	
+
 	public void mouseClickActions() {
-		
+
 		txtPetName1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtPetName1.setText("");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (txtPetName1.getText().equals("")){
+				if (txtPetName1.getText().equals("")) {
 					txtPetName1.setText("Enter a name...");
 				}
 			}
 		});
-		
+
 		txtPetName2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtPetName2.setText("");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (txtPetName2.getText().equals("")){
+				if (txtPetName2.getText().equals("")) {
 					txtPetName2.setText("Enter a name...");
 				}
 			}
 		});
-		
+
 		txtPetName3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtPetName3.setText("");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (txtPetName3.getText().equals("")){
+				if (txtPetName3.getText().equals("")) {
 					txtPetName3.setText("Enter a name...");
 				}
 			}
 		});
-		
+
 		txtPetName4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtPetName4.setText("");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (txtPetName4.getText().equals("")){
+				if (txtPetName4.getText().equals("")) {
 					txtPetName4.setText("Enter a name...");
 				}
 			}
 		});
-		
+
 		txtPetName5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtPetName5.setText("");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (txtPetName5.getText().equals("")){
+				if (txtPetName5.getText().equals("")) {
 					txtPetName5.setText("Enter a name...");
 				}
 			}
 		});
-		
+
 		txtPetName6.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				txtPetName6.setText("");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (txtPetName6.getText().equals("")){
+				if (txtPetName6.getText().equals("")) {
 					txtPetName6.setText("Enter a name...");
 				}
 			}
 		});
 	}
+
 	public void feedButtons() {
 		btnFood1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2024,13 +2025,13 @@ public class GUIfinal implements gameObjects {
 		List<String> petNames = new ArrayList<String>();
 		for (String name : textFields) {
 			if (!name.equals("Enter a name...")) {
-				if (petNames.contains(name)) {
+				if (petNames.contains(name.toUpperCase())) {
 					return true;
 				}
-				if (existingPetNames.contains(name)) {
+				if (existingPetNames.contains(name.toUpperCase())) {
 					return true;
 				}
-				petNames.add(name);
+				petNames.add(name.toUpperCase());
 			}
 		}
 		return false;
@@ -2132,7 +2133,8 @@ public class GUIfinal implements gameObjects {
 
 	public boolean existingPlayerChecker(String name) {
 		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
-			if (entry.getValue().getName().equals(name)) {
+			String formatName = entry.getValue().getName().toUpperCase();
+			if (formatName.equals(name.toUpperCase())) {
 				return true;
 			}
 		}
@@ -2400,32 +2402,32 @@ public class GUIfinal implements gameObjects {
 	public void createPets(Player player) {
 
 		if (chckbxPet1.isSelected()) {
-			existingPetNames.add(txtPetName1.getText());
+			existingPetNames.add(txtPetName1.getText().toUpperCase());
 			Species newPet = new Species(txtPetName1.getText(), speciesChoices.get(1));
 			player.addPet(newPet);
 		}
 		if (chckbxPet2.isSelected()) {
-			existingPetNames.add(txtPetName2.getText());
+			existingPetNames.add(txtPetName2.getText().toUpperCase());
 			Species newPet = new Species(txtPetName2.getText(), speciesChoices.get(2));
 			player.addPet(newPet);
 		}
 		if (chckbxPet3.isSelected()) {
-			existingPetNames.add(txtPetName3.getText());
+			existingPetNames.add(txtPetName3.getText().toUpperCase());
 			Species newPet = new Species(txtPetName3.getText(), speciesChoices.get(3));
 			player.addPet(newPet);
 		}
 		if (chckbxPet4.isSelected()) {
-			existingPetNames.add(txtPetName4.getText());
+			existingPetNames.add(txtPetName4.getText().toUpperCase());
 			Species newPet = new Species(txtPetName4.getText(), speciesChoices.get(4));
 			player.addPet(newPet);
 		}
 		if (chckbxPet5.isSelected()) {
-			existingPetNames.add(txtPetName5.getText());
+			existingPetNames.add(txtPetName5.getText().toUpperCase());
 			Species newPet = new Species(txtPetName5.getText(), speciesChoices.get(5));
 			player.addPet(newPet);
 		}
 		if (chckbxPet6.isSelected()) {
-			existingPetNames.add(txtPetName6.getText());
+			existingPetNames.add(txtPetName6.getText().toUpperCase());
 			Species newPet = new Species(txtPetName6.getText(), speciesChoices.get(6));
 			player.addPet(newPet);
 		}
