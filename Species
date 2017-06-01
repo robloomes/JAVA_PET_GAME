@@ -80,12 +80,15 @@ public class Species extends Pet {
 	   String petAlive = "Alive: " + this.getAlive();
 	   String petRevive = "Revive: " + this.getRevive();
 	   String petSick = "Sick: " + this.getSick();
+	   String petActions = "Actions: " + this.getActions();
+	   String petMisbehave = "Misbehaving: " + this.misbehaving;
 
 	   String petStats = String.format("%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s %n%s", 
 		             petName, petSpecies, petWeight, petAge,
 		             petMood, petEnergy, petHealth,
 		             petHunger, petToiletNeed,
-		             petAlive, petRevive, petSick); 
+		             petAlive, petRevive, petSick,
+			     petActions, petMisbehave); 
 	   return petStats;
    }
 	   
