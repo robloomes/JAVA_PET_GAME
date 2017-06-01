@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Player.java - a class used for building Player objects. Food objects created
- * are mainly used in association with classes @see gameEnvironment.
+ * Player.java - a class used for building Player objects. Player objects
+ * created are mainly used in association with classes @see gameEnvironment.
  * 
  * @author Robert Loomes
  * @author Mna Chalabi
@@ -30,7 +30,7 @@ public class Player {
 	/**
 	 * Constructor method for Food class.
 	 * 
-	 * @param name
+	 * @param name-
 	 *            A variable of type String.
 	 * @return Nothing.
 	 */
@@ -88,7 +88,7 @@ public class Player {
 	/**
 	 * Sets the int newBalance variable to a new value.
 	 * 
-	 * @param newBalance
+	 * @param newBalance-
 	 *            this is the new variable for int Balance.
 	 */
 	public void setBalance(int newBalance) {
@@ -98,7 +98,7 @@ public class Player {
 	/**
 	 * addPet is Method that adds pet to the list of the player.
 	 * 
-	 * @param pet
+	 * @param pet-
 	 *            to sets a name for the pet.
 	 */
 	public void addPet(Species pet) {
@@ -107,6 +107,9 @@ public class Player {
 
 	/**
 	 * addToy is Method that adds Toys to the list of the player.
+	 * 
+	 * @param toy-
+	 *            the Toy being added to the Player.
 	 */
 	public void addToy(Toy toy) {
 		ownedToys.merge(toy, 1, Integer::sum);
@@ -114,6 +117,9 @@ public class Player {
 
 	/**
 	 * removePet is Method that remove Toys from the list of the player.
+	 * 
+	 * @param toy-
+	 *            the Toy being removed from the Player.
 	 */
 	public void removeToy(Toy toy) {
 		ownedToys.merge(toy, -1, Integer::sum);
@@ -122,6 +128,9 @@ public class Player {
 
 	/**
 	 * addFood is Method that adds Foods to the list of the player.
+	 * 
+	 * @param food-
+	 *            the Food being added to the Player.
 	 */
 	public void addFood(Food food) {
 		ownedFood.merge(food, 1, Integer::sum);
@@ -129,6 +138,9 @@ public class Player {
 
 	/**
 	 * removeFood is Method that remove Food from the list of the player.
+	 * 
+	 * @param food-
+	 *            the Food being removed the Player.
 	 */
 	public void removeFood(Food food) {
 		ownedFood.merge(food, -1, Integer::sum);
