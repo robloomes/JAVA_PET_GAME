@@ -76,6 +76,7 @@ public class GUIfinal implements gameObjects {
 	private double playerDaysTaken;
 	private int globalCurrentDay;
 	private List<String> existingPetNames = new ArrayList<String>();
+	private int playerIterator;
 
 	private JLabel lblWelcome = new JLabel("<html>Welcome to Pets <br> the virtual pet game!");
 	private JButton btnStart = new JButton("Start");
@@ -118,6 +119,7 @@ public class GUIfinal implements gameObjects {
 	private JCheckBox chckbxPet5 = new JCheckBox("Select Robot");
 	private JCheckBox chckbxPet6 = new JCheckBox("Select Snake");
 	private JLabel lblNewLabel = new JLabel("Put pets + description here");
+
 	private JLabel lblWelcome2 = new JLabel("<html>Welcome to Pets <br>the virtual pet game!");
 	private JLabel lblNewLabel_2 = new JLabel("New label");
 	private JLabel lblBeng = new JLabel("New label");
@@ -137,7 +139,7 @@ public class GUIfinal implements gameObjects {
 	private final JLabel lblNewLabel_9 = new JLabel(
 			"<html>Monster: while scary looking, <br>has a gentle heart beneath the rugged fur.");
 	private final JLabel lblNewLabel_10 = new JLabel(
-			"<html>Snake: is as slippery as he<br> is untrustworthy. Keep a close eye on this one.\\n");
+			"<html>Snake: is as slippery as he<br> is untrustworthy. Keep a close eye on this one.");
 	private final JLabel lblNewLabel_11 = new JLabel("New label");
 	private final JLabel lblNewLabel_12 = new JLabel("New label");
 	private final JPanel panelMainScreen = new JPanel();
@@ -209,7 +211,21 @@ public class GUIfinal implements gameObjects {
 	private final JLabel lblToy6 = new JLabel("");
 	private final JLabel lblPlayerStats = new JLabel("<html>");
 
+	Species button1 = null;
+	Species button2 = null;
+	Species button3 = null;
+	Species[] species = { button1, button2, button3 };
+
+	JButton[] jButtons = { btnSelectPet1, btnSelectPet2, btnSelectPet3 };
+	JLabel[] jLabels = { lblPetName1, lblPetName2, lblPetName3 };
+	private final JPanel panelEnd = new JPanel();
+	private final JLabel lblGameOver = new JLabel("GAME OVER");
+	private final JLabel lblEndStats = new JLabel("");
+	private final JButton btnExit = new JButton("EXIT");
+
 	public GUIfinal() {
+
+		playerDaysTaken = 0;
 		panelStore.setVisible(false);
 		panelStore.add(lblNewLabel_14);
 		lblNewLabel_15.setForeground(new Color(255, 215, 0));
@@ -221,7 +237,7 @@ public class GUIfinal implements gameObjects {
 		btnCake.setBounds(175, 322, 114, 123);
 
 		panelStore.add(btnCake);
-		btnMelon.setIcon(new ImageIcon(GUI.class.getResource("/photo/water_m.jpg")));
+		btnMelon.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/water_m.jpg")));
 		btnMelon.setBounds(319, 325, 125, 120);
 
 		panelStore.add(btnMelon);
@@ -231,24 +247,24 @@ public class GUIfinal implements gameObjects {
 		btnHelicopter.setBounds(668, 129, 117, 112);
 
 		panelStore.add(btnHelicopter);
-		btnDoll.setIcon(new ImageIcon(GUI.class.getResource("/photo/Doll_Toy.jpg")));
+		btnDoll.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Doll_Toy.jpg")));
 		btnDoll.setBounds(817, 321, 105, 124);
 
 		panelStore.add(btnDoll);
 		btnBear.setFont(new Font("Dialog", Font.BOLD, 5));
-		btnBear.setIcon(new ImageIcon(GUI.class.getResource("/photo/Bear_Toy.jpg")));
+		btnBear.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Bear_Toy.jpg")));
 		btnBear.setBounds(668, 322, 105, 123);
 
 		panelStore.add(btnBear);
-		btnBoat.setIcon(new ImageIcon(GUI.class.getResource("/photo/Boat_Toy.jpg")));
+		btnBoat.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Boat_Toy.jpg")));
 		btnBoat.setBounds(817, 129, 132, 112);
 
 		panelStore.add(btnBoat);
-		btnYoyo.setIcon(new ImageIcon(GUI.class.getResource("/photo/yoy.jpg")));
+		btnYoyo.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/yoy.jpg")));
 		btnYoyo.setBounds(971, 129, 129, 112);
 
 		panelStore.add(btnYoyo);
-		btnKite.setIcon(new ImageIcon(GUI.class.getResource("/photo/KITE_TOY.png")));
+		btnKite.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/KITE_TOY.png")));
 		btnKite.setBounds(983, 322, 117, 132);
 
 		panelStore.add(btnKite);
@@ -324,7 +340,7 @@ public class GUIfinal implements gameObjects {
 
 		panelStore.add(lblNewLabel_13);
 		// lblPetStoreImage.setIcon(new
-		// ImageIcon(GUI.class.getResource("/photo/PetStoreDog.jpg")));
+		// ImageIcon(GUIfinal.class.getResource("/photo/PetStoreDog.jpg")));
 		lblPetStoreImage.setBounds(443, 537, 258, 182);
 
 		panelStore.add(lblPetStoreImage);
@@ -356,13 +372,17 @@ public class GUIfinal implements gameObjects {
 		speciesChoices.put(6, snake);
 	}
 
-	public void guiConstructor() {
+	public void GUIfinalConstructor() {
 
 		frame = new JFrame();
 		frame.setPreferredSize(new Dimension(500, 500));
 		frame.setBounds(100, 100, 1215, 744);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		panelMainScreen.setVisible(false);
+		panelPet.setBackground(Color.DARK_GRAY);
+		panelPet.setVisible(false);
+		panelPlay.setVisible(false);
 
 		rdbtn1player.setSelected(true);
 
@@ -385,7 +405,201 @@ public class GUIfinal implements gameObjects {
 		});
 		panelInput.setBackground(Color.WHITE);
 		panelInput.setVisible(false);
-		panelPlay.setVisible(false);
+		panelCreation.setLayout(null);
+		lblNewLabel.setBounds(450, 74, 192, 192);
+		lblSelectUpTo.setForeground(Color.WHITE);
+		lblSelectUpTo.setFont(new Font("Dialog", Font.BOLD, 25));
+		lblSelectUpTo.setBounds(474, 26, 246, 37);
+
+		panelCreation.add(lblSelectUpTo);
+		lblBeng.setBounds(98, 310, 192, 192);
+
+		lblBeng.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/PENG_PET.png")));
+		panelCreation.add(lblBeng);
+		lblNewLabel_4.setBounds(450, 310, 192, 192);
+
+		lblNewLabel_4.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/ROBOT_PET.png")));
+		panelCreation.add(lblNewLabel_4);
+		lblNewLabel_2.setBounds(801, 74, 192, 192);
+
+		lblNewLabel_2.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/MONSTER_PET.png")));
+		panelCreation.add(lblNewLabel_2);
+		lblNewLabel_1.setBounds(98, 74, 192, 192);
+		lblNewLabel_1.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/CLOUD_PET.png")));
+		panelCreation.add(lblNewLabel_1);
+		lblNewLabel_5.setBounds(801, 310, 192, 192);
+
+		lblNewLabel_5.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/SNAKE_PET.png")));
+		panelCreation.add(lblNewLabel_5);
+		lblNewLabel.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/CRAB_PET-1.png")));
+		panelCreation.add(lblNewLabel);
+		panelCreation.add(lblNewLabel);
+		textFieldCreation.setBounds(433, 538, 349, 31);
+		textFieldCreation.setColumns(10);
+		panelCreation.setBackground(Color.GRAY);
+		panelCreation.setVisible(false);
+		panelCreation.setBounds(0, 0, 1213, 718);
+
+		frame.getContentPane().add(panelCreation);
+		lblNamePrompt.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNamePrompt.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNamePrompt.setForeground(Color.WHITE);
+		lblNamePrompt.setBounds(274, 560, 698, 83);
+
+		panelCreation.add(lblNamePrompt);
+
+		panelCreation.add(textFieldCreation);
+		btnCreationContinue.setBounds(510, 622, 193, 61);
+
+		btnCreationContinue.setVerticalAlignment(SwingConstants.BOTTOM);
+
+		panelCreation.add(btnCreationContinue);
+		btnPetCounter.setBounds(510, 622, 193, 61);
+
+		btnPetCounter.setVisible(false);
+		btnPetCounter.setVerticalAlignment(SwingConstants.BOTTOM);
+		panelCreation.add(btnPetCounter);
+
+		txtPetName1 = new JTextField();
+		txtPetName1.setBounds(294, 235, 130, 31);
+		txtPetName1.setText("Enter a name...");
+		panelCreation.add(txtPetName1);
+		txtPetName1.setColumns(10);
+
+		txtPetName2 = new JTextField();
+		txtPetName2.setBounds(652, 235, 130, 31);
+		txtPetName2.setText("Enter a name...");
+		txtPetName2.setColumns(10);
+		panelCreation.add(txtPetName2);
+
+		txtPetName3 = new JTextField();
+		txtPetName3.setBounds(1003, 235, 130, 31);
+		txtPetName3.setText("Enter a name...");
+		txtPetName3.setColumns(10);
+		panelCreation.add(txtPetName3);
+
+		txtPetName4 = new JTextField();
+		txtPetName4.setBounds(294, 469, 130, 31);
+		txtPetName4.setText("Enter a name...");
+		txtPetName4.setColumns(10);
+		panelCreation.add(txtPetName4);
+
+		txtPetName5 = new JTextField();
+		txtPetName5.setBounds(647, 471, 130, 31);
+		txtPetName5.setText("Enter a name...");
+		txtPetName5.setColumns(10);
+		panelCreation.add(txtPetName5);
+
+		txtPetName6 = new JTextField();
+		txtPetName6.setBounds(1003, 471, 130, 31);
+		txtPetName6.setText("Enter a name...");
+		txtPetName6.setColumns(10);
+		panelCreation.add(txtPetName6);
+		chckbxPet1.setBounds(296, 205, 129, 23);
+		panelCreation.add(chckbxPet1);
+		chckbxPet2.setBounds(652, 205, 129, 23);
+		panelCreation.add(chckbxPet2);
+		chckbxPet3.setBounds(1004, 205, 129, 23);
+		panelCreation.add(chckbxPet3);
+		chckbxPet4.setBounds(296, 439, 129, 23);
+		panelCreation.add(chckbxPet4);
+		chckbxPet5.setBounds(648, 441, 129, 23);
+		panelCreation.add(chckbxPet5);
+		chckbxPet6.setBounds(1004, 441, 129, 23);
+		panelCreation.add(chckbxPet6);
+		lblNewLabel_6.setForeground(Color.WHITE);
+		lblNewLabel_6.setBounds(294, 18, 130, 155);
+
+		panelCreation.add(lblNewLabel_6);
+		lblNewLabel_3.setForeground(Color.WHITE);
+		lblNewLabel_3.setBounds(294, 268, 135, 127);
+
+		panelCreation.add(lblNewLabel_3);
+		lblNewLabel_7.setForeground(Color.WHITE);
+		lblNewLabel_7.setBounds(652, 26, 122, 125);
+
+		panelCreation.add(lblNewLabel_7);
+		lblNewLabel_8.setForeground(Color.WHITE);
+		lblNewLabel_8.setBounds(652, 268, 151, 140);
+
+		panelCreation.add(lblNewLabel_8);
+		lblNewLabel_9.setForeground(Color.WHITE);
+		lblNewLabel_9.setBounds(1003, 47, 111, 125);
+
+		panelCreation.add(lblNewLabel_9);
+		lblNewLabel_10.setForeground(Color.WHITE);
+		lblNewLabel_10.setBounds(1006, 271, 119, 148);
+
+		panelCreation.add(lblNewLabel_10);
+		lblNewLabel_11.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Pets-Background.png")));
+		lblNewLabel_11.setBounds(-58, -127, 1384, 869);
+
+		panelCreation.add(lblNewLabel_11);
+
+		panelInput.setBounds(0, 0, 1213, 718);
+		frame.getContentPane().add(panelInput);
+		panelInput.setLayout(null);
+		rdbtn3players.setVerticalTextPosition(SwingConstants.BOTTOM);
+		rdbtn3players.setHorizontalTextPosition(SwingConstants.CENTER);
+		rdbtn3players.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtn3players.setOpaque(false);
+
+		rdbtn3players.setBounds(687, 414, 232, 67);
+		panelInput.add(rdbtn3players);
+		rdbtn1player.setVerticalTextPosition(SwingConstants.BOTTOM);
+		rdbtn1player.setHorizontalTextPosition(SwingConstants.CENTER);
+		rdbtn1player.setHorizontalAlignment(SwingConstants.CENTER);
+
+		rdbtn1player.setOpaque(false);
+		rdbtn1player.setSize(new Dimension(20, 20));
+		rdbtn1player.setBounds(301, 414, 232, 67);
+		panelInput.add(rdbtn1player);
+		rdbtn2players.setVerticalTextPosition(SwingConstants.BOTTOM);
+		rdbtn2players.setHorizontalTextPosition(SwingConstants.CENTER);
+		rdbtn2players.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtn2players.setOpaque(false);
+		rdbtn2players.setSize(new Dimension(20, 20));
+		rdbtn2players.setBounds(487, 414, 232, 67);
+		panelInput.add(rdbtn2players);
+
+		radioGroupPlayers.add(rdbtn1player);
+		radioGroupPlayers.add(rdbtn2players);
+		radioGroupPlayers.add(rdbtn3players);
+		JLabel lblwelcomeToPets = new JLabel("<html>Welcome to Pets <br>the virtual pet  game!");
+		lblwelcomeToPets.setForeground(Color.WHITE);
+		lblwelcomeToPets.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblwelcomeToPets.setHorizontalAlignment(SwingConstants.CENTER);
+		lblwelcomeToPets.setFont(new Font("Dialog", Font.BOLD, 65));
+		lblwelcomeToPets.setBackground(Color.WHITE);
+		lblwelcomeToPets.setBounds(210, 99, 879, 217);
+		panelInput.add(lblwelcomeToPets);
+
+		panelInput.add(rdbtn2players);
+		lblPlayerNum.setForeground(Color.WHITE);
+		lblPlayerNum.setFont(new Font("Dialog", Font.BOLD, 22));
+		lblPlayerNum.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblPlayerNum.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlayerNum.setBounds(253, 488, 702, 108);
+
+		panelInput.add(lblPlayerNum);
+
+		btnPlayerContinue.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnPlayerContinue.setBounds(510, 605, 193, 78);
+		panelInput.add(btnPlayerContinue);
+
+		btnPlayerContinue2.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnPlayerContinue2.setBounds(510, 622, 193, 61);
+
+		panelInput.add(btnPlayerContinue2);
+
+		spinnerDayNum.setVisible(false);
+		spinnerDayNum.setModel(new SpinnerNumberModel(1.0, 1.0, 19.0, 1.0));
+		spinnerDayNum.setBounds(576, 470, 57, 46);
+		panelInput.add(spinnerDayNum);
+		lblBackgroundIcon.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Pets-Background.png")));
+		lblBackgroundIcon.setBounds(-19, -304, 1243, 1048);
+
+		panelInput.add(lblBackgroundIcon);
 		panelPlay.setBackground(Color.DARK_GRAY);
 		panelPlay.setBounds(0, 0, 605, 706);
 
@@ -549,19 +763,19 @@ public class GUIfinal implements gameObjects {
 
 		panelFeed.add(lblFood6);
 
-		btnChocolate.setIcon(new ImageIcon(GUI.class.getResource("/photo/Choclate.jpg")));
+		btnChocolate.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Choclate.jpg")));
 		btnChocolate.setBounds(37, 129, 115, 115);
 		panelStore.add(btnChocolate);
 
-		btnCookies.setIcon(new ImageIcon(GUI.class.getResource("/photo/Cookies.jpg")));
+		btnCookies.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Cookies.jpg")));
 		btnCookies.setBounds(175, 129, 117, 112);
 		panelStore.add(btnCookies);
 
-		btnFish.setIcon(new ImageIcon(GUI.class.getResource("/photo/Fish.jpg")));
+		btnFish.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Fish.jpg")));
 		btnFish.setBounds(319, 129, 125, 112);
 		panelStore.add(btnFish);
 
-		btnPizza.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pizza.jpg")));
+		btnPizza.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Pizza.jpg")));
 		btnPizza.setBounds(40, 322, 114, 123);
 		panelStore.add(btnPizza);
 		panelStore.setLayout(null);
@@ -580,94 +794,6 @@ public class GUIfinal implements gameObjects {
 		btnStoreBack.setFont(new Font("Tahoma", Font.PLAIN, 31));
 		btnStoreBack.setBounds(983, 623, 204, 69);
 		panelStore.add(btnStoreBack);
-
-		panelInput.setBounds(0, 0, 1213, 718);
-		frame.getContentPane().add(panelInput);
-		panelInput.setLayout(null);
-		rdbtn3players.setVerticalTextPosition(SwingConstants.BOTTOM);
-		rdbtn3players.setHorizontalTextPosition(SwingConstants.CENTER);
-		rdbtn3players.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtn3players.setOpaque(false);
-
-		rdbtn3players.setBounds(687, 414, 232, 67);
-		panelInput.add(rdbtn3players);
-		rdbtn1player.setVerticalTextPosition(SwingConstants.BOTTOM);
-		rdbtn1player.setHorizontalTextPosition(SwingConstants.CENTER);
-		rdbtn1player.setHorizontalAlignment(SwingConstants.CENTER);
-
-		rdbtn1player.setOpaque(false);
-		rdbtn1player.setSize(new Dimension(20, 20));
-		rdbtn1player.setBounds(301, 414, 232, 67);
-		panelInput.add(rdbtn1player);
-		rdbtn2players.setVerticalTextPosition(SwingConstants.BOTTOM);
-		rdbtn2players.setHorizontalTextPosition(SwingConstants.CENTER);
-		rdbtn2players.setHorizontalAlignment(SwingConstants.CENTER);
-		rdbtn2players.setOpaque(false);
-		rdbtn2players.setSize(new Dimension(20, 20));
-		rdbtn2players.setBounds(487, 414, 232, 67);
-		panelInput.add(rdbtn2players);
-
-		radioGroupPlayers.add(rdbtn1player);
-		radioGroupPlayers.add(rdbtn2players);
-		radioGroupPlayers.add(rdbtn3players);
-		JLabel lblwelcomeToPets = new JLabel("<html>Welcome to Pets <br>the virtual pet  game!");
-		lblwelcomeToPets.setForeground(Color.WHITE);
-		lblwelcomeToPets.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblwelcomeToPets.setHorizontalAlignment(SwingConstants.CENTER);
-		lblwelcomeToPets.setFont(new Font("Dialog", Font.BOLD, 65));
-		lblwelcomeToPets.setBackground(Color.WHITE);
-		lblwelcomeToPets.setBounds(210, 99, 879, 217);
-		panelInput.add(lblwelcomeToPets);
-
-		panelInput.add(rdbtn2players);
-		lblPlayerNum.setForeground(Color.WHITE);
-		lblPlayerNum.setFont(new Font("Dialog", Font.BOLD, 22));
-		lblPlayerNum.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblPlayerNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayerNum.setBounds(253, 488, 702, 108);
-
-		panelInput.add(lblPlayerNum);
-
-		btnPlayerContinue.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnPlayerContinue.setBounds(510, 605, 193, 78);
-		panelInput.add(btnPlayerContinue);
-
-		btnPlayerContinue2.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnPlayerContinue2.setBounds(510, 622, 193, 61);
-
-		panelInput.add(btnPlayerContinue2);
-
-		spinnerDayNum.setVisible(false);
-		spinnerDayNum.setModel(new SpinnerNumberModel(1.0, 1.0, 19.0, 1.0));
-		spinnerDayNum.setBounds(584, 470, 57, 46);
-		panelInput.add(spinnerDayNum);
-		lblBackgroundIcon.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
-		lblBackgroundIcon.setBounds(-19, -304, 1243, 1048);
-
-		panelInput.add(lblBackgroundIcon);
-		panelStart.setBackground(Color.BLUE);
-		panelStart.setForeground(Color.RED);
-		panelStart.setBounds(0, 0, 1213, 718);
-
-		frame.getContentPane().add(panelStart);
-		panelStart.setLayout(null);
-
-		btnHelp.setBounds(550, 542, 179, 48);
-		panelStart.add(btnHelp);
-
-		btnStart.setBounds(550, 439, 179, 48);
-		panelStart.add(btnStart);
-		lblWelcome.setForeground(Color.WHITE);
-		lblWelcome.setBackground(new Color(255, 255, 255));
-		lblWelcome.setBounds(298, 99, 817, 225);
-		panelStart.add(lblWelcome);
-		lblWelcome.setFont(new Font("Dialog", Font.BOLD, 65));
-		lblWelcome.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBackgroundstart.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
-		lblBackgroundstart.setBounds(-30, -231, 1365, 981);
-
-		panelStart.add(lblBackgroundstart);
 		panelHelp.setBounds(0, 0, 1199, 705);
 		frame.getContentPane().add(panelHelp);
 
@@ -705,12 +831,35 @@ public class GUIfinal implements gameObjects {
 		clickPanel.setBounds(-140, 178, 1131, 598);
 
 		panelHelp.add(clickPanel);
-		lblNewLabel_12.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
+		lblNewLabel_12.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Pets-Background.png")));
 		lblNewLabel_12.setBounds(-31, -49, 1273, 850);
 
 		panelHelp.add(lblNewLabel_12);
-		panelPet.setBackground(Color.DARK_GRAY);
-		panelPet.setVisible(false);
+		panelEnd.setVisible(false);
+		panelEnd.setBackground(Color.DARK_GRAY);
+		panelEnd.setBounds(0, 0, 1199, 706);
+
+		frame.getContentPane().add(panelEnd);
+		panelEnd.setLayout(null);
+
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnExit.setBounds(953, 602, 219, 74);
+
+		panelEnd.add(btnExit);
+		lblGameOver.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblGameOver.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblGameOver.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGameOver.setBackground(Color.PINK);
+		lblGameOver.setForeground(Color.BLACK);
+		lblGameOver.setOpaque(true);
+		lblGameOver.setBounds(10, 11, 1179, 179);
+
+		panelEnd.add(lblGameOver);
+		lblEndStats.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblEndStats.setOpaque(true);
+		lblEndStats.setBounds(10, 201, 1179, 494);
+
+		panelEnd.add(lblEndStats);
 		panelPet.setBounds(0, 0, 1213, 718);
 
 		frame.getContentPane().add(panelPet);
@@ -720,135 +869,29 @@ public class GUIfinal implements gameObjects {
 		lblpetdetails.setBounds(12, 12, 607, 358);
 
 		panelPet.add(lblpetdetails);
-		panelCreation.setLayout(null);
-		lblNewLabel.setBounds(450, 74, 192, 192);
-		lblSelectUpTo.setForeground(Color.WHITE);
-		lblSelectUpTo.setFont(new Font("Dialog", Font.BOLD, 25));
-		lblSelectUpTo.setBounds(474, 26, 246, 37);
+		panelStart.setBackground(Color.BLUE);
+		panelStart.setForeground(Color.RED);
+		panelStart.setBounds(0, 0, 1213, 718);
 
-		panelCreation.add(lblSelectUpTo);
-		lblBeng.setBounds(98, 310, 192, 192);
+		frame.getContentPane().add(panelStart);
+		panelStart.setLayout(null);
 
-		lblBeng.setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
-		panelCreation.add(lblBeng);
-		lblNewLabel_4.setBounds(450, 310, 192, 192);
+		btnHelp.setBounds(550, 542, 179, 48);
+		panelStart.add(btnHelp);
 
-		lblNewLabel_4.setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
-		panelCreation.add(lblNewLabel_4);
-		lblNewLabel_2.setBounds(801, 74, 192, 192);
+		btnStart.setBounds(550, 439, 179, 48);
+		panelStart.add(btnStart);
+		lblWelcome.setForeground(Color.WHITE);
+		lblWelcome.setBackground(new Color(255, 255, 255));
+		lblWelcome.setBounds(298, 99, 817, 225);
+		panelStart.add(lblWelcome);
+		lblWelcome.setFont(new Font("Dialog", Font.BOLD, 65));
+		lblWelcome.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBackgroundstart.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Pets-Background.png")));
+		lblBackgroundstart.setBounds(-30, -231, 1365, 981);
 
-		lblNewLabel_2.setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
-		panelCreation.add(lblNewLabel_2);
-		lblNewLabel_1.setBounds(98, 74, 192, 192);
-		lblNewLabel_1.setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
-		panelCreation.add(lblNewLabel_1);
-		lblNewLabel_5.setBounds(801, 310, 192, 192);
-
-		lblNewLabel_5.setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
-		panelCreation.add(lblNewLabel_5);
-		lblNewLabel.setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
-		panelCreation.add(lblNewLabel);
-		panelCreation.add(lblNewLabel);
-		textFieldCreation.setBounds(274, 513, 698, 67);
-		textFieldCreation.setColumns(10);
-		panelCreation.setBackground(Color.GRAY);
-		panelCreation.setVisible(false);
-		panelCreation.setBounds(0, 0, 1213, 718);
-
-		frame.getContentPane().add(panelCreation);
-		lblNamePrompt.setForeground(Color.WHITE);
-		lblNamePrompt.setBounds(274, 560, 698, 83);
-
-		panelCreation.add(lblNamePrompt);
-
-		panelCreation.add(textFieldCreation);
-		btnCreationContinue.setBounds(510, 622, 193, 61);
-
-		btnCreationContinue.setVerticalAlignment(SwingConstants.BOTTOM);
-
-		panelCreation.add(btnCreationContinue);
-		btnPetCounter.setBounds(510, 622, 193, 61);
-
-		btnPetCounter.setVisible(false);
-		btnPetCounter.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelCreation.add(btnPetCounter);
-
-		txtPetName1 = new JTextField();
-		txtPetName1.setBounds(294, 235, 130, 31);
-		txtPetName1.setText("Enter a name...");
-		panelCreation.add(txtPetName1);
-		txtPetName1.setColumns(10);
-
-		txtPetName2 = new JTextField();
-		txtPetName2.setBounds(652, 235, 130, 31);
-		txtPetName2.setText("Enter a name...");
-		txtPetName2.setColumns(10);
-		panelCreation.add(txtPetName2);
-
-		txtPetName3 = new JTextField();
-		txtPetName3.setBounds(1003, 235, 130, 31);
-		txtPetName3.setText("Enter a name...");
-		txtPetName3.setColumns(10);
-		panelCreation.add(txtPetName3);
-
-		txtPetName4 = new JTextField();
-		txtPetName4.setBounds(294, 469, 130, 31);
-		txtPetName4.setText("Enter a name...");
-		txtPetName4.setColumns(10);
-		panelCreation.add(txtPetName4);
-
-		txtPetName5 = new JTextField();
-		txtPetName5.setBounds(647, 471, 130, 31);
-		txtPetName5.setText("Enter a name...");
-		txtPetName5.setColumns(10);
-		panelCreation.add(txtPetName5);
-
-		txtPetName6 = new JTextField();
-		txtPetName6.setBounds(1003, 471, 130, 31);
-		txtPetName6.setText("Enter a name...");
-		txtPetName6.setColumns(10);
-		panelCreation.add(txtPetName6);
-		chckbxPet1.setBounds(296, 205, 129, 23);
-		panelCreation.add(chckbxPet1);
-		chckbxPet2.setBounds(652, 205, 129, 23);
-		panelCreation.add(chckbxPet2);
-		chckbxPet3.setBounds(1004, 205, 129, 23);
-		panelCreation.add(chckbxPet3);
-		chckbxPet4.setBounds(296, 439, 129, 23);
-		panelCreation.add(chckbxPet4);
-		chckbxPet5.setBounds(648, 441, 129, 23);
-		panelCreation.add(chckbxPet5);
-		chckbxPet6.setBounds(1004, 441, 129, 23);
-		panelCreation.add(chckbxPet6);
-		lblNewLabel_6.setForeground(Color.WHITE);
-		lblNewLabel_6.setBounds(294, 18, 130, 155);
-
-		panelCreation.add(lblNewLabel_6);
-		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setBounds(294, 268, 135, 127);
-
-		panelCreation.add(lblNewLabel_3);
-		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setBounds(652, 26, 122, 125);
-
-		panelCreation.add(lblNewLabel_7);
-		lblNewLabel_8.setForeground(Color.WHITE);
-		lblNewLabel_8.setBounds(652, 268, 151, 140);
-
-		panelCreation.add(lblNewLabel_8);
-		lblNewLabel_9.setForeground(Color.WHITE);
-		lblNewLabel_9.setBounds(1003, 47, 111, 125);
-
-		panelCreation.add(lblNewLabel_9);
-		lblNewLabel_10.setForeground(Color.WHITE);
-		lblNewLabel_10.setBounds(1006, 271, 119, 148);
-
-		panelCreation.add(lblNewLabel_10);
-		lblNewLabel_11.setIcon(new ImageIcon(GUI.class.getResource("/photo/Pets-Background.png")));
-		lblNewLabel_11.setBounds(-58, -127, 1384, 869);
-
-		panelCreation.add(lblNewLabel_11);
-		panelMainScreen.setVisible(false);
+		panelStart.add(lblBackgroundstart);
 		panelMainScreen.setBackground(Color.GRAY);
 		panelMainScreen.setBounds(0, 0, 1213, 718);
 
@@ -876,42 +919,37 @@ public class GUIfinal implements gameObjects {
 		lblPetAttributes.setOpaque(true);
 		lblPetAttributes.setBackground(Color.DARK_GRAY);
 		lblPetAttributes.setForeground(Color.WHITE);
-		lblPetAttributes.setBounds(615, 267, 192, 316);
+		lblPetAttributes.setBounds(615, 267, 192, 428);
 
 		panelMainScreen.add(lblPetAttributes);
+		lblCurrentPet.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblCurrentPet.setForeground(Color.WHITE);
 		lblCurrentPet.setBackground(Color.DARK_GRAY);
 		lblCurrentPet.setOpaque(true);
 		lblCurrentPet.setBounds(615, 11, 192, 48);
 
 		panelMainScreen.add(lblCurrentPet);
-		lblEventOutputs.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblEventOutputs.setVerticalAlignment(SwingConstants.TOP);
+		lblEventOutputs.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblEventOutputs.setBackground(Color.DARK_GRAY);
 		lblEventOutputs.setForeground(Color.WHITE);
 		lblEventOutputs.setOpaque(true);
-		lblEventOutputs.setBounds(615, 594, 586, 112);
+		lblEventOutputs.setBounds(817, 266, 373, 429);
 
 		panelMainScreen.add(lblEventOutputs);
+		lblCurrentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblCurrentPlayer.setBackground(Color.DARK_GRAY);
 		lblCurrentPlayer.setForeground(Color.WHITE);
 		lblCurrentPlayer.setOpaque(true);
 		lblCurrentPlayer.setBounds(817, 11, 384, 48);
 
 		panelMainScreen.add(lblCurrentPlayer);
-		lblCurrentDay.setFont(new Font("Dialog", Font.BOLD, 47));
-		lblCurrentDay.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblCurrentDay.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCurrentDay.setBackground(Color.DARK_GRAY);
-		lblCurrentDay.setForeground(Color.WHITE);
-		lblCurrentDay.setOpaque(true);
-		lblCurrentDay.setBounds(817, 71, 182, 192);
-
-		panelMainScreen.add(lblCurrentDay);
 		panelPets.setVisible(false);
 		panelPets.setBounds(0, 0, 593, 706);
 		panelMainScreen.add(panelPets);
 		panelPets.setBackground(Color.DARK_GRAY);
 		panelPets.setLayout(null);
+		btnSelectPet1.setVisible(false);
 		btnSelectPet1.setHorizontalTextPosition(SwingConstants.CENTER);
 
 		btnSelectPet1.setBackground(Color.GRAY);
@@ -925,25 +963,30 @@ public class GUIfinal implements gameObjects {
 		lblSelectAPet.setBounds(162, 12, 277, 40);
 
 		panelPets.add(lblSelectAPet);
+		btnSelectPet2.setVisible(false);
 		btnSelectPet2.setHorizontalTextPosition(SwingConstants.CENTER);
 
 		btnSelectPet2.setBackground(Color.GRAY);
 		btnSelectPet2.setBounds(346, 64, 192, 192);
 		panelPets.add(btnSelectPet2);
+		btnSelectPet3.setVisible(false);
 		btnSelectPet3.setHorizontalTextPosition(SwingConstants.CENTER);
 
 		btnSelectPet3.setBackground(Color.GRAY);
 		btnSelectPet3.setBounds(220, 356, 192, 192);
 		panelPets.add(btnSelectPet3);
+		lblPetName1.setVisible(false);
 		lblPetName1.setOpaque(true);
 		lblPetName1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		lblPetName1.setBounds(87, 259, 119, 33);
 
 		panelPets.add(lblPetName1);
+		lblPetName2.setVisible(false);
 		lblPetName2.setOpaque(true);
 		lblPetName2.setBounds(346, 259, 119, 33);
 
 		panelPets.add(lblPetName2);
+		lblPetName3.setVisible(false);
 		lblPetName3.setOpaque(true);
 		lblPetName3.setBounds(220, 550, 119, 33);
 
@@ -955,7 +998,7 @@ public class GUIfinal implements gameObjects {
 		lblPlayerStats.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPlayerStats.setForeground(Color.WHITE);
 		lblPlayerStats.setBackground(Color.DARK_GRAY);
-		lblPlayerStats.setBounds(817, 267, 182, 316);
+		lblPlayerStats.setBounds(1008, 72, 182, 189);
 
 		panelMainScreen.add(lblPlayerStats);
 		panelButtons.add(btnFeedPet);
@@ -985,13 +1028,22 @@ public class GUIfinal implements gameObjects {
 		btnRevive.setBounds(10, 556, 571, 57);
 		panelButtons.add(btnUseToilet);
 		panelButtons.add(btnRevive);
+		lblCurrentDay.setFont(new Font("Dialog", Font.BOLD, 47));
+		lblCurrentDay.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblCurrentDay.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCurrentDay.setBackground(Color.DARK_GRAY);
+		lblCurrentDay.setForeground(Color.WHITE);
+		lblCurrentDay.setOpaque(true);
+		lblCurrentDay.setBounds(817, 71, 182, 190);
+
+		panelMainScreen.add(lblCurrentDay);
 	}
 
 	public void feedButtons() {
 		btnFood1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnFood1.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+					lblEventOutputs.setText(String.format("<html>*chomp..chomp..chomp*<br><br> %s enjoyed the %s!\n",
 							globalCurrentPet.getName(), currentFood.get(0).getName()));
 					globalCurrentPet.feed(currentFood.get(0));
 					globalCurrentPlayer.removeFood(currentFood.get(0));
@@ -1005,7 +1057,7 @@ public class GUIfinal implements gameObjects {
 		btnFood2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnFood2.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+					lblEventOutputs.setText(String.format("<html>*chomp..chomp..chomp*<br><br> %s enjoyed the %s!\n",
 							globalCurrentPet.getName(), currentFood.get(1).getName()));
 					globalCurrentPet.feed(currentFood.get(1));
 					globalCurrentPlayer.removeFood(currentFood.get(1));
@@ -1019,7 +1071,7 @@ public class GUIfinal implements gameObjects {
 		btnFood3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnFood3.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+					lblEventOutputs.setText(String.format("<html>*chomp..chomp..chomp*<br><br> %s enjoyed the %s!\n",
 							globalCurrentPet.getName(), currentFood.get(2).getName()));
 					globalCurrentPet.feed(currentFood.get(2));
 					globalCurrentPlayer.removeFood(currentFood.get(2));
@@ -1033,7 +1085,7 @@ public class GUIfinal implements gameObjects {
 		btnFood4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnFood4.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+					lblEventOutputs.setText(String.format("<html>*chomp..chomp..chomp*<br><br> %s enjoyed the %s!\n",
 							globalCurrentPet.getName(), currentFood.get(3).getName()));
 					globalCurrentPet.feed(currentFood.get(3));
 					globalCurrentPlayer.removeFood(currentFood.get(3));
@@ -1047,7 +1099,7 @@ public class GUIfinal implements gameObjects {
 		btnFood5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnFood5.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+					lblEventOutputs.setText(String.format("<html>*chomp..chomp..chomp*<br><br> %s enjoyed the %s!\n",
 							globalCurrentPet.getName(), currentFood.get(4).getName()));
 					globalCurrentPet.feed(currentFood.get(4));
 					globalCurrentPlayer.removeFood(currentFood.get(4));
@@ -1061,7 +1113,7 @@ public class GUIfinal implements gameObjects {
 		btnFood6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnFood6.getIcon() != null) {
-					lblEventOutputs.setText(String.format("*chomp..chomp..chomp* %s enjoyed the %s!\n",
+					lblEventOutputs.setText(String.format("<html>*chomp..chomp..chomp*<br><br> %s enjoyed the %s!\n",
 							globalCurrentPet.getName(), currentFood.get(5).getName()));
 					globalCurrentPet.feed(currentFood.get(5));
 					globalCurrentPlayer.removeFood(currentFood.get(5));
@@ -1362,7 +1414,7 @@ public class GUIfinal implements gameObjects {
 	public void mainScreenButtonColours() {
 		btnEndDay.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnEndDay.setBackground(Color.GREEN);
+				btnEndDay.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1372,7 +1424,7 @@ public class GUIfinal implements gameObjects {
 
 		btnVisitDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnVisitDoctor.setBackground(Color.GREEN);
+				btnVisitDoctor.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1382,7 +1434,7 @@ public class GUIfinal implements gameObjects {
 
 		btnPunishPet.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnPunishPet.setBackground(Color.GREEN);
+				btnPunishPet.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1392,7 +1444,7 @@ public class GUIfinal implements gameObjects {
 
 		btnUseToilet.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnUseToilet.setBackground(Color.GREEN);
+				btnUseToilet.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1402,7 +1454,7 @@ public class GUIfinal implements gameObjects {
 
 		btnUseToy.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnUseToy.setBackground(Color.GREEN);
+				btnUseToy.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1412,7 +1464,7 @@ public class GUIfinal implements gameObjects {
 
 		btnSleep.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnSleep.setBackground(Color.GREEN);
+				btnSleep.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1422,7 +1474,7 @@ public class GUIfinal implements gameObjects {
 
 		btnFeedPet.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnFeedPet.setBackground(Color.GREEN);
+				btnFeedPet.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1432,7 +1484,7 @@ public class GUIfinal implements gameObjects {
 
 		btnVisitTheStore.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnVisitTheStore.setBackground(Color.GREEN);
+				btnVisitTheStore.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1442,7 +1494,7 @@ public class GUIfinal implements gameObjects {
 
 		btnPetSelect.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnPetSelect.setBackground(Color.GREEN);
+				btnPetSelect.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1452,7 +1504,7 @@ public class GUIfinal implements gameObjects {
 
 		btnRevive.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnRevive.setBackground(Color.GREEN);
+				btnRevive.setBackground(Color.getHSBColor(1, 20, 20));
 			}
 
 			public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1461,7 +1513,7 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
-	public void guiMainButtons() {
+	public void GUIfinalMainButtons() {
 
 		btnSleep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1598,6 +1650,12 @@ public class GUIfinal implements gameObjects {
 				selectPet();
 			}
 		});
+
+		btnEndDay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				endDay();
+			}
+		});
 	}
 
 	public void feedBack() {
@@ -1641,62 +1699,53 @@ public class GUIfinal implements gameObjects {
 		lblToy6.setVisible(false);
 	}
 
-	public void mainScreenHelper() {
-		Map<Player, Integer> playerScores = new HashMap<Player, Integer>();
-
-		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
-			Player val = entry.getValue();
-			globalCurrentPlayer = val;
-			playerDaysTaken = 0;
-			mainSelectScreen();
-			System.out.format("Days for %s ended, you scored a total of %d points overall, well done!", val.getName(),
-					score(val));
-			playerScores.put(val, score(val));
-			promptEnterKey();
-		}
-		System.out.println("Game Over...");
-		System.out.println("Total scores for game:");
-
-		for (Player key : playerScores.keySet()) {
-			System.out.format("%s: %d\n", key.getName(), playerScores.get(key));
-		}
-	}
-
 	public void selectPet() {
+
 		panelPets.setVisible(true);
 		panelButtons.setVisible(false);
-		Species button1 = null;
-		Species button2 = null;
-		Species button3 = null;
 
-		Species[] species = { button1, button2, button3 };
-		JButton[] jButtons = { btnSelectPet1, btnSelectPet2, btnSelectPet3 };
-		JLabel[] jLabels = { lblPetName1, lblPetName2, lblPetName3 };
 		int i = 0;
 		for (Map.Entry<String, Species> entry : globalCurrentPlayer.getPets().entrySet()) {
 			jButtons[i].setVisible(true);
 			species[i] = entry.getValue();
 			if (entry.getValue().getSpecies() == penguin.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/PENG_PET.png")));
 				jLabels[i].setText(entry.getValue().getName());
+				jButtons[i].setVisible(true);
+				jLabels[i].setVisible(true);
 			} else if (entry.getValue().getSpecies() == crab.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/CRAB_PET-1.png")));
 				jLabels[i].setText(entry.getValue().getName());
+				jButtons[i].setVisible(true);
+				jLabels[i].setVisible(true);
 			} else if (entry.getValue().getSpecies() == robot.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/ROBOT_PET.png")));
 				jLabels[i].setText(entry.getValue().getName());
+				jButtons[i].setVisible(true);
+				jLabels[i].setVisible(true);
 			} else if (entry.getValue().getSpecies() == snake.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/SNAKE_PET.png")));
 				jLabels[i].setText(entry.getValue().getName());
+				jButtons[i].setVisible(true);
+				jLabels[i].setVisible(true);
 			} else if (entry.getValue().getSpecies() == cloud.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/CLOUD_PET.png")));
 				jLabels[i].setText(entry.getValue().getName());
+				jButtons[i].setVisible(true);
+				jLabels[i].setVisible(true);
 			} else if (entry.getValue().getSpecies() == monster.getSpecies()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/MONSTER_PET.png")));
 				jLabels[i].setText(entry.getValue().getName());
+				jButtons[i].setVisible(true);
+				jLabels[i].setVisible(true);
 			}
 			i++;
 		}
+
+	}
+
+	public void selectPetButtons() {
+
 		btnSelectPet1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnSelectPet1.getIcon() != null) {
@@ -1730,29 +1779,28 @@ public class GUIfinal implements gameObjects {
 				}
 			}
 		});
-
 	}
 
 	public void currentSelectedPet() {
-		lblCurrentPet.setText(globalCurrentPet.getName());
+		lblCurrentPet.setText(String.format("Current pet: %s", globalCurrentPet.getName()));
 		lblPetAttributes.setText(globalCurrentPet.toString());
 		lblPlayerStats.setText(globalCurrentPlayer.toString());
 		if (globalCurrentPet.getSpecies() == penguin.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/PENG_PET.png")));
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/PENG_PET.png")));
 		} else if (globalCurrentPet.getSpecies() == crab.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/CRAB_PET-1.png")));
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/CRAB_PET-1.png")));
 
 		} else if (globalCurrentPet.getSpecies() == robot.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/ROBOT_PET.png")));
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/ROBOT_PET.png")));
 
 		} else if (globalCurrentPet.getSpecies() == snake.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/SNAKE_PET.png")));
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/SNAKE_PET.png")));
 
 		} else if (globalCurrentPet.getSpecies() == cloud.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/CLOUD_PET.png")));
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/CLOUD_PET.png")));
 
 		} else if (globalCurrentPet.getSpecies() == monster.getSpecies()) {
-			lblCurrentSelectedPet.setIcon(new ImageIcon(GUI.class.getResource("/photo/MONSTER_PET.png")));
+			lblCurrentSelectedPet.setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/MONSTER_PET.png")));
 
 		}
 
@@ -1762,7 +1810,7 @@ public class GUIfinal implements gameObjects {
 
 		panelCreation.setVisible(false);
 		panelMainScreen.setVisible(true);
-		lblCurrentPlayer.setText(globalCurrentPlayer.getName());
+		lblCurrentPlayer.setText(String.format("Current player: %s", globalCurrentPlayer.getName()));
 		lblCurrentDay.setText(String.format("%d", globalCurrentDay));
 		lblDayTotals.setText(String.format("/%1$,.0f", gameDays));
 	}
@@ -1785,6 +1833,7 @@ public class GUIfinal implements gameObjects {
 		} else if (globalCurrentPet.getAlive() == false && globalCurrentPet.getRevive() == true) {
 			globalCurrentPet.setRevive(false);
 			lblEventOutputs.setText("Your pet has revived!");
+			lblPetAttributes.setText(globalCurrentPet.toString());
 		} else if (globalCurrentPet.getAlive() == true) {
 			lblEventOutputs.setText("Your pet is already alive!");
 		} else {
@@ -1887,11 +1936,28 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	public boolean dualPetNameChecker() {
+		String textFields[] = { txtPetName1.getText(), txtPetName2.getText(), txtPetName3.getText(),
+				txtPetName4.getText(), txtPetName5.getText(), txtPetName6.getText() };
+		List<String> petNames = new ArrayList<String>();
+		for (String name : textFields) {
+			if (!name.equals("Enter a name...")) {
+				if (petNames.contains(name)) {
+					return true;
+				}
+				if (existingPetNames.contains(name)) {
+					return true;
+				}
+				petNames.add(name);
+			}
+		}
+		return false;
+	}
+
 	public void createPlayers() {
 		textCounter = 1;
 		panelInput.setVisible(false);
 		panelCreation.setVisible(true);
-		String currentPlayer;
 		lblNamePrompt.setText(
 				String.format("Player %d, enter your name here and select up to 3 pets above before clicking continue.",
 						textCounter));
@@ -1908,9 +1974,13 @@ public class GUIfinal implements gameObjects {
 				} else if (petNameChecker() == false) {
 					JOptionPane.showMessageDialog(null, "One or more of your selected pets does not have a name yet!",
 							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
-				} else if (existingNameChecker(textFieldCreation.getText()) == true) {
+				} else if (existingPlayerChecker(textFieldCreation.getText()) == true) {
 					JOptionPane.showMessageDialog(frame, "That name belongs to another player, please choose another.");
-
+				} else if (textFieldCreation.getText().equals("")) {
+					JOptionPane.showMessageDialog(frame, "You need to enter a name for your player.");
+				} else if (dualPetNameChecker() == true) {
+					JOptionPane.showMessageDialog(frame,
+							"2 pets you are making have the same name, or share the name with a previous player. Please choose another.");
 				} else if (textCounter >= numOfPlayers) {
 					Player newPlayerFinal = new Player(textFieldCreation.getText());
 					addPlayer(newPlayerFinal, textCounter);
@@ -1918,9 +1988,9 @@ public class GUIfinal implements gameObjects {
 					createPets(newPlayerFinal);
 					clearBoxes();
 					globalCurrentPlayer = players.get(1);
+					playerIterator = 1;
 					globalCurrentDay = 1;
 					mainSelectScreen();
-
 				} else if (textCounter == 1) {
 					Player newPlayer1 = new Player(textFieldCreation.getText());
 					addPlayer(newPlayer1, 1);
@@ -1931,7 +2001,6 @@ public class GUIfinal implements gameObjects {
 							2));
 					textCounter++;
 					clearBoxes();
-
 				} else if (textCounter == 2) {
 					Player newPlayer2 = new Player(textFieldCreation.getText());
 					addPlayer(newPlayer2, 2);
@@ -1957,11 +2026,9 @@ public class GUIfinal implements gameObjects {
 					addPlayer(newPlayer4, 4);
 					createPets(newPlayer4);
 					textFieldCreation.setText("");
-					// promptPetCreation();
 					textCounter = 1;
 					clearBoxes();
 				}
-
 			}
 		});
 	}
@@ -1981,9 +2048,13 @@ public class GUIfinal implements gameObjects {
 		chckbxPet6.setSelected(false);
 	}
 
-	public boolean existingNameChecker(String name) {
-		return (players.keySet().contains(textFieldCreation.getText()));
-
+	public boolean existingPlayerChecker(String name) {
+		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
+			if (entry.getValue().getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public int boxCounter() {
@@ -2009,12 +2080,6 @@ public class GUIfinal implements gameObjects {
 		return counter;
 	}
 
-	public void playerNameChecker() {
-		if (textFieldCreation.equals("")) {
-
-		}
-	}
-
 	public boolean petNameChecker() {
 		if ((chckbxPet1.isSelected()) && (txtPetName1.getText().equals("Enter a name..."))) {
 			return false;
@@ -2032,66 +2097,6 @@ public class GUIfinal implements gameObjects {
 			return true;
 		}
 
-	}
-
-	public void promptPetCreation() {
-		textCounter = 1;
-		textFieldCreation.setEditable(false);
-		lblNamePrompt
-				.setText(String.format("%s, please select up to 3 Pets to own.", players.get(textCounter).getName()));
-
-		btnPetCounter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (textCounter > numOfPlayers) {
-					System.out.println("next thing");
-
-				} else if (boxCounter() > 3 || boxCounter() == 0) {
-					JOptionPane.showMessageDialog(null, "You need to select 1-3 Pets for you to own!",
-							"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
-				} else if (textCounter == 1) {
-					createPets(players.get(textCounter));
-					textCounter++;
-
-				} else if (textCounter == 2) {
-					createPets(players.get(textCounter));
-					textCounter++;
-
-				} else if (textCounter == 3) {
-					createPets(players.get(textCounter));
-					textCounter++;
-
-				} else if (textCounter == 4) {
-
-				}
-			}
-		});
-		lblSelectUpTo.setVisible(true);
-		txtPetName1.setVisible(true);
-		txtPetName2.setVisible(true);
-		txtPetName3.setVisible(true);
-		txtPetName4.setVisible(true);
-		txtPetName5.setVisible(true);
-		txtPetName6.setVisible(true);
-		btnPetCounter.setVisible(true);
-		btnCreationContinue.setVisible(false);
-		lblNewLabel.setVisible(true);
-		lblNewLabel_1.setVisible(true);
-		lblNewLabel_2.setVisible(true);
-		lblBeng.setVisible(true);
-		lblNewLabel_4.setVisible(true);
-		lblNewLabel_5.setVisible(true);
-		lblNewLabel6.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
-		lblNewLabel.setVisible(true);
-		chckbxPet1.setVisible(true);
-		chckbxPet2.setVisible(true);
-		chckbxPet3.setVisible(true);
-		chckbxPet4.setVisible(true);
-		chckbxPet5.setVisible(true);
-		chckbxPet6.setVisible(true);
 	}
 
 	public boolean toyChecker(Toy toy) {
@@ -2115,22 +2120,98 @@ public class GUIfinal implements gameObjects {
 		return score;
 	}
 
-	public void endDay(Player player) {
-		for (Map.Entry<String, Species> entry : player.getPets().entrySet()) {
-			Species pet = entry.getValue();
-			pet.endDay();
-			// return ("Your pet died from a random illness!");
-			// return("If the pet has not died before, he can be revived from
-			// the doctor!");
+	public void endGame() {
+		panelMainScreen.setVisible(false);
+		panelEnd.setVisible(true);
+		String output = "<html>Total scores for game:<br>";
 
-			// "%s is sick! This causes your pet to waste 1 action per day.",
-			// this.name +
-			// "Your pet can be treated at the doctor's (this will use an
-			// action).");
+		Map<Player, Integer> playerScores = new HashMap<Player, Integer>();
+		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
+			Player val = entry.getValue();
+			playerScores.put(val, score(val));
+		}
 
-			// return String.format("%s is misbehaving! This causes your pet to
-			// lose 1 action per day.", this.name +
-			// " Your pet can be punished (this will use an action).");
+		for (Player key : playerScores.keySet()) {
+			output = output.concat(String.format("<html>%s: %d<br><br>", key.getName(), playerScores.get(key)));
+		}
+		lblEndStats.setText(output);
+
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				;
+			}
+		});
+	}
+
+	public void resetNewPlayer() {
+		btnSelectPet1.setIcon(null);
+		btnSelectPet2.setIcon(null);
+		btnSelectPet3.setIcon(null);
+		lblPetName1.setText("");
+		lblPetName2.setText("");
+		lblPetName3.setText("");
+		button1 = null;
+		button2 = null;
+		button3 = null;
+		btnSelectPet1.setVisible(false);
+		btnSelectPet2.setVisible(false);
+		btnSelectPet3.setVisible(false);
+		lblPetName1.setVisible(false);
+		lblPetName2.setVisible(false);
+		lblPetName3.setVisible(false);
+		globalCurrentPet = null;
+		lblCurrentPet.setText("Current Pet: NONE");
+		lblPetAttributes.setText("");
+		lblCurrentSelectedPet.setIcon(null);
+		lblCurrentDay.setText(String.format("%d", globalCurrentDay));
+		lblPlayerStats.setText("");
+		lblEventOutputs.setText("");
+	}
+
+	public void endDay() {
+		globalCurrentDay++;
+		if (globalCurrentDay > gameDays) {
+			playerIterator++;
+			if (players.get(playerIterator) != null) {
+				JOptionPane.showMessageDialog(null, "Player days over. Next player turns begin now.",
+						"InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
+				globalCurrentDay = 1;
+				resetNewPlayer();
+				globalCurrentPlayer = players.get(playerIterator);
+				lblCurrentPlayer.setText(String.format("Current player: %s", globalCurrentPlayer.getName()));
+
+			} else {
+				endGame();
+			}
+		} else {
+			String output = "";
+			for (Map.Entry<String, Species> entry : globalCurrentPlayer.getPets().entrySet()) {
+				Species pet = entry.getValue();
+				pet.endDay();
+				if (pet.getAlive() == false) {
+					output = output.concat(String.format("<html>%s has died from illness!<br>", pet.getName()));
+					output = output
+							.concat(String.format("<html>If the pet has not died before, he can be revived!<br><br>"));
+				}
+				if (pet.getSick() == true) {
+					output = output.concat(String.format(
+							"<html>%s is sick! This causes your pet to waste 1 action per day.<br>", pet.getName()));
+					output = output.concat(String.format(
+							"<html>Your pet can be treated at the doctor's (this will use an action).<br><br>"));
+				}
+				if (pet.getMisbehaving() == true) {
+					output = output.concat(
+							String.format("<html>%s is misbehaving! This causes your pet to lose 1 action per day.<br>",
+									pet.getName()));
+					output = output
+							.concat(String.format("<html>Your pet can be punished (this will use an action).<br><br>"));
+				}
+			}
+
+			lblCurrentDay.setText(String.format("%d", globalCurrentDay));
+			lblEventOutputs.setText(output);
+			lblPetAttributes.setText(globalCurrentPet.toString());
 		}
 	}
 
@@ -2155,32 +2236,32 @@ public class GUIfinal implements gameObjects {
 			Toy toy = entry.getKey();
 			currentToys.put(i, toy);
 			if (entry.getKey().getName() == yoyo.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/yoy.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/yoy.jpg")));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 				jLabels[i].setText(String.format("Durability: %d", entry.getKey().getDurability()));
 			} else if (entry.getKey().getName() == doll.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/Doll_Toy.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Doll_Toy.jpg")));
 				jLabels[i].setText(String.format("Durability: %d", entry.getKey().getDurability()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == bear.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/Bear_Toy.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Bear_Toy.jpg")));
 				jLabels[i].setText(String.format("Durability: %d", entry.getKey().getDurability()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == kite.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/KITE_TOY.png")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/KITE_TOY.png")));
 				jLabels[i].setText(String.format("Durability: %d", entry.getKey().getDurability()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == boat.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/Boat_Toy.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Boat_Toy.jpg")));
 				jLabels[i].setText(String.format("Durability: %d", entry.getKey().getDurability()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == heli.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/HELI_TOY.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/HELI_TOY.jpg")));
 				jLabels[i].setText(String.format("Durability: %d", entry.getKey().getDurability()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
@@ -2200,85 +2281,38 @@ public class GUIfinal implements gameObjects {
 			Food food = entry.getKey();
 			currentFood.put(i, food);
 			if (entry.getKey().getName() == cookie.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/Cookies.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Cookies.jpg")));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 				jLabels[i].setText(String.format("x%d", entry.getValue()));
 			} else if (entry.getKey().getName() == melon.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/water_m.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/water_m.jpg")));
 				jLabels[i].setText(String.format("x%d", entry.getValue()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == fish.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/Fish.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Fish.jpg")));
 				jLabels[i].setText(String.format("x%d", entry.getValue()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == chocolate.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/Choclate.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Choclate.jpg")));
 				jLabels[i].setText(String.format("x%d", entry.getValue()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == cake.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/cake.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/cake.jpg")));
 				jLabels[i].setText(String.format("x%d", entry.getValue()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			} else if (entry.getKey().getName() == pizza.getName()) {
-				jButtons[i].setIcon(new ImageIcon(GUI.class.getResource("/photo/Pizza.jpg")));
+				jButtons[i].setIcon(new ImageIcon(GUIfinal.class.getResource("/photo/Pizza.jpg")));
 				jLabels[i].setText(String.format("x%d", entry.getValue()));
 				jButtons[i].setVisible(true);
 				jLabels[i].setVisible(true);
 			}
 			i++;
 		}
-	}
-
-	public Species selectPet(Player player) {
-		String inputChoice = null;
-		@SuppressWarnings("resource")
-		Scanner scan = new Scanner(System.in);
-		Map<Integer, Species> petChoices = new HashMap<Integer, Species>();
-		int i = 0;
-
-		for (Species pet : player.getPets().values()) {
-			i++;
-			petChoices.put(i, pet);
-		}
-		do {
-			i = 0;
-			if (inputChoice != null) {
-				System.out.println("\nYou have entered an invalid number\n");
-				promptEnterKey();
-			}
-			for (Species pet : player.getPets().values()) {
-				i++;
-				System.out.format("%d: %s.\n", i, pet.getName());
-				petChoices.put(i, pet);
-			}
-			System.out.println("\nSelect a pet to interact with.");
-			inputChoice = scan.nextLine();
-		} while (!inputChoice.matches("[1-" + i + "]"));
-
-		int intInputChoice = Integer.parseInt(inputChoice);
-		switch (intInputChoice) {
-		case 1:
-			return petChoices.get(1);
-		case 2:
-			return petChoices.get(2);
-		case 3:
-			return petChoices.get(3);
-		}
-		System.out.println("ERROR, CODE SHOULD NEVER BE REACHED");
-
-		return crab;
-	}
-
-	public void promptStoreSection(Player player) {
-		System.out.println("Welcome to the Pet Store!");
-		System.out.println("Enter 1 to view the food items for sale");
-		System.out.println("Enter 2 to view the food items for sale\n");
-		System.out.println(player);
 	}
 
 	public void createPets(Player player) {
@@ -2315,69 +2349,6 @@ public class GUIfinal implements gameObjects {
 		}
 	}
 
-	public void printSpeciesInfo() {
-		Properties prop = new Properties();
-		InputStream input = null;
-		try {
-			input = new FileInputStream("config.properties");
-			// load a properties file
-			prop.load(input);
-			// get the property value and print it out
-			System.out.println(prop.getProperty("species1"));
-			System.out.println(prop.getProperty("species2"));
-			System.out.println(prop.getProperty("species3"));
-			System.out.println(prop.getProperty("species4"));
-			System.out.println(prop.getProperty("species5"));
-			System.out.println(prop.getProperty("species6"));
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-
-	private void promptEnterKey() {
-		System.out.println("\nPress \"ENTER\" to continue...");
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-		scanner.nextLine();
-	}
-
-	public void printPlayers() {
-		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
-			Player val = entry.getValue();
-			System.out.println("\n" + val);
-		}
-	}
-
-	public void printFood() {
-		for (Map.Entry<Integer, Food> entry : foodChoices.entrySet()) {
-			Food val = entry.getValue();
-			System.out.println("\n" + val);
-		}
-	}
-
-	public void printToys() {
-		for (Map.Entry<Integer, Toy> entry : toyChoices.entrySet()) {
-			Toy val = entry.getValue();
-			System.out.println("\n" + val);
-		}
-	}
-
-	public void printPets() {
-		for (Map.Entry<Integer, Species> entry : speciesChoices.entrySet()) {
-			Pet val = entry.getValue();
-			System.out.println("\n" + val);
-		}
-	}
-
 	public void addToy(String player, String toyName) {
 		Toy toy = toyChoices.get(toyName);
 		Player val = players.get(player);
@@ -2397,8 +2368,9 @@ public class GUIfinal implements gameObjects {
 	public static void main(String[] args) {
 
 		GUIfinal newGame = new GUIfinal();
-		newGame.guiConstructor();
-		newGame.guiMainButtons();
+		newGame.GUIfinalConstructor();
+		newGame.GUIfinalMainButtons();
+		newGame.selectPetButtons();
 		newGame.mainScreenButtonColours();
 		newGame.feedButtons();
 		newGame.playButtons();
