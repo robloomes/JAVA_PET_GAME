@@ -8,17 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Scanner;
-import java.util.jar.Attributes.Name;
-
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -75,7 +68,6 @@ public class GUIfinal implements gameObjects {
 	private Player globalCurrentPlayer;
 	private int numOfPlayers;
 	private double gameDays;
-	private double playerDaysTaken;
 	private int globalCurrentDay;
 	private List<String> existingPetNames = new ArrayList<String>();
 	private int playerIterator;
@@ -121,13 +113,11 @@ public class GUIfinal implements gameObjects {
 	private JCheckBox chckbxPet5 = new JCheckBox("Select Robot");
 	private JCheckBox chckbxPet6 = new JCheckBox("Select Snake");
 	private JLabel lblPet_6 = new JLabel("");
-
 	private JLabel lblWelcome2 = new JLabel("<html>Welcome to Pets <br>the virtual pet game!");
 	private JLabel lblpet_3 = new JLabel("");
 	private JLabel lblPet_1 = new JLabel("");
 	private JLabel lblPet_2 = new JLabel("");
 	private JLabel lblPet_5 = new JLabel("");
-	private JLabel lblNewLabel6 = new JLabel("");
 	private JLabel lblPet4 = new JLabel("");
 	private final JLabel lblBackgroundIcon = new JLabel("");
 	private final JLabel lblBackgroundstart = new JLabel("");
@@ -228,7 +218,6 @@ public class GUIfinal implements gameObjects {
 
 	public GUIfinal() {
 
-		playerDaysTaken = 0;
 		panelStore.setVisible(false);
 		panelStore.add(lblFoodStore);
 		lblToyStore.setForeground(new Color(255, 215, 0));
