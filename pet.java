@@ -6,9 +6,9 @@ import java.util.Random;
  * Pet - a class used for building Pet objects.
  * <p>
  * This contains methods for returning and configuring Pet attributes. <br>
- * Food objects created are mainly used in association with classes
- * {@link pet_game.Player} and {@link pet_game.gameEnvironment}. This is the
- * superclass of class {@link pet_game.Species}.
+ * Pet objects created are mainly used in association with classes
+ * {@link pet_game.Player} and {@link pet_game.GUIfinal}. This is the superclass
+ * of class {@link pet_game.Species}.
  * 
  * @author Robert Loomes
  * @author Mna Chalabi
@@ -43,7 +43,7 @@ public class Pet {
 	/**
 	 * Default constructor method for class Pet.
 	 * 
-	 * @param name
+	 * @param name-
 	 *            the name of the Pet. Produces base variables for the initial
 	 *            variables.
 	 */
@@ -71,9 +71,9 @@ public class Pet {
 	 * clone of the standard Pets created in the {@link pet_game.gameObjects},
 	 * this allows the unique copies of the "same" object.
 	 * 
-	 * @param pet
+	 * @param pet-
 	 *            the Pet being cloned.
-	 * @param newName
+	 * @param newName-
 	 *            a new name that overwrites the name of the Pet being cloned.
 	 */
 	public Pet(Pet pet, String newName) {
@@ -101,7 +101,7 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the name of Pet object.
+	 * @return This returns the name of {@link pet_game.Pet} object.
 	 */
 	public String getName() {
 		return name;
@@ -110,7 +110,7 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the weight of the Pet object.
+	 * @return This returns the weight of the {@link pet_game.Pet} object.
 	 */
 	public int getWeight() {
 		return weight;
@@ -119,7 +119,7 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the mood of the Pet object.
+	 * @return This returns the mood of the {@link pet_game.Pet} object.
 	 */
 	public int getMood() {
 		return mood;
@@ -128,7 +128,7 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the hunger of the Pet object.
+	 * @return This returns the hunger of the {@link pet_game.Pet} object.
 	 */
 	public int getHunger() {
 		return hunger;
@@ -137,7 +137,7 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the energy of the Pet object.
+	 * @return This returns the energy of the {@link pet_game.Pet} object.
 	 */
 	public int getEnergy() {
 		return energy;
@@ -146,7 +146,7 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the toilet need of the Pet object.
+	 * @return This returns the toilet need of the {@link pet_game.Pet} object.
 	 */
 	public int getToiletNeed() {
 		return toiletNeed;
@@ -155,7 +155,8 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return Returns true if Pet revive is available; or false if not.
+	 * @return Returns true if {@link pet_game.Pet} revive is available; or
+	 *         false if not.
 	 * 
 	 */
 	public Boolean getRevive() {
@@ -165,7 +166,8 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return Returns true if Pet is alive; false if Pet is dead.
+	 * @return Returns true if {@link pet_game.Pet} is alive; false if Pet is
+	 *         dead.
 	 * 
 	 */
 	public Boolean getAlive() {
@@ -175,7 +177,8 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return Returns true if Pet is sick; false if Pet is sick.
+	 * @return Returns true if {@link pet_game.Pet} is sick; false if Pet is
+	 *         sick.
 	 * 
 	 */
 	public Boolean getSick() {
@@ -185,7 +188,7 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the age of the Pet object.
+	 * @return This returns the age of the {@link pet_game.Pet} object.
 	 */
 	public int getAge() {
 		return age;
@@ -194,17 +197,11 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the health of the Pet object.
+	 * @return This returns the health of the {@link pet_game.Pet} object.
 	 */
 	public int getHealth() {
 		return health;
 	}
-
-	/**
-	 * Getter method
-	 * 
-	 * @return This returns the actions of the Pet object.
-	 */
 
 	/**
 	 * Getter method
@@ -218,26 +215,37 @@ public class Pet {
 	/**
 	 * Getter method
 	 * 
-	 * @return This returns the type of species of the Pet object. Is only
-	 *         relevant when evoked by the subclass {@link pet_game.Species}.
+	 * @return This returns the type of species of the {@link pet_game.Pet}
+	 *         object. Is only relevant when evoked by the subclass
+	 *         {@link pet_game.Species}.
 	 */
 	public String getSpecies() {
 		return speciesName;
 	}
 
 	/**
-	 * Setter method. Used for reverting the Pet back to base stats after
-	 * {@link #revive()} is called.
+	 * Getter method
+	 * 
+	 * @return This returns the actions of the Pet object.
 	 */
-
 	public int getActions() {
 		return actions;
 	}
 
+	/**
+	 * Setter method
+	 * 
+	 * @param bool-
+	 *            changes reviveAvil to the given boolean.
+	 */
 	public void setRevive(boolean bool) {
 		this.reviveAvail = bool;
 	}
 
+	/**
+	 * Setter method. Used for reverting the {@link pet_game.Pet} back to base
+	 * stats after {@link #revive()} is called.
+	 */
 	public void baseStats() {
 		this.hunger = 50;
 		this.mood = 50;
@@ -251,15 +259,12 @@ public class Pet {
 	}
 
 	/**
-	 * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
-	 * Calculates the Pet variable changes based on the size of {@link Food}
-	 * object parameter given.
+	 * The feed method can be invoked from the {@link pet_game.GUIfinal}.
+	 * Calculates the {@link pet_game.Pet} variable changes based on the size of
+	 * {@link Food} object parameter given.
 	 * 
 	 * @param food
-	 *            the {@link Food} object given, is consumed from the
-	 *            {@link pet_game.gameEnvironment}. after use.
-	 * @return Returns a formatted String for use in the
-	 *         {@link pet_game.gameEnvironment}.
+	 *            An object of type Food
 	 */
 	public void feed(Food food) {
 		if (food.getSize() == "small") {
@@ -282,11 +287,8 @@ public class Pet {
 	}
 
 	/**
-	 * The toilet method can be invoked from the
-	 * {@link pet_game.gameEnvironment}. Calculates the Pet variable changes.
-	 * 
-	 * @return Returns a formatted String for use in the
-	 *         {@link pet_game.gameEnvironment}.
+	 * The toilet method can be invoked from the {@link pet_game.GUIfinal}.
+	 * Calculates the Pet variable changes.
 	 */
 	public void toilet() {
 		toiletNeed -= 50;
@@ -297,11 +299,8 @@ public class Pet {
 	}
 
 	/**
-	 * The toilet method can be invoked from the
-	 * {@link pet_game.gameEnvironment}. Calculates the Pet variable changes.
-	 * 
-	 * @return Returns a formatted String for use in the
-	 *         {@link pet_game.gameEnvironment}.
+	 * The toilet method can be invoked from the {@link pet_game.GUIfinal}.
+	 * Calculates the Pet variable changes.
 	 */
 	public void sleep() {
 		if (mood < 50 || energy < 50) {
@@ -316,13 +315,8 @@ public class Pet {
 	}
 
 	/**
-	 * The revive method can be invoked from the
-	 * {@link pet_game.gameEnvironment}. Calculates the Pet variable changes if
-	 * needed.
-	 * 
-	 * @return Returns a formatted String for use in the
-	 *         {@link pet_game.gameEnvironment}, based on whether the Pet is
-	 *         alive/dead and has revive available or not.
+	 * The revive method can be invoked from the {@link pet_game.GUIfinal}.
+	 * Calculates the Pet variable changes if needed.
 	 */
 	public void revive() {
 		if (alive == false && reviveAvail == true) {
@@ -332,11 +326,9 @@ public class Pet {
 	}
 
 	/**
-	 * For internal use in the {@link Pet) class. Checks if any Pet variable has
-	 * gone above the max limit of 100. If it has, it brings it back to the max
-	 * limit.
-	 * 
-	 * @return Nothing.
+	 * For internal use in the {@link pet_game.Pet} class. Checks if any Pet
+	 * variable has gone above the max limit of 100. If it has, it brings it
+	 * back to the max limit.
 	 */
 	public void maxCheck() {
 		if (mood > 100) {
@@ -358,11 +350,9 @@ public class Pet {
 	}
 
 	/**
-	 * For internal use in the {@link Pet) class. Checks if any Pet variable has
-	 * gone below the minimum limit of 100. If it has, it brings it back to the
-	 * minimum limit.
-	 * 
-	 * @return Nothing.
+	 * For internal use in the {@link pet_game.Pet} class. Checks if any Pet
+	 * variable has gone below the minimum limit of 100. If it has, it brings it
+	 * back to the minimum limit.
 	 */
 	public void minCheck() {
 		if (weight < 0) {
@@ -386,10 +376,8 @@ public class Pet {
 	}
 
 	/**
-	 * For internal use in the {@link Pet) class. Invoked when a pet has
-	 * died. @see {@link Pet#death()} Zero's out all variables.
-	 * 
-	 * @return Nothing.
+	 * For internal use in the {@link pet_game.Pet} class. Invoked when a pet
+	 * has died. @see {@link Pet#death()} Zero's out all variables.
 	 */
 	public void deadStats() {
 		this.hunger = 0;
@@ -404,10 +392,9 @@ public class Pet {
 	}
 
 	/**
-	 * For internal use in the {@link Pet) class. Invoked when a pet has
-	 * died. @see {@link Pet#death()} Zero's out all variables.
+	 * For internal use in the {@link pet_game.Pet} class. Invoked when a pet
+	 * has died. @see {@link Pet#death()} Zero's out all variables.
 	 * 
-	 * @return Nothing.
 	 */
 	public void death() {
 		if (health < 10) {
@@ -421,9 +408,9 @@ public class Pet {
 	}
 
 	/**
-	 * The punish method can be invoked from the
-	 * {@link pet_game.gameEnvironment}. Calculates the Pet variable changes if
-	 * needed. Changes the misbehaving variable to false.
+	 * The punish method can be invoked from the {@link pet_game.GUIfinal}.
+	 * Calculates the Pet variable changes if needed. Changes the misbehaving
+	 * variable to false.
 	 */
 	public void punish() {
 		misbehaving = false;
@@ -434,17 +421,13 @@ public class Pet {
 	}
 
 	/**
-	 * The toy method can be invoked from the {@link pet_game.gameEnvironment}.
+	 * The toy method can be invoked from the {@link pet_game.GUIfinal}.
 	 * Calculates the Pet variable changes based on the energy modifier variable
 	 * of the Pet, and the enjoyment variable of the {@link pet_game.Toy} object
 	 * parameter given.
 	 * 
 	 * @param toy
-	 *            the {@link Toy} object given, has it's durability variable
-	 *            changed for evoking the
-	 *            {@link pet_game.Toy#setDurability(int)} method.
-	 * @return Returns a formatted String for use in the
-	 *         {@link pet_game.gameEnvironment}.
+	 *            A Toy object.
 	 */
 	public void play(Toy toy) {
 		int dura = toy.getDurability();
@@ -459,12 +442,10 @@ public class Pet {
 	}
 
 	/**
-	 * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
+	 * The feed method can be invoked from the {@link pet_game.GUIfinal}.
 	 * Increases the Pet variables when evoked, and changes sick boolean to
 	 * false. Evokes {@link Pet#maxCheck()}
 	 * 
-	 * @return Returns a formatted String for use in the
-	 *         {@link pet_game.gameEnvironment}.
 	 */
 	public void heal() {
 		sick = false;
@@ -475,11 +456,10 @@ public class Pet {
 	}
 
 	/**
-	 * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
-	 * When called, have a 50% chance of changing pet attribute "sick" to true
-	 * if pet attribute "age" is above 1.
+	 * The feed method can be invoked from the {@link pet_game.GUIfinal}. When
+	 * called, have a 50% chance of changing pet attribute "sick" to true if pet
+	 * attribute "age" is above 1.
 	 * 
-	 * @return Nothing.
 	 */
 	public void sick() {
 		if (age > 1) {
@@ -494,11 +474,10 @@ public class Pet {
 	}
 
 	/**
-	 * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
-	 * When called, have a 50% chance of changing pet attribute "misbehaving" to
-	 * true if pet attriibute "age" is above 0.
+	 * The feed method can be invoked from the {@link pet_game.GUIfinal}. When
+	 * called, have a 50% chance of changing pet attribute "misbehaving" to true
+	 * if pet attribute "age" is above 0.
 	 * 
-	 * @return Nothing.
 	 */
 	public void misbehaving() {
 		if (misbehaving == false) {
@@ -516,10 +495,9 @@ public class Pet {
 	}
 
 	/**
-	 * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
+	 * The feed method can be invoked from the {@link pet_game.GUIfinal}.
 	 * Changes Pet stat variables Calls other methods if criteria is met.
 	 * 
-	 * @return Nothing.
 	 */
 	public void endDay() {
 		if (alive == true) {
@@ -550,7 +528,7 @@ public class Pet {
 	}
 
 	/**
-	 * Overides the default toString method. Produces a formatted String of all
+	 * Overrides the default toString method. Produces a formatted String of all
 	 * Pet variables.
 	 * 
 	 * @return Formatted String.
