@@ -1,11 +1,12 @@
 package pet_game;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
+
 /**
  * Methods implementing random events are not tested.
+ * 
  * @author Robert
  *
  */
@@ -143,21 +144,22 @@ public class PetTest {
 		test.punish();
 		assertEquals(false, oldMisbehaving);
 		assertEquals(oldMood - 10, test.mood);
-		
+
 	}
 
 	@Test
 	public void testPlay() {
 		Pet testPet = new Pet("lo");
-		Toy testToy = new Toy("Bear", 5, 10, 20);  //(name, price, durability, enjoyment)
+		Toy testToy = new Toy("Bear", 5, 10, 20); // (name, price, durability,
+													// enjoyment)
 		int oldEnergy = testPet.energy;
 		int oldDura = testToy.durability;
 		int oldMood = testPet.mood;
 		testPet.play(testToy);
 		assertEquals(oldMood + testToy.enjoyment, testPet.mood);
-		assertEquals(oldDura - 1,testToy.durability);
+		assertEquals(oldDura - 1, testToy.durability);
 		assertEquals(oldMood + 20, testPet.mood);
-		
+
 	}
 
 	@Test
@@ -175,7 +177,7 @@ public class PetTest {
 		Pet test = new Pet("lo");
 		test.age = 1;
 		test.weight = 10;
-		test.energyMod = 2;
+		test.energyMod = 1.1;
 		test.sick = true;
 		int oldAge = test.age;
 		int oldWeight = test.weight;
@@ -185,10 +187,7 @@ public class PetTest {
 		test.endDay();
 		assertEquals(oldAge + 1, test.age);
 		assertEquals(oldWeight + 5, test.weight);
-		assertEquals(oldEnergy + 50, test.energy);
+		assertEquals(oldEnergy - 28, test.energy);
 	}
-			
+
 }
-		
-
-
