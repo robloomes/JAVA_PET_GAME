@@ -1914,7 +1914,7 @@ public class GUIfinal implements gameObjects {
 	public void punish() {
 		if (globalCurrentPet.getMisbehaving() == true) {
 			lblEventOutputs
-					.setText(String.format("<html>%s is upset, but can focus better<br> (can have 2 actions again)",
+					.setText(String.format("<html>%s is upset, but can focus better<br> (can have 2 actions again next day)",
 							globalCurrentPet.getName()));
 			globalCurrentPet.punish();
 		} else {
