@@ -473,11 +473,12 @@ public class Pet {
 		maxCheck();
 		actions -= 1;
 	}
-	
+
 	/**
 	 * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
-	 * When called, have a 50% chance of changing pet attribute "sick"
-	 * to true if pet attribute "age" is above 1.
+	 * When called, have a 50% chance of changing pet attribute "sick" to true
+	 * if pet attribute "age" is above 1.
+	 * 
 	 * @return Nothing.
 	 */
 	public void sick() {
@@ -491,11 +492,12 @@ public class Pet {
 			}
 		}
 	}
-	
+
 	/**
 	 * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
-	 * When called, have a 50% chance of changing pet attribute "misbehaving"
-	 * to true if pet attriibute "age" is above 0.
+	 * When called, have a 50% chance of changing pet attribute "misbehaving" to
+	 * true if pet attriibute "age" is above 0.
+	 * 
 	 * @return Nothing.
 	 */
 	public void misbehaving() {
@@ -512,11 +514,11 @@ public class Pet {
 			}
 		}
 	}
-	
+
 	/**
 	 * The feed method can be invoked from the {@link pet_game.gameEnvironment}.
-	 * Changes Pet stat variables
-	 * Calls other methods if criteria is met.
+	 * Changes Pet stat variables Calls other methods if criteria is met.
+	 * 
 	 * @return Nothing.
 	 */
 	public void endDay() {
@@ -546,7 +548,7 @@ public class Pet {
 		}
 
 	}
-	
+
 	/**
 	 * Overides the default toString method. Produces a formatted String of all
 	 * Pet variables.
