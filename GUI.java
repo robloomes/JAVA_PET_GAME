@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.jar.Attributes.Name;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -1038,7 +1040,87 @@ public class GUIfinal implements gameObjects {
 
 		panelMainScreen.add(lblCurrentDay);
 	}
-
+	
+	public void mouseClickActions() {
+		
+		txtPetName1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtPetName1.setText("");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (txtPetName1.getText().equals("")){
+					txtPetName1.setText("Enter a name...");
+				}
+			}
+		});
+		
+		txtPetName2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtPetName2.setText("");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (txtPetName2.getText().equals("")){
+					txtPetName2.setText("Enter a name...");
+				}
+			}
+		});
+		
+		txtPetName3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtPetName3.setText("");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (txtPetName3.getText().equals("")){
+					txtPetName3.setText("Enter a name...");
+				}
+			}
+		});
+		
+		txtPetName4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtPetName4.setText("");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (txtPetName4.getText().equals("")){
+					txtPetName4.setText("Enter a name...");
+				}
+			}
+		});
+		
+		txtPetName5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtPetName5.setText("");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (txtPetName5.getText().equals("")){
+					txtPetName5.setText("Enter a name...");
+				}
+			}
+		});
+		
+		txtPetName6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtPetName6.setText("");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (txtPetName6.getText().equals("")){
+					txtPetName6.setText("Enter a name...");
+				}
+			}
+		});
+	}
 	public void feedButtons() {
 		btnFood1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2375,6 +2457,7 @@ public class GUIfinal implements gameObjects {
 		newGame.feedButtons();
 		newGame.playButtons();
 		newGame.storeButtons();
+		newGame.mouseClickActions();
 		newGame.frame.setVisible(true);
 		newGame.gameStart();
 	}
