@@ -173,7 +173,6 @@ public class Player {
 			List<String> toyKeyList = new ArrayList<String>();
 			for (Map.Entry<Toy, Integer> entry : ownedToys.entrySet()) {
 				Toy toy = entry.getKey();
-				int val = entry.getValue();
 				String toyFormat = String.format("%s (%d)", toy.getName(), toy.getDurability());
 				toyKeyList.add(toyFormat);
 			}
@@ -196,10 +195,8 @@ public class Player {
 			}
 			playerFood = "Food: " + Arrays.toString(foodKeyList.toArray()).replace("[", "").replace("]", "");
 		}
-
 		String result = String.format("<html>%s<br>%s<br>%s<br>%s<br>%s", playerName, balanceString, playerPets,
 				playerToys, playerFood);
 		return result;
 	}
-
 }
