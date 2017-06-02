@@ -22,19 +22,35 @@
   -------------
 
   The documentation available as of the date of this release is
-  included in JavaDoc format in the docs directory included. The most
-  up-to-date documentation can be found at
-  http://httpd.apache.org/docs/trunk/.-------------------------------------------- CHANGE THIS TO OUR DOC SITE
+  included in JavaDoc format in the docs directory included. Root
+  doc index can be found at /doc/pet_game/package-summary
   
   Installation Instructions
   -------------------------
 
   The program is currently able to be imported and run in a 
-  java based IDE e.g Eclipse, or from the command line.
+  java based IDE e.g Eclipse, or from the command line, or from
+  the executable virtual_game.jar file
   
+  First start by unpacking the zip file. 
+  
+  Locate the file in the root directory called virtual_game.jar.
+  Run it as is. This should produce a working game.
+  
+  To run from an IDE, first import the root directory as a file system into your program,
+  then from the pet_game/src sub folder, locate the GUIfinal.java file. Run this 
+  file as a java application to get a fully working platform.
+  
+  To run from a command line/terminal:
+  Direct yourself to the class path containing your unpacked, executable
+  .jar file. Type the following into the command line:
+  
+  java -jar virtual_game.jar
+
   Test-file instructions
   ----------------------
-  ----------------------------------------@@@@@@
+ JUnit Test files are included in the /src files,
+ they can be run from any IDE that with a JUnit plugin.
   
   Support
   -------
