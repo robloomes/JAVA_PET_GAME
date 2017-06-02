@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,8 +28,25 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+/**
+ * GUIfinal.java - a class used for building a game environment.
+ * <p>
+ * The GUI file calls and interacts with lower class {@link pet_game.Food},
+ * {@link pet_game.Toy}, {@link pet_game.Pet}, {@link pet_game.Species},
+ * {@link pet_game.gameObjects}, {@link pet_game.Player}
+ * 
+ * Contains all graphical elements as well as all general game logic.
+ * 
+ * @author Robert Loomes
+ * @author Mna Chalabi
+ * @since Winter 2017
+ * @version 1.0
+ */
 public class GUIfinal implements gameObjects {
-
+	/**
+	 * Initialize the variables of the Pet class that need to be accessed
+	 * privately within the class.
+	 */
 	private final JLabel lblFoodStore = new JLabel("  Food");
 	private final JLabel lblToyStore = new JLabel("  Toys");
 	private final JButton btnCake = new JButton("");
@@ -62,7 +80,7 @@ public class GUIfinal implements gameObjects {
 	private final JLabel lblStoreTitle = new JLabel("24 Hour Pet Store");
 	private final JLabel lblPetStoreImage = new JLabel("");
 
-	int textCounter = 1;
+	private int textCounter = 1;
 	private JFrame frame;
 	private Species globalCurrentPet;
 	private Player globalCurrentPlayer;
@@ -204,19 +222,52 @@ public class GUIfinal implements gameObjects {
 	private final JLabel lblToy6 = new JLabel("");
 	private final JLabel lblPlayerStats = new JLabel("<html>");
 
-	Species button1 = null;
-	Species button2 = null;
-	Species button3 = null;
-	Species[] species = { button1, button2, button3 };
+	private Species button1 = null;
+	private Species button2 = null;
+	private Species button3 = null;
+	private Species[] species = { button1, button2, button3 };
 
-	JButton[] jButtons = { btnSelectPet1, btnSelectPet2, btnSelectPet3 };
-	JLabel[] jLabels = { lblPetName1, lblPetName2, lblPetName3 };
+	private JButton[] jButtons = { btnSelectPet1, btnSelectPet2, btnSelectPet3 };
+	private JLabel[] jLabels = { lblPetName1, lblPetName2, lblPetName3 };
 	private final JPanel panelEnd = new JPanel();
 	private final JLabel lblGameOver = new JLabel("GAME OVER");
 	private final JLabel lblEndStats = new JLabel("");
 	private final JButton btnExit = new JButton("EXIT");
 
+	/**
+	 * Main contructor used to add objects needed for the game environment.
+	 */
 	public GUIfinal() {
+
+		globalCurrentPet = null;
+
+		toyChoices.put(1, bear);
+		toyChoices.put(2, boat);
+		toyChoices.put(3, doll);
+		toyChoices.put(4, heli);
+		toyChoices.put(5, kite);
+		toyChoices.put(6, yoyo);
+
+		foodChoices.put(1, cookie);
+		foodChoices.put(2, fish);
+		foodChoices.put(3, chocolate);
+		foodChoices.put(4, cake);
+		foodChoices.put(5, melon);
+		foodChoices.put(6, pizza);
+
+		speciesChoices.put(1, cloud);
+		speciesChoices.put(2, crab);
+		speciesChoices.put(3, monster);
+		speciesChoices.put(4, penguin);
+		speciesChoices.put(5, robot);
+		speciesChoices.put(6, snake);
+	}
+
+	/**
+	 * Secondary constructor for the gui. Constructs all main graphical
+	 * elements.
+	 */
+	public void GUIfinalConstructor() {
 
 		panelStore.setVisible(false);
 		panelStore.add(lblFoodStore);
@@ -331,40 +382,12 @@ public class GUIfinal implements gameObjects {
 		lblStoreTitle.setBounds(371, 0, 414, 89);
 
 		panelStore.add(lblStoreTitle);
-		// lblPetStoreImage.setIcon(new
-		// ImageIcon(GUIfinal.class.getResource("/photo/PetStoreDog.jpg")));
 		lblPetStoreImage.setBounds(443, 537, 258, 182);
 
 		panelStore.add(lblPetStoreImage);
 		panelStart.setBackground(Color.BLUE);
 		panelStart.setForeground(Color.RED);
 		panelStart.setBounds(0, 0, 1213, 718);
-
-		globalCurrentPet = null;
-
-		toyChoices.put(1, bear);
-		toyChoices.put(2, boat);
-		toyChoices.put(3, doll);
-		toyChoices.put(4, heli);
-		toyChoices.put(5, kite);
-		toyChoices.put(6, yoyo);
-
-		foodChoices.put(1, cookie);
-		foodChoices.put(2, fish);
-		foodChoices.put(3, chocolate);
-		foodChoices.put(4, cake);
-		foodChoices.put(5, melon);
-		foodChoices.put(6, pizza);
-
-		speciesChoices.put(1, cloud);
-		speciesChoices.put(2, crab);
-		speciesChoices.put(3, monster);
-		speciesChoices.put(4, penguin);
-		speciesChoices.put(5, robot);
-		speciesChoices.put(6, snake);
-	}
-
-	public void GUIfinalConstructor() {
 
 		frame = new JFrame();
 		frame.setPreferredSize(new Dimension(500, 500));
@@ -472,23 +495,6 @@ public class GUIfinal implements gameObjects {
 
 		rdbtn1player.setSelected(true);
 
-		rdbtn1player.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				numOfPlayers = 1;
-			}
-		});
-
-		rdbtn2players.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				numOfPlayers = 2;
-			}
-		});
-
-		rdbtn3players.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				numOfPlayers = 3;
-			}
-		});
 		panelInput.setBackground(Color.WHITE);
 		panelInput.setVisible(false);
 
@@ -799,6 +805,97 @@ public class GUIfinal implements gameObjects {
 
 		panelEnd.add(lblEndStats);
 		panelMainScreen.setVisible(false);
+		panelFeed.setBounds(0, 0, 605, 706);
+		frame.getContentPane().add(panelFeed);
+
+		panelFeed.setVisible(false);
+		panelFeed.setBackground(Color.DARK_GRAY);
+		panelFeed.setLayout(null);
+		btnFood1.setVisible(false);
+
+		btnFood1.setBounds(40, 155, 115, 115);
+		panelFeed.add(btnFood1);
+		btnFood2.setVisible(false);
+
+		btnFood2.setBounds(245, 155, 115, 115);
+		panelFeed.add(btnFood2);
+		btnFood3.setVisible(false);
+
+		btnFood3.setBounds(446, 155, 115, 115);
+		panelFeed.add(btnFood3);
+		btnFood4.setVisible(false);
+
+		btnFood4.setBounds(40, 386, 115, 115);
+		panelFeed.add(btnFood4);
+		btnFood5.setVisible(false);
+
+		btnFood5.setBounds(245, 386, 115, 115);
+		panelFeed.add(btnFood5);
+		btnFood6.setVisible(false);
+
+		btnFood6.setBounds(446, 386, 115, 115);
+		panelFeed.add(btnFood6);
+
+		JLabel lblFeed = new JLabel("Choose an item to feed to your pet.");
+		lblFeed.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lblFeed.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFeed.setForeground(Color.WHITE);
+		lblFeed.setOpaque(true);
+		lblFeed.setBackground(new Color(128, 128, 128));
+		lblFeed.setBounds(36, 29, 525, 115);
+		panelFeed.add(lblFeed);
+		btnFeedBack.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnFeedBack.setBounds(407, 629, 188, 66);
+
+		panelFeed.add(btnFeedBack);
+		lblFood1.setVisible(false);
+		lblFood1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood1.setBackground(Color.GRAY);
+		lblFood1.setForeground(Color.WHITE);
+		lblFood1.setOpaque(true);
+		lblFood1.setBounds(40, 281, 115, 34);
+
+		panelFeed.add(lblFood1);
+		lblFood2.setVisible(false);
+		lblFood2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood2.setBackground(Color.GRAY);
+		lblFood2.setForeground(Color.WHITE);
+		lblFood2.setOpaque(true);
+		lblFood2.setBounds(245, 281, 115, 34);
+
+		panelFeed.add(lblFood2);
+		lblFood3.setVisible(false);
+		lblFood3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood3.setBackground(Color.GRAY);
+		lblFood3.setForeground(Color.WHITE);
+		lblFood3.setOpaque(true);
+		lblFood3.setBounds(446, 281, 115, 34);
+
+		panelFeed.add(lblFood3);
+		lblFood4.setVisible(false);
+		lblFood4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood4.setBackground(Color.GRAY);
+		lblFood4.setForeground(Color.WHITE);
+		lblFood4.setOpaque(true);
+		lblFood4.setBounds(40, 512, 115, 34);
+
+		panelFeed.add(lblFood4);
+		lblFood5.setVisible(false);
+		lblFood5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood5.setBackground(Color.GRAY);
+		lblFood5.setForeground(Color.WHITE);
+		lblFood5.setOpaque(true);
+		lblFood5.setBounds(245, 512, 115, 34);
+
+		panelFeed.add(lblFood5);
+		lblFood6.setVisible(false);
+		lblFood6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFood6.setBackground(Color.GRAY);
+		lblFood6.setForeground(Color.WHITE);
+		lblFood6.setOpaque(true);
+		lblFood6.setBounds(446, 512, 115, 34);
+
+		panelFeed.add(lblFood6);
 		panelMainScreen.setBackground(Color.GRAY);
 		panelMainScreen.setBounds(0, 0, 1213, 718);
 
@@ -944,99 +1041,38 @@ public class GUIfinal implements gameObjects {
 		lblCurrentDay.setBounds(817, 71, 182, 190);
 
 		panelMainScreen.add(lblCurrentDay);
-		panelFeed.setBounds(0, 0, 605, 706);
-		frame.getContentPane().add(panelFeed);
-
-		panelFeed.setVisible(false);
-		panelFeed.setBackground(Color.DARK_GRAY);
-		panelFeed.setLayout(null);
-		btnFood1.setVisible(false);
-
-		btnFood1.setBounds(40, 155, 115, 115);
-		panelFeed.add(btnFood1);
-		btnFood2.setVisible(false);
-
-		btnFood2.setBounds(245, 155, 115, 115);
-		panelFeed.add(btnFood2);
-		btnFood3.setVisible(false);
-
-		btnFood3.setBounds(446, 155, 115, 115);
-		panelFeed.add(btnFood3);
-		btnFood4.setVisible(false);
-
-		btnFood4.setBounds(40, 386, 115, 115);
-		panelFeed.add(btnFood4);
-		btnFood5.setVisible(false);
-
-		btnFood5.setBounds(245, 386, 115, 115);
-		panelFeed.add(btnFood5);
-		btnFood6.setVisible(false);
-
-		btnFood6.setBounds(446, 386, 115, 115);
-		panelFeed.add(btnFood6);
-
-		JLabel lblFeed = new JLabel("Choose an item to feed to your pet.");
-		lblFeed.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblFeed.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFeed.setForeground(Color.WHITE);
-		lblFeed.setOpaque(true);
-		lblFeed.setBackground(new Color(128, 128, 128));
-		lblFeed.setBounds(36, 29, 525, 115);
-		panelFeed.add(lblFeed);
-		btnFeedBack.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnFeedBack.setBounds(407, 629, 188, 66);
-
-		panelFeed.add(btnFeedBack);
-		lblFood1.setVisible(false);
-		lblFood1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood1.setBackground(Color.GRAY);
-		lblFood1.setForeground(Color.WHITE);
-		lblFood1.setOpaque(true);
-		lblFood1.setBounds(40, 281, 115, 34);
-
-		panelFeed.add(lblFood1);
-		lblFood2.setVisible(false);
-		lblFood2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood2.setBackground(Color.GRAY);
-		lblFood2.setForeground(Color.WHITE);
-		lblFood2.setOpaque(true);
-		lblFood2.setBounds(245, 281, 115, 34);
-
-		panelFeed.add(lblFood2);
-		lblFood3.setVisible(false);
-		lblFood3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood3.setBackground(Color.GRAY);
-		lblFood3.setForeground(Color.WHITE);
-		lblFood3.setOpaque(true);
-		lblFood3.setBounds(446, 281, 115, 34);
-
-		panelFeed.add(lblFood3);
-		lblFood4.setVisible(false);
-		lblFood4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood4.setBackground(Color.GRAY);
-		lblFood4.setForeground(Color.WHITE);
-		lblFood4.setOpaque(true);
-		lblFood4.setBounds(40, 512, 115, 34);
-
-		panelFeed.add(lblFood4);
-		lblFood5.setVisible(false);
-		lblFood5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood5.setBackground(Color.GRAY);
-		lblFood5.setForeground(Color.WHITE);
-		lblFood5.setOpaque(true);
-		lblFood5.setBounds(245, 512, 115, 34);
-
-		panelFeed.add(lblFood5);
-		lblFood6.setVisible(false);
-		lblFood6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFood6.setBackground(Color.GRAY);
-		lblFood6.setForeground(Color.WHITE);
-		lblFood6.setOpaque(true);
-		lblFood6.setBounds(446, 512, 115, 34);
-
-		panelFeed.add(lblFood6);
 	}
 
+	/**
+	 * Hold the action listeners for player buttons. Sets the amount of players
+	 * in the game from user input. Is initialized on game launch.
+	 */
+	public void playerButtons() {
+		rdbtn1player.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numOfPlayers = 1;
+			}
+		});
+
+		rdbtn2players.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numOfPlayers = 2;
+			}
+		});
+
+		rdbtn3players.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numOfPlayers = 3;
+			}
+		});
+	}
+
+	/**
+	 * Handles the ghost text graphical elements for various text boxes. Let's
+	 * text boxes be more user friendly by letting the player know what the text
+	 * box is asking for, and not obstructing the input. Is initialized on game
+	 * launch.
+	 */
 	public void mouseClickActions() {
 
 		txtPetName1.addMouseListener(new MouseAdapter() {
@@ -1124,6 +1160,11 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Holds the action listener for the feed buttons. Holds all the feed logic
+	 * within the button and calls a secondary method @see feedBack() to handle
+	 * graphical visibility requirements. Is initialized on game launch.
+	 */
 	public void feedButtons() {
 		btnFood1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1210,6 +1251,11 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Holds the action listeners for the store buttons. Contains the logic
+	 * within the buttons. Calls warning messages if user input is not
+	 * applicable. Is initialized on game launch.
+	 */
 	public void storeButtons() {
 		btnChocolate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1395,6 +1441,10 @@ public class GUIfinal implements gameObjects {
 
 	}
 
+	/**
+	 * Holds the action listeners for using toys with pets. Play logic is
+	 * contained within the buttons. Is initialized on game launch.
+	 */
 	public void playButtons() {
 		btnToy1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1487,7 +1537,11 @@ public class GUIfinal implements gameObjects {
 				if (btnToy6.getIcon() != null) {
 					lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
 					globalCurrentPet.play(currentToys.get(5));
-					globalCurrentPlayer.removeToy(currentToys.get(5));
+					if (currentToys.get(5).getDurability() <= 0) {
+						globalCurrentPlayer.removeToy(currentToys.get(5));
+						lblEventOutputs.setText(String.format("%s is feeling happier!", globalCurrentPet.getName()));
+						lblEventOutputs.setText(String.format("Your %s broke!", currentToys.get(5).getName()));
+					}
 					lblPetAttributes.setText(globalCurrentPet.toString());
 					lblPlayerStats.setText(globalCurrentPlayer.toString());
 					playBack();
@@ -1496,6 +1550,11 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Holds the mouse listeners for the buttons on the main game screen.
+	 * Changes colour of button on mouseover for a bit of user quality of life.
+	 * Is initialized on game launch.
+	 */
 	public void mainScreenButtonColours() {
 		btnEndDay.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -1598,6 +1657,11 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Holds the actions listeners for the main game buttons on the main screen.
+	 * Contains some logic is used mostly for called other methods. Is
+	 * initialized on game launch.
+	 */
 	public void GUIfinalMainButtons() {
 
 		btnSleep.addActionListener(new ActionListener() {
@@ -1743,6 +1807,10 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Method holding visibility requirements of some on the graphical elements.
+	 * Is initialized on game launch.
+	 */
 	public void feedBack() {
 		panelMainScreen.setVisible(true);
 		panelFeed.setVisible(false);
@@ -1763,6 +1831,10 @@ public class GUIfinal implements gameObjects {
 		lblFood6.setVisible(false);
 	}
 
+	/**
+	 * Method holding visibility requirements of some on the graphical elements.
+	 * Is initialized on game launch.
+	 */
 	public void playBack() {
 		lblPlayerStats.setText(globalCurrentPlayer.toString());
 		panelMainScreen.setVisible(true);
@@ -1784,6 +1856,10 @@ public class GUIfinal implements gameObjects {
 		lblToy6.setVisible(false);
 	}
 
+	/**
+	 * Method handling button image dedications. Based on the global players
+	 * currently owned pets.
+	 */
 	public void selectPet() {
 
 		panelPets.setVisible(true);
@@ -1829,6 +1905,10 @@ public class GUIfinal implements gameObjects {
 
 	}
 
+	/**
+	 * Method containing button action listeners when selecting pets. Is
+	 * initialized on game launch.
+	 */
 	public void selectPetButtons() {
 
 		btnSelectPet1.addActionListener(new ActionListener() {
@@ -1866,6 +1946,10 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Method handling button image dedications. Based on the global players
+	 * currently owned pet.
+	 */
 	public void currentSelectedPet() {
 		lblCurrentPet.setText(String.format("Current pet: %s", globalCurrentPet.getName()));
 		lblPetAttributes.setText(globalCurrentPet.toString());
@@ -1891,6 +1975,9 @@ public class GUIfinal implements gameObjects {
 
 	}
 
+	/**
+	 * Method handling the graphical elements of the main game screen.
+	 */
 	public void mainSelectScreen() {
 
 		panelCreation.setVisible(false);
@@ -1900,10 +1987,14 @@ public class GUIfinal implements gameObjects {
 		lblDayTotals.setText(String.format("/%1$,.0f", gameDays));
 	}
 
+	/**
+	 * Method containing the logic interactions when the pet is punished. Is
+	 * called from a button action listener.
+	 */
 	public void punish() {
 		if (globalCurrentPet.getMisbehaving() == true) {
-			lblEventOutputs
-					.setText(String.format("<html>%s is upset, but can focus better<br> (can have 2 actions again next day)",
+			lblEventOutputs.setText(
+					String.format("<html>%s is upset, but can focus better<br> (can have 2 actions again next day)",
 							globalCurrentPet.getName()));
 			globalCurrentPet.punish();
 		} else {
@@ -1913,6 +2004,10 @@ public class GUIfinal implements gameObjects {
 
 	}
 
+	/**
+	 * Method containing the logic interactions when the pet is revived. Is
+	 * called from a button action listener.
+	 */
 	public void revive() {
 		if (globalCurrentPet == null) {
 			lblEventOutputs.setText("You need to select a pet first!");
@@ -1927,6 +2022,10 @@ public class GUIfinal implements gameObjects {
 		}
 	}
 
+	/**
+	 * Method containing the logic interactions when the pet is taken to the
+	 * doctor. Is called from a button action listener.
+	 */
 	public void doctor() {
 
 		if (globalCurrentPet == null) {
@@ -1948,6 +2047,11 @@ public class GUIfinal implements gameObjects {
 		}
 	}
 
+	/**
+	 * Method handling graphical elements related to the start game panel.
+	 * Contains an action listener that calls text from the interface
+	 * gameObjects when activated.
+	 */
 	public void gameStart() {
 		panelStart.setVisible(true);
 		panelHelp.setVisible(false);
@@ -1958,7 +2062,6 @@ public class GUIfinal implements gameObjects {
 				panelHelp.setVisible(true);
 				clickPanel.setVisible(true);
 				lblHelp.setText("");
-
 			}
 		});
 
@@ -1997,12 +2100,21 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Method handling visibility requirements for graphical elements on the
+	 * player initialization screen.
+	 */
 	public void inputPlayerNum() {
 		panelInput.setVisible(true);
 		panelStart.setVisible(false);
 		panelHelp.setVisible(false);
 	}
 
+	/**
+	 * Method handling visibility requirements for graphical elements on the
+	 * game days initialization screen. Contains an action listener for a basic
+	 * continue button.
+	 */
 	public void inputDayNum() {
 		gameDays = 0;
 
@@ -2022,6 +2134,12 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Method containing logic that checks whether 2 pets have the same name,
+	 * and returns false if they do.
+	 * 
+	 * @return boolean letting the program know if 2 pets have the same name.
+	 */
 	public boolean dualPetNameChecker() {
 		String textFields[] = { txtPetName1.getText(), txtPetName2.getText(), txtPetName3.getText(),
 				txtPetName4.getText(), txtPetName5.getText(), txtPetName6.getText() };
@@ -2040,6 +2158,11 @@ public class GUIfinal implements gameObjects {
 		return false;
 	}
 
+	/**
+	 * Method containing the main logic related to player and pet selctions/name
+	 * inputs. Makes use of pop-up error windows when user input is not what is
+	 * required.
+	 */
 	public void createPlayers() {
 		textCounter = 1;
 		panelInput.setVisible(false);
@@ -2119,6 +2242,10 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Method handling visibility requirements check boxes on the pet creation
+	 * panel.
+	 */
 	public void clearBoxes() {
 		txtPetName1.setText("Enter a name...");
 		txtPetName2.setText("Enter a name...");
@@ -2134,6 +2261,13 @@ public class GUIfinal implements gameObjects {
 		chckbxPet6.setSelected(false);
 	}
 
+	/**
+	 * Checks whether 2 players have the same name.
+	 * 
+	 * @param name
+	 *            -the player name of type String.
+	 * @return boolean -returns true if 2 players have the same name.
+	 */
 	public boolean existingPlayerChecker(String name) {
 		for (Map.Entry<Integer, Player> entry : players.entrySet()) {
 			if (entry.getValue().getName().equals(name)) {
@@ -2143,6 +2277,12 @@ public class GUIfinal implements gameObjects {
 		return false;
 	}
 
+	/**
+	 * A simple method for counting how many check boxes are selected on the pet
+	 * creation panel.
+	 * 
+	 * @return Returns an int of how many check boxes are selected.
+	 */
 	public int boxCounter() {
 		int counter = 0;
 		if (chckbxPet1.isSelected()) {
@@ -2166,6 +2306,11 @@ public class GUIfinal implements gameObjects {
 		return counter;
 	}
 
+	/**
+	 * Method making sure the pet name is not null.
+	 * 
+	 * @return Returns a boolean whether or not the name is null.
+	 */
 	public boolean petNameChecker() {
 		if ((chckbxPet1.isSelected()) && (txtPetName1.getText().equals("Enter a name..."))) {
 			return false;
@@ -2185,6 +2330,13 @@ public class GUIfinal implements gameObjects {
 
 	}
 
+	/**
+	 * Checks whether a player already owned a specific Toy.
+	 * 
+	 * @param toy
+	 *            -the Toy being checked if already owned.
+	 * @return Returns a boolean true if Toy is already owned.
+	 */
 	public boolean toyChecker(Toy toy) {
 		boolean toyOwned = false;
 		for (Map.Entry<Toy, Integer> entry : globalCurrentPlayer.getToys().entrySet()) {
@@ -2196,6 +2348,13 @@ public class GUIfinal implements gameObjects {
 		return toyOwned;
 	}
 
+	/**
+	 * Method calculating a user score for a player for the end game panel.
+	 * 
+	 * @param player
+	 *            -the player whose score is being calculated.
+	 * @return Returns an int of user score.
+	 */
 	public int score(Player player) {
 		int score = 0;
 
@@ -2206,6 +2365,10 @@ public class GUIfinal implements gameObjects {
 		return score;
 	}
 
+	/**
+	 * Method handling the visibility requirements of graphical elements related
+	 * to the end game panel.
+	 */
 	public void endGame() {
 		panelMainScreen.setVisible(false);
 		panelEnd.setVisible(true);
@@ -2230,6 +2393,11 @@ public class GUIfinal implements gameObjects {
 		});
 	}
 
+	/**
+	 * Method handling visibility requirements for graphical elements when a new
+	 * player's turn begin. Resets all lists to make it clean for the new
+	 * player.
+	 */
 	public void resetNewPlayer() {
 		btnSelectPet1.setIcon(null);
 		btnSelectPet2.setIcon(null);
@@ -2255,6 +2423,12 @@ public class GUIfinal implements gameObjects {
 		lblEventOutputs.setText("");
 	}
 
+	/**
+	 * Contains the main logic for handling the end day action listener. Makes
+	 * use of for if statements to check whether the game needs to go to the
+	 * next day, change player, or end the game, based on the days already taken
+	 * by each player.
+	 */
 	public void endDay() {
 		globalCurrentDay++;
 		if (globalCurrentDay > gameDays) {
@@ -2301,16 +2475,26 @@ public class GUIfinal implements gameObjects {
 		}
 	}
 
+	/**
+	 * Calls the toilet method for the Pet.
+	 */
 	public void toilet() {
 		globalCurrentPet.toilet();
 		lblEventOutputs.setText(String.format("%s feels relieved.", globalCurrentPet.getName()));
 	}
 
+	/**
+	 * Calls the sleep method for the Pet.
+	 */
 	public void sleep() {
 		lblEventOutputs.setText(String.format("%s feels refreshed!", globalCurrentPet.getName()));
 		globalCurrentPet.sleep();
 	}
 
+	/**
+	 * Calls the play method for the Pet. Handles the button image settings for
+	 * Toy objects.
+	 */
 	public void play() {
 		panelPlay.setVisible(true);
 		panelButtons.setVisible(false);
@@ -2356,6 +2540,10 @@ public class GUIfinal implements gameObjects {
 		}
 	}
 
+	/**
+	 * Calls the feed method for the Pet. Handles the button image settings for
+	 * Food objects.
+	 */
 	public void feedPet() {
 		panelFeed.setVisible(true);
 		panelButtons.setVisible(false);
@@ -2401,6 +2589,13 @@ public class GUIfinal implements gameObjects {
 		}
 	}
 
+	/**
+	 * Method reading check boxes on the pet selection panel, and adds pets to
+	 * the player if selected.
+	 * 
+	 * @param player-
+	 *            the player the pet is being added to.
+	 */
 	public void createPets(Player player) {
 
 		if (chckbxPet1.isSelected()) {
@@ -2435,25 +2630,57 @@ public class GUIfinal implements gameObjects {
 		}
 	}
 
+	/**
+	 * Adds a Toy to the player. Evoked the addtoy() method of the Toy class.
+	 * 
+	 * @param player-
+	 *            the player the Toy is being added to.
+	 * @param toyName
+	 *            - the Toy being added.
+	 */
 	public void addToy(String player, String toyName) {
 		Toy toy = toyChoices.get(toyName);
 		Player val = players.get(player);
 		val.addToy(toy);
 	}
 
+	/**
+	 * Adds a player to the game environment.
+	 * 
+	 * @param player-
+	 *            the player being added.
+	 * @param i-
+	 *            key value used in storing the player for iteration.
+	 */
 	public void addPlayer(Player player, int i) {
 		players.put(i, player);
 	}
 
+	/**
+	 * Adds Food objects to the player.
+	 * 
+	 * @param player
+	 *            - the player being added to.
+	 * @param foodName
+	 *            - the Food object being added.
+	 */
 	public void addFood(String player, String foodName) {
 		Food food = foodChoices.get(foodName);
 		Player val = players.get(player);
 		val.addFood(food);
 	}
 
+	/**
+	 * Main method. Initializes all required action listeners and graphical
+	 * elements in the game environment.
+	 * 
+	 * @param args
+	 *            Not used.
+	 */
 	public static void main(String[] args) {
 
 		GUIfinal newGame = new GUIfinal();
+		newGame.playerButtons();
 		newGame.GUIfinalConstructor();
 		newGame.GUIfinalMainButtons();
 		newGame.selectPetButtons();
