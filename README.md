@@ -1,4 +1,4 @@
-  <img src='https://github.com/R055A/ComputerGraphicsAssignmentTwo/blob/master/ScreenShot.png'>
+  ![](https://github.com/robloomes/JAVA_PET_GAME/blob/master/pengy.png)
   
   TAMAGOTCHI PET GAME
            
